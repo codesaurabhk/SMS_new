@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Menu from "../../src/components/Menu";
 import Sidebar from "../../src/components/Sidebar/Sidebar";
+import Student from "../page/Student/Student.jsx";
 
 
 
@@ -16,6 +17,8 @@ function AppRouter() {
           <Route path="sidebar" element={<Sidebar />} />
           {/* <Route path="" element={<Dashboard />} /> */}
 
+          <Route path="students" element={<Student/>} />
+
           {/* <Route path="campus-setup" element={<CampusSetup/>} />
             <Route path="block-setup" element={<BlockSetup/>} />            
             <Route path="building-setup" element={<BuildingSetup/>} />  
@@ -29,7 +32,7 @@ function AppRouter() {
           <Route path="studentTable" element={<StudentTable />} />
           <Route path="studentProfile/:id" element={<StudentProfile />} />
 
-          <Route path="addstudents" element={<AddStudent/>} />
+          
           <Route path="teachers" element={<Teachers />} />
           <Route path="addteachers" element={<AddTeachers/>} />
           <Route path="teachersProfile/:id" element={<TeacherProfile/>} />
