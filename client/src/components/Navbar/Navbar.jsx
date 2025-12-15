@@ -10,7 +10,7 @@ import Logo from "../../assets/images/logo.png";
 
 function Navbar({ onToggleSidebar, isSidebarOpen }) {
   return (
-    <nav className="flex items-center justify-between px-4 py-2 bg-white shadow-sm">
+    <nav className="flex items-center justify-between px-6 py-3 bg-white shadow-sm ">
       
       {/* Left: Hamburger */}
       <div className="flex items-center gap-3">
@@ -28,13 +28,8 @@ function Navbar({ onToggleSidebar, isSidebarOpen }) {
         </button>
       </div>
 
-      {/* Center: Logo */}
-      <div className="flex justify-center items-center">
-        <div className="w-[150px] h-[35px]">
-          {/* Logo */}
-          <img src={Logo} alt="img" className="flex justify-center items-center w-full h-full object-contain"  />
-        </div>
-      </div> 
+      
+
 
       {/* Right Section */}
       <div className="flex items-center gap-4">

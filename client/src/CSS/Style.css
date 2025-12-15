@@ -11,7 +11,8 @@
 }
 
 .light-blue {
-  color: #007aff;
+  /* color: #007aff; */
+  color: #0B3142;
 }
 
 /* LOGO */
@@ -85,12 +86,26 @@
   width: 15%;
   height: 100vh;
   position: fixed;
-  top: 0;
+  top: 70px;
   left: 0;
-  background-color: #343c4d;
+  background-color: #fff;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   will-change: transform;
-  /* overflow-y: auto; */
+  overflow-y: auto;
+  z-index: 999;
+}
+
+/* Mobile sidebar - hidden by default */
+@media (max-width: 1024px) {
+  .sidebar-left {
+    width: 100%;
+    transform: translateX(-100%);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar-left.is-open {
+    transform: translateX(0);
+  }
 }
 
 .pages-linkage {
@@ -112,11 +127,32 @@
   width: 85%;
   height: calc(100vh - 70px);
   overflow-y: auto;
-  position: absolute;
-  top: 0px;
-  right: 0;
+  margin-left: auto;
   padding: 10px;
   background-color: #f0f5f8;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-right {
+    width: 100%;
+  }
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-backdrop {
+    display: block;
+  }
 }
 
 .show-sidebar {

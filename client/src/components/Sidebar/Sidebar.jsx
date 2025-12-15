@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../../CSS/style.css";
+import Logo from "../../assets/images/logo.png";
+
 
 import {
   LuLayoutDashboard,
@@ -46,16 +48,19 @@ function Sidebar() {
   ];
 
   return (
-    <div className="h-full bg-slate-900 text-white">
+    <div className="h-full text-slate-900 bg-white">
       {/* Logo Section */}
-      <div className="flex justify-center items-center p-4">
-        <div className="w-[200px] h-[35px]">
+      <div className="flex justify-center items-center  mb-7 ">
+        <div className="w-[200px] h-[40px]  flex  items-center mt-5 mr-15">
           {/* Logo goes here */}
+        
+          <img src={Logo} alt="" />
         </div>
       </div>
+      <div className="border-t border-slate-300"></div>
 
       {/* Navigation */}
-      <div className="flex flex-col gap-2 mt-4 px-4">
+      <div className="flex flex-col gap-2 mt-2  px-4  ">
         {navItems.map((item, index) => (
           <NavLink
             key={index}
@@ -64,8 +69,8 @@ function Sidebar() {
               `flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-all
                ${
                  isActive
-                   ? "bg-blue-600 text-white"
-                   : "text-gray-300 hover:bg-slate-800 hover:text-white"
+                   ? "bg-slate-800 text-white"
+                   : "text-slate-700 hover:bg-gray-200 hover:slate-800"
                }`
             }
           >
