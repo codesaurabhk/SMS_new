@@ -23,7 +23,7 @@ function Menu() {
   }, [openSidebar]);
 
   return (
-    <div className="min-h-screen">
+    <div >
       
       {/* Navbar */}
       <div className="shadow">
@@ -36,24 +36,20 @@ function Menu() {
       <div className="flex items-center relative">
         
         {/* Sidebar */}
-        <aside
-          className={`fixed top-0 left-0 h-full w-64 bg-slate-900 transition-transform duration-300
-            ${openSidebar ? "translate-x-0" : "-translate-x-full"}
-            lg:static lg:translate-x-0`}
-        >
+         <aside className={`sidebar-left ${openSidebar ? "is-open" : ""}`}>
           <Sidebar />
         </aside>
 
         {/* Backdrop */}
         {openSidebar && (
           <div
-            className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+            className="sidebar-backdrop"
             onClick={() => setOpenSidebar(false)}
           />
         )}
 
         {/* Content */}
-        <main className="flex-1 min-h-screen p-4 lg:ml-64">
+        <main className="sidebar-right">
           <Outlet />
         </main>
 
