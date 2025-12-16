@@ -1,65 +1,71 @@
 import React from "react";
 import {
-  LuMessageSquare,
   LuSearch,
+  LuMessageSquare,
   LuMail,
-  LuCircleUserRound,
   LuBell,
+  LuChevronDown,
 } from "react-icons/lu";
-import Logo from "../../assets/images/logo.png";
+import { BsChatText } from "react-icons/bs";
 
-function Navbar({ onToggleSidebar, isSidebarOpen }) {
+function Navbar({ onToggleSidebar }) {
   return (
-    <nav className="flex items-center justify-between px-6 py-3 bg-white shadow-sm ">
-      
-      {/* Left: Hamburger */}
+    <nav className="h-20 bg-white flex items-center justify-between px-4 md:px-6 ">
+
+      {/* ===== LEFT ===== */}
       <div className="flex items-center gap-3">
+
+        {/* Hamburger */}
         <button
-          type="button"
-          aria-label="Toggle sidebar"
-          aria-controls="app-sidebar"
-          aria-expanded={isSidebarOpen ? "true" : "false"}
           onClick={onToggleSidebar}
-          className="flex flex-col gap-1 lg:hidden"
+          className="lg:hidden flex flex-col gap-1"
         >
           <span className="w-6 h-0.5 bg-gray-700" />
           <span className="w-6 h-0.5 bg-gray-700" />
           <span className="w-6 h-0.5 bg-gray-700" />
         </button>
+
+        {/* Search (hidden on small screens) */}
+        <div className="hidden md:flex items-center gap-2 bg-gray-200 px-4 py-3 rounded-lg w-[220px] lg:w-[325px]">
+          <LuSearch className="text-gray-500" />
+          <input
+            type="text"
+            placeholder="Search here..."
+            className="bg-transparent outline-none text-sm w-full"
+          />
+        </div>
       </div>
 
-      
-
-
-      {/* Right Section */}
-      <div className="flex items-center gap-4">
-        
-        {/* Search */}
-        <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-md">
-          <input
-            type="search"
-            placeholder="Search..."
-            className="bg-transparent outline-none border-none text-sm w-32 md:w-48"
-          />
-          <LuSearch className="text-lg text-gray-500" />
-        </div>
+      {/* ===== RIGHT ===== */}
+      <div className="flex items-center gap-3 md:gap-5">
 
         {/* Icons */}
-        <LuMessageSquare className="text-xl text-gray-500 cursor-pointer hover:text-blue-600" />
-        <LuMail className="text-xl text-gray-500 cursor-pointer hover:text-blue-600" />
-        <LuBell className="text-xl text-gray-500 cursor-pointer hover:text-blue-600" />
+        
+      <div className="bg-[#D9E3E8] h-10 w-10 flex justify-center items-center rounded-full">  <LuBell className="text-xl text-[#12516E]  hover:text-blue-600 cursor-pointer" /></div>
+       <div className="bg-[#D9E3E8] h-10 w-10 flex justify-center items-center rounded-full">  <BsChatText  className="text-xl -scale-x-100 text-[#12516E] hover:text-blue-600 cursor-pointer" /></div>
 
-        {/* User Info */}
+        {/* Divider (hidden on small) */}
+        <div className="hidden md:block h-6 w-px bg-gray-300" />
+
+        {/* User */}
         <div className="flex items-center gap-2 cursor-pointer">
-          <LuCircleUserRound className="text-2xl text-gray-500" />
-          <div className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold text-blue-600">
-              Aditya Kumar
-            </span>
-            <span className="text-[11px] text-gray-500">
-              Admin
-            </span>
+          <img
+            src="https://i.pravatar.cc/40?img=7"
+            alt="user"
+            className="w-12 h-12 rounded-full object-cover"
+          />
+
+          {/* Name hidden on mobile */}
+          <div className="hidden md:block leading-tight">
+            <p className="text-sm font-semibold text-gray-800">
+              Priyanshu...
+            </p>
+            <p className="text-xs text-gray-500">
+              Administrator
+            </p>
           </div>
+
+          <LuChevronDown className="hidden md:block text-2xl text-gray-400" />
         </div>
       </div>
     </nav>

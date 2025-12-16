@@ -3,6 +3,14 @@ import { Routes, Route } from "react-router-dom";
 import Menu from "../../src/components/Menu";
 import Sidebar from "../../src/components/Sidebar/Sidebar";
 import Student from "../page/Student/Student.jsx";
+import UnassignStudent from "../page/Student/UnassignStudent.jsx";
+import Attendance from "../page/Student/Attendance.jsx";
+import LeaveRequest from "../page/Student/LeaveRequest.jsx";
+import IdCard from "../page/Student/IdCard.jsx";
+import ManageLogin from "../page/Student/ManageLogin.jsx";
+import Promote from "../page/Student/Promote.jsx";
+import Performance from "../page/Student/Performance.jsx";
+import Dashboard from "../page/Dashboard/Dashboard.jsx";
 
 
 
@@ -14,10 +22,17 @@ function AppRouter() {
     <>
       <Routes>
         <Route path="/" element={<Menu />}>
-          <Route path="sidebar" element={<Sidebar />} />
-          {/* <Route path="" element={<Dashboard />} /> */}
-
+        
+          <Route path="/dashboard" element={<Dashboard />} />
+            {/* // student routes */}
           <Route path="students" element={<Student/>} />
+          <Route path="unassign-students" element={<UnassignStudent/>} />
+          <Route path="attendance" element={<Attendance/>} />
+          <Route path="leave-request" element={<LeaveRequest/>} />
+          <Route path="perfromances" element={<Performance/>} />
+          <Route path="id-card" element={<IdCard/>} />
+          <Route path="manage-login" element={<ManageLogin/>} />
+          <Route path="promote" element={<Promote/>} />
 
           {/* <Route path="campus-setup" element={<CampusSetup/>} />
             <Route path="block-setup" element={<BlockSetup/>} />            
