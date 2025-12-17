@@ -46,7 +46,6 @@ import UpcomingEvents from "../page/Events&Calender/UpcomingEvents.jsx";
 
 
 
-
 function AppRouter() {
   return (
     <>
