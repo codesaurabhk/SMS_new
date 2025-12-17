@@ -11,6 +11,36 @@ import ManageLogin from "../page/Student/ManageLogin.jsx";
 import Promote from "../page/Student/Promote.jsx";
 import Performance from "../page/Student/Performance.jsx";
 import Dashboard from "../page/Dashboard/Dashboard.jsx";
+import AllStaff from "../page/Staffs/AllStaff.jsx";
+import StaffAttendance from "../page/Staffs/StaffAttendance.jsx";
+import StaffLeaveRequest from "../page/Staffs/staffLeaveRequest.jsx";
+import StaffIdCard from "../page/Staffs/StaffIdCard.jsx";
+import StaffManageLogin from "../page/Staffs/SatffManageLogin.jsx";
+import Rooms from "../page/Academic/Rooms.jsx";
+import ClassAndSection from "../page/Academic/ClassAndSection.jsx";
+import Subject from "../page/Academic/Subjects.jsx";
+import Timetable from "../page/Academic/Timetable.jsx";
+import AcademicPerformance from "../page/Academic/AcademicPerformance.jsx";
+import AcademicExam from "../page/Academic/AcademicExam.jsx";
+import AcademicResult from "../page/Academic/AcademicResult.jsx";
+import AccountStatement from "../page/Finance/AccountStatement.jsx";
+import FeeManagement from "../page/Finance/FeeManagement.jsx";
+import Payroll from "../page/Finance/Payroll.jsx";
+import Report from "../page/Finance/Report.jsx";
+import AllStudents from "../page/Admission/AllStudents.jsx";
+import AdmissionAttendance from "../page/Admission/AdmissionAttendance.jsx";
+import AdmisionLR from "../page/Admission/AdmisionLR.jsx";
+import AdmisionPerformance from "../page/Admission/AdmisionPerfromace.jsx";
+import AdmissionID from "../page/Admission/AdmisionID.jsx";
+import AdmissionManageLogin from "../page/Admission/AdmisionManageLogin.jsx";
+import AdmissionPromote from "../page/Admission/AdmisionPromote.jsx";
+import Library from "../page/Resources/Library.jsx";
+import Transport from "../page/Resources/Transport.jsx";
+import Calendar from "../page/Events&Calender/Calender.jsx";
+import Events from "../page/Events&Calender/Events.jsx";
+import UpcomingEvents from "../page/Events&Calender/UpcomingEvents.jsx";
+
+
 
 
 
@@ -34,39 +64,46 @@ function AppRouter() {
           <Route path="manage-login" element={<ManageLogin/>} />
           <Route path="promote" element={<Promote/>} />
 
-          {/* <Route path="campus-setup" element={<CampusSetup/>} />
-            <Route path="block-setup" element={<BlockSetup/>} />            
-            <Route path="building-setup" element={<BuildingSetup/>} />  
-            <Route path="ground" element={<AddGround/>} /> 
-            <Route path="campusoverview" element={<CampusOvervieww/>} />  
-            <Route path="buildingoverview" element={<BuildingOverview/>}/>
-            <Route path="flooroverview" element={<FloorOverview/>}/>
+           {/* // staffs  */}
+          <Route path="all-staffs" element={<AllStaff/>} />
+          <Route path="staff-attendance" element={<StaffAttendance/>} />
+          <Route path="staffLeave-request" element={<StaffLeaveRequest/>} />
+          <Route path="staff-id" element={<StaffIdCard/>} />
+          <Route path="staff-manageLogin" element={<StaffManageLogin/>} />
 
-          <Route path="user-management-system" element={<UserManagement/>} />
-          <Route path="students" element={<Students />} />
-          <Route path="studentTable" element={<StudentTable />} />
-          <Route path="studentProfile/:id" element={<StudentProfile />} />
+            {/* // Academic */}
+          <Route path="academic-rooms" element={<Rooms/>} />
+          <Route path="class-section" element={<ClassAndSection/>} />
+          <Route path="academic-subject" element={<Subject/>} />
+          <Route path="academic-timetable" element={<Timetable/>} />
+          <Route path="academic-performace" element={<AcademicPerformance/>} />
+          <Route path="academic-exam" element={<AcademicExam/>} />
+          <Route path="academic-result" element={<AcademicResult/>} />
 
-          
-          <Route path="teachers" element={<Teachers />} />
-          <Route path="addteachers" element={<AddTeachers/>} />
-          <Route path="teachersProfile/:id" element={<TeacherProfile/>} />
-          <Route path="academic-setup" element={<AcademicSetup />} />
-          <Route path="lead-management-system" element={<LeadManagementSystem />} />
-          <Route path="hr-management" element={<HRManagement />} />
-          <Route path="account-management" element={<AccountManagement />} />
-          <Route path="academic-management" element={<AcademicManagement />} />
-          <Route path="library" element={<Library />} />
-            <Route path="book-overview" element={<BookOverview />} />
-            <Route path="history" element={<IssuedReturnHistory />} />
+            {/* // Finance */}
+          <Route path="account-statement" element={<AccountStatement/>} />
+          <Route path="fee-management" element={<FeeManagement/>} />
+          <Route path="payroll" element={<Payroll/>} />
+          <Route path="report" element={<Report/>} />
 
+            {/* // Admission */}
+          <Route path="admission-allStudent" element={<AllStudents/>} />
+          <Route path="admission-attendance" element={<AdmissionAttendance/>} />
+          <Route path="admission-leave-request" element={<AdmisionLR/>} />
+          <Route path="admission-performance" element={<AdmisionPerformance/>} />
+          <Route path="admission-id-card" element={<AdmissionID/>} />
+          <Route path="admission-manage-login" element={<AdmissionManageLogin/>} />
+          <Route path="admission-promote" element={<AdmissionPromote/>} />
 
-          <Route path="dormitory" element={<Dormitory />} />
-          <Route path="transportation" element={<Transportation />} />
-          <Route path="academic-history" element={<AcademicHistory />} />
-          <Route path="admin-module" element={<AdminModule />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="reports" element={<Reports />} /> */}
+           {/* // Resources */}
+           <Route path="library" element={<Library/>} />
+           <Route path="transport" element={<Transport/>} />
+
+           {/* Events & Calendar */}
+           <Route path="calender" element={<Calendar/>} />
+           <Route path="events" element={<Events/>} />
+           <Route path="upcoming-events" element={<UpcomingEvents/>} />
+
         </Route>
       </Routes>
     </>
