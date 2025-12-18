@@ -39,6 +39,7 @@ import Transport from "../page/Resources/Transport.jsx";
 import Calendar from "../page/Events&Calender/Calender.jsx";
 import Events from "../page/Events&Calender/Events.jsx";
 import UpcomingEvents from "../page/Events&Calender/UpcomingEvents.jsx";
+import StudentDetails from "../page/Student/StudentDetails.jsx";
 
 
 
@@ -55,6 +56,7 @@ function AppRouter() {
           <Route path="/dashboard" element={<Dashboard />} />
             {/* // student routes */}
           <Route path="students" element={<Student/>} />
+          <Route path="Studentdetails" element={<StudentDetails/>} />
           <Route path="unassign-students" element={<UnassignStudent/>} />
           <Route path="attendance" element={<Attendance/>} />
           <Route path="leave-request" element={<LeaveRequest/>} />
