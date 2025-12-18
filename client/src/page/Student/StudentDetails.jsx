@@ -10,6 +10,7 @@ import { LiaUserEditSolid } from "react-icons/lia";
 
 /** <------------------------------------ images -------------------------------> */
 import langford from "../../assets/images/langford.jpg";
+import { Link } from "react-router-dom";
 
 function DetailsContent({ active }) {
   switch (active) {
@@ -36,8 +37,6 @@ function DetailsContent({ active }) {
 function StudentDetails() {
   const [active, setActive] = useState("Personal Info");
 
-
-
   const baseBtn = "gap-8 flex justify-around w-full items-center";
 
   const activeBtn =
@@ -50,7 +49,9 @@ function StudentDetails() {
     <div className="p-4">
       <div className="flex gap-4 items-center text-[#1C1C1C] font-semibold">
         <span>
-          <IoMdArrowBack />
+          <Link to="/students">
+            <IoMdArrowBack />
+          </Link>
         </span>
         <span>Back</span>
       </div>
@@ -62,7 +63,7 @@ function StudentDetails() {
               <img
                 src={langford}
                 alt="langford"
-                className="w-full h-full object-fill "
+                className="w-full h-full object-cover "
               />
             </div>
           </div>
