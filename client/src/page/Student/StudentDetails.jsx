@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../CSS/Style.css";
-import "../../components/DetailsContent";
 
 /* <------------------------------- icon ------------------------------> */
 import { IoMdArrowBack } from "react-icons/io";
