@@ -26,7 +26,7 @@ function Navbar({ onToggleSidebar }) {
         </button>
 
         {/* Search (hidden on small screens) */}
-        <div className="hidden md:flex items-center gap-2 bg-gray-200 px-4 py-3 rounded-lg w-[220px] lg:w-[325px]">
+        <div className="hidden md:flex items-center gap-2 bg-[#EEEEEE] px-4 py-3 rounded-lg w-[220px] lg:w-[325px]">
           <LuSearch className="text-gray-500" />
           <input
             type="text"

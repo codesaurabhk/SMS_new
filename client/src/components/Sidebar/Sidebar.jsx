@@ -1,22 +1,44 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
-
-import { LuLayoutDashboard, LuPlus, LuMinus } from "react-icons/lu";
+import { LuPlus, LuMinus } from "react-icons/lu";
 import { PiStudent } from "react-icons/pi";
-import { FaChalkboardTeacher } from "react-icons/fa";
-import { IoSchoolOutline } from "react-icons/io5";
-import { FaRegCreditCard } from "react-icons/fa6";
-import { MdOutlineLocalLibrary } from "react-icons/md";
+import { IoHomeOutline } from "react-icons/io5";
+import { MdOutlineGroups3 } from "react-icons/md";
+import { FaSchool } from "react-icons/fa6";
+import { PiMoneyWavyThin } from "react-icons/pi";
+import { RiShapesLine } from "react-icons/ri";
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { TbCalendarEvent } from "react-icons/tb";
+import { IoNotificationsOutline } from "react-icons/io5";
+import { PiChats } from "react-icons/pi";
+import { IoSettingsOutline } from "react-icons/io5";
+import { GrLogout } from "react-icons/gr";
+import { FaRegNewspaper } from "react-icons/fa6";
 
 function Sidebar() {
-  const [openStudents, setOpenStudents] = useState(true);
-  const [openStaffs, setOpenStaffs] = useState(true);
-  const [openAcademic, setOpenAcademic] = useState(true);
-  const [openFinance, setOpenFinance] = useState(true);
-  const [openAdmission, setOpenAdmission] = useState(true);
-  const [openResources, setOpenResources] = useState(true);
-  const [openEventCalender, setOpenEventCalender] = useState(true);
+  const [openStudents, setOpenStudents] = useState(false);
+  const [openStaffs, setOpenStaffs] = useState(false);
+  const [openAcademic, setOpenAcademic] = useState(false);
+  const [openFinance, setOpenFinance] = useState(false);
+  const [openAdmission, setOpenAdmission] = useState(false);
+  const [openResources, setOpenResources] = useState(false);
+  const [openEventCalender, setOpenEventCalender] = useState(false);
+
+
+
+ const openSection = (section) => {
+  setOpenStudents(prev => section === "students" ? !prev : false);
+  setOpenStaffs(prev => section === "staffs" ? !prev : false);
+  setOpenAcademic(prev => section === "academic" ? !prev : false);
+  setOpenFinance(prev => section === "finance" ? !prev : false);
+  setOpenAdmission(prev => section === "admission" ? !prev : false);
+  setOpenResources(prev => section === "resources" ? !prev : false);
+  setOpenEventCalender(prev => section === "calendar" ? !prev : false);
+};
+
+
+
 
   return (
     <aside className="w-[260px] h-screen text-slate-900 bg-white  flex flex-col">
@@ -28,7 +50,7 @@ function Sidebar() {
       <div className="border-t text-[#E6E6E6]" />
 
       {/* Menu */}
-      <nav className="px-4 py-3 text-sm text-gray-700 mt-3 ">
+      <nav className="px-4 py-3 text-sm text-gray-700 mt-3 overflow-y-auto scrollbar-hide">
         <p className="text-xs mb-3 ml-1">Main Menu</p>
 
         {/* Dashboard */}
@@ -39,17 +61,23 @@ function Sidebar() {
              ${isActive ? "bg-slate-800 text-white" : "text-gray-600 hover:bg-gray-100"}`
           }
         >
-          <LuLayoutDashboard />
+          <IoHomeOutline />
           Dashboard
         </NavLink>
 
         {/* Students (Expanded) */}
         <button
-          onClick={() => setOpenStudents(!openStudents)}
-          className="w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md bg-slate-800 text-white text-base"
+           onClick={() => openSection("students")}
+          className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base
+  transition-colors duration-300
+  ${
+    openStudents
+      ? "bg-slate-800 text-white"
+      : "bg-white text-gray-600 hover:bg-gray-100"
+  }`}
         >
-          <span className="flex items-center gap-3">
-            <PiStudent />
+          <span className="flex items-center gap-3 ">
+           <span  className="scale-x-[-1]"> <PiStudent /></span>
             Students
           </span>
           {openStudents ? <LuMinus /> : <LuPlus />}
@@ -73,11 +101,15 @@ function Sidebar() {
 
         {/* Staff (Expanded) */}
         <button
-          onClick={() => setOpenStaffs(!openStaffs)}
-          className="w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md bg-slate-800 text-white text-base"
+            onClick={() => openSection("staffs")}
+         className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
+      openStaffs
+        ? "bg-slate-800 text-white"     // CLICKED (expanded)
+        : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
+    }`}
         >
           <span className="flex items-center gap-3">
-            <FaChalkboardTeacher />
+            <MdOutlineGroups3 />
             Staffs
           </span>
           {openStaffs ? <LuMinus /> : <LuPlus />}
@@ -98,11 +130,15 @@ function Sidebar() {
         
         {/* Academic (Expanded) */}
         <button
-          onClick={() => setOpenAcademic(!openAcademic)}
-          className="w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md bg-slate-800 text-white text-base"
+            onClick={() => openSection("academic")}
+          className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
+          openAcademic
+        ? "bg-slate-800 text-white"     // CLICKED (expanded)
+        : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
+    }`}
         >
           <span className="flex items-center gap-3">
-            <IoSchoolOutline />
+            <FaSchool />
             Academic
           </span>
           {openAcademic ? <LuMinus /> : <LuPlus />}
@@ -125,11 +161,15 @@ function Sidebar() {
 
         {/* Finance (Expanded) */}
         <button
-          onClick={() => setOpenFinance(!openFinance)}
-          className="w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md bg-slate-800 text-white text-base"
+           onClick={() => openSection("finance")}
+        className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
+      openFinance
+        ? "bg-slate-800 text-white"     // CLICKED (expanded)
+        : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
+    }`}
         >
           <span className="flex items-center gap-3">
-           <FaRegCreditCard />
+           <PiMoneyWavyThin />
             Finance
           </span>
           {openFinance ? <LuMinus /> : <LuPlus />}
@@ -149,11 +189,15 @@ function Sidebar() {
 
         {/* Admission (Expanded) */}
         <button
-          onClick={() => setOpenAdmission(!openAdmission)}
-          className="w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md bg-slate-800 text-white text-base"
+           onClick={() => openSection("admission")}
+          className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
+      openAdmission
+        ? "bg-slate-800 text-white"     // CLICKED (expanded)
+        : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
+    }`}
         >
           <span className="flex items-center gap-3">
-          <MdOutlineLocalLibrary />
+          <IoDocumentTextOutline />
             Admission
           </span>
           {openAdmission ? <LuMinus /> : <LuPlus />}
@@ -175,11 +219,15 @@ function Sidebar() {
         )}
         {/* Resources (Expanded) */}
         <button
-          onClick={() => setOpenResources(!openResources)}
-          className="w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md bg-slate-800 text-white text-base"
+           onClick={() => openSection("resources")}
+         className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
+      openResources
+        ? "bg-slate-800 text-white"     // CLICKED (expanded)
+        : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
+    }`}
         >
           <span className="flex items-center gap-3">
-          <MdOutlineLocalLibrary />
+          <RiShapesLine />
             Resources 
           </span>
           {openResources ? <LuMinus /> : <LuPlus />}
@@ -196,15 +244,19 @@ function Sidebar() {
           </div>
         )}
 
-        <p className="text-xs mt-3 ml-2">Communication</p>
+        <p className="text-xs mt-3 mb-3 ml-2">Communication</p>
 
         {/* Events & Calendar (Expanded) */}
         <button
-          onClick={() => setOpenEventCalender(!openEventCalender)}
-          className="w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md bg-slate-800 text-white text-base"
+           onClick={() => openSection("calendar")}
+         className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
+      openEventCalender
+        ? "bg-slate-800 text-white"     // CLICKED (expanded)
+        : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
+    }`}
         >
           <span className="flex items-center gap-3">
-          <MdOutlineLocalLibrary />
+          <TbCalendarEvent />
             Events & Calendar
           </span>
           {openEventCalender ? <LuMinus /> : <LuPlus />}
@@ -222,17 +274,70 @@ function Sidebar() {
           </div>
         )}
 
-        {/* Other collapsed menus */}
-        {/* <SidebarItem icon={<FaChalkboardTeacher />} label="Staffs" /> */}
-        {/* <SidebarItem icon={<IoSchoolOutline />} label="Academic" /> */}
-        {/* <SidebarItem icon={<FaRegCreditCard />} label="Finance" /> */}
-        {/* <SidebarItem icon={<MdOutlineLocalLibrary />} label="Admission" /> */}
-        {/* <SidebarItem icon={<MdOutlineLocalLibrary />} label="Resources" /> */}
-        <SidebarItem icon={<MdOutlineLocalLibrary />} label="Communication" />
-        <SidebarItem
-          icon={<MdOutlineLocalLibrary />}
-          label="Events & Calendar"
-        />
+        {/* Notice */}
+        <NavLink
+          to="/notice"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 mt-1 rounded-md text-base
+             ${isActive ? "bg-slate-800 text-white" : "text-gray-600 hover:bg-gray-100"}`
+          }
+        >
+          <IoNotificationsOutline />
+          Notice
+        </NavLink>
+
+
+        {/* Messages */}
+        <NavLink
+          to="/messages"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-md mt-1 text-base
+             ${isActive ? "bg-slate-800 text-white" : "text-gray-600 hover:bg-gray-100"}`
+          }
+        >
+          <PiChats />
+          Messages
+        </NavLink>
+
+        <p className="text-xs mt-1 mb-1 ml-2">General</p>
+
+        {/* Reports & Analytics */}
+        <NavLink
+          to="/reports-analytics"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-md text-base
+             ${isActive ? "bg-slate-800 text-white" : "text-gray-600 hover:bg-gray-100"}`
+          }
+        >
+          <FaRegNewspaper />
+          Reports & Analytics
+        </NavLink>
+
+        {/* Settings */}
+        <NavLink
+          to="/settings"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 mt-1 rounded-md text-base
+             ${isActive ? "bg-slate-800 text-white" : "text-gray-600 hover:bg-gray-100"}`
+          }
+        >
+          <IoSettingsOutline />
+          Settings
+        </NavLink>
+
+        {/* Logout */}
+        <NavLink
+          // to="/logout"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-md mt-1 text-base
+             ${isActive ? "bg-slate-800 text-white" : "text-gray-600 hover:bg-gray-100"}`
+          }
+        >
+          <GrLogout />
+          Logout
+        </NavLink>
+
+        
       </nav>
 
       {/* Footer */}

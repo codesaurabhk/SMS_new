@@ -163,6 +163,20 @@
   height: 100vh;
 }
 
+ /* Hide scrollbar utility in sidebar */
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE & Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+}
+
+
 /* <----------------------------------------------------------- student ---------------------------------------------------------> */
 
 .box-shadow {

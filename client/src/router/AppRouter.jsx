@@ -39,6 +39,10 @@ import Transport from "../page/Resources/Transport.jsx";
 import Calendar from "../page/Events&Calender/Calender.jsx";
 import Events from "../page/Events&Calender/Events.jsx";
 import UpcomingEvents from "../page/Events&Calender/UpcomingEvents.jsx";
+import Notice from "../page/Notice/Notice.jsx";
+import Messages from "../page/Message/Messages.jsx";
+import ReportAndAnalytics from "../page/Report&Analytics/ReportAndAnalytics.jsx";
+import Settings from "../page/Settings/Settings.jsx";
 
 
 
@@ -102,6 +106,20 @@ function AppRouter() {
            <Route path="calender" element={<Calendar/>} />
            <Route path="events" element={<Events/>} />
            <Route path="upcoming-events" element={<UpcomingEvents/>} />
+
+             {/* Notices */}
+               <Route path="notice" element={<Notice/>} />
+
+             {/* Messages */}
+               <Route path="messages" element={<Messages/>} />
+
+              {/* Reports & Analytics */}
+               <Route path="reports-analytics" element={<ReportAndAnalytics/>} />
+
+              {/* settings */}
+               <Route path="settings" element={<Settings/>} />
+
+
 
         </Route>
       </Routes>
