@@ -34,6 +34,10 @@ import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import emma from "../../assets/images/emma.jpg";
 import Pagination from "../../components/Pagination";
+import { Link } from "react-router-dom";
+
+
+
 
 const cardData = [
   {
@@ -362,13 +366,15 @@ const Student = () => {
                   </th>
                 </tr>
               </thead>
-              {studentData.map((item, index) => (
-                <tbody key={index} className="border-b border-[#e6e6e6]">
-                  <tr>
+              
+                <tbody>
+                  {studentData.map((item, index) => (
+                  <tr key={index} onClick={() => Navigate("/StudentDetails")} className="border-b border-[#e6e6e6]">
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
                       <input type="checkbox" />
-
-                      <div className="w-10 h-10 rounded-full overflow-hidden">
+                      <Link to='/StudentDetails'>
+                      <div className="flex gap-4">
+                        <div className="w-10 h-10 rounded-full overflow-hidden">
                         <img
                           src={item.img}
                           alt=""
@@ -385,31 +391,39 @@ const Student = () => {
                           {item.studentId}
                         </span>
                       </div>
+                      </div>
+                      </Link>
+                      
                     </td>
 
                     <td className="px-4 py-3 text-left text-sm font-semibold">
+                      <Link to='/StudentDetails'>
                       {item.class}
+                      </Link>
+                      
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold">
+                      <Link to='/StudentDetails'>
                       {item.parent}
+                      </Link>
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold">
-                      {item.number}
+                      <Link to='/StudentDetails'>{item.number}</Link>
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold">
                        <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${statusStyle[item.status] || "bg-gray-100 text-gray-600"}`}>
-                        <span className="text-sm leading-none">•{item.status}</span>
+                        <span className="text-sm leading-none"><Link to="/StudentDetails">•{item.status}</Link></span>
                        </span>
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
-                      <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
+                      <Link to='/StudentDetails'><CgProfile className="w-5 h-5 text-[#9C9C9C]" /></Link>
                       <FiEdit className="w-5 h-5 text-[#9C9C9C]" />
                       <FaRegFileAlt className="w-5 h-5 text-[#9C9C9C]" />
                       <RiDeleteBin5Line className="w-5 h-5 text-[#FF4B4B]" />
                     </td>
                   </tr>
+                  ))}
                 </tbody>
-              ))}
             </table>
           </div>
         </div>

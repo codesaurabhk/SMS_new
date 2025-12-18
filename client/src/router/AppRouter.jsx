@@ -39,10 +39,14 @@ import Transport from "../page/Resources/Transport.jsx";
 import Calendar from "../page/Events&Calender/Calender.jsx";
 import Events from "../page/Events&Calender/Events.jsx";
 import UpcomingEvents from "../page/Events&Calender/UpcomingEvents.jsx";
+<<<<<<< HEAD
 import Notice from "../page/Notice/Notice.jsx";
 import Messages from "../page/Message/Messages.jsx";
 import ReportAndAnalytics from "../page/Report&Analytics/ReportAndAnalytics.jsx";
 import Settings from "../page/Settings/Settings.jsx";
+=======
+import StudentDetails from "../page/Student/StudentDetails.jsx";
+>>>>>>> 8e0d48769258d0b4a63fba4e394daae63e1e3645
 
 
 
@@ -59,6 +63,7 @@ function AppRouter() {
           <Route path="/dashboard" element={<Dashboard />} />
             {/* // student routes */}
           <Route path="students" element={<Student/>} />
+          <Route path="Studentdetails" element={<StudentDetails/>} />
           <Route path="unassign-students" element={<UnassignStudent/>} />
           <Route path="attendance" element={<Attendance/>} />
           <Route path="leave-request" element={<LeaveRequest/>} />
