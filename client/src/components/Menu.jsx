@@ -79,13 +79,13 @@ function Menu() {
   }, [openSidebar]);
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-gray-100 overflow-hidden">
 
       {/* ===== SIDEBAR ===== */}
       <aside
         className={`
           fixed lg:static z-50
-          h-full w-64 bg-white 
+          h-screen w-64 bg-white 
           transform transition-transform duration-300
           ${openSidebar ? "translate-x-0" : "-translate-x-full"}
           lg:translate-x-0
@@ -95,10 +95,10 @@ function Menu() {
       </aside>
 
       {/* ===== RIGHT AREA ===== */}
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 min-w-0">
 
         {/* NAVBAR (STARTS AFTER SIDEBAR) */}
-        <div >
+        <div className="sticky top-0 z-30 bg-white">
           <Navbar
             onToggleSidebar={() => setOpenSidebar(v => !v)}
             isSidebarOpen={openSidebar}
@@ -106,7 +106,12 @@ function Menu() {
         </div>
 
         {/* PAGE CONTENT */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="
+    flex-1 overflow-y-auto min-w-0
+    px-3 py-4
+    sm:px-4 sm:py-4
+    md:px-6 md:py-6
+  ">
           <Outlet />
         </main>
 

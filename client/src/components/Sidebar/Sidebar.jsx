@@ -15,6 +15,8 @@ import { PiChats } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { GrLogout } from "react-icons/gr";
 import { FaRegNewspaper } from "react-icons/fa6";
+import munc_logo from "../../assets/images/munc-logo.png";
+
 
 function Sidebar() {
   const [openStudents, setOpenStudents] = useState(false);
@@ -50,7 +52,7 @@ function Sidebar() {
       <div className="border-t text-[#E6E6E6]" />
 
       {/* Menu */}
-      <nav className="px-4 py-3 text-sm text-gray-700 mt-3 overflow-y-auto scrollbar-hide">
+      <nav className="px-4 py-3 text-sm text-gray-700 mt-3  flex-1 overflow-y-auto scrollbar-hide">
         <p className="text-xs mb-3 ml-1">Main Menu</p>
 
         {/* Dashboard */}
@@ -341,7 +343,7 @@ function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="mt-auto p-4 text-xs text-gray-400">MUN-C™</div>
+      <div className="h-[60px] w-auto  "> <img src={munc_logo} alt="logo" /></div>
     </aside>
   );
 }
