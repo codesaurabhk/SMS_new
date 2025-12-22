@@ -44,6 +44,7 @@ import Messages from "../page/Message/Messages.jsx";
 import ReportAndAnalytics from "../page/Report&Analytics/ReportAndAnalytics.jsx";
 import Settings from "../page/Settings/Settings.jsx";
 import StudentDetails from "../page/Student/StudentDetails.jsx";
+import AddStaff from "../page/Staffs/AddStaff.jsx";
 
 
 
@@ -71,6 +72,7 @@ function AppRouter() {
 
            {/* // staffs  */}
           <Route path="all-staffs" element={<AllStaff/>} />
+          <Route path="add-staffs" element={<AddStaff/>} />
           <Route path="staff-attendance" element={<StaffAttendance/>} />
           <Route path="staffLeave-request" element={<StaffLeaveRequest/>} />
           <Route path="staff-id" element={<StaffIdCard/>} />
