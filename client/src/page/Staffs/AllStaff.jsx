@@ -31,7 +31,7 @@ import doll from "../../assets/images/bella.jpg";
 import prime from "../../assets/images/prime.jpg";
 import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
-import emma from "../../assets/images/emma.jpg";
+import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
@@ -159,6 +159,13 @@ const staffData = [
     attendance: "100%",
   },
   {
+    student: "Meave Wiley",
+    img: meave,
+    studentId: "009",
+    class: "12C",
+    parent: "Otis Milburn",
+    number: 620489625,
+    status: "Active",
     staff: "Shahid Kapoor",
     empId: "EMP123456",
     img: everdeen,

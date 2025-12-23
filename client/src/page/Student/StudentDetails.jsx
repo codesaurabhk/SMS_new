@@ -12,12 +12,78 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { MdFamilyRestroom } from "react-icons/md";
 import { FaMale } from "react-icons/fa";
 import { FaRegFileAlt } from "react-icons/fa";
+import { LuUser } from "react-icons/lu";
+import { GiBus } from "react-icons/gi";
+import { FaEye } from "react-icons/fa";
+import { GoDownload } from "react-icons/go";
+import { MdOutlineImage } from "react-icons/md";
+import { TfiBook } from "react-icons/tfi";
 
 /** <------------------------------------ images -------------------------------> */
 import langford from "../../assets/images/langford.jpg";
+import mikasa from "../../assets/images/mikasa.png";
 import { Link } from "react-router-dom";
 
 function DetailsContent({ active }) {
+  const documentData = [
+    {
+      img: mikasa,
+      documentName: "Date of Birth",
+      date: "2024-04-10",
+      fileType: "jpg",
+      fileSize: "512",
+    },
+    {
+      img: mikasa,
+      documentName: "Previous School Transfer Certificate",
+      date: "2024-04-10",
+      fileType: "pdf",
+      fileSize: "312",
+    },
+    {
+      img: mikasa,
+      documentName: "Adhar",
+      date: "2024-04-10",
+      fileType: "pdf",
+      fileSize: "520",
+    },
+    {
+      img: mikasa,
+      documentName: "Transfer Certificate",
+      date: "2024-04-10",
+      fileType: "pdf",
+      fileSize: "520",
+    },
+    {
+      img: mikasa,
+      documentName: "Medical Certificate",
+      date: "2024-04-10",
+      fileType: "pdf",
+      fileSize: "520",
+    },
+    {
+      img: mikasa,
+      documentName: "Parent ID Proof",
+      date: "2024-04-10",
+      fileType: "pdf",
+      fileSize: "520",
+    },
+    {
+      img: mikasa,
+      documentName: "Previous Acedemic Report",
+      date: "2024-04-10",
+      fileType: "pdf",
+      fileSize: "420",
+    },
+    ,
+    {
+      img: mikasa,
+      documentName: "Guardian Photo",
+      date: "2024-04-10",
+      fileType: "jpg",
+      fileSize: "50",
+    },
+  ];
   switch (active) {
     case "Personal Info":
       return (
@@ -206,7 +272,7 @@ function DetailsContent({ active }) {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-6 mt-6">
+            <div className="grid gap-6 mt-6 sm:grid-cols-1 lg:grid-cols-2 md:grid-cols-2">
               <div className="border border-[#e6e6e6] rounded shadow-sm p-4">
                 <div className="flex items-center gap-2 text-[#1c1c1c]">
                   <FaMale className="text-[#696969]" />
@@ -334,68 +400,376 @@ function DetailsContent({ active }) {
                 <span className="text-[#696969] font-normal text-[16px]">
                   Chornics Illness
                 </span>
-                <span className="text-[#1c1c1c] text-[16px]">
-                  -
-                </span>
+                <span className="text-[#1c1c1c] text-[16px]">-</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-[#696969] font-normal text-[16px]">
                   Allgeries
                 </span>
-                <span className="text-[#1c1c1c] text-[16px]">
-                  -
-                </span>
+                <span className="text-[#1c1c1c] text-[16px]">-</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-[#696969] font-normal text-[16px]">
                   Medication
                 </span>
-                <span className="text-[#1c1c1c] text-[16px]">
-                  -
-                </span>
+                <span className="text-[#1c1c1c] text-[16px]">-</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-[#696969] font-normal text-[16px]">
                   Dietary Restrition
                 </span>
-                <span className="text-[#1c1c1c] text-[16px]">
-                  None
-                </span>
+                <span className="text-[#1c1c1c] text-[16px]">None</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-[#696969] font-normal text-[16px]">
                   Physical Disablity
                 </span>
-                <span className="text-[#1c1c1c] text-[16px]">
-                  None
-                </span>
+                <span className="text-[#1c1c1c] text-[16px]">None</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-[#696969] font-normal text-[16px]">
                   Doctor Name
                 </span>
-                <span className="text-[#1c1c1c] text-[16px]">
-                  -
-                </span>
+                <span className="text-[#1c1c1c] text-[16px]">-</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-[#696969] font-normal text-[16px]">
                   Doctor Contact Number
                 </span>
-                <span className="text-[#1c1c1c] text-[16px]">
-                  -
-                </span>
+                <span className="text-[#1c1c1c] text-[16px]">-</span>
               </div>
             </div>
           </div>
 
           {/* <----------------------------------------------- Sibling Information ---------------------------------------------------> */}
-          <div></div>
+          <div className="mt-6 bg-white rounded-lg p-4">
+            <div className="flex items-center gap-2 text-[#1c1c1c]">
+              <LuUser className="text-[#696969]" />
+              <span className="font-semibold">
+                Medical & Health Infoprmation
+              </span>
+            </div>
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-6">
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Full Name
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Arya Stark</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Ralation
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Step Sister</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Admission Number
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">123456897</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Class
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">12 A</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Gender
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Female</span>
+              </div>
+            </div>
+          </div>
+
+          {/* <------------------------------------------------ transport -------------------------------------------------> */}
+          <div className="mt-6 bg-white rounded-lg p-4">
+            <div className="flex items-center gap-2 text-[#1c1c1c]">
+              <GiBus className="text-[#696969]" />
+              <span className="font-semibold">Transport Information</span>
+            </div>
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-6">
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Uses School Transport
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">
+                  Bus of Howgwarts
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Bus Number
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">
+                  IND 24-Au 0531
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Route Name
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">
+                  Howgwarts to Winterfell
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Bus Stop
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Westrors</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  pick up Time
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Winter</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Drop off
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Summar</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Driver Man
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">
+                  R.R. Martin & J.K Rollins
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Driver Number
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">652134789</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Transport Fee
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Death</span>
+              </div>
+            </div>
+          </div>
+
+          {/* <--------------------------------------------------- Document ------------------------------------------------> */}
+
+          <div className="mt-6 p-4 bg-white rounded-lg">
+            {/* HEADER */}
+            <div className="flex items-center gap-2 text-[#1c1c1c]">
+              <FaRegFileAlt className="text-[#696969]" />
+              <span className="font-semibold">Document Submitted</span>
+            </div>
+
+            {/* GRID */}
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+              {/* <------------------------------------------- CARD ---------------------------------------> */}
+              {documentData.map((item, index) => (
+                <div className="border-2 border-[#e6e6e6] p-4 rounded-lg flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
+                  {/* <--------------------------------------- LEFT CONTENT --------------------------------------> */}
+                  <div className="flex gap-4 items-center">
+                    {/* <-------------------------------------- IMAGE ----------------------------------------> */}
+                    <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-tl-md rounded-bl-md relative flex justify-center items-center overflow-hidden">
+                      <img
+                        src={mikasa}
+                        alt=""
+                        className="w-full h-full object-cover opacity-90 inset-shadow-lg"
+                      />
+                      <MdOutlineImage className="absolute text-white text-[20px]" />
+                    </div>
+
+                    {/* TEXT */}
+                    <div className="flex flex-col text-sm sm:text-base">
+                      <span className="font-medium">{item.documentName}</span>
+
+                      <span className="text-[#696969] text-xs sm:text-sm">
+                        uploaded: {item.date} • {item.fileType} •{" "}
+                        {item.fileSize} KB
+                        <span className="ml-2 px-1.5 py-0.5 rounded-md bg-[#D4EDDA] text-[#009638] text-xs">
+                          verified
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* ACTION BUTTONS */}
+                  <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                    <button className="px-5 py-2 bg-[#118AB2] rounded-lg flex gap-2 items-center justify-center text-white w-full sm:w-auto">
+                      <FaEye /> View
+                    </button>
+
+                    <button className="px-4 py-2 bg-white rounded-lg flex gap-2 items-center justify-center text-[#696969] border-2 border-[#9C9C9C] w-full sm:w-auto">
+                      <GoDownload /> Download
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       );
 
     case "Academic":
-      return <div>Academic Details Content</div>;
+      return (
+        <div>
+          <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-x-6 gap-y-6">
+            {/* <-------------------------------------- admission Details -----------------------------------> */}
+            <div className="mt-6 bg-white p-4 rounded-lg shadow-sm border border-[#e6e6e6]">
+              <div className="flex items-center gap-2 text-[#1c1c1c]">
+                <FaRegFileAlt className="text-[#696969]" />
+                <span className="font-semibold">Admission Details</span>
+              </div>
+              <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-6 gap-x-10">
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Admission date
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">12-12-12</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Admission number
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">12312412</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Acedemic Year
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">2012-2024</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Admission Class
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">2</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Aplication Number
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">748965755</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Enterance Test Score
+                  </span>
+                  <span className="text-[#009638] text-[16px]">92/100</span>
+                </div>
+              </div>
+            </div>
+
+            {/* <------------------------------------ Current Class Details ----------------------------------> */}
+            <div className="mt-6 bg-white p-4 rounded-lg shadow-sm border border-[#e6e6e6]">
+              <div className="flex items-center gap-2 text-[#1c1c1c]">
+                <IoSchoolOutline className="text-[#696969]" />
+                <span className="font-semibold">Current Class Details</span>
+              </div>
+              <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-6 gap-x-10">
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Class
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">11</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Section
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">A</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Stream
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">-</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    House/Group
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">Blue House</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Roll No
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">1</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Student ID
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">05311996</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-sm">
+            <div className="flex items-center gap-2 text-[#1c1c1c]">
+              <TfiBook className="text-[#696969]" />
+              <span className="font-semibold">Enrolled subjects</span>
+            </div>
+            <div className="grid grid-flow-col auto-cols-max gap-6 mt-6">
+              <button className="bg-[#118AB2] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white]">
+                English
+              </button>
+              <button className="bg-[#894B00] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
+                Hindi
+              </button>
+              <button className="bg-[#007AFF] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
+                Mathematics
+              </button>
+              <button className="bg-[#00A87C] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
+                Science
+              </button>
+              <button className="bg-[#EF476F] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
+                History
+              </button>
+              <button className="bg-[#0077B6] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
+                Geography
+              </button>
+            </div>
+          </div>
+
+          {/* <-------------------------------------------------- Previous Education -------------------------------------> */}
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-sm ">
+            <div className="flex items-center gap-2 text-[#1c1c1c]">
+              <TfiBook className="text-[#696969]" />
+              <span className="font-semibold">Enrolled subjects</span>
+            </div>
+            <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-6">
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Previous School Name
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Mount Fuzi High School</span>
+              </div>
+              <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Previous Class
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">Class 1</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Transfer Certificate Number
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">-</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px]">
+                    Transfer Reason
+                  </span>
+                  <span className="text-[#1c1c1c] text-[16px]">-</span>
+                </div>
+            </div>
+          </div>
+        </div>
+      );
 
     case "Performance":
       return <div>Performance Report Content</div>;
@@ -472,7 +846,7 @@ function StudentDetails() {
               </div>
 
               {/* BASIC INFO */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
+              <div className="flex gap-15 mt-4">
                 {[
                   ["Student ID", "STUD 1234"],
                   ["Admission No.", "0531"],
