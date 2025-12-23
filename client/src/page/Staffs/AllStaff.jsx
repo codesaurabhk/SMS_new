@@ -33,7 +33,7 @@ import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const cardData = [
   {
@@ -67,87 +67,96 @@ const cardData = [
 ];
 
 /* <--------------------------------------------------- student Dummy Data --------------------------------------------> */
-const studentData = [
+const staffData = [
   {
-    student: "katniss Everdeen",
-    studentId: "001",
+    staff: "Anushka Sharma",
+    empId: "EMP123456",
     img: everdeen,
-    class: "12B",
-    parent: "Peeta Mallak",
-    number: 620489625,
-    status: "Active",
+    role: "Teacher",
+    department: "Academics",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "100%",
   },
   {
-    student: "Goku",
-    studentId: "002",
-    img: goku,
-    class: "11B",
-    parent: "Bodok",
-    number: 620489855,
-    status: "Inactive",
+    staff: "Ranveer Singh",
+    empId: "EMP123456",
+    img: everdeen,
+    role: "Accountant",
+    department: "Finance Department",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "99%",
   },
   {
-    student: "Katniss langford",
-    studentId: "010",
-    img: langford,
-    class: "1B",
-    parent: "Jensen",
-    number: 620489625,
-    status: "Active",
+    staff: "Kareena Kapoor",
+    empId: "EMP123456",
+    img: everdeen,
+    role: "Receptionist",
+    department: "Front Office",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "70%",
   },
   {
-    student: "Homelander",
-    img: homelander,
-    studentId: "003",
-    class: "10C",
-    parent: "Soldier Boy",
-    number: 620489625,
-    status: "Inactive",
+    staff: "Sharaddha Kapoor",
+    empId: "EMP123456",
+    img: everdeen,
+    role: "Teacher",
+    department: "Academics",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "95%",
   },
   {
-    student: "Thanos",
-    studentId: "004",
-    img: thanos,
-    class: "9A",
-    parent: "A'Lars",
-    number: 629639625,
-    status: "Alumni",
+    staff: "Hrithik Roshan",
+    empId: "EMP123456",
+    img: everdeen,
+    role: "Librarian",
+    department: "Library Department",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "100%",
   },
   {
-    student: "Joffrey Baratheon",
-    img: Joffrey,
-    studentId: "005",
-    class: "11A",
-    parent: "Robert Baratheon",
-    number: 620489625,
-    status: "Active",
+    staff: "Virat Kohli",
+    empId: "EMP123456",
+    img: everdeen,
+    role: "Super Admin",
+    department: "Administration",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "100%",
   },
   {
-    student: "Annembella",
-    img: doll,
-    studentId: "006",
-    class: "11B",
-    parent: "Nun",
-    number: 600489625,
-    status: "Active",
+    staff: "Jhanvi Kapoor",
+    empId: "EMP123456",
+    img: everdeen,
+    role: "Teacher",
+    department: "Academics",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "100%",
   },
   {
-    student: "optimus Prime",
-    img: prime,
-    studentId: "007",
-    class: "7A",
-    parent: "Bumble Bee",
-    number: 620489625,
-    status: "Active",
+    staff: "Ranbir Kapoor",
+    empId: "EMP123456",
+    img: everdeen,
+    role: "Driver",
+    department: "Transport Department",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "80%",
   },
   {
-    student: "Gamora ",
-    img: gamora,
-    studentId: "008",
-    class: "12A",
-    parent: "Thanos",
-    number: 620489625,
-    status: "Active",
+    staff: "Ananya Panday",
+    empId: "EMP123456",
+    img: everdeen,
+    role: "Teacher",
+    department: "Academics",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "100%",
   },
   {
     student: "Meave Wiley",
@@ -157,25 +166,22 @@ const studentData = [
     parent: "Otis Milburn",
     number: 620489625,
     status: "Active",
+    staff: "Shahid Kapoor",
+    empId: "EMP123456",
+    img: everdeen,
+    role: "Cleaner",
+    department: "Maintenance",
+    mob: "+91 00000 00000",
+    email: "abc@example.com",
+    attendance: "80%",
   },
+  
 ];
 
-const statusStyle = {
-  Active: "bg-[#D4EDDA] text-[#009638]",
-  Inactive: "bg-[#DEDEDE] text-[#696969]",
-  Alumni: "bg-[#FDEBD0] text-[#D35400]",
-};
+
 
 const AllStaff = () => {
-  const [active, setActive] = useState("All");
-
-  const baseBtn = "  gap-8 ";
-
-  const activeBtn =
-    "bg-[#F5F7F7] text-[#0B3142] border border-[#ffffff] rounded-full px-15 py-2 ";
-
-  const inactiveBtn = "text-[#9EA1A1] px-15 py-2";
-
+  const navigate = useNavigate();
   return (
     <div>
       {/* <--------------------------------------- Card -----------------------------------> */}
@@ -241,7 +247,9 @@ const AllStaff = () => {
               Bulk Import
             </button>
 
-            <button className="inline-flex items-center gap-2 px-6 py-2 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
+            <button
+            onClick={() => navigate("/add-staffs")} 
+             className="inline-flex items-center gap-2 px-6 py-2 cursor-pointer bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
               <GrUserAdd className="text-white" />
               Add Staff
             </button>
@@ -296,7 +304,7 @@ const AllStaff = () => {
                 <tr>
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     <div className="flex items-center gap-1">
-                     <PiArrowsDownUpThin />
+                     <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span>
                       <span>Staff</span>
                       
                     </div>
@@ -320,8 +328,11 @@ const AllStaff = () => {
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     Email
                   </th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">
-                    Attendance%
+                  <th className="px-4 py-3 text-center text-sm font-semibold">
+                   <div className="flex items-center gap-1"> 
+                    <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span>
+                    <span > Attendance%</span>
+                    </div>
                   </th>
 
                   <th className="px-4 py-3 text-left text-sm font-semibold">
@@ -331,7 +342,7 @@ const AllStaff = () => {
               </thead>
 
               <tbody>
-                {studentData.map((item, index) => (
+                {staffData.map((item, index) => (
                   <tr
                     key={index}
                     onClick={() => Navigate("/StudentDetails")}
@@ -352,38 +363,47 @@ const AllStaff = () => {
                           {/* Name + ID */}
                           <div className="flex flex-col leading-tight">
                             <span className="text-[#12516E] font-semibold">
-                              {item.student}
+                              {item.staff}
                             </span>
                             <span className="text-sm text-[#9c9c9c] font-semibold">
-                              {item.studentId}
+                              {item.empId}
                             </span>
                           </div>
                         </div>
                       </Link>
                     </td>
 
-                    <td className="px-4 py-3 text-left text-sm font-semibold">
-                      <Link to="/StudentDetails">{item.class}</Link>
+                    <td className="px-4 py-3 text-left text-sm  font-semibold">
+                      <Link to="/StudentDetails">
+                     <span className={`border  px-8  rounded-md ${
+                      item.role== "Teacher" ? "border-[#007AFF] text-[#007AFF]":
+                      item.role== "Accountant" ? "border-[#894B00] text-[#894B00]":
+                      item.role== "Receptionist" ? "border-[#A8038D] text-[#A8038D]":
+                      item.role== "Librarian" ? "border-[#4BA803] text-[#4BA803]":
+                      item.role== "Super Admin" ? "border-[#C1891B] text-[#C1891B]":
+                      item.role== "Driver" ? "border-[#00ADAD] text-[#00ADAD]":
+                      item.role== "Cleaner" ? "border-[#EF476F] text-[#EF476F]":""
+
+                      } `}>{item.role}</span> 
+                      </Link>
                     </td>
-                    <td className="px-4 py-3 text-left text-sm font-semibold">
-                      <Link to="/StudentDetails">{item.parent}</Link>
+                    <td className="px-4 py-3 text-left text-sm ">
+                      <Link to="/StudentDetails">{item.department}</Link>
                     </td>
-                    <td className="px-4 py-3 text-left text-sm font-semibold">
-                      <Link to="/StudentDetails">{item.number}</Link>
+                    <td className="px-4 py-3 text-left text-sm ">
+                      <Link to="/StudentDetails">{item.mob}</Link>
                     </td>
-                    <td className="px-4 py-3 text-left text-sm font-semibold">
-                      <span
-                        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
-                          statusStyle[item.status] ||
-                          "bg-gray-100 text-gray-600"
-                        }`}
-                      >
-                        <span className="text-sm leading-none">
-                          <Link to="/StudentDetails">•{item.status}</Link>
-                        </span>
-                      </span>
+                    <td className="px-4 py-3 text-left text-sm ">
+                      
+                      <span>{item.email}</span>
                     </td>
-                    <td></td>
+                    <td className={`text-center ${
+                      item.attendance >= "90%"
+                        ? "text-[#009638]"
+                        : item.attendance >= "75%"
+                        ? "text-[#FFAA00]"
+                        : "text-[#FF4B4B]"
+                    }`}>{item.attendance}</td>
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
                       <Link to="/StudentDetails">
                         <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
