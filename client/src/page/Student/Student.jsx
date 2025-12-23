@@ -32,7 +32,7 @@ import doll from "../../assets/images/bella.jpg";
 import prime from "../../assets/images/prime.jpg";
 import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
-import emma from "../../assets/images/emma.jpg";
+import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
 import { Link } from "react-router-dom";
 
@@ -155,7 +155,7 @@ const studentData = [
   },
   {
     student: "Meave Wiley",
-    img: emma,
+    img: meave,
     studentId: "009",
     class: "12C",
     parent: "Otis Milburn",

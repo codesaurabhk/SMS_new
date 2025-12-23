@@ -214,7 +214,7 @@
   }
   50% {
     transform: scale(1.2);
-    opacity: 0.35;
+    opacity: 0.3;
   }
   100% {
     transform: scale(0.8);
@@ -223,7 +223,7 @@
 }
 
 .animate-spread {
-  animation: spread 2s ease-in-out infinite;
+  animation: spread 0.1s ease-in-out infinite;
   transform-origin: center;
 }
 
