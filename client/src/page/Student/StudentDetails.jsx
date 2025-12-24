@@ -18,6 +18,11 @@ import { FaEye } from "react-icons/fa";
 import { GoDownload } from "react-icons/go";
 import { MdOutlineImage } from "react-icons/md";
 import { TfiBook } from "react-icons/tfi";
+import { SlBadge } from "react-icons/sl";
+import { LuTarget } from "react-icons/lu";
+import { CiWarning } from "react-icons/ci";
+import { CiStar } from "react-icons/ci";
+import { FaClipboardList } from "react-icons/fa";
 
 /** <------------------------------------ images -------------------------------> */
 import langford from "../../assets/images/langford.jpg";
@@ -746,33 +751,393 @@ function DetailsContent({ active }) {
                 <span className="text-[#696969] font-normal text-[16px]">
                   Previous School Name
                 </span>
-                <span className="text-[#1c1c1c] text-[16px]">Mount Fuzi High School</span>
+                <span className="text-[#1c1c1c] text-[16px]">
+                  Mount Fuzi High School
+                </span>
               </div>
               <div className="flex flex-col">
-                  <span className="text-[#696969] font-normal text-[16px]">
-                    Previous Class
-                  </span>
-                  <span className="text-[#1c1c1c] text-[16px]">Class 1</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[#696969] font-normal text-[16px]">
-                    Transfer Certificate Number
-                  </span>
-                  <span className="text-[#1c1c1c] text-[16px]">-</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[#696969] font-normal text-[16px]">
-                    Transfer Reason
-                  </span>
-                  <span className="text-[#1c1c1c] text-[16px]">-</span>
-                </div>
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Previous Class
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Class 1</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Transfer Certificate Number
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">-</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Transfer Reason
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">-</span>
+              </div>
             </div>
           </div>
         </div>
       );
 
     case "Performance":
-      return <div>Performance Report Content</div>;
+      const performanceData = [
+        {
+          subject: "Mathematics",
+          marksObtained: 85,
+          totalMarks: 100,
+          percentage: 85,
+          grade: "A+",
+          texts: "good performance",
+        },
+        {
+          subject: "Science",
+          marksObtained: 90,
+          totalMarks: 100,
+          percentage: 90,
+          grade: "C",
+          texts: "good performance",
+        },
+        {
+          subject: "English",
+          marksObtained: 90,
+          totalMarks: 100,
+          percentage: 90,
+          grade: "B+",
+          texts: "good performance",
+        },
+        {
+          subject: "Hindi",
+          marksObtained: 90,
+          totalMarks: 100,
+          percentage: 90,
+          grade: "B",
+          texts: "good performance",
+        },
+        {
+          subject: "History",
+          marksObtained: 90,
+          totalMarks: 100,
+          percentage: 90,
+          grade: "A",
+          texts: "good performance",
+        },
+        {
+          subject: "Geography",
+          marksObtained: 90,
+          totalMarks: 100,
+          percentage: 90,
+          grade: "D+",
+          texts: "good performance but need",
+        },
+      ];
+
+      const subjectHoverColors = {
+        Mathematics: "hover:bg-[#007AFF]/20",
+        Science: "hover:bg-[#00A87C]/20",
+        Englis: "hover:bg-[#118AB2]/20",
+        Hindi: "hover:bg-[#894B00]/20",
+        History: "hover:bg-[#FFF4F4]",
+        Geography: "hover:bg-[#0077B6]/20",
+        default: "hover:bg-gray-100",
+      };
+
+      const gradeColors = {
+        "A+": "bg-green-500",
+        A: "bg-blue-500",
+        "B+": "bg-teal-500",
+        B: "bg-yellow-500",
+        "c+": "bg-purple-500",
+        C: "bg-orange-500",
+        "D+": "bg-pink-500",
+        D: "bg-red-500",
+      };
+
+      const examPerformanceData = [
+        {
+          examName: "UT 1",
+          maxMarks: 600,
+          marksObtained: 540,
+          percentage: 90,
+          grade: "A",
+          result: "Pass",
+          rank: 1,
+        },
+        {
+          examName: "Mid Term",
+          maxMarks: 600,
+          marksObtained: 310,
+          percentage: 85,
+          grade: "B+",
+          result: "Pass",
+          rank: 2,
+        },
+        {
+          examName: "UT 2",
+          maxMarks: 600,
+          marksObtained: 380,
+          percentage: 80,
+          grade: "B",
+          result: "Pass",
+          rank: 3,
+        },
+        {
+          examName: "Annual",
+          maxMarks: 600,
+          marksObtained: 40,
+          percentage: 75,
+          grade: "C",
+          result: "Fail",
+          rank: 5,
+        },
+      ];
+
+      const ResultColors = {
+        Pass: "bg-[#D4EDDA] text-[#155724]",
+        Fail: "bg-[#F8D7DA] text-[#721C24]",
+      };
+
+      return (
+        <div>
+          <div className="mt-6 bg-white rounded-lg p-4">
+            <div className="flex items-center gap-2 text-[#1c1c1c]">
+              <SlBadge size={20} className="text-[#696969]" />
+              <span className="font-semibold">Overall Performance Summary</span>
+            </div>
+            <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-6">
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Class & Section
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">Grade 10 - A</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Overall Percentage
+                </span>
+                <span className="text-[#1c1c1c] text-[16px] items-center gap-2 flex">
+                  85.4%
+                  <p className="px-4 bg-[#009638] rounded text-white">A</p>
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Class Rank
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">1 / 120</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[#696969] font-normal text-[16px]">
+                  Section Rank
+                </span>
+                <span className="text-[#1c1c1c] text-[16px]">1</span>
+              </div>
+            </div>
+          </div>
+          {/* <---------------------------------------------- Table -----------------------------------------------> */}
+          <div className="mt-6 bg-white rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex gap-3 items-center">
+                <LuTarget size={20} className="text-[#696969]" />
+                <span className="font-semibold text-[#1c1c1c]">
+                  Subject-wise Performance Breakdown
+                </span>
+              </div>
+              {/* <------------------------------------- Filter -----------------------------------------> */}
+              <div className="inline-flex items-center gap-3">
+                <label For="Exam"></label>
+                <select
+                  name=""
+                  id="Exam"
+                  className="bg-[#EFF2F2] rounded-md px-4 py-1 border-0 outline-0 text-[#1c1c1c] font-normal"
+                >
+                  <option value="">UT 1</option>
+                  <option value="">UT 2</option>
+                  <option value="">Mid Term</option>
+                  <option value="">Annual</option>
+                </select>
+              </div>
+            </div>
+            <div className="mt-6">
+              <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg">
+                <table className="min-w-full border-collapse ">
+                  <thead>
+                    <tr className="bg-[#F5F5F5]">
+                      <th className="px-4 py-2 text-left">Subject</th>
+                      <th className="px-4 py-2 text-left">Marks Obtained</th>
+                      <th className="px-4 py-2 text-left">Total Marks</th>
+                      <th className="px-4 py-2 text-left">Percentage</th>
+                      <th className="px-4 py-2 text-left">Grade</th>
+                      <th className="px-4 py-2 text-left w-60">
+                        Teacher Remark
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {performanceData.map((item, index) => (
+                      <tr
+                        key={index}
+                        className={
+                          subjectHoverColors[item.subject] ||
+                          subjectHoverColors.default
+                        }
+                      >
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]  ">
+                          {item.subject}
+                        </td>
+                        <td className=" px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c] text-left">
+                          {item.marksObtained}
+                        </td>
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                          {item.totalMarks}
+                        </td>
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                          {item.percentage}%
+                        </td>
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#ffffff]">
+                          <span
+                            className={`inline-block min-w-12 px-3 py-1 rounded text-white font-semibold text-center ${
+                              gradeColors[item.grade] || "bg-gray-500"
+                            }`}
+                          >
+                            {item.grade}
+                          </span>
+                        </td>
+                        <td className="px-3 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                          <textarea
+                            name=""
+                            id=""
+                            className="bg-gray-200 rounded border border-[#E6E6E6] w-full h-12 p-2 resize-none outline-0"
+                          >
+                            {item.texts}
+                          </textarea>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-6">
+              <div className="p-4 bg-[#F8F3F3] border-2 border-[#FBD1D1] rounded-lg">
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px] flex items-center gap-2">
+                    <CiWarning size={28} className="fill-[red]" />
+                    <span className="text-[#DC2626] text-[18px]">
+                      Weakest Subject
+                    </span>
+                  </span>
+                  <span className="text-[#DC2626] text-[16px]">
+                    Hindi - 60% (Need to improve Writing Skill)
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 bg-[#D0FFE2] border-2 border-[#B5FFD1] rounded-lg">
+                <div className="flex flex-col">
+                  <span className="text-[#696969] font-normal text-[16px] flex items-center gap-2">
+                    <CiStar size={28} className="fill-[#04ff04] " />
+                    <span className="text-[#267E3E] text-[18px]">
+                      Strongest Subject
+                    </span>
+                  </span>
+                  <span className="text-[#267E3E] text-[16px]">
+                    Hindi - 60% (Excelent Writing Skill)
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* <------------------------------------- Exam Performance Summary ---------------------------------------> */}
+          <div className="mt-6 bg-white rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex gap-3 items-center">
+                <FaClipboardList size={20} className="text-[#696969]" />
+                <span className="font-semibold text-[#1c1c1c]">
+                  Exam Performance Summary
+                </span>
+              </div>
+              {/* <------------------------------------- Filter -----------------------------------------> */}
+              <div className="inline-flex items-center gap-3">
+                <label For="Exam"></label>
+                <select
+                  name=""
+                  id="Exam"
+                  className="bg-[#EFF2F2] rounded-md px-4 py-1 border-0 outline-0 text-[#1c1c1c] font-normal"
+                >
+                  <option value="">UT 1</option>
+                  <option value="">UT 2</option>
+                  <option value="">Mid Term</option>
+                  <option value="">Annual</option>
+                </select>
+              </div>
+            </div>
+            <div className="mt-6">
+              <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg">
+                <table className="min-w-full border-collapse ">
+                  <thead>
+                    <tr className="bg-[#F5F5F5]">
+                      <th className="px-4 py-2 text-left">Exam Name</th>
+                      <th className="px-4 py-2 text-left">Marks Obtained</th>
+                      <th className="px-4 py-2 text-left">Max Marks</th>
+                      <th className="px-4 py-2 text-left">Percentage</th>
+                      <th className="px-4 py-2 text-left">Grade</th>
+                      <th className="px-4 py-2 text-left">Rank</th>
+                      <th className="px-4 py-2 text-left">Result</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {examPerformanceData.map((item, index) => (
+                      <tr
+                        key={index}
+                        className={
+                          subjectHoverColors[item.subject] ||
+                          subjectHoverColors.default
+                        }
+                      >
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]  ">
+                          {item.examName}
+                        </td>
+                        <td className=" px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c] text-left">
+                          {item.marksObtained}
+                        </td>
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                          {item.maxMarks}
+                        </td>
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                          {item.percentage}%
+                        </td>
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#ffffff]">
+                          <span
+                            className={`inline-block min-w-12 px-3 py-1 rounded text-white font-semibold text-center ${
+                              gradeColors[item.grade] || "bg-gray-500"
+                            }`}
+                          >
+                            {item.grade}
+                          </span>
+                        </td>
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                          #{item.rank}
+                        </td>
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                          <span
+                            className={`inline-flex items-center gap-2 px-2 py-1  rounded font-semibold min-w-24 text-center justify-center ${
+                              ResultColors[item.result] ||
+                              "bg-gray-200 text-gray-700"
+                            }`}
+                          >
+                            <span className="text-lg leading-none">•</span>
+                            {item.result}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
 
     case "Attandance":
       return <div>Attendance Content</div>;
