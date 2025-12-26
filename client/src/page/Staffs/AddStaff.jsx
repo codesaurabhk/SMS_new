@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { BsUpload } from "react-icons/bs";
 import { GoArrowRight } from "react-icons/go";
+import {  useNavigate } from "react-router-dom";
+
 
 /* =======================
    Reusable Input Field
@@ -74,12 +76,14 @@ const AddStaff = () => {
     const imageURL = URL.createObjectURL(file);
     setPreview(imageURL);
   };
+  const navigate = useNavigate();
 
   return (
+
     <div className="space-y-6">
       {/* ===== Breadcrumb ===== */}
       <div className="flex gap-1 items-center text-[#696969]">
-        <span className="text-2xl font-semibold cursor-pointer hover:text-black">
+        <span className="text-2xl font-semibold cursor-pointer hover:text-black" onClick={() => navigate("/all-staffs")}>
           All Staff
         </span>
         <MdOutlineKeyboardArrowRight className="text-2xl mt-1" />
@@ -257,7 +261,7 @@ const AddStaff = () => {
             2. Family Information
         ======================= */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold border-l-[3px] border-[#2B7FFF] pl-2">
+          <h2 className="text-lg font-semibold border-l-[4px]  border-[#2B7FFF] pl-2">
             2. Family Information
           </h2>
 
@@ -694,15 +698,37 @@ const AddStaff = () => {
               </select>
             </div>
           </div>
-          <div className="border-2 border-dashed border-[#BDEBD3] rounded-xl p-6 flex flex-col items-center justify-center text-center gap-2">
-            <span className="text-sm font-medium text-[#1C1C1C]">
+          <div className="relative ">
+            {/* Title on border */}
+            <span className="absolute -top-3 left-4 bg-white px-2 text-sm text-[#118AB2]">
               Upload Resume
             </span>
-            <p className="text-xs text-[#696969]">
-              Drag & Drop to upload or{" "}
-              <span className="text-[#00C950] cursor-pointer">Browse</span>
-            </p>
-            <p className="text-[11px] text-[#9A9A9A]">Only PDF file allowed</p>
+
+            {/* Upload Box */}
+            <div
+              onClick={handleClick}
+              className="cursor-pointer border border-dashed border-[#118AB2] rounded-lg px-4 py-7 flex flex-col items-center justify-center gap-2 hover:bg-[#F5FBFF] transition"
+            >
+              <BsUpload size={28} className="text-[#118AB2]" />
+
+              <p className="text-sm text-[#1C1C1C]">
+                Drag & Drop to upload or{" "}
+                <span className="text-[#118AB2] font-medium">Browse</span>
+              </p>
+
+              <p className="text-xs text-[#9A9A9A]">
+                Only Pdf file are allowed.
+              </p>
+            </div>
+
+            {/* Hidden Input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/pdf"
+              onChange={handleFileChange}
+              className="hidden"
+            />
           </div>
           {/* <UploadBox title="Upload Resume" /> */}
         </section>
@@ -710,25 +736,88 @@ const AddStaff = () => {
             6. Payroll / Salary Detail
         ======================= */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold border-l-[3px] border-[#00C950] pl-2">
+          <h2 className="text-lg font-semibold border-l-[3px] border-[#AD46FF] pl-2">
             6. Payroll / Salary Detail
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <InputField label="Basic Salary" required placeholder="₹" />
-            <InputField label="Allowances" placeholder="Enter allowances" />
-            <InputField label="Deductions" placeholder="Enter deductions" />
-            <InputField
-              label="Account Number"
-              required
-              placeholder="Enter account number"
-            />
-            <InputField
-              label="Bank Name"
-              required
-              placeholder="Enter bank name"
-            />
-            <InputField label="IFSC Code" required placeholder="Enter IFSC" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
+            <div className="flex flex-col gap-1">
+              <label className="text-sm text-[#696969]">
+                Basic Salary
+                <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="₹"
+                className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm text-[#696969]">
+                Allowances
+                {/* <span className="text-red-500">*</span> */}
+              </label>
+              <input
+                type="text"
+                placeholder="Enter allowances"
+                className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm text-[#696969]">
+                Deductions
+                {/* <span className="text-red-500">*</span> */}
+              </label>
+              <input
+                type="text"
+                placeholder="Enter deductions"
+                className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm text-[#696969]">
+                Account Number
+                <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter account number"
+                className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm text-[#696969]">
+                Bank Name
+                <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter bank name"
+                className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm text-[#696969]">
+                Account Holder Name
+                <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter bank name"
+                className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm text-[#696969]">
+                IFSC Code
+                <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter IFSC"
+                className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+              />
+            </div>
           </div>
         </section>
 
@@ -736,25 +825,213 @@ const AddStaff = () => {
             7. Document Upload
         ======================= */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold border-l-[3px] border-[#00C950] pl-2">
+          <h2 className="text-lg font-semibold border-l-[3px] border-[#FF6900] pl-2">
             7. Document Upload
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <UploadBox title="Aadhaar Card / ID Proof" />
-            <UploadBox title="PAN Card" />
-            <UploadBox title="Experience Letters" />
-            <UploadBox title="Qualification Certificates" />
+            <div className="relative ">
+              {/* Title on border */}
+              <span className="absolute -top-3 left-4 bg-white px-2 text-sm text-[#118AB2]">
+                Aadhaar Card / ID Proof
+              </span>
+
+              {/* Upload Box */}
+              <div
+                onClick={handleClick}
+                className="cursor-pointer border border-dashed border-[#118AB2] rounded-lg px-4 py-7 flex flex-col items-center justify-center gap-2 hover:bg-[#F5FBFF] transition"
+              >
+                <BsUpload size={28} className="text-[#118AB2]" />
+
+                <p className="text-sm text-[#1C1C1C]">
+                  Drag & Drop to upload or{" "}
+                  <span className="text-[#118AB2] font-medium">Browse</span>
+                </p>
+
+                <p className="text-xs text-[#9A9A9A]">
+                  Only Pdf file are allowed.
+                </p>
+              </div>
+
+              {/* Hidden Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </div>
+            <div className="relative ">
+              {/* Title on border */}
+              <span className="absolute -top-3 left-4 bg-white px-2 text-sm text-[#118AB2]">
+                PAN Card
+              </span>
+
+              {/* Upload Box */}
+              <div
+                onClick={handleClick}
+                className="cursor-pointer border border-dashed border-[#118AB2] rounded-lg px-4 py-7 flex flex-col items-center justify-center gap-2 hover:bg-[#F5FBFF] transition"
+              >
+                <BsUpload size={28} className="text-[#118AB2]" />
+
+                <p className="text-sm text-[#1C1C1C]">
+                  Drag & Drop to upload or{" "}
+                  <span className="text-[#118AB2] font-medium">Browse</span>
+                </p>
+
+                <p className="text-xs text-[#9A9A9A]">
+                  Only Pdf file are allowed.
+                </p>
+              </div>
+
+              {/* Hidden Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </div>
+            <div className="relative ">
+              {/* Title on border */}
+              <span className="absolute -top-3 left-4 bg-white px-2 text-sm text-[#118AB2]">
+                Experience Letters
+              </span>
+
+              {/* Upload Box */}
+              <div
+                onClick={handleClick}
+                className="cursor-pointer border border-dashed border-[#118AB2] rounded-lg px-4 py-7 flex flex-col items-center justify-center gap-2 hover:bg-[#F5FBFF] transition"
+              >
+                <BsUpload size={28} className="text-[#118AB2]" />
+
+                <p className="text-sm text-[#1C1C1C]">
+                  Drag & Drop to upload or{" "}
+                  <span className="text-[#118AB2] font-medium">Browse</span>
+                </p>
+
+                <p className="text-xs text-[#9A9A9A]">
+                  Only Pdf file are allowed.
+                </p>
+              </div>
+
+              {/* Hidden Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </div>
+            <div className="relative ">
+              {/* Title on border */}
+              <span className="absolute -top-3 left-4 bg-white px-2 text-sm text-[#118AB2]">
+                Qualification Certificates
+              </span>
+
+              {/* Upload Box */}
+              <div
+                onClick={handleClick}
+                className="cursor-pointer border border-dashed border-[#118AB2] rounded-lg px-4 py-7 flex flex-col items-center justify-center gap-2 hover:bg-[#F5FBFF] transition"
+              >
+                <BsUpload size={28} className="text-[#118AB2]" />
+
+                <p className="text-sm text-[#1C1C1C]">
+                  Drag & Drop to upload or{" "}
+                  <span className="text-[#118AB2] font-medium">Browse</span>
+                </p>
+
+                <p className="text-xs text-[#9A9A9A]">
+                  Only Pdf file are allowed.
+                </p>
+              </div>
+
+              {/* Hidden Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </div>
+            <div className="relative ">
+              {/* Title on border */}
+              <span className="absolute -top-3 left-4 bg-white px-2 text-sm text-[#118AB2]">
+                Experience Letter
+              </span>
+
+              {/* Upload Box */}
+              <div
+                onClick={handleClick}
+                className="cursor-pointer border border-dashed border-[#118AB2] rounded-lg px-4 py-7 flex flex-col items-center justify-center gap-2 hover:bg-[#F5FBFF] transition"
+              >
+                <BsUpload size={28} className="text-[#118AB2]" />
+
+                <p className="text-sm text-[#1C1C1C]">
+                  Drag & Drop to upload or{" "}
+                  <span className="text-[#118AB2] font-medium">Browse</span>
+                </p>
+
+                <p className="text-xs text-[#9A9A9A]">
+                  Only Pdf file are allowed.
+                </p>
+              </div>
+
+              {/* Hidden Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </div>
+            <div className="relative ">
+              {/* Title on border */}
+              <span className="absolute -top-3 left-4 bg-white px-2 text-sm text-[#118AB2]">
+                Upload Resume
+              </span>
+
+              {/* Upload Box */}
+              <div
+                onClick={handleClick}
+                className="cursor-pointer border border-dashed border-[#118AB2] rounded-lg px-4 py-7 flex flex-col items-center justify-center gap-2 hover:bg-[#F5FBFF] transition"
+              >
+                <BsUpload size={28} className="text-[#118AB2]" />
+
+                <p className="text-sm text-[#1C1C1C]">
+                  Drag & Drop to upload or{" "}
+                  <span className="text-[#118AB2] font-medium">Browse</span>
+                </p>
+
+                <p className="text-xs text-[#9A9A9A]">
+                  Only Pdf file are allowed.
+                </p>
+              </div>
+
+              {/* Hidden Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </div>
           </div>
         </section>
 
         {/* ===== Buttons ===== */}
         <div className="flex justify-center gap-4 pt-6">
           <button className="border border-red-500 text-red-500 px-6 py-2 rounded-lg">
-            Cancel
+            ❌ Cancel
           </button>
           <button className="bg-[#0B2B2E] text-white px-6 py-2 rounded-lg">
-            Submit
+            ✓ Submit
           </button>
         </div>
       </div>
