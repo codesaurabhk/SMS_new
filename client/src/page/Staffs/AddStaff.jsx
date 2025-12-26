@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { BsUpload } from "react-icons/bs";
 import { GoArrowRight } from "react-icons/go";
+import {  useNavigate } from "react-router-dom";
 
 
 /* =======================
@@ -75,12 +76,14 @@ const AddStaff = () => {
     const imageURL = URL.createObjectURL(file);
     setPreview(imageURL);
   };
+  const navigate = useNavigate();
 
   return (
+
     <div className="space-y-6">
       {/* ===== Breadcrumb ===== */}
       <div className="flex gap-1 items-center text-[#696969]">
-        <span className="text-2xl font-semibold cursor-pointer hover:text-black">
+        <span className="text-2xl font-semibold cursor-pointer hover:text-black" onClick={() => navigate("/all-staffs")}>
           All Staff
         </span>
         <MdOutlineKeyboardArrowRight className="text-2xl mt-1" />
