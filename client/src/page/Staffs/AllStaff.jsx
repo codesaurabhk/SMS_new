@@ -175,7 +175,7 @@ const staffData = [
     email: "abc@example.com",
     attendance: "80%",
   },
-  
+
 ];
 
 
@@ -201,11 +201,10 @@ const AllStaff = () => {
 
                 <p className="mt-3 flex items-center gap-2 text-[14px] font-semibold ">
                   <span
-                    className={`${
-                      item.text.includes("absent")
-                        ? "text-[#FF4B4B]" // red for absent
-                        : "text-[#009638]" // green for normal
-                    }`}
+                    className={`${item.text.includes("absent")
+                      ? "text-[#FF4B4B]" // red for absent
+                      : "text-[#009638]" // green for normal
+                      }`}
                   >
                     {item.left}
                   </span>
@@ -248,8 +247,8 @@ const AllStaff = () => {
             </button>
 
             <button
-            onClick={() => navigate("/add-staffs")} 
-             className="inline-flex items-center gap-2 px-6 py-2 cursor-pointer bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
+              onClick={() => navigate("/add-staffs")}
+              className="inline-flex items-center gap-2 px-6 py-2 cursor-pointer bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
               <GrUserAdd className="text-white" />
               Add Staff
             </button>
@@ -281,7 +280,7 @@ const AllStaff = () => {
               <option value="">C</option>
               <option value="">D</option>
             </select>
-           
+
             <select
               name=""
               id="Export"
@@ -304,16 +303,16 @@ const AllStaff = () => {
                 <tr>
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     <div className="flex items-center gap-1">
-                     <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span>
+                      <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span>
                       <span>Staff</span>
-                      
+
                     </div>
                   </th>
 
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     <div className="flex items-center gap-2">
                       <span>Role</span>
-                      
+
                     </div>
                   </th>
 
@@ -329,9 +328,9 @@ const AllStaff = () => {
                     Email
                   </th>
                   <th className="px-4 py-3 text-center text-sm font-semibold">
-                   <div className="flex items-center gap-1"> 
-                    <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span>
-                    <span > Attendance%</span>
+                    <div className="flex items-center gap-1">
+                      <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span>
+                      <span > Attendance%</span>
                     </div>
                   </th>
 
@@ -345,12 +344,12 @@ const AllStaff = () => {
                 {staffData.map((item, index) => (
                   <tr
                     key={index}
-                    onClick={() => Navigate("/StudentDetails")}
+                    onClick={() => Navigate("/staffDetails")}
                     className="border-b border-[#e6e6e6]"
                   >
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
-                      
-                      <Link to="/StudentDetails">
+
+                      <Link to="/staffDetails">
                         <div className="flex gap-4">
                           <div className="w-10 h-10 rounded-full overflow-hidden">
                             <img
@@ -374,38 +373,36 @@ const AllStaff = () => {
                     </td>
 
                     <td className="px-4 py-3 text-left text-sm  font-semibold">
-                      <Link to="/StudentDetails">
-                     <span className={`border  px-8  rounded-md ${
-                      item.role== "Teacher" ? "border-[#007AFF] text-[#007AFF]":
-                      item.role== "Accountant" ? "border-[#894B00] text-[#894B00]":
-                      item.role== "Receptionist" ? "border-[#A8038D] text-[#A8038D]":
-                      item.role== "Librarian" ? "border-[#4BA803] text-[#4BA803]":
-                      item.role== "Super Admin" ? "border-[#C1891B] text-[#C1891B]":
-                      item.role== "Driver" ? "border-[#00ADAD] text-[#00ADAD]":
-                      item.role== "Cleaner" ? "border-[#EF476F] text-[#EF476F]":""
+                      <Link to="/staffDetails">
+                        <span className={`border  px-8  rounded-md ${item.role == "Teacher" ? "border-[#007AFF] text-[#007AFF]" :
+                          item.role == "Accountant" ? "border-[#894B00] text-[#894B00]" :
+                            item.role == "Receptionist" ? "border-[#A8038D] text-[#A8038D]" :
+                              item.role == "Librarian" ? "border-[#4BA803] text-[#4BA803]" :
+                                item.role == "Super Admin" ? "border-[#C1891B] text-[#C1891B]" :
+                                  item.role == "Driver" ? "border-[#00ADAD] text-[#00ADAD]" :
+                                    item.role == "Cleaner" ? "border-[#EF476F] text-[#EF476F]" : ""
 
-                      } `}>{item.role}</span> 
+                          } `}>{item.role}</span>
                       </Link>
                     </td>
                     <td className="px-4 py-3 text-left text-sm ">
-                      <Link to="/StudentDetails">{item.department}</Link>
+                      <Link to="/staffDetails">{item.department}</Link>
                     </td>
                     <td className="px-4 py-3 text-left text-sm ">
-                      <Link to="/StudentDetails">{item.mob}</Link>
+                      <Link to="/staffDetails">{item.mob}</Link>
                     </td>
                     <td className="px-4 py-3 text-left text-sm ">
-                      
+
                       <span>{item.email}</span>
                     </td>
-                    <td className={`text-center ${
-                      item.attendance >= "90%"
-                        ? "text-[#009638]"
-                        : item.attendance >= "75%"
+                    <td className={`text-center ${item.attendance >= "90%"
+                      ? "text-[#009638]"
+                      : item.attendance >= "75%"
                         ? "text-[#FFAA00]"
                         : "text-[#FF4B4B]"
-                    }`}>{item.attendance}</td>
-                    <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
-                      <Link to="/StudentDetails">
+                      }`}>{item.attendance}</td>
+                    <td className="px-4 py-3 text-left text-sm  font-semibold flex gap-3 ">
+                      <Link to="/staffDetails">
                         <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
                       </Link>
                       <FiEdit className="w-5 h-5 text-[#9C9C9C]" />
