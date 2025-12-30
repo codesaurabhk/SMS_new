@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../CSS/Style.css";
+import * as d3 from "d3";
 
 /* <------------------------------- icon ------------------------------> */
 import { IoMdArrowBack } from "react-icons/io";
@@ -28,6 +29,120 @@ import { FaClipboardList } from "react-icons/fa";
 import langford from "../../assets/images/langford.jpg";
 import mikasa from "../../assets/images/mikasa.png";
 import { Link } from "react-router-dom";
+
+function SubjectWiseMarksChart() {
+  const svgRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const [width, setWidth] = useState(0);
+
+  const data = [
+    { subject: "Mathematics", marks: 100 },
+    { subject: "Science", marks: 88 },
+    { subject: "English", marks: 78 },
+    { subject: "History", marks: 88 },
+    { subject: "Geography", marks: 88 },
+  ];
+
+  /* Resize Observer */
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+
+    const observer = new ResizeObserver((entries) => {
+      setWidth(entries[0].contentRect.width);
+    });
+
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  /* Draw Chart */
+  useEffect(() => {
+    if (!width) return;
+
+    const height = 300;
+    const margin = { top: 20, right: 20, bottom: 40, left: 50 };
+
+    const svg = d3.select(svgRef.current);
+    svg.selectAll("*").remove();
+
+    svg.attr("width", width).attr("height", height);
+
+    const chart = svg
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    const xScale = d3
+      .scaleBand()
+      .domain(data.map((d) => d.subject))
+      .range([0, innerWidth])
+      .padding(0.25);
+
+    const yScale = d3.scaleLinear().domain([0, 100]).range([innerHeight, 0]);
+
+    const grid = chart.append("g").call(
+      d3
+        .axisLeft(yScale)
+        .tickSize(-innerWidth)
+        .tickFormat(() => "")
+    );
+
+    grid
+      .selectAll("line")
+      .attr("stroke", "#e6e6e6")
+      .attr("stroke-dasharray", "2 2");
+
+    grid
+      .selectAll("line")
+      .filter((d) => d === 0 || d === yScale.domain()[1])
+      .remove();
+
+    chart
+      .append("g")
+      .call(d3.axisLeft(yScale).tickValues([0, 25, 50, 75, 100]));
+    chart.selectAll(".domain").attr("stroke", "#e6e6e6");
+
+    chart
+      .append("g")
+      .attr("transform", `translate(0,${innerHeight})`)
+      .call(d3.axisBottom(xScale))
+      .select(".domain")
+      .remove(); // ✅ removes black bottom line
+
+    chart
+      .selectAll(".bar")
+      .data(data)
+      .enter()
+      .append("path")
+      .attr("class", "bar")
+      .attr("fill", "#00B4D8")
+      .attr("d", (d) => {
+        const x = xScale(d.subject);
+        const y = yScale(d.marks);
+        const w = xScale.bandwidth();
+        const h = innerHeight - y;
+        const r = 6; // top corner radius
+
+        return `
+      M ${x}, ${y + r}
+      Q ${x}, ${y} ${x + r}, ${y}
+      L ${x + w - r}, ${y}
+      Q ${x + w}, ${y} ${x + w}, ${y + r}
+      L ${x + w}, ${y + h}
+      L ${x}, ${y + h}
+      Z
+    `;
+      });
+  }, [width]);
+
+  return (
+    <div ref={wrapperRef} className="w-full">
+      <svg ref={svgRef} />
+    </div>
+  );
+}
 
 function DetailsContent({ active }) {
   const documentData = [
@@ -80,7 +195,6 @@ function DetailsContent({ active }) {
       fileType: "pdf",
       fileSize: "420",
     },
-    ,
     {
       img: mikasa,
       documentName: "Guardian Photo",
@@ -1136,10 +1250,18 @@ function DetailsContent({ active }) {
               </div>
             </div>
           </div>
+
+          {/* <------------------------------------- Exam Performance Graph -----------------------------------------> */}
+          <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6">
+            <div className="mt-6 bg-white rounded-lg p-4">
+              <SubjectWiseMarksChart />
+            </div>
+            <div className="mt-6 bg-white rounded-lg p-4"></div>
+          </div>
         </div>
       );
 
-    case "Attandance":
+    case "Attendance":
       return <div>Attendance Content</div>;
 
     case "Fees":
@@ -1290,16 +1412,7 @@ function StudentDetails() {
 
       {/* <------------------------------------------------------ filter ------------------------------------------------> */}
       <div className="w-full mt-6 bg-white rounded-full">
-        <div
-          className="
-      flex items-center p-1 rounded-full
-      gap-1
-      overflow-x-auto
-      whitespace-nowrap
-      sm:overflow-visible
-      sm:justify-between
-    "
-        >
+        <div className="flex items-center p-1 rounded-full gap-1 overflow-x-auto whitespace-nowrap sm:overflow-visible sm:justify-between">
           {[
             "Personal Info",
             "Academic",
