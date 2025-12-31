@@ -33,7 +33,9 @@ import { Link } from "react-router-dom";
 function SubjectWiseMarksChart() {
   const svgRef = useRef(null);
   const wrapperRef = useRef(null);
+  const tooltipRef = useRef(null);
   const [width, setWidth] = useState(0);
+  const gridTicks = [25, 50, 75];
 
   const data = [
     { subject: "Mathematics", marks: 100 },
@@ -42,6 +44,8 @@ function SubjectWiseMarksChart() {
     { subject: "History", marks: 88 },
     { subject: "Geography", marks: 88 },
   ];
+
+  
 
   /* Resize Observer */
   useEffect(() => {
@@ -85,6 +89,7 @@ function SubjectWiseMarksChart() {
     const grid = chart.append("g").call(
       d3
         .axisLeft(yScale)
+
         .tickSize(-innerWidth)
         .tickFormat(() => "")
     );
@@ -102,15 +107,37 @@ function SubjectWiseMarksChart() {
     chart
       .append("g")
       .call(d3.axisLeft(yScale).tickValues([0, 25, 50, 75, 100]));
+
     chart.selectAll(".domain").attr("stroke", "#e6e6e6");
 
     chart
       .append("g")
       .attr("transform", `translate(0,${innerHeight})`)
       .call(d3.axisBottom(xScale))
-      .select(".domain")
-      .remove(); // ✅ removes black bottom line
+      .call((g) => g.selectAll("line").remove()) // remove tick lines
+      .call((g) => g.select(".domain").remove()) // remove bottom axis line
+      .call((g) =>
+        g
+          .selectAll("text") // style labels
+          .attr("fill", "#1c1c1c")
+          .attr("font-size", "13px")
+          .attr("font-weight", "500")
+      );
+    chart
+      .append("g")
+      .attr("transform", `translate(0,${innerHeight})`)
+      .call(d3.axisBottom(xScale))
+      .call((g) => g.selectAll("line").remove())
+      .call((g) => g.select(".domain").remove())
+      .call((g) =>
+        g
+          .selectAll("text")
+          .attr("fill", "#1c1c1c")
+          .attr("font-size", "13px")
+          .attr("font-weight", "500")
+      );
 
+    /* ---------------- Bars (ONLY ONCE) ---------------- */
     chart
       .selectAll(".bar")
       .data(data)
@@ -123,7 +150,7 @@ function SubjectWiseMarksChart() {
         const y = yScale(d.marks);
         const w = xScale.bandwidth();
         const h = innerHeight - y;
-        const r = 6; // top corner radius
+        const r = 6;
 
         return `
       M ${x}, ${y + r}
@@ -134,6 +161,24 @@ function SubjectWiseMarksChart() {
       L ${x}, ${y + h}
       Z
     `;
+      })
+      .on("mouseenter", function (event, d) {
+        d3.select(this).attr("opacity", 0.8);
+
+        d3.select(tooltipRef.current)
+          .style("opacity", 1)
+          .html(`<strong>${d.subject}</strong><br/>Marks: ${d.marks}`);
+      })
+      .on("mousemove", function (event) {
+        const bounds = wrapperRef.current.getBoundingClientRect();
+
+        d3.select(tooltipRef.current)
+          .style("left", event.clientX - bounds.left + 10 + "px")
+          .style("top", event.clientY - bounds.top - 40 + "px");
+      })
+      .on("mouseleave", function () {
+        d3.select(this).attr("opacity", 1);
+        d3.select(tooltipRef.current).style("opacity", 0);
       });
   }, [width]);
 
@@ -1254,8 +1299,32 @@ function DetailsContent({ active }) {
           {/* <------------------------------------- Exam Performance Graph -----------------------------------------> */}
           <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6">
             <div className="mt-6 bg-white rounded-lg p-4">
+              <div className="flex justify-between">
+                <div className="flex flex-col">
+                  <span className="text-[1c1c1c] font-normal">
+                    Subject-wise Marks
+                  </span>
+                  <span className="text-[#9C9C9C] ">
+                    Overall student performance Breakdown
+                  </span>
+                </div>
+                <div>
+                  <label For="Exam"></label>
+                  <select
+                    name=""
+                    id="Exam"
+                    className="bg-[#EFF2F2] rounded-md px-4 py-1 border-0 outline-0 text-[#1c1c1c] font-normal"
+                  >
+                    <option value="">UT 1</option>
+                    <option value="">UT 2</option>
+                    <option value="">Mid Term</option>
+                    <option value="">Annual</option>
+                  </select>
+                </div>
+              </div>
               <SubjectWiseMarksChart />
             </div>
+            
             <div className="mt-6 bg-white rounded-lg p-4"></div>
           </div>
         </div>
