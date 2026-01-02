@@ -7,14 +7,10 @@ import { IoSchoolOutline } from "react-icons/io5";
 import { CiTrophy } from "react-icons/ci";
 import { PiChartLineUpLight } from "react-icons/pi";
 import { LiaUserEditSolid } from "react-icons/lia";
-import { FaRegUser } from "react-icons/fa";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaRegUser, FaIdCard, FaPhoneAlt, FaMapMarkerAlt, FaMale, FaRegFileAlt, FaEye, FaClipboardList, FaEnvelope } from "react-icons/fa";
 import { MdFamilyRestroom } from "react-icons/md";
-import { FaMale } from "react-icons/fa";
-import { FaRegFileAlt } from "react-icons/fa";
 import { LuUser } from "react-icons/lu";
 import { GiBus } from "react-icons/gi";
-import { FaEye } from "react-icons/fa";
 import { GoDownload } from "react-icons/go";
 import { MdOutlineImage } from "react-icons/md";
 import { TfiBook } from "react-icons/tfi";
@@ -22,7 +18,7 @@ import { SlBadge } from "react-icons/sl";
 import { LuTarget } from "react-icons/lu";
 import { CiWarning } from "react-icons/ci";
 import { CiStar } from "react-icons/ci";
-import { FaClipboardList } from "react-icons/fa";
+
 
 /** <------------------------------------ images -------------------------------> */
 import langford from "../../assets/images/langford.jpg";
@@ -93,173 +89,119 @@ function DetailsContent({ active }) {
         case "Personal Info":
             return (
                 <div className="">
-                    <div className="bg-white mt-6 p-4 rounded-lg">
-                        {/* HEADER */}
-                        <div className="flex items-center gap-2 text-[#1c1c1c]">
-                            <FaRegUser className="text-[#696969]" />
-                            <span className="font-semibold">Personal Information</span>
+
+                    {/* <------------------------------------------------------ Basics Information ------------------------------------------------> */}
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 mt-6 gap-6">
+
+                        {/* Basic Information */}
+                        <div className="bg-white rounded-lg p-6">
+                            <div className="flex items-center gap-2 mb-6">
+                                <FaRegUser className="text-[#9A9A9A]" />
+                                <h3 className="font-semibold">Basic Information</h3>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                {[
+                                    ["Full Name", "Anushka Sharma"],
+                                    ["Gender", "Female"],
+                                    ["Date of Birth", "14-02-1989"],
+                                    ["Age", "39"],
+                                    ["Blood Group", "B+"],
+                                    ["Marital Status", "Married"],
+                                    ["Religion", "Hindu"],
+                                    ["Nationality", "Indian"],
+                                ].map(([label, value]) => (
+                                    <div key={label}>
+                                        <p className="text-sm text-[#8A8A8A]">{label}</p>
+                                        <p className="text-sm font-medium text-[#1C1C1C]">{value}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
-                        {/* GRID CONTENT */}
-                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-10">
-                            {/* ITEM */}
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Full Name
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    Kathrine Langford
-                                </span>
+                        {/* Identification Details */}
+                        <div className="bg-white rounded-lg p-6">
+                            <div className="flex items-center gap-2 mb-6">
+                                <FaIdCard className="text-[#9A9A9A]" />
+                                <h3 className="font-semibold">Identification Details</h3>
                             </div>
 
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Date of Birth
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    29 April 1996
-                                </span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Age
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">29</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Gender
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Female</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Mobile Number
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">6202124896</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Email
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    Langford@yahoo.com
-                                </span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Admission Number
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">123456</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Blood Group
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">A+</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Category
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">OBC</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Citizenship
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Perth</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Religion
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Jews</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Nationality
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Australian</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Mother Tongue
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">English</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Place of Birth
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    Australia Perth
-                                </span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Primary Language
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    English, Bhojpuri
-                                </span>
+                            <div className="space-y-4">
+                                <div>
+                                    <p className="text-sm text-[#8A8A8A]">Aadhaar Number</p>
+                                    <p className="font-medium">1234-5678-9101</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-[#8A8A8A]">PAN Number</p>
+                                    <p className="font-medium">ABCDE1234F</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-[#8A8A8A]">Languages Known</p>
+                                    <p className="font-medium">English, Hindi, Marathi</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
+
                     {/* <------------------------------------------------------ Address ------------------------------------------------> */}
-                    <div className="bg-white mt-6 p-4 rounded-lg">
-                        <div className="flex items-center gap-2 text-[#1c1c1c]">
+
+                    <div className="bg-white mt-6 rounded-xl p-6">
+                        <div className="flex mb-6 items-center gap-2 text-[#1c1c1c]">
                             <FaMapMarkerAlt className="text-[#696969]" />
-                            <span className="font-semibold">Permament Address</span>
+                            <span className="font-semibold">Identification Details</span>
                         </div>
-                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-y-6 gap-x-10">
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Full Address
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    Autralia Perth
-                                </span>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Personal Mobile</p>
+                                <p className="font-medium flex items-center gap-2">
+                                    <FaPhoneAlt className="text-green-500" /> (555) 234-5678
+                                </p>
                             </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Country
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Australia</span>
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Email</p>
+                                <p className="font-medium flex items-center gap-2">
+                                    <FaEnvelope className="text-blue-500" /> michael.c@school.com
+                                </p>
                             </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    State
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Bihar</span>
+                        </div>
+
+                        <div className="mt-6 space-y-2">
+                            <p className="text-sm text-[#8A8A8A]">Current Address</p>
+                            <p className="font-medium">
+                                ABC gali, house no. 4, Trilokpuri, Delhi-110096, India
+                            </p>
+                        </div>
+                        <div className="mt-6 space-y-2">
+                            <p className="text-sm text-[#8A8A8A]">Parmanent Address</p>
+                            <p className="font-medium">
+                                ABC gali, house no. 4, Trilokpuri, Delhi-110096, India
+                            </p>
+                        </div>
+
+                        <h4 className="mt-6 text-sm font-semibold text-red-500">
+                            Emergency Contact
+                        </h4>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-2">
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Name</p>
+                                <p className="font-medium">Lisa Chen</p>
                             </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    City
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Perth</span>
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Relation</p>
+                                <p className="font-medium">Spouse</p>
                             </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Zip Code
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">800020</span>
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Phone</p>
+                                <p className="font-medium">(555) 876-5432</p>
                             </div>
                         </div>
                     </div>
+
+
 
                     {/* <---------------------------------------------- Parent Information --------------------------------------------> */}
 
@@ -1210,10 +1152,10 @@ function StaffDetails() {
                             {/* BASIC INFO */}
                             <div className="flex gap-15 mt-4">
                                 {[
-                                    ["Employee ID", "EMPUID 1234"],
-                                    ["Admission No.", "0531"],
-                                    ["Class", "10 A"],
-                                    ["Academic Year", "2024-26"],
+                                    ["Employee ID", "EMP2024002"],
+                                    ["Role", "Teacher"],
+                                    ["Department", "Academics"],
+                                    ["Joined", "1 Jan, 2018"],
                                 ].map(([label, value], idx) => (
                                     <div key={idx} className="flex flex-col">
                                         <span className="text-white text-sm font-normal">
@@ -1231,12 +1173,12 @@ function StaffDetails() {
                                 {/* CARD 1 */}
                                 <div className="bg-[#ffffff73] px-4 py-2 rounded-lg">
                                     <div className="flex gap-4 items-center">
-                                        <div className="bg-[#DBEAFE] p-2 rounded-full">
+                                        {/* <div className="bg-[#DBEAFE] p-2 rounded-full">
                                             <IoSchoolOutline size={26} className="text-[#155DFC]" />
-                                        </div>
+                                        </div> */}
                                         <div className="flex flex-col text-[#1C1C1C]">
-                                            <span className="text-sm">Overall Grade</span>
-                                            <span className="font-semibold">A+</span>
+                                            <span className="text-sm text-[#696969]">Attendance</span>
+                                            <span className="font-semibold text-[#007AFF]">96.25%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1244,15 +1186,15 @@ function StaffDetails() {
                                 {/* CARD 2 */}
                                 <div className="bg-[#ffffff73] px-4 py-2 rounded-lg">
                                     <div className="flex gap-4 items-center">
-                                        <div className="bg-[#DCFCE7] p-2 rounded-full">
+                                        {/* <div className="bg-[#DCFCE7] p-2 rounded-full">
                                             <PiChartLineUpLight
                                                 size={26}
                                                 className="text-[#00A63E]"
                                             />
-                                        </div>
+                                        </div> */}
                                         <div className="flex flex-col text-[#1C1C1C]">
-                                            <span className="text-sm">Attendance Rate</span>
-                                            <span className="font-semibold">95%</span>
+                                            <span className="text-sm">Classes</span>
+                                            <span className="font-semibold text-[#9810FA]">3</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1260,12 +1202,12 @@ function StaffDetails() {
                                 {/* CARD 3 */}
                                 <div className="bg-[#ffffff73] px-4 py-2 rounded-lg">
                                     <div className="flex gap-4 items-center">
-                                        <div className="bg-[#DBEAFE] p-2 rounded-full">
+                                        {/* <div className="bg-[#DBEAFE] p-2 rounded-full">
                                             <CiTrophy size={26} className="text-[#9810FA]" />
-                                        </div>
+                                        </div> */}
                                         <div className="flex flex-col text-[#1C1C1C]">
-                                            <span className="text-sm">Class Rank</span>
-                                            <span className="font-semibold">#1</span>
+                                            <span className="text-sm">Experience</span>
+                                            <span className="font-semibold text-[#F97316]">6 years</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1300,9 +1242,9 @@ function StaffDetails() {
                     {[
                         "Personal Info",
                         "Academic",
-                        "Performance",
                         "Attendance",
-                        "Fees",
+                        "Salary",
+                        "System Access",
                     ].map((item) => (
                         <button
                             key={item}
