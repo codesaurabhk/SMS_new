@@ -45,8 +45,6 @@ function SubjectWiseMarksChart() {
     { subject: "Geography", marks: 88 },
   ];
 
-  
-
   /* Resize Observer */
   useEffect(() => {
     if (!wrapperRef.current) return;
@@ -185,6 +183,223 @@ function SubjectWiseMarksChart() {
   return (
     <div ref={wrapperRef} className="w-full">
       <svg ref={svgRef} />
+    </div>
+  );
+}
+
+{
+  /* <------------------------------- Second Graph ------------------------------> */
+}
+function ExamPerformanceTrendChart() {
+  const svgRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const tooltipRef = useRef(null);
+  const [width, setWidth] = useState(0);
+
+  const data = [
+    { exam: "UT 1", score: 55 },
+    { exam: "UT 2", score: 75 },
+    { exam: "Mid-Term", score: 90 },
+    { exam: "UT 3", score: 82 },
+    { exam: "UT 4", score: 52 },
+    { exam: "Final", score: 98 },
+  ];
+
+  /* ---------------- Resize Observer ---------------- */
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      setWidth(entries[0].contentRect.width);
+    });
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  /* ---------------- Draw Chart ---------------- */
+  useEffect(() => {
+    if (!width) return;
+
+    const height = 300;
+    const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+
+    const svg = d3.select(svgRef.current);
+    svg.selectAll("*").remove();
+    svg.attr("width", width).attr("height", height);
+
+    const chart = svg
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    /* ---------------- Gradient Definition ---------------- */
+    const defs = svg.append("defs");
+
+    const gradient = defs
+      .append("linearGradient")
+      .attr("id", "area-gradient")
+      .attr("x1", "0%")
+      .attr("y1", "0%")
+      .attr("x2", "0%")
+      .attr("y2", "100%");
+
+    gradient
+      .append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#007AFF")
+      .attr("stop-opacity", 0.35);
+
+    gradient
+      .append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#007AFF")
+      .attr("stop-opacity", 0);
+
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    const xScale = d3
+      .scalePoint()
+      .domain(data.map((d) => d.exam))
+      .range([0, innerWidth])
+      .padding(0);
+
+    const yScale = d3
+      .scaleLinear()
+      .domain([0, 100])
+      .nice()
+      .range([innerHeight, 0]);
+
+    /* ---------------- Grid Lines ---------------- */
+    const grid = chart
+      .append("g")
+      .call(
+        d3
+          .axisLeft(yScale)
+          .tickValues([0, 25, 50, 75, 100])
+          .tickSize(-innerWidth)
+          .tickFormat("")
+      );
+
+    grid
+      .selectAll("line")
+      .attr("stroke", "#e6e6e6")
+      .attr("stroke-dasharray", "2 2");
+
+    /* REMOVE top grid line (100) */
+    grid
+      .selectAll("line")
+      .filter((d) => d === 100)
+      .remove();
+
+    /* ---------------- Y Axis (numbers only) ---------------- */
+    chart
+      .append("g")
+      .attr("class", "y-axis")
+      .call(d3.axisLeft(yScale).tickValues([0, 25, 50, 75, 100]));
+
+    /* REMOVE Y-axis black line */
+    chart.select(".y-axis").select(".domain").remove();
+
+    /* 🔥 REMOVE Y-axis tick dashes (-) */
+    chart.selectAll(".y-axis .tick line").remove();
+
+    /* ---------------- X Axis ---------------- */
+    chart
+      .append("g")
+      .attr("transform", `translate(0,${innerHeight})`)
+      .call(d3.axisBottom(xScale));
+
+    /* REMOVE all remaining domain lines */
+    chart.selectAll(".domain").remove();
+
+    chart
+      .append("line")
+      .attr("x1", 0)
+      .attr("x2", innerWidth)
+      .attr("y1", yScale(100))
+      .attr("y2", yScale(100))
+      .attr("stroke", "#9CA3AF")
+      .attr("stroke-width", 1)
+      .attr("stroke-dasharray", "2 2");
+
+    /* ---------------- Area ---------------- */
+    const area = d3
+      .area()
+      .x((d) => xScale(d.exam))
+      .y0(innerHeight)
+      .y1((d) => yScale(d.score))
+      .curve(d3.curveMonotoneX);
+
+    chart
+      .append("path")
+      .datum(data)
+      .attr("fill", "url(#area-gradient)")
+      .attr("d", area);
+
+    /* ---------------- Line ---------------- */
+    const line = d3
+      .line()
+      .x((d) => xScale(d.exam))
+      .y((d) => yScale(d.score))
+      .curve(d3.curveMonotoneX);
+
+    chart
+      .append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "#007AFF")
+      .attr("stroke-width", 3)
+      .attr("d", line);
+
+    /* ---------------- Hover Line ---------------- */
+    const hoverLine = chart
+      .append("line")
+      .attr("stroke", "#007AFF")
+      .attr("y1", 0)
+      .attr("y2", innerHeight)
+      .style("opacity", 0);
+
+    /* ---------------- Dots + Tooltip ---------------- */
+    chart
+      .selectAll(".dot")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("cx", (d) => xScale(d.exam))
+      .attr("cy", (d) => yScale(d.score))
+      .attr("r", 6)
+      .attr("fill", "#007AFF")
+      .on("mouseenter", (event, d) => {
+        const cy = yScale(d.score);
+        hoverLine
+          .attr("x1", xScale(d.exam))
+          .attr("x2", xScale(d.exam))
+          .attr("y1", cy) // ✅ start from circle
+          .attr("y2", innerHeight)
+          .style("opacity", 1);
+
+        d3.select(tooltipRef.current)
+          .style("opacity", 1)
+          .html(`<strong>${d.exam}</strong><br/>Score: ${d.score}`);
+      })
+      .on("mousemove", (event) => {
+        const bounds = wrapperRef.current.getBoundingClientRect();
+        d3.select(tooltipRef.current)
+          .style("left", event.clientX - bounds.left + 10 + "px")
+          .style("top", event.clientY - bounds.top - 40 + "px");
+      })
+      .on("mouseleave", () => {
+        hoverLine.style("opacity", 0);
+        d3.select(tooltipRef.current).style("opacity", 0);
+      });
+  }, [width]);
+
+  return (
+    <div ref={wrapperRef} className="relative w-full">
+      <svg ref={svgRef} />
+      <div
+        ref={tooltipRef}
+        className="absolute bg-[#0B3142] text-white px-3 py-2 rounded text-sm pointer-events-none opacity-0"
+      />
     </div>
   );
 }
@@ -1298,7 +1513,7 @@ function DetailsContent({ active }) {
 
           {/* <------------------------------------- Exam Performance Graph -----------------------------------------> */}
           <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6">
-            <div className="mt-6 bg-white rounded-lg p-4">
+            <div className=" bg-white rounded-lg p-4">
               <div className="flex justify-between">
                 <div className="flex flex-col">
                   <span className="text-[1c1c1c] font-normal">
@@ -1324,14 +1539,85 @@ function DetailsContent({ active }) {
               </div>
               <SubjectWiseMarksChart />
             </div>
-            
-            <div className="mt-6 bg-white rounded-lg p-4"></div>
+
+            <div className=" bg-white rounded-lg p-4">
+              <div className="flex flex-col">
+                <span className="text-[1c1c1c] font-normal">
+                  Exam Performance Trend
+                </span>
+                <span className="text-[#9C9C9C] ">
+                  Average score across over last exam
+                </span>
+              </div>
+              <ExamPerformanceTrendChart />
+            </div>
+            {/* <---------------------------------- Graph ---------------------------------> */}
           </div>
         </div>
       );
 
     case "Attendance":
-      return <div>Attendance Content</div>;
+      const attendance = 50;
+
+      const attendanceData = [
+        {
+          day: "Present Days",
+          attendancePercentage: 90,
+        },
+        {
+          day: "Absent Days",
+          attendancePercentage: 85,
+        },
+        {
+          day: "Leave Days",
+          attendancePercentage: 80,
+        },
+      ];
+
+      return (
+        <div>
+          <div className="mt-6  bg-linear-to-r from-[#6190E8] to-[#A7BFE8] p-4 rounded-lg">
+            <div className="text-white font-bold">
+              <span>Attendace Summary</span>
+            </div>
+            <div className="mt-9 flex lg:flex-row sm:flex-col items-center flex-wrap w-full">
+              <div className="bg-white p-5 rounded-2xl lg:w-[25%] m-1 sm:w-full">
+                {/* Header */}
+                <div className="flex flex-col">
+                  <span className="text-[#1c1c1c] text-[16px] font-normal">
+                    Attendance Percentage
+                  </span>
+                  <span className="text-[#009638] text-[28px] font-semibold">
+                    {attendance}%
+                  </span>
+                </div>
+
+                {/* Progress Bar */}
+                <div className="w-full h-3 bg-[#EEEEEE] rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-500
+                   bg-linear-to-r from-[#073B4C] to-[#118AB2]"
+                    style={{ width: `${attendance}%` }}
+                  />
+                </div>
+              </div>
+
+              {attendanceData.map((item, index) => (
+                <div className="bg-white p-4 rounded-lg lg:w-[24%] m-1 sm:w-full">
+                  <div key={index} className="flex flex-col">
+                    <span className="text-[#1c1c1c] text-[16px] font-normal">
+                      {item.day}
+                    </span>
+                    <span className="text-[#009638] text-[28px] font-semibold">
+                      {item.attendancePercentage}%
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
 
     case "Fees":
       return <div>Fees Details Content</div>;
@@ -1479,9 +1765,18 @@ function StudentDetails() {
         </div>
       </div>
 
-      {/* <------------------------------------------------------ filter ------------------------------------------------> */}
-      <div className="w-full mt-6 bg-white rounded-full">
-        <div className="flex items-center p-1 rounded-full gap-1 overflow-x-auto whitespace-nowrap sm:overflow-visible sm:justify-between">
+      {/* ---------------- Responsive Filter Tabs ---------------- */}
+      <div className="w-full mt-6 bg-white rounded-full shadow-md">
+        <div
+          className="
+      flex
+      gap-2
+      p-1.5
+      scrollbar-hide
+      sm:overflow-visible
+      sm:justify-between
+    "
+        >
           {[
             "Personal Info",
             "Academic",
@@ -1493,11 +1788,21 @@ function StudentDetails() {
               key={item}
               onClick={() => setActive(item)}
               className={`
-          ${baseBtn}
-          min-w-max
-          px-4 py-2
-          text-sm sm:text-base
-          ${active === item ? activeBtn : inactiveBtn}
+          flex
+          items-center
+          justify-center
+          w-[20%]
+          py-2
+          text-sm
+          sm:text-base
+          rounded-full
+          transition-all
+          duration-200
+          ${
+            active === item
+              ? "bg-[#0B3142] text-white"
+              : "text-[#9EA1A1] hover:bg-[#e6e6e6]"
+          }
         `}
             >
               {item}
