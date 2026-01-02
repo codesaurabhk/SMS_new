@@ -1580,8 +1580,8 @@ function DetailsContent({ active }) {
             <div className="text-white font-bold">
               <span>Attendace Summary</span>
             </div>
-            <div className="mt-9 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-6">
-              <div className="bg-white p-5 rounded-2xl w-full max-w-xl">
+            <div className="mt-9 flex lg:flex-row sm:flex-col items-center flex-wrap w-full">
+              <div className="bg-white p-5 rounded-2xl lg:w-[25%] m-1 sm:w-full">
                 {/* Header */}
                 <div className="flex flex-col">
                   <span className="text-[#1c1c1c] text-[16px] font-normal">
@@ -1603,7 +1603,7 @@ function DetailsContent({ active }) {
               </div>
 
               {attendanceData.map((item, index) => (
-                <div className="bg-white p-4 rounded-lg">
+                <div className="bg-white p-4 rounded-lg lg:w-[24%] m-1 sm:w-full">
                   <div key={index} className="flex flex-col">
                     <span className="text-[#1c1c1c] text-[16px] font-normal">
                       {item.day}
@@ -1766,13 +1766,12 @@ function StudentDetails() {
       </div>
 
       {/* ---------------- Responsive Filter Tabs ---------------- */}
-      <div className="w-full mt-6 bg-white rounded-full">
+      <div className="w-full mt-6 bg-white rounded-full shadow-md">
         <div
           className="
       flex
       gap-2
-      p-1
-      overflow-x-auto
+      p-1.5
       scrollbar-hide
       sm:overflow-visible
       sm:justify-between
@@ -1792,8 +1791,7 @@ function StudentDetails() {
           flex
           items-center
           justify-center
-          min-w-max
-          px-20
+          w-[20%]
           py-2
           text-sm
           sm:text-base
