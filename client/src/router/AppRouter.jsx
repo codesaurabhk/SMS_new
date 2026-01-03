@@ -35,7 +35,7 @@ import AdmissionID from "../page/Admission/AdmisionID.jsx";
 import AdmissionManageLogin from "../page/Admission/AdmisionManageLogin.jsx";
 import AdmissionPromote from "../page/Admission/AdmisionPromote.jsx";
 import Library from "../page/Resources/Library.jsx";
-import Transport from "../page/Resources/Transport.jsx";
+// import Transport from "../page/Resources/Transport.jsx";
 import Calendar from "../page/Events&Calender/Calender.jsx";
 import Events from "../page/Events&Calender/Events.jsx";
 import UpcomingEvents from "../page/Events&Calender/UpcomingEvents.jsx";
@@ -106,7 +106,7 @@ function AppRouter() {
 
            {/* // Resources */}
            <Route path="library" element={<Library/>} />
-           <Route path="transport" element={<Transport/>} />
+           {/* <Route path="transport" element={<Transport/>} /> */}
 
            {/* Events & Calendar */}
            <Route path="calender" element={<Calendar/>} />
