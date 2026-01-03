@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../CSS/Style.css";
+import "react-calendar/dist/Calendar.css";
 import * as d3 from "d3";
 
 /* <------------------------------- icon ------------------------------> */
@@ -29,6 +30,9 @@ import { FaClipboardList } from "react-icons/fa";
 import langford from "../../assets/images/langford.jpg";
 import mikasa from "../../assets/images/mikasa.png";
 import { Link } from "react-router-dom";
+
+/* <--------------------------- npm -------------------------------------> */
+import Calendar from "react-calendar";
 
 function SubjectWiseMarksChart() {
   const svgRef = useRef(null);
@@ -404,7 +408,48 @@ function ExamPerformanceTrendChart() {
   );
 }
 
+/* <------------------------------------------ calalender -------------------------------------------> */
+// ✅ MUST COME FIRST
+const STATUS_STYLES = {
+  Holiday: {
+    bg: "#00ADAD",
+    textClass: "text-white",
+  },
+  Absent: {
+    bg: "#DC2626",
+    textClass: "text-white",
+  },
+  Leave: {
+    bg: "#F97316",
+    textClass: "text-white",
+  },
+  Present: {
+    bg: "#009638",
+    textClass: "text-white",
+  },
+};
+
+// ✅ THEN helpers
+const formatDateKey = (date) => {
+  return date.toISOString().split("T")[0];
+};
+
+const getStatusClasses = (status) => {
+  return STATUS_STYLES[status] || "";
+};
+
+// ✅ Attendance data (mock / backend-ready)
+const attendanceMap = {
+  "2024-09-01": { status: "Present" },
+  "2024-09-02": { status: "Absent" },
+  "2024-09-03": { status: "Holiday" },
+  "2024-09-04": { status: "Leave" },
+  "2026-01-01": { status: "Present" },
+};
+
 function DetailsContent({ active }) {
+  const [calendarDate, setCalendarDate] = useState(new Date());
+
   const documentData = [
     {
       img: mikasa,
@@ -1561,18 +1606,41 @@ function DetailsContent({ active }) {
 
       const attendanceData = [
         {
+          id: 1,
           day: "Present Days",
           attendancePercentage: 90,
+          color: "#009638",
         },
         {
+          id: 2,
           day: "Absent Days",
           attendancePercentage: 85,
+          color: "#DC2626",
         },
         {
+          id: 3,
           day: "Leave Days",
           attendancePercentage: 80,
+          color: "#F97316",
         },
       ];
+
+      
+
+      const ATTENDANCE_CELL_COLORS = {
+        present: {
+          bg: "#E6F6EC",
+          text: "#009638",
+        },
+        absent: {
+          bg: "#FDECEC",
+          text: "#DC2626",
+        },
+        leave: {
+          bg: "#FFF3E8",
+          text: "#F97316",
+        },
+      };
 
       return (
         <div>
@@ -1581,13 +1649,13 @@ function DetailsContent({ active }) {
               <span>Attendace Summary</span>
             </div>
             <div className="mt-9 flex lg:flex-row sm:flex-col items-center flex-wrap w-full">
-              <div className="bg-white p-5 rounded-2xl lg:w-[25%] m-1 sm:w-full">
+              <div className="bg-white p-4 rounded-2xl lg:w-[25%] m-1 sm:w-full">
                 {/* Header */}
                 <div className="flex flex-col">
-                  <span className="text-[#1c1c1c] text-[16px] font-normal">
+                  <span className="text-[#1c1c1c] text-[14px] font-normal">
                     Attendance Percentage
                   </span>
-                  <span className="text-[#009638] text-[28px] font-semibold">
+                  <span className="text-[#009638] text-[18px] font-semibold">
                     {attendance}%
                   </span>
                 </div>
@@ -1605,15 +1673,173 @@ function DetailsContent({ active }) {
               {attendanceData.map((item, index) => (
                 <div className="bg-white p-4 rounded-lg lg:w-[24%] m-1 sm:w-full">
                   <div key={index} className="flex flex-col">
-                    <span className="text-[#1c1c1c] text-[16px] font-normal">
+                    <span className="text-[#1c1c1c] text-[14px] font-normal">
                       {item.day}
                     </span>
-                    <span className="text-[#009638] text-[28px] font-semibold">
+                    <span className="text-[18px] font-semibold" 
+                    style={{color:item.id === 1 ? '#009638' : item.id === 2 ? '#DC2626' : '#F97316'}}
+                    >
                       {item.attendancePercentage}%
                     </span>
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+          <div>
+            <div className="flex gap-4 mt-6 rounded-lg">
+              <div className="flex flex-wrap p-2 rounded-lg justify-center items-center bg-white w-fit shadow-md">
+                <span className="text-[#1C1C1C] text-[17px] font-semibold mt-4">
+                  Monthly Attendance Calender
+                </span>
+                {/* <------------------------------- Calender Graph ---------------------------------------> */}
+                <div className="mt-4">
+                  <Calendar
+                    value={calendarDate}
+                    onChange={setCalendarDate}
+                    tileClassName={({ date, view }) => {
+                      if (view !== "month") return;
+
+                      const key = formatDateKey(date);
+                      const status = attendanceMap[key]?.status;
+
+                      return getStatusClasses(status);
+                    }}
+                  />
+                </div>
+                <div>
+                  <div className="mt-4 flex gap-6 flex-wrap">
+                    {[
+                      { label: "Present", color: "#009638" },
+                      { label: "Absent", color: "#DC2626" },
+                      { label: "Leave", color: "#F97316" },
+                      { label: "Holiday", color: "#00ADAD" },
+                    ].map((item, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div
+                          className="w-2 h-2 rounded-full"
+                          style={{ backgroundColor: item.color }}
+                        />
+                        <span className="text-[#1c1c1c] text-[16px] flex items-center gap-1">
+                          {item.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="p-2 rounded-lg w-full justify-center items-center bg-white shadow-md">
+                <div className="flex flex-col font-semibold mt-4">
+                  <span className="font-semibold text-lg text-[#1C1C1C]">
+                    Attendance Summary
+                  </span>
+                  <span className="text-[#9C9C9C] text-[15px] font-normal">
+                    Month-wise Attendance
+                  </span>
+                </div>
+                <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg mt-4">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="">
+                        <th className="px-4 py-3 text-left text-sm font-semibold">
+                          Month
+                        </th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">
+                          Present Days
+                        </th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">
+                          Absent Days
+                        </th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">
+                          Leave Days
+                        </th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">
+                          Status
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        {
+                          month: "January",
+                          present: 20,
+                          absent: 2,
+                          leave: 1,
+                          status: "Good",
+                        },
+                        {
+                          month: "February",
+                          present: 18,
+                          absent: 4,
+                          leave: 2,
+                          status: "Average",
+                        },
+                        {
+                          month: "March",
+                          present: 22,
+                          absent: 0,
+                          leave: 0,
+                          status: "Excellent",
+                        },
+                        {
+                          month: "April",
+                          present: 19,
+                          absent: 3,
+                          leave: 1,
+                          status: "Good",
+                        },
+                        {
+                          month: "May",
+                          present: 21,
+                          absent: 1,
+                          leave: 0,
+                          status: "Excellent",
+                        },
+                        {
+                          month: "June",
+                          present: 17,
+                          absent: 5,
+                          leave: 2,
+                          status: "Poor",
+                        },
+                      ].map((item, index) => (
+                        <tr key={index} className="hover:bg-gray-100">
+                          <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                            {item.month}
+                          </td>
+                          <td
+                            className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
+                            style={{
+                              color: ATTENDANCE_CELL_COLORS.present.text,
+                            }}
+                          >
+                            {item.present}
+                          </td>
+                          <td
+                            className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
+                            style={{
+                              color: ATTENDANCE_CELL_COLORS.absent.text,
+                            }}
+                          >
+                            {item.absent}
+                          </td>
+                          <td
+                            className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
+                            style={{
+                              color: ATTENDANCE_CELL_COLORS.leave.text,
+                            }}
+                          >
+                            {item.leave}
+                          </td>
+                          <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                            {item.status}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
