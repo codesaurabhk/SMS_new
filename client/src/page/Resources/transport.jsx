@@ -1,9 +1,9 @@
 import React from 'react'
 
-const transport = () => {
+const Transport = () => {
   return (
     <div>transport</div>
   )
 }
 
-export default transport
+export default Transport
