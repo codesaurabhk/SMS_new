@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../CSS/Style.CSS";
+import "../../CSS/Style.css";
 
 {
   /* <----------------------------------------------- GIF ----------------------------------------------------> */
