@@ -29,49 +29,49 @@ function DetailsContent({ active }) {
     const documentData = [
         {
             img: mikasa,
-            documentName: "Date of Birth",
-            date: "2024-04-10",
-            fileType: "jpg",
+            documentName: "Photo ID",
+            date: "2018-05-15",
+            fileType: "image",
             fileSize: "512",
         },
         {
             img: mikasa,
-            documentName: "Previous School Transfer Certificate",
+            documentName: "Resume/CV",
             date: "2024-04-10",
             fileType: "pdf",
             fileSize: "312",
         },
         {
             img: mikasa,
-            documentName: "Adhar",
+            documentName: "Eduactional Certificate",
             date: "2024-04-10",
             fileType: "pdf",
             fileSize: "520",
         },
         {
             img: mikasa,
-            documentName: "Transfer Certificate",
+            documentName: "Experience Letters",
             date: "2024-04-10",
             fileType: "pdf",
             fileSize: "520",
         },
         {
             img: mikasa,
-            documentName: "Medical Certificate",
+            documentName: "Aadhar Card",
             date: "2024-04-10",
             fileType: "pdf",
             fileSize: "520",
         },
         {
             img: mikasa,
-            documentName: "Parent ID Proof",
+            documentName: "PAN Card",
             date: "2024-04-10",
             fileType: "pdf",
             fileSize: "520",
         },
         {
             img: mikasa,
-            documentName: "Previous Acedemic Report",
+            documentName: "Address Proof",
             date: "2024-04-10",
             fileType: "pdf",
             fileSize: "420",
@@ -79,7 +79,14 @@ function DetailsContent({ active }) {
         ,
         {
             img: mikasa,
-            documentName: "Guardian Photo",
+            documentName: "Police Verification",
+            date: "2024-04-10",
+            fileType: "jpg",
+            fileSize: "50",
+        },
+        {
+            img: mikasa,
+            documentName: "Medical Certificate",
             date: "2024-04-10",
             fileType: "jpg",
             fileSize: "50",
@@ -146,9 +153,9 @@ function DetailsContent({ active }) {
 
 
 
-                    {/* <------------------------------------------------------ Address ------------------------------------------------> */}
+                    {/* <------------------------------------------------------ Identification Details ------------------------------------------------> */}
 
-                    <div className="bg-white mt-6 rounded-xl p-6">
+                    <div className="bg-white mt-6 rounded-lg p-6">
                         <div className="flex mb-6 items-center gap-2 text-[#1c1c1c]">
                             <FaMapMarkerAlt className="text-[#696969]" />
                             <span className="font-semibold">Identification Details</span>
@@ -203,304 +210,74 @@ function DetailsContent({ active }) {
 
 
 
-                    {/* <---------------------------------------------- Parent Information --------------------------------------------> */}
+                    {/* <---------------------------------------------- Family Details --------------------------------------------> */}
 
-                    <div className="bg-white mt-6 p-4 rounded-lg">
-                        <div className="flex items-center gap-2 text-[#1c1c1c]">
+                    <div className="bg-white mt-6  rounded-xl p-6">
+                        <div className="flex items-center gap-2 mb-6">
+                            <MdFamilyRestroom className="text-[#9A9A9A]" />
+                            <h3 className="font-semibold">Family Details</h3>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+                            {[
+                                ["Marital Status", "Single"],
+                                ["Spouse Name", "-"],
+                                ["Spouse Occupation", "-"],
+                                ["Spouse Phone", "-"],
+                                ["Number of Children", "-"],
+                            ].map(([l, v]) => (
+                                <div key={l}>
+                                    <p className="text-sm text-[#8A8A8A]">{l}</p>
+                                    <p className="font-medium">{v}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
                             <div>
-                                <MdFamilyRestroom className="text-[#696969]" />
+                                <p className="text-sm text-[#8A8A8A]">Father Name</p>
+                                <p className="font-medium">Raghav kumar</p>
                             </div>
+
                             <div>
-                                <span className="font-semibold">
-                                    Parent/Guardian Information
-                                </span>
-                                <p className="text-[#9C9C9C] font-normal">
-                                    Detailed Parent Guardian Contact
-                                </p>
-                            </div>
-                        </div>
-                        <div className="grid gap-6 mt-6 sm:grid-cols-1 lg:grid-cols-2 md:grid-cols-2">
-                            <div className="border border-[#e6e6e6] rounded shadow-sm p-4">
-                                <div className="flex items-center gap-2 text-[#1c1c1c]">
-                                    <FaMale className="text-[#696969]" />
-                                    <span className="font-semibold">Father's Information</span>
-                                </div>
-                                <div className="mt-6 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-y-6 gap-x-10">
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Name
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">
-                                            Jason Langford
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Occupation
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">Actor</span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Company
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">Fox</span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Qualification
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">M.I.T</span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Mobile
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">
-                                            9661285080
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Email
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">
-                                            Jason@gmail.com
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Annual Income
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">20 m</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="border border-[#e6e6e6] rounded shadow-sm p-4">
-                                <div className="flex items-center gap-2 text-[#1c1c1c]">
-                                    <FaMale className="text-[#696969]" />
-                                    <span className="font-semibold">Mother Information</span>
-                                </div>
-                                <div className="mt-6 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-y-6 gap-x-10">
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Name
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">
-                                            Natasha Langford
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Occupation
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">Actress</span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Company
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">Disney</span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Qualification
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">Oxford</span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Mobile
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">
-                                            9661288050
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Email
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">
-                                            Natasha@gmail.com
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-[#696969] font-normal text-[16px]">
-                                            Annual Income
-                                        </span>
-                                        <span className="text-[#1c1c1c] text-[16px]">30 m</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* <----------------------------------------------------- Admission Details -----------------------------------------> */}
-                    <div className="mt-6 bg-white p-4 rounded-lg">
-                        <div className="flex items-center gap-2 text-[#1c1c1c]">
-                            <FaRegFileAlt className="text-[#696969]" />
-                            <span className="font-semibold">
-                                Medical & Health Infoprmation
-                            </span>
-                        </div>
-                        <div className="mt-6 grid grid-cols-1 sm:grid-cold-2 lg:grid-cols-3 gap-x-10 gap-y-6">
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Chornics Illness
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">-</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Allgeries
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">-</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Medication
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">-</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Dietary Restrition
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">None</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Physical Disablity
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">None</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Doctor Name
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">-</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Doctor Contact Number
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">-</span>
+                                <p className="text-sm text-[#8A8A8A]">Rina Kumari</p>
+                                <p className="font-medium">(555) 876-5432</p>
                             </div>
                         </div>
                     </div>
 
-                    {/* <----------------------------------------------- Sibling Information ---------------------------------------------------> */}
-                    <div className="mt-6 bg-white rounded-lg p-4">
-                        <div className="flex items-center gap-2 text-[#1c1c1c]">
-                            <LuUser className="text-[#696969]" />
-                            <span className="font-semibold">
-                                Medical & Health Infoprmation
-                            </span>
-                        </div>
-                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-6">
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Full Name
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Arya Stark</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Ralation
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Step Sister</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Admission Number
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">123456897</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Class
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">12 A</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Gender
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Female</span>
-                            </div>
-                        </div>
+                    {/* <----------------------------------------------------- Educational Qualifications -----------------------------------------> */}
+
+                    <div className="bg-white mt-6 rounded-xl p-6">
+                        <h3 className="font-semibold mb-4">Educational Qualifications</h3>
+
+                        <table className="w-full text-sm">
+                            <thead className="border-b text-[#8A8A8A]">
+                                <tr>
+                                    <th className="text-left py-2">Degree</th>
+                                    <th className="text-left">Institution</th>
+                                    <th className="text-left">Year</th>
+                                    <th className="text-left">Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {[
+                                    ["M.Sc. Mathematics", "University of Illinois", "2010", "85%"],
+                                    ["B.Sc. Mathematics", "Springfield University", "2007", "82%"],
+                                    ["B.Ed.", "Illinois State Teaching College", "2011", "88%"],
+                                ].map((row, i) => (
+                                    <tr key={i} className="border-b last:border-none">
+                                        {row.map((cell) => (
+                                            <td key={cell} className="py-3">{cell}</td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
 
-                    {/* <------------------------------------------------ transport -------------------------------------------------> */}
-                    <div className="mt-6 bg-white rounded-lg p-4">
-                        <div className="flex items-center gap-2 text-[#1c1c1c]">
-                            <GiBus className="text-[#696969]" />
-                            <span className="font-semibold">Transport Information</span>
-                        </div>
-                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-6">
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Uses School Transport
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    Bus of Howgwarts
-                                </span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Bus Number
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    IND 24-Au 0531
-                                </span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Route Name
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    Howgwarts to Winterfell
-                                </span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Bus Stop
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Westrors</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    pick up Time
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Winter</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Drop off
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Summar</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Driver Man
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    R.R. Martin & J.K Rollins
-                                </span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Driver Number
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">652134789</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Transport Fee
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Death</span>
-                            </div>
-                        </div>
-                    </div>
+
+
+
 
                     {/* <--------------------------------------------------- Document ------------------------------------------------> */}
 
