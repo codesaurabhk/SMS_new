@@ -1640,6 +1640,73 @@ function DetailsContent({ active }) {
         },
       };
 
+      const leaveData = [
+        {
+          date: "2024-06-10",
+          type: "Medical",
+          description: "Medical leave for 2 days",
+          status: "Rejected",
+          duration: "2 days",
+          dateApplied: "2024-06-08",
+          tillDate: "2024-06-10",
+          dateAppliedTime: "02 Oct 2025, 08:30 AM",
+        },
+        {
+          date: "2024-06-15",
+          type: "Vacation",
+          description: "Personal leave for 1 day",
+          status: "Approved",
+          duration: "1 day",
+          dateApplied: "2024-06-14",
+          tillDate: "2024-06-15",
+          dateAppliedTime: "02 Oct 2025, 08:30 AM",
+        },
+        {
+          date: "2024-06-15",
+          type: "Sick",
+          description: "Personal leave for 1 day",
+          status: "Rejected",
+          duration: "1 day",
+          dateApplied: "2024-06-14",
+          tillDate: "2024-06-15",
+          dateAppliedTime: "02 Oct 2025, 08:30 AM",
+        },
+        {
+          date: "2024-06-15",
+          type: "Family",
+          description: "Personal leave for 1 day",
+          status: "Approved",
+          duration: "1 day",
+          dateApplied: "2024-06-14",
+          tillDate: "2024-06-15",
+          dateAppliedTime: "05 Oct 2024, 09:00 AM",
+        },
+        {
+          date: "2024-06-15",
+          type: "Personal",
+          description: "Personal leave for 1 day",
+          status: "Pending",
+          duration: "1 day",
+          dateApplied: "2024-06-14",
+          tillDate: "2024-06-15",
+          dateAppliedTime: "22 Sep 2025, 10:30 AM",
+        },
+      ];
+
+      const leaveTypeColors = {
+        Medical: "text-[#F97316]",
+        Vacation: "text-[#EF476F]",
+        Sick: "text-[#007AFF]",
+        Family: "text-[#00ADAD]",
+        Personal: "text-[#FFD166]",
+      };
+
+      const leaveStatusColors = {
+        Approved: "text-[#007AFF]",
+        Pending: "text-[#856404]",
+        Rejected: "text-[#DC2626]",
+      };
+
       return (
         <div>
           <div className="mt-6  bg-linear-to-r from-[#6190E8] to-[#A7BFE8] p-4 rounded-lg">
@@ -1848,7 +1915,7 @@ function DetailsContent({ active }) {
           </div>
           {/* <-------------------------------------- Leave ----------------------------------> */}
 
-          <div className="mt-6 bg-white p-4 rounded-lg shadow-sm">
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
             <div className="flex items-center gap-2 text-[#1c1c1c]">
               <div className="flex flex-col">
                 <span className="text-[1c1c1c] font-normal">
@@ -1859,57 +1926,189 @@ function DetailsContent({ active }) {
                 </span>
               </div>
             </div>
-            <div className="flex items-center mt-6">
-              <div className="relative w-12 h-12 ">
-                {/* VERTICAL DOTTED LINE */}
-                <span className="absolute left-[9px] bottom-12 h-7 border-l border-dotted border-[#cfcfcf]"></span>
+            {leaveData.map((item, index) => (
+              <div className="flex items-center mt-3">
+                <div key={index} className="relative w-12 h-12 ">
+                  {/* VERTICAL DOTTED LINE */}
+                  <span className="absolute left-2 bottom-12 h-7 border-l-2 border-dotted border-[#9C9C9C]"></span>
 
-                {/* DOT */}
-                <span className="absolute left-1 top-1 w-3 h-3 bg-white border border-[#cfcfcf] rounded-full"></span>
+                  {/* DOT */}
+                  <span className="absolute left-1 top-1 w-3 h-3 bg-white border-2 border-[#9C9C9C] rounded-full"></span>
 
-                {/* VERTICAL DOTTED LINE */}
-                <span className="absolute left-[9px] top-5 h-17 border-l border-dotted border-[#cfcfcf] z-10"></span>
+                  {/* VERTICAL DOTTED LINE */}
+                  {index !== leaveData.length - 1 && (
+                    <span className="absolute left-2 top-5 h-17 border-l-2 border-dotted border-[#9C9C9C] z-10"></span>
+                  )}
 
-                {/* HORIZONTAL DOTTED LINE */}
-                <span className="absolute left-5 top-[9px] w-7 border-t border-dotted border-[#cfcfcf]"></span>
-              </div>
-              <div className="p-4 bg-white rounded-lg border-2 border-[#E6E6E6] w-full">
-                <div className="flex justify-between w-full">
-                  <div className="flex flex-col items-start">
-                    <span className="text-[#007AFF] font-normal text-[16px]">
-                      Sick Leave
-                    </span>
-                    <span className="text-[#1c1c1c] font-semibold text-[16px]">
-                      Reason
-                    </span>
-                    <span className="text-[#9c9c9c] font-semibold text-[14px]">
-                      Felling unwell Since last night and visiting doctor for
-                      better checkup
-                    </span>
-                  </div>
-                  <div className="flex gap-12 ">
-                    <div className="flex flex-col">
-                      <span className="text-[#1c1c1c] font-semibold text-[16px]">Date (From - To)</span>
-                      <span className="text-[#9c9c9c] font-semibold text-[14px]">03 Oct 2025 - 03  oct-2025</span>
+                  {/* HORIZONTAL DOTTED LINE */}
+                  <span className="absolute left-5 top-2 w-7 border-t-2 border-dotted border-[#9C9C9C]"></span>
+                </div>
+                <div className="p-4 bg-white rounded-lg border-2 border-[#E6E6E6] w-full">
+                  <div className="flex w-full">
+                    <div className="flex flex-col items-start flex-1">
+                      <span
+                        className={`font-semibold text-[16px] ${
+                          leaveTypeColors[item.type] || "text-[#1c1c1c]"
+                        }`}
+                      >
+                        {item.type}
+                      </span>
+
+                      <span className="text-[#1c1c1c] font-semibold text-[16px]">
+                        Reason
+                      </span>
+                      <span className="text-[#9c9c9c] font-semibold text-[14px]">
+                        {item.description}
+                      </span>
                     </div>
-                    <div className="flex flex-col">
-                      <span className="text-[#1c1c1c] font-semibold text-[16px]">Duration</span>
-                      <span className="text-[#9c9c9c] font-semibold text-[14px]">1 Day</span>
+                    <div className="flex gap-12 ">
+                      <div className="flex flex-1 flex-col">
+                        <span className="text-[#1c1c1c] font-semibold text-[16px]">
+                          Date (From - To)
+                        </span>
+                        <span className="text-[#9c9c9c] font-semibold text-[14px]">
+                          {item.dateApplied} - {item.tillDate}
+                        </span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[#1c1c1c] font-semibold text-[16px]">
+                          Duration
+                        </span>
+                        <span className="text-[#9c9c9c] font-semibold text-[14px]">
+                          {item.duration}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex flex-col relative items-end">
-                    <span className="text-[#9c9c9c] font-semibold text-[12px]">02 Oct 2025, 08:45 AM</span>
-                    <span className="text-[#007AFF] font-normal text-[14px] absolute bottom-0">Approved By Class Teacher</span>
+                    <div className="flex flex-col relative items-end flex-1">
+                      <span className="text-[#9c9c9c] font-semibold text-[12px]">
+                        {item.dateAppliedTime}
+                      </span>
+                      <span
+                        className={`font-normal text-[14px] absolute bottom-0 ${
+                          leaveStatusColors[item.status] || "text-[#1c1c1c]"
+                        }`}
+                      >
+                        {item.status} By Class Teacher
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       );
 
     case "Fees":
-      return <div>Fees Details Content</div>;
+      const paidAmount = 3000;
+      const totalAmount = 15000;
+
+      const percentage = Math.round((paidAmount / totalAmount) * 100);
+
+      const radius = 50;
+      const circumference = 2 * Math.PI * radius;
+      const offset = circumference - (circumference * percentage) / 100;
+
+      return (
+        <div>
+          <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 mt-6 gap-4">
+            <div className="bg-white p-4 rounded-lg shadow-md w-fit">
+              <div className="flex flex-col">
+                <span className="text-[#000000] text-[18px] font-normal">
+                  Annual Fee Payment Progress
+                </span>
+                <span className="text-[#9C9C9C] text-[16px] font-semibold">
+                  Acedemic Year 2025-26
+                </span>
+              </div>
+              <div className="w-full flex justify-center items-center mt-2">
+                <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72">
+                  <svg
+                    viewBox="0 0 120 120"
+                    className="w-full h-full -rotate-90"
+                  >
+                    {/* Background */}
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#EEEEEE"
+                      strokeWidth="10"
+                    />
+
+                    {/* Gradient */}
+                    <defs>
+                      <linearGradient
+                        id="progressGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                      >
+                        <stop offset="0%" stopColor="#0B3142" />
+                        <stop offset="100%" stopColor="#1C7DA8" />
+                      </linearGradient>
+                    </defs>
+
+                    {/* Progress */}
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="url(#progressGradient)"
+                      strokeWidth="10"
+                      strokeLinecap="round"
+                      strokeDasharray={circumference}
+                      strokeDashoffset={offset}
+                      style={{ transition: "stroke-dashoffset 0.8s ease" }}
+                    />
+                  </svg>
+
+                  {/* Center Text */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-sm font-medium text-[#1F1F1F] text-[14px]">
+                      Overall Payment
+                    </span>
+
+                    <span className="text-[28px] font-bold text-[#0B3142] ">
+                      {percentage}%
+                    </span>
+
+                    <span className="text-sm mt-2">
+                      <span className="text-[#009638] font-semibold text-[14px]">
+                        ₹{paidAmount.toLocaleString()}
+                      </span>
+                      <span className="text-[#696969] font-normal text-[14px]">
+                        / ₹{totalAmount.toLocaleString()}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <div className="text-[16px] font-semibold text-[#000000]">
+                <span>Payment Method used</span>
+              </div>
+              <div className="mt-4 border border-[#ECECEC] rounded-lg p-3 items-center flex justify-between">
+                <div className="flex flex-col">
+                  <span>Credit Card</span>
+                  <span>5000</span>
+                  <span>1 transaction</span>
+                </div>
+                <div>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+             <div className="bg-white p-4 rounded-lg shadow-md">
+              
+            </div>
+          </div>
+        </div>
+      );
 
     default:
       return null;
