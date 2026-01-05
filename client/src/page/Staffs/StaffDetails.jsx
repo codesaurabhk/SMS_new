@@ -32,11 +32,18 @@ import { MdOutlineContactPage } from "react-icons/md";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { MdOutlinePeople } from "react-icons/md";
 import { PiGraduationCap } from "react-icons/pi";
+import { MdWorkOutline } from "react-icons/md";
+import { BiBookOpen } from "react-icons/bi";
 
 /** <------------------------------------ images -------------------------------> */
 import langford from "../../assets/images/langford.jpg";
 import mikasa from "../../assets/images/mikasa.png";
 import { Link } from "react-router-dom";
+
+import calender from "../../assets/images/calender.gif";
+import Money from "../../assets/images/money.gif";
+import Correct from "../../assets/images/correct.gif";
+import Danger from "../../assets/images/Danger.gif";
 
 function DetailsContent({ active }) {
   const documentData = [
@@ -103,6 +110,32 @@ function DetailsContent({ active }) {
       date: "2024-04-10",
       fileType: "jpg",
       fileSize: "50",
+    },
+  ];
+  const cardData = [
+    {
+      des: "Basic Salary",
+      number: "₹45,000",
+      
+      gif: Money,
+    },
+    {
+      des: "Gross Salary",
+      number: "₹60,500",
+     
+      gif: Correct,
+    },
+    {
+      des: "Deductions",
+      number: "₹10,900",
+     
+      gif: Danger,
+    },
+    {
+      des: "Net Salary",
+      number: "₹49,600",
+      
+      gif: calender,
     },
   ];
   switch (active) {
@@ -251,8 +284,8 @@ function DetailsContent({ active }) {
               </div>
 
               <div>
-                <p className="text-sm text-[#8A8A8A]">Rina Kumari</p>
-                <p className="font-medium">(555) 876-5432</p>
+                <p className="text-sm text-[#8A8A8A]">Mother Name</p>
+                <p className="font-medium">Rina Kumari</p>
               </div>
             </div>
           </div>
@@ -381,13 +414,15 @@ function DetailsContent({ active }) {
           <div className="bg-white mt-6 border border-[#E6E6E6] rounded-xl p-6">
             {/* Header */}
             <div className="flex items-center gap-2 mb-6">
-              <span className="font-semibold text-[#1C1C1C]">
-                Current Position Details
-              </span>
+              
+               <div className="flex items-center gap-2 mb-3">
+                <MdWorkOutline size={18} className="text-[#706f6f]" />
+                <h3 className="font-semibold">Current Position Details</h3>
+              </div>
             </div>
 
             {/* Row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6 border-b">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6 border-b border-[#E6E6E6]">
               <div>
                 <p className="text-sm text-[#8A8A8A]">Employee ID</p>
                 <p className="font-medium">EMP2024002</p>
@@ -403,7 +438,7 @@ function DetailsContent({ active }) {
             </div>
 
             {/* Row 2 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-6 border-b">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-6 border-b border-[#E6E6E6]">
               <div>
                 <p className="text-sm text-[#8A8A8A]">Joining Date</p>
                 <p className="font-medium">1-06-2025</p>
@@ -411,7 +446,7 @@ function DetailsContent({ active }) {
 
               <div>
                 <p className="text-sm text-[#8A8A8A]">Employment Type</p>
-                <span className="inline-block mt-1 px-3 py-1 text-sm border rounded-md font-medium">
+                <span className="inline-block mt-1 px-3 py-1 text-sm border-[#b3b3b3] border rounded-md font-medium">
                   Full-time
                 </span>
               </div>
@@ -431,14 +466,16 @@ function DetailsContent({ active }) {
 
           <div className="bg-white border border-[#E6E6E6] rounded-xl p-6 mt-6">
             {/* Header */}
-            <div className="flex items-center gap-2 mb-6">
-              <span className="font-semibold text-[#1C1C1C]">
-                Subjects & Classes
-              </span>
+            <div className="flex items-center gap-2 mb-2">
+              
+               <div className="flex items-center gap-2 mb-6">
+                <BiBookOpen size={18} className="text-[#706f6f]" />
+                <h3 className="font-semibold">Subjects & Classes</h3>
+              </div>
             </div>
 
             {/* Subjects */}
-            <div className="pb-6 border-b">
+            <div className="pb-6 border-b border-[#E6E6E6]">
               <p className="text-sm text-[#8A8A8A] mb-3">Subjects</p>
 
               <span className="inline-block px-4 py-2 bg-[#007AFF] text-white text-sm rounded-lg font-medium">
@@ -451,13 +488,13 @@ function DetailsContent({ active }) {
               <p className="text-sm text-[#8A8A8A] mb-3">Classes Assigned</p>
 
               <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 border rounded-lg text-sm font-medium">
+                <span className="px-4 py-2 border rounded-lg text-sm font-medium border-[#E6E6E6]">
                   Class 1A
                 </span>
-                <span className="px-4 py-2 border rounded-lg text-sm font-medium">
+                <span className="px-4 py-2 border rounded-lg text-sm font-medium border-[#E6E6E6]">
                   Class 3 A
                 </span>
-                <span className="px-4 py-2 border rounded-lg text-sm font-medium">
+                <span className="px-4 py-2 border rounded-lg text-sm font-medium border-[#E6E6E6]">
                   Class 4 A
                 </span>
               </div>
@@ -466,7 +503,7 @@ function DetailsContent({ active }) {
         </div>
       );
 
-    case "Performance":
+    case "Attendance":
       const performanceData = [
         {
           subject: "Mathematics",
@@ -827,10 +864,51 @@ function DetailsContent({ active }) {
         </div>
       );
 
-    case "Attandance":
-      return <div>Attendance Content</div>;
+    case "Salary":
+      return <div>
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-3">
+        {cardData.map((item, index) => (
+          <div key={index} className="box-shadow bg-white rounded-2xl p-4">
+            <div className="flex items-center justify-between ">
+              {/* LEFT CONTENT */}
+              <div className="flex flex-col justify-center">
+                <p className=" text-[16px] text-[#696969]">
+                  {item.des}
+                </p>
 
-    case "Fees":
+                <span className="font-bold text-[28px] text-[#1c1c1c] mt-6 leading-none">
+                  {/* {item.number} */}
+                  {/* `{item.des=="Basic Salary" ? "${item.number}" : item.des=="Gross Salary" ?"${item.number}" : item.des=="Net Salary" ?"${item.number}" : item.des=="Deductions" ?"${item.number}" : "${item.number}"}` */}
+                  {item.des === "Basic Salary"
+                    ? <span className="text-[#1C1C1C]">{item.number}</span>
+                    : item.des === "Gross Salary"
+                    ?  <span className="text-[#009638]">{item.number}</span>
+                    : item.des === "Net Salary"
+                    ? <span className="text-[#DC2626]">{item.number}</span>
+                    : item.des === "Deductions"
+                    ?  <span className="text-[#007AFF]">{item.number}</span>
+                    : <span className="text-[#1C1C1C]">{item.number}</span>}
+
+                </span>
+
+               
+              </div>
+
+              {/* RIGHT ICON / GIF */}
+              <div className="flex items-center justify-center w-16 h-16">
+                <img
+                  src={item.gif}
+                  alt="student"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      </div>;
+
+    case "System Access":
       return <div>Fees Details Content</div>;
 
     default:
