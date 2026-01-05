@@ -261,7 +261,7 @@ const AddStaff = () => {
             2. Family Information
         ======================= */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold border-l-[4px]  border-[#2B7FFF] pl-2">
+          <h2 className="text-lg font-semibold border-l-4   border-[#2B7FFF] pl-2">
             2. Family Information
           </h2>
 
@@ -433,7 +433,7 @@ const AddStaff = () => {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold border-b-[2px] w-120 border-[#12516E] pl-2">
+          <h2 className="text-lg font-semibold border-b-2 w-120 border-[#12516E] pl-2">
             Current Address
           </h2>
 
@@ -505,7 +505,7 @@ const AddStaff = () => {
           Is Current & Permanent Address Same? <input type="checkbox" />
         </h2>
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold border-b-[2px] w-120 border-[#12516E] pl-2">
+          <h2 className="text-lg font-semibold border-b-2 w-120 border-[#12516E] pl-2">
             Permanent Address
           </h2>
 

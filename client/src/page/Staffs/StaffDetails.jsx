@@ -187,9 +187,9 @@ const paymentHistory = [
         <div className="">
           {/* <------------------------------------------------------ Basics Information ------------------------------------------------> */}
 
-          <div className="grid grid-cols-1 rounded-lg lg:grid-cols-2 shadow-[0_0_8px_0_rgba(0,0,0,0.15)] mt-6 gap-6">
+          <div className="grid grid-cols-1 rounded-lg lg:grid-cols-2  mt-6 gap-6">
             {/* Basic Information */}
-            <div className="bg-white rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6 shadow-[0_0_8px_0_rgba(0,0,0,0.15)]">
               <div className="flex items-center gap-2 mb-6">
                 <FaRegUser className="text-[#9A9A9A]" />
                 <h3 className="font-semibold">Basic Information</h3>
@@ -217,7 +217,7 @@ const paymentHistory = [
             </div>
 
             {/* Identification Details */}
-            <div className="bg-white rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6 shadow-[0_0_8px_0_rgba(0,0,0,0.15)]">
               <div className="flex items-center gap-2 mb-6">
                 <MdOutlineContactPage size={18} className="text-[#9A9A9A]" />
 
@@ -225,15 +225,15 @@ const paymentHistory = [
               </div>
 
               <div className="space-y-4">
-                <div className="border-b-1 pb-4 border-[#E6E6E6]">
+                <div className="border-b pb-4 border-[#E6E6E6]">
                   <p className="text-sm text-[#8A8A8A]">Aadhaar Number</p>
                   <p className="font-medium">1234-5678-9101</p>
                 </div>
-                <div className="border-b-1 pb-4 border-[#E6E6E6]">
+                <div className="border-b pb-4 border-[#E6E6E6]">
                   <p className="text-sm text-[#8A8A8A]">PAN Number</p>
                   <p className="font-medium">ABCDE1234F</p>
                 </div>
-                <div className="border-b-1 pb-4 border-[#E6E6E6]">
+                <div className="border-b pb-4 border-[#E6E6E6]">
                   <p className="text-sm text-[#8A8A8A]">Languages Known</p>
                   <p className="font-medium">English, Hindi, Marathi</p>
                 </div>
@@ -248,7 +248,7 @@ const paymentHistory = [
               <MdOutlineContactPage size={18} className="text-[#9A9A9A]" />
               <span className="font-semibold">Identification Details</span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-b-1 pb-5 border-[#E6E6E6]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-b pb-5 border-[#E6E6E6]">
               <div>
                 <p className="text-sm text-[#8A8A8A]">Personal Mobile</p>
                 <p className="font-medium flex items-center gap-2">
@@ -264,13 +264,13 @@ const paymentHistory = [
               </div>
             </div>
 
-            <div className="mt-5 space-y-2 border-b-1 pb-5 border-[#E6E6E6]">
+            <div className="mt-5 space-y-2 border-b pb-5 border-[#E6E6E6]">
               <p className="text-sm text-[#8A8A8A]">Current Address</p>
               <p className="font-medium">
                 ABC gali, house no. 4, Trilokpuri, Delhi-110096, India
               </p>
             </div>
-            <div className="mt-5 space-y-2 border-b-1 pb-5 border-[#E6E6E6]">
+            <div className="mt-5 space-y-2 border-b pb-5 border-[#E6E6E6]">
               <p className="text-sm text-[#8A8A8A]">Parmanent Address</p>
               <p className="font-medium">
                 ABC gali, house no. 4, Trilokpuri, Delhi-110096, India
@@ -306,7 +306,7 @@ const paymentHistory = [
               <h3 className="font-semibold">Family Details</h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 border-b-1 pb-3 border-[#E6E6E6]">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 border-b pb-3 border-[#E6E6E6]">
               {[
                 ["Marital Status", "Single"],
                 ["Spouse Name", "-"],
