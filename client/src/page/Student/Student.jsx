@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../CSS/Style.css";
+import { Link, Navigate } from "react-router-dom";
 
 {
   /* <----------------------------------------------- GIF ----------------------------------------------------> */
@@ -34,7 +35,6 @@ import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
-import { Link } from "react-router-dom";
 
 
 
