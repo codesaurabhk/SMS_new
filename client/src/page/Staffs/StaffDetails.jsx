@@ -339,158 +339,90 @@ function DetailsContent({ active }) {
         case "Academic":
             return (
                 <div>
-                    <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-x-6 gap-y-6">
-                        {/* <-------------------------------------- admission Details -----------------------------------> */}
-                        <div className="mt-6 bg-white p-4 rounded-lg shadow-sm border border-[#e6e6e6]">
-                            <div className="flex items-center gap-2 text-[#1c1c1c]">
-                                <FaRegFileAlt className="text-[#696969]" />
-                                <span className="font-semibold">Admission Details</span>
+                    <div className="bg-white mt-6 border border-[#E6E6E6] rounded-xl p-6">
+
+                        {/* Header */}
+                        <div className="flex items-center gap-2 mb-6">
+                            <span className="font-semibold text-[#1C1C1C]">
+                                Current Position Details
+                            </span>
+                        </div>
+
+                        {/* Row 1 */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6 border-b">
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Employee ID</p>
+                                <p className="font-medium">EMP2024002</p>
                             </div>
-                            <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-6 gap-x-10">
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Admission date
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">12-12-12</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Admission number
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">12312412</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Acedemic Year
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">2012-2024</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Admission Class
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">2</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Aplication Number
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">748965755</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Enterance Test Score
-                                    </span>
-                                    <span className="text-[#009638] text-[16px]">92/100</span>
-                                </div>
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Department</p>
+                                <p className="font-medium">Academics</p>
+                            </div>
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Role</p>
+                                <p className="font-medium">Teacher</p>
                             </div>
                         </div>
 
-                        {/* <------------------------------------ Current Class Details ----------------------------------> */}
-                        <div className="mt-6 bg-white p-4 rounded-lg shadow-sm border border-[#e6e6e6]">
-                            <div className="flex items-center gap-2 text-[#1c1c1c]">
-                                <IoSchoolOutline className="text-[#696969]" />
-                                <span className="font-semibold">Current Class Details</span>
+                        {/* Row 2 */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-6 border-b">
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Joining Date</p>
+                                <p className="font-medium">1-06-2025</p>
                             </div>
-                            <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-6 gap-x-10">
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Class
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">11</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Section
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">A</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Stream
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">-</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        House/Group
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">Blue House</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Roll No
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">1</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#696969] font-normal text-[16px]">
-                                        Student ID
-                                    </span>
-                                    <span className="text-[#1c1c1c] text-[16px]">05311996</span>
-                                </div>
+
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Employment Type</p>
+                                <span className="inline-block mt-1 px-3 py-1 text-sm border rounded-md font-medium">
+                                    Full-time
+                                </span>
                             </div>
+
+                            <div>
+                                <p className="text-sm text-[#8A8A8A]">Years of Service</p>
+                                <p className="font-medium">2 months</p>
+                            </div>
+                        </div>
+
+                        {/* Row 3 */}
+                        <div className="pt-6">
+                            <p className="text-sm text-[#8A8A8A]">Work Shift</p>
+                            <p className="font-medium">Morning (8:00AM - 2:00PM)</p>
                         </div>
                     </div>
-                    <div className="mt-6 bg-white p-4 rounded-lg shadow-sm">
-                        <div className="flex items-center gap-2 text-[#1c1c1c]">
-                            <TfiBook className="text-[#696969]" />
-                            <span className="font-semibold">Enrolled subjects</span>
+
+                    <div className="bg-white border border-[#E6E6E6] rounded-xl p-6 mt-6">
+
+                        {/* Header */}
+                        <div className="flex items-center gap-2 mb-6">
+                            <span className="font-semibold text-[#1C1C1C]">
+                                Subjects & Classes
+                            </span>
                         </div>
-                        <div className="grid grid-flow-col auto-cols-max gap-6 mt-6">
-                            <button className="bg-[#118AB2] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white]">
-                                English
-                            </button>
-                            <button className="bg-[#894B00] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
-                                Hindi
-                            </button>
-                            <button className="bg-[#007AFF] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
+
+                        {/* Subjects */}
+                        <div className="pb-6 border-b">
+                            <p className="text-sm text-[#8A8A8A] mb-3">Subjects</p>
+
+                            <span className="inline-block px-4 py-2 bg-[#007AFF] text-white text-sm rounded-lg font-medium">
                                 Mathematics
-                            </button>
-                            <button className="bg-[#00A87C] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
-                                Science
-                            </button>
-                            <button className="bg-[#EF476F] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
-                                History
-                            </button>
-                            <button className="bg-[#0077B6] px-5 py-2 border-[#e6e6e6] rounded-lg text-[white] ">
-                                Geography
-                            </button>
+                            </span>
                         </div>
-                    </div>
 
-                    {/* <-------------------------------------------------- Previous Education -------------------------------------> */}
-                    <div className="mt-6 bg-white p-4 rounded-lg shadow-sm ">
-                        <div className="flex items-center gap-2 text-[#1c1c1c]">
-                            <TfiBook className="text-[#696969]" />
-                            <span className="font-semibold">Enrolled subjects</span>
-                        </div>
-                        <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-6">
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Previous School Name
+                        {/* Classes Assigned */}
+                        <div className="pt-6">
+                            <p className="text-sm text-[#8A8A8A] mb-3">Classes Assigned</p>
+
+                            <div className="flex flex-wrap gap-3">
+                                <span className="px-4 py-2 border rounded-lg text-sm font-medium">
+                                    Class 1A
                                 </span>
-                                <span className="text-[#1c1c1c] text-[16px]">
-                                    Mount Fuzi High School
+                                <span className="px-4 py-2 border rounded-lg text-sm font-medium">
+                                    Class 3 A
                                 </span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Previous Class
+                                <span className="px-4 py-2 border rounded-lg text-sm font-medium">
+                                    Class 4 A
                                 </span>
-                                <span className="text-[#1c1c1c] text-[16px]">Class 1</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Transfer Certificate Number
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">-</span>
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[#696969] font-normal text-[16px]">
-                                    Transfer Reason
-                                </span>
-                                <span className="text-[#1c1c1c] text-[16px]">-</span>
                             </div>
                         </div>
                     </div>
