@@ -25,11 +25,18 @@ import { LuTarget } from "react-icons/lu";
 import { CiWarning } from "react-icons/ci";
 import { CiStar } from "react-icons/ci";
 import { FaClipboardList } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 /** <------------------------------------ images -------------------------------> */
 import langford from "../../assets/images/langford.jpg";
 import mikasa from "../../assets/images/mikasa.png";
-import { Link } from "react-router-dom";
+import card from "../../assets/images/cards.gif";
+import bank from "../../assets/images/bank.gif";
+import upi from "../../assets/images/upi.gif";
+import cash from "../../assets/images/cash.gif";
+import Money from "../../assets/images/money.gif";
+import Correct from "../../assets/images/correct.gif";
+import Danger from "../../assets/images/Danger.gif";
 
 /* <--------------------------- npm -------------------------------------> */
 import Calendar from "react-calendar";
@@ -2009,101 +2016,238 @@ function DetailsContent({ active }) {
       const circumference = 2 * Math.PI * radius;
       const offset = circumference - (circumference * percentage) / 100;
 
+      const payementMethods = [
+        {
+          method: "Credit Card",
+          amount: 5000,
+          transactions: 1,
+          icon: card,
+        },
+        {
+          method: "Cash",
+          amount: 7000,
+          transactions: 2,
+          icon: cash,
+        },
+        {
+          method: "Online Banking",
+          amount: 3000,
+          transactions: 1,
+          icon: bank,
+        },
+        {
+          method: "UPI",
+          amount: 2000,
+          transactions: 1,
+          icon: upi,
+        },
+      ];
+
+      const cardData = [
+        {
+          des: "Basic Salary",
+          number: "₹45,000",
+          gif: Money,
+        },
+        {
+          des: "Gross Salary",
+          number: "₹60,500",
+          gif: Correct,
+        },
+        {
+          des: "Deductions",
+          number: "₹10,900",
+          gif: Danger,
+        },
+      ];
+
       return (
         <div>
-          <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 mt-6 gap-4">
-            <div className="bg-white p-4 rounded-lg shadow-md w-fit">
-              <div className="flex flex-col">
-                <span className="text-[#000000] text-[18px] font-normal">
-                  Annual Fee Payment Progress
-                </span>
-                <span className="text-[#9C9C9C] text-[16px] font-semibold">
-                  Acedemic Year 2025-26
-                </span>
-              </div>
-              <div className="w-full flex justify-center items-center mt-2">
-                <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72">
-                  <svg
-                    viewBox="0 0 120 120"
-                    className="w-full h-full -rotate-90"
-                  >
-                    {/* Background */}
-                    <circle
-                      cx="60"
-                      cy="60"
-                      r="50"
-                      fill="none"
-                      stroke="#EEEEEE"
-                      strokeWidth="10"
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:grid-col-3 gap-x-3 gap-y-3">
+            {cardData.map((item, index) => (
+              <div key={index} className="box-shadow bg-white rounded-2xl p-4">
+                <div className="flex items-center justify-between ">
+                  {/* LEFT CONTENT */}
+                  <div className="flex flex-col justify-center">
+                    <p className=" text-[16px] text-[#696969]">{item.des}</p>
+
+                    <span className="font-bold text-[28px] text-[#1c1c1c] mt-6 leading-none">
+                      {/* {item.number} */}
+                      {item.des === "Basic Salary" ? (
+                        <span className="text-[#1C1C1C]">{item.number}</span>
+                      ) : item.des === "Gross Salary" ? (
+                        <span className="text-[#009638]">{item.number}</span>
+                      ) : item.des === "Net Salary" ? (
+                        <span className="text-[#DC2626]">{item.number}</span>
+                      ) : item.des === "Deductions" ? (
+                        <span className="text-[#007AFF]">{item.number}</span>
+                      ) : (
+                        <span className="text-[#1C1C1C]">{item.number}</span>
+                      )}
+                    </span>
+                  </div>
+
+                  {/* RIGHT ICON / GIF */}
+                  <div className="flex items-center justify-center w-16 h-16">
+                    <img
+                      src={item.gif}
+                      alt="student"
+                      className="w-full h-full object-contain"
                     />
-
-                    {/* Gradient */}
-                    <defs>
-                      <linearGradient
-                        id="progressGradient"
-                        x1="0%"
-                        y1="0%"
-                        x2="100%"
-                        y2="100%"
-                      >
-                        <stop offset="0%" stopColor="#0B3142" />
-                        <stop offset="100%" stopColor="#1C7DA8" />
-                      </linearGradient>
-                    </defs>
-
-                    {/* Progress */}
-                    <circle
-                      cx="60"
-                      cy="60"
-                      r="50"
-                      fill="none"
-                      stroke="url(#progressGradient)"
-                      strokeWidth="10"
-                      strokeLinecap="round"
-                      strokeDasharray={circumference}
-                      strokeDashoffset={offset}
-                      style={{ transition: "stroke-dashoffset 0.8s ease" }}
-                    />
-                  </svg>
-
-                  {/* Center Text */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-sm font-medium text-[#1F1F1F] text-[14px]">
-                      Overall Payment
-                    </span>
-
-                    <span className="text-[28px] font-bold text-[#0B3142] ">
-                      {percentage}%
-                    </span>
-
-                    <span className="text-sm mt-2">
-                      <span className="text-[#009638] font-semibold text-[14px]">
-                        ₹{paidAmount.toLocaleString()}
-                      </span>
-                      <span className="text-[#696969] font-normal text-[14px]">
-                        / ₹{totalAmount.toLocaleString()}
-                      </span>
-                    </span>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow-md">
-              <div className="text-[16px] font-semibold text-[#000000]">
-                <span>Payment Method used</span>
-              </div>
-              <div className="mt-4 border border-[#ECECEC] rounded-lg p-3 items-center flex justify-between">
+            ))}
+          </div>
+
+          <div className="mt-6">
+            {/* MAIN GRID */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {/* -------------------- PROGRESS CARD -------------------- */}
+              <div className="bg-white p-4 rounded-lg shadow-md w-full">
                 <div className="flex flex-col">
-                  <span>Credit Card</span>
-                  <span>5000</span>
-                  <span>1 transaction</span>
+                  <span className="text-[#000000] text-[18px] font-normal">
+                    Annual Fee Payment Progress
+                  </span>
+                  <span className="text-[#9C9C9C] text-[16px] font-semibold">
+                    Academic Year 2025–26
+                  </span>
                 </div>
-                <div>
-                  <span></span>
+
+                <div className="w-full flex justify-center items-center mt-4">
+                  <div className="relative w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64">
+                    <svg
+                      viewBox="0 0 120 120"
+                      className="w-full h-full -rotate-90"
+                    >
+                      {/* Background */}
+                      <circle
+                        cx="60"
+                        cy="60"
+                        r={radius}
+                        fill="none"
+                        stroke="#EEEEEE"
+                        strokeWidth="10"
+                      />
+
+                      {/* Gradient */}
+                      <defs>
+                        <linearGradient
+                          id="progressGradient"
+                          x1="0%"
+                          y1="0%"
+                          x2="100%"
+                          y2="100%"
+                        >
+                          <stop offset="0%" stopColor="#0B3142" />
+                          <stop offset="100%" stopColor="#1C7DA8" />
+                        </linearGradient>
+                      </defs>
+
+                      {/* Progress */}
+                      <circle
+                        cx="60"
+                        cy="60"
+                        r={radius}
+                        fill="none"
+                        stroke="url(#progressGradient)"
+                        strokeWidth="10"
+                        strokeLinecap="round"
+                        strokeDasharray={circumference}
+                        strokeDashoffset={offset}
+                        style={{ transition: "stroke-dashoffset 0.8s ease" }}
+                      />
+                    </svg>
+
+                    {/* CENTER TEXT */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                      <span className="text-[14px] font-medium text-[#1F1F1F]">
+                        Overall Payment
+                      </span>
+
+                      <span className="text-[28px] font-bold text-[#0B3142]">
+                        {percentage}%
+                      </span>
+
+                      <span className="mt-2 text-[14px]">
+                        <span className="text-[#009638] font-semibold">
+                          ₹{paidAmount.toLocaleString()}
+                        </span>
+                        <span className="text-[#696969] font-normal">
+                          {" "}
+                          / ₹{totalAmount.toLocaleString()}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* -------------------- PAYMENT METHODS -------------------- */}
+              <div className="bg-white p-4 rounded-lg shadow-md w-full">
+                <div className="text-[16px] font-semibold text-[#000000]">
+                  Payment Method Used
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                  {payementMethods.map((item, index) => (
+                    <div
+                      key={index}
+                      className="border border-[#ECECEC] rounded-lg p-3 flex items-center justify-between w-full"
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-[14px] text-[#1C1C1C]">
+                          {item.method}
+                        </span>
+
+                        <span className="text-[24px] text-[#000000] font-semibold">
+                          ₹ {item.amount}
+                        </span>
+
+                        <span className="text-[12px] text-[#696969] font-semibold">
+                          {item.transactions}
+                        </span>
+                      </div>
+
+                      <div className="rounded-full h-12 w-12 border-2 border-white overflow-hidden flex items-center justify-center">
+                        <img
+                          src={item.icon}
+                          alt={item.method}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* -------------------- EMPTY / FUTURE CARD -------------------- */}
+              <div className="bg-white p-4 rounded-lg shadow-md w-full">
+                <div className="text-[16px] font-semibold text-[#000000]">
+                  Payment Statistics
+                </div>
+                <div className="flex justify-between text-[14px] font-semibold text-[#1C1C1C] mt-6">
+                  <span>Total Transaction</span>
+                  <span>3</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Last Payment</span>
+                  <span>2025-10-05</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Average Payment</span>
+                  <span>₹ 2500</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>penalty</span>
+                  <span>₹ 1000</span>
                 </div>
               </div>
             </div>
-             <div className="bg-white p-4 rounded-lg shadow-md">
+          </div>
+
+          <div className="mt-6">
+            <div>
               
             </div>
           </div>
