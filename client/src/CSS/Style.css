@@ -230,7 +230,7 @@
 
 /* react-calendar overrides */
 .react-calendar {
-  width: 100%;
+  width: 100% !important;
   border: none;
   font-family: inherit;
 }

@@ -1625,8 +1625,6 @@ function DetailsContent({ active }) {
         },
       ];
 
-      
-
       const ATTENDANCE_CELL_COLORS = {
         present: {
           bg: "#E6F6EC",
@@ -1676,8 +1674,16 @@ function DetailsContent({ active }) {
                     <span className="text-[#1c1c1c] text-[14px] font-normal">
                       {item.day}
                     </span>
-                    <span className="text-[18px] font-semibold" 
-                    style={{color:item.id === 1 ? '#009638' : item.id === 2 ? '#DC2626' : '#F97316'}}
+                    <span
+                      className="text-[18px] font-semibold"
+                      style={{
+                        color:
+                          item.id === 1
+                            ? "#009638"
+                            : item.id === 2
+                            ? "#DC2626"
+                            : "#F97316",
+                      }}
                     >
                       {item.attendancePercentage}%
                     </span>
@@ -1686,158 +1692,215 @@ function DetailsContent({ active }) {
               ))}
             </div>
           </div>
-          <div>
-            <div className="flex gap-4 mt-6 rounded-lg">
-              <div className="flex flex-wrap p-2 rounded-lg justify-center items-center bg-white w-fit shadow-md">
-                <span className="text-[#1C1C1C] text-[17px] font-semibold mt-4">
-                  Monthly Attendance Calender
-                </span>
-                {/* <------------------------------- Calender Graph ---------------------------------------> */}
-                <div className="mt-4">
-                  <Calendar
-                    value={calendarDate}
-                    onChange={setCalendarDate}
-                    tileClassName={({ date, view }) => {
-                      if (view !== "month") return;
 
-                      const key = formatDateKey(date);
-                      const status = attendanceMap[key]?.status;
+          <div className="flex gap-4 mt-6 rounded-lg">
+            <div className="flex flex-wrap p-2 rounded-lg justify-center items-center bg-white w-134 shadow-md">
+              <span className="text-[#1C1C1C] text-[17px] font-semibold mt-4">
+                Monthly Attendance Calender
+              </span>
+              {/* <------------------------------- Calender Graph ---------------------------------------> */}
+              <div className="mt-4 w-full flex justify-center items-center react-calendar">
+                <Calendar
+                  value={calendarDate}
+                  onChange={setCalendarDate}
+                  tileClassName={({ date, view }) => {
+                    if (view !== "month") return;
+                    const key = formatDateKey(date);
+                    const status = attendanceMap[key]?.status;
 
-                      return getStatusClasses(status);
-                    }}
-                  />
-                </div>
-                <div>
-                  <div className="mt-4 flex gap-6 flex-wrap">
-                    {[
-                      { label: "Present", color: "#009638" },
-                      { label: "Absent", color: "#DC2626" },
-                      { label: "Leave", color: "#F97316" },
-                      { label: "Holiday", color: "#00ADAD" },
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <div
-                          className="w-2 h-2 rounded-full"
-                          style={{ backgroundColor: item.color }}
-                        />
-                        <span className="text-[#1c1c1c] text-[16px] flex items-center gap-1">
-                          {item.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                    return getStatusClasses(status);
+                  }}
+                />
+              </div>
+              <div>
+                <div className="mt-4 flex gap-6 flex-wrap">
+                  {[
+                    { label: "Present", color: "#009638" },
+                    { label: "Absent", color: "#DC2626" },
+                    { label: "Leave", color: "#F97316" },
+                    { label: "Holiday", color: "#00ADAD" },
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <div
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: item.color }}
+                      />
+                      <span className="text-[#1c1c1c] text-[16px] flex items-center gap-1">
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="p-2 rounded-lg w-full justify-center items-center bg-white shadow-md">
-                <div className="flex flex-col font-semibold mt-4">
-                  <span className="font-semibold text-lg text-[#1C1C1C]">
-                    Attendance Summary
-                  </span>
-                  <span className="text-[#9C9C9C] text-[15px] font-normal">
-                    Month-wise Attendance
-                  </span>
-                </div>
-                <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg mt-4">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="">
-                        <th className="px-4 py-3 text-left text-sm font-semibold">
-                          Month
-                        </th>
-                        <th className="px-4 py-3 text-left text-sm font-semibold">
-                          Present Days
-                        </th>
-                        <th className="px-4 py-3 text-left text-sm font-semibold">
-                          Absent Days
-                        </th>
-                        <th className="px-4 py-3 text-left text-sm font-semibold">
-                          Leave Days
-                        </th>
-                        <th className="px-4 py-3 text-left text-sm font-semibold">
-                          Status
-                        </th>
+            </div>
+            <div className="p-2 rounded-lg w-full justify-center items-center bg-white shadow-md">
+              <div className="flex flex-col font-semibold mt-4">
+                <span className="font-semibold text-lg text-[#1C1C1C]">
+                  Attendance Summary
+                </span>
+                <span className="text-[#9C9C9C] text-[15px] font-normal">
+                  Month-wise Attendance
+                </span>
+              </div>
+              <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg mt-4">
+                <table className="w-full">
+                  <thead>
+                    <tr className="">
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Month
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Present Days
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Absent Days
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Leave Days
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      {
+                        month: "January",
+                        present: 20,
+                        absent: 2,
+                        leave: 1,
+                        status: "Good",
+                      },
+                      {
+                        month: "February",
+                        present: 18,
+                        absent: 4,
+                        leave: 2,
+                        status: "Average",
+                      },
+                      {
+                        month: "March",
+                        present: 22,
+                        absent: 0,
+                        leave: 0,
+                        status: "Excellent",
+                      },
+                      {
+                        month: "April",
+                        present: 19,
+                        absent: 3,
+                        leave: 1,
+                        status: "Good",
+                      },
+                      {
+                        month: "May",
+                        present: 21,
+                        absent: 1,
+                        leave: 0,
+                        status: "Excellent",
+                      },
+                      {
+                        month: "June",
+                        present: 17,
+                        absent: 5,
+                        leave: 2,
+                        status: "Poor",
+                      },
+                    ].map((item, index) => (
+                      <tr key={index} className="hover:bg-gray-100">
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                          {item.month}
+                        </td>
+                        <td
+                          className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
+                          style={{
+                            color: ATTENDANCE_CELL_COLORS.present.text,
+                          }}
+                        >
+                          {item.present}
+                        </td>
+                        <td
+                          className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
+                          style={{
+                            color: ATTENDANCE_CELL_COLORS.absent.text,
+                          }}
+                        >
+                          {item.absent}
+                        </td>
+                        <td
+                          className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
+                          style={{
+                            color: ATTENDANCE_CELL_COLORS.leave.text,
+                          }}
+                        >
+                          {item.leave}
+                        </td>
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                          {item.status}
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        {
-                          month: "January",
-                          present: 20,
-                          absent: 2,
-                          leave: 1,
-                          status: "Good",
-                        },
-                        {
-                          month: "February",
-                          present: 18,
-                          absent: 4,
-                          leave: 2,
-                          status: "Average",
-                        },
-                        {
-                          month: "March",
-                          present: 22,
-                          absent: 0,
-                          leave: 0,
-                          status: "Excellent",
-                        },
-                        {
-                          month: "April",
-                          present: 19,
-                          absent: 3,
-                          leave: 1,
-                          status: "Good",
-                        },
-                        {
-                          month: "May",
-                          present: 21,
-                          absent: 1,
-                          leave: 0,
-                          status: "Excellent",
-                        },
-                        {
-                          month: "June",
-                          present: 17,
-                          absent: 5,
-                          leave: 2,
-                          status: "Poor",
-                        },
-                      ].map((item, index) => (
-                        <tr key={index} className="hover:bg-gray-100">
-                          <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
-                            {item.month}
-                          </td>
-                          <td
-                            className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
-                            style={{
-                              color: ATTENDANCE_CELL_COLORS.present.text,
-                            }}
-                          >
-                            {item.present}
-                          </td>
-                          <td
-                            className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
-                            style={{
-                              color: ATTENDANCE_CELL_COLORS.absent.text,
-                            }}
-                          >
-                            {item.absent}
-                          </td>
-                          <td
-                            className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
-                            style={{
-                              color: ATTENDANCE_CELL_COLORS.leave.text,
-                            }}
-                          >
-                            {item.leave}
-                          </td>
-                          <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
-                            {item.status}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          {/* <-------------------------------------- Leave ----------------------------------> */}
+
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-sm">
+            <div className="flex items-center gap-2 text-[#1c1c1c]">
+              <div className="flex flex-col">
+                <span className="text-[1c1c1c] font-normal">
+                  Leave Requests
+                </span>
+                <span className="text-[#9C9C9C]">
+                  Previous leave Requests History
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center mt-6">
+              <div className="relative w-12 h-12 ">
+                {/* VERTICAL DOTTED LINE */}
+                <span className="absolute left-[9px] bottom-12 h-7 border-l border-dotted border-[#cfcfcf]"></span>
+
+                {/* DOT */}
+                <span className="absolute left-1 top-1 w-3 h-3 bg-white border border-[#cfcfcf] rounded-full"></span>
+
+                {/* VERTICAL DOTTED LINE */}
+                <span className="absolute left-[9px] top-5 h-17 border-l border-dotted border-[#cfcfcf] z-10"></span>
+
+                {/* HORIZONTAL DOTTED LINE */}
+                <span className="absolute left-5 top-[9px] w-7 border-t border-dotted border-[#cfcfcf]"></span>
+              </div>
+              <div className="p-4 bg-white rounded-lg border-2 border-[#E6E6E6] w-full">
+                <div className="flex justify-between w-full">
+                  <div className="flex flex-col items-start">
+                    <span className="text-[#007AFF] font-normal text-[16px]">
+                      Sick Leave
+                    </span>
+                    <span className="text-[#1c1c1c] font-semibold text-[16px]">
+                      Reason
+                    </span>
+                    <span className="text-[#9c9c9c] font-semibold text-[14px]">
+                      Felling unwell Since last night and visiting doctor for
+                      better checkup
+                    </span>
+                  </div>
+                  <div className="flex gap-12 ">
+                    <div className="flex flex-col">
+                      <span className="text-[#1c1c1c] font-semibold text-[16px]">Date (From - To)</span>
+                      <span className="text-[#9c9c9c] font-semibold text-[14px]">03 Oct 2025 - 03  oct-2025</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[#1c1c1c] font-semibold text-[16px]">Duration</span>
+                      <span className="text-[#9c9c9c] font-semibold text-[14px]">1 Day</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col relative items-end">
+                    <span className="text-[#9c9c9c] font-semibold text-[12px]">02 Oct 2025, 08:45 AM</span>
+                    <span className="text-[#007AFF] font-normal text-[14px] absolute bottom-0">Approved By Class Teacher</span>
+                  </div>
                 </div>
               </div>
             </div>
