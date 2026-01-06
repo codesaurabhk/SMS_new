@@ -25,6 +25,8 @@ import { LuTarget } from "react-icons/lu";
 import { CiWarning } from "react-icons/ci";
 import { CiStar } from "react-icons/ci";
 import { FaClipboardList } from "react-icons/fa";
+import { LuDownload } from "react-icons/lu";
+import { SiTicktick } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 /** <------------------------------------ images -------------------------------> */
@@ -1632,21 +1634,6 @@ function DetailsContent({ active }) {
         },
       ];
 
-      const ATTENDANCE_CELL_COLORS = {
-        present: {
-          bg: "#E6F6EC",
-          text: "#009638",
-        },
-        absent: {
-          bg: "#FDECEC",
-          text: "#DC2626",
-        },
-        leave: {
-          bg: "#FFF3E8",
-          text: "#F97316",
-        },
-      };
-
       const leaveData = [
         {
           date: "2024-06-10",
@@ -1883,31 +1870,16 @@ function DetailsContent({ active }) {
                       },
                     ].map((item, index) => (
                       <tr key={index} className="hover:bg-gray-100">
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
+                        <td className="px-4 py-2 border-b border-[#e6e6e6]">
                           {item.month}
                         </td>
-                        <td
-                          className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
-                          style={{
-                            color: ATTENDANCE_CELL_COLORS.present.text,
-                          }}
-                        >
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#009638]">
                           {item.present}
                         </td>
-                        <td
-                          className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
-                          style={{
-                            color: ATTENDANCE_CELL_COLORS.absent.text,
-                          }}
-                        >
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#DC2626]">
                           {item.absent}
                         </td>
-                        <td
-                          className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]"
-                          style={{
-                            color: ATTENDANCE_CELL_COLORS.leave.text,
-                          }}
-                        >
+                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#F97316]">
                           {item.leave}
                         </td>
                         <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
@@ -2060,6 +2032,130 @@ function DetailsContent({ active }) {
           gif: Danger,
         },
       ];
+
+      const monthWisePayment = [
+        {
+          month: "Janurary",
+          dueDate: "2024-05-10",
+          tutionFee: "3000",
+          examFee: "300",
+          activityFee: "800",
+          transportFee: "900",
+          amountPaid: "3000",
+          paidDate: "2024-01-15",
+          status: "Partial",
+        },
+        {
+          month: "Feburary",
+          dueDate: "2024-02-10",
+          tutionFee: "1000",
+          examFee: "300",
+          activityFee: "800",
+          transportFee: "900",
+          amountPaid: "3000",
+          paidDate: "2024-02-15",
+          status: "Paid",
+        },
+        {
+          month: "March",
+          dueDate: "2024-03-10",
+          tutionFee: "3000",
+          examFee: "300",
+          activityFee: "800",
+          transportFee: "900",
+          amountPaid: "4950",
+          paidDate: "2024-03-15",
+          status: "Partial",
+        },
+      ];
+
+      const getSubtotal = (item) => {
+        return (
+          Number(item.tutionFee || 0) +
+          Number(item.transportFee || 0) +
+          Number(item.activityFee || 0) +
+          Number(item.examFee || 0)
+        );
+      };
+
+      const getDueAmount = (item) => {
+        const total = getSubtotal(item);
+        const paid = Number(item.amountPaid || 0);
+
+        return Math.max(total - paid, 0);
+      };
+
+      const getProgressPercent = (item) => {
+        const total = getSubtotal(item);
+        const paid = Number(item.amountPaid || 0);
+
+        if (total === 0) return 0;
+
+        return Math.min(Math.round((paid / total) * 100), 100);
+      };
+
+      const paymentHistory = [
+        {
+          id: 1,
+          date: "2026-01-06",
+          transactionId: "CC20240401",
+          month: "January",
+          amount: "3000",
+          paymentmethod: "Credit Card",
+          receiptNo: "RCP-2026-06",
+          paidBy: "Langford",
+          status: "Success",
+        },
+        {
+          id: 2,
+          date: "2026-02-06",
+          transactionId: "CC20240401",
+          month: "Febuary",
+          amount: "3000",
+          paymentmethod: "Bank Transfer",
+          receiptNo: "RCP-2026-06",
+          paidBy: "Langford",
+          status: "Success",
+        },
+        {
+          id: 3,
+          date: "2026-03-06",
+          transactionId: "CC20240401",
+          month: "March",
+          amount: "3000",
+          paymentmethod: "Credit Card",
+          receiptNo: "RCP-2026-06",
+          paidBy: "Langford",
+          status: "Success",
+        },
+        {
+          id: 4,
+          date: "2026-04-06",
+          transactionId: "CC20240401",
+          month: "April",
+          amount: "3000",
+          paymentmethod: "Online Payment",
+          receiptNo: "RCP-2026-06",
+          paidBy: "Langford",
+          status: "Failed",
+        },
+        {
+          id: 5,
+          date: "2026-05-06",
+          transactionId: "CC20240401",
+          month: "May",
+          amount: "3000",
+          paymentmethod: "UPI",
+          receiptNo: "RCP-2026-06",
+          paidBy: "Langford",
+          status: "Success",
+        },
+      ];
+
+      const paymentStatus = {
+        Success: "bg-[#D4EDDA] text-[#009638]",
+        Failed: "bg-[#F8D7DA] text-[#C92131]",
+      };
 
       return (
         <div>
@@ -2246,9 +2342,234 @@ function DetailsContent({ active }) {
             </div>
           </div>
 
-          <div className="mt-6">
-            <div>
-              
+          <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+              <div className="flex flex-col">
+                <span className="text-[18px] text-[#000000] font-semibold">
+                  Month-Wise Fee Breakdown
+                </span>
+                <span className="text-[16px] text-[#9C9C9C]">
+                  Detailed breakdown of fee by term
+                </span>
+              </div>
+
+              <button className="inline-flex items-center gap-2 px-6 py-3 border border-[#9C9C9C] font-semibold rounded-lg text-[#9C9C9C] w-fit">
+                <LuDownload />
+                Export Report
+              </button>
+            </div>
+
+            {/* Content */}
+            {monthWisePayment.map((item, index) => (
+              <div className="border border-[#E6E6E6] rounded-md mt-6 p-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* LEFT SECTION */}
+                  <div className="md:pr-6 md:border-r md:border-[#E6E6E6]">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[18px] font-semibold text-[#1C1C1C]">
+                        {item.month} Installment
+                      </span>
+                      <span className="text-[16px] text-[#9C9C9C]">
+                        Due: {item.dueDate}
+                      </span>
+                    </div>
+
+                    <div className="mt-6">
+                      <span className="text-[18px] font-semibold text-[#1C1C1C]">
+                        Fee Components
+                      </span>
+
+                      <div className="mt-3 space-y-2 border-b border-[#E6E6E6] pb-3">
+                        <div className="flex justify-between w-full">
+                          <span>Tuition Fee</span>
+                          <span>₹ {item.tutionFee}</span>
+                        </div>
+
+                        <div className="flex justify-between w-full">
+                          <span>Transport Fee</span>
+                          <span>₹ {item.transportFee}</span>
+                        </div>
+
+                        <div className="flex justify-between w-full">
+                          <span>Activity Fee</span>
+                          <span>₹ {item.activityFee}</span>
+                        </div>
+
+                        <div className="flex justify-between w-full">
+                          <span>Exam Fee</span>
+                          <span>₹ {item.examFee}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-between mt-4 font-semibold">
+                        <span>Subtotal</span>
+                        <span>₹{getSubtotal(item)}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* RIGHT SECTION */}
+                  <div className="flex flex-col gap-4">
+                    <div className="flex justify-end">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold inline-flex items-center gap-2 ${
+                          item.status === "Paid"
+                            ? "bg-[#00A63E26] text-[#009638]"
+                            : item.status === "Partial"
+                            ? "bg-[#FEF9C2] text-[#894B00]"
+                            : item.status === "Due"
+                            ? "bg-[#F8D7DA] text-[#C92131]"
+                            : "bg-[#e6e6e6]"
+                        }`}
+                      >
+                        <SiTicktick className="text-sm" />
+                        {item.status}
+                      </span>
+                    </div>
+                    <span className="text-[18px] font-semibold text-[#1C1C1C]">
+                      Payment Summary
+                    </span>
+
+                    <div className="flex justify-between">
+                      <span className="text-[#9C9C9C]">Total Amount</span>
+                      <span className="font-semibold">
+                        ₹ {getSubtotal(item)}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between ">
+                      <span className="text-[#009638]">Amount Paid</span>
+                      <span className=" font-semibold text-[#009638]">
+                        ₹ {item.amountPaid}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between  border-b border-[#E6E6E6] pb-3 mb-3">
+                      <span className="text-[#DC2626] font-semibold">
+                        Due Amount
+                      </span>
+                      <span className="text-[#DC2626] font-semibold">
+                        ₹ {getDueAmount(item)}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between">
+                      <span className="text-[#9C9C9C]">Payment Date</span>
+                      <span>{item.paidDate}</span>
+                    </div>
+
+                    <div>
+                      <span className="text-[#9C9C9C] text-sm">
+                        Payment Progress
+                      </span>
+
+                      <div className="w-full bg-[#E6E6E6] rounded-full h-2 mt-2 overflow-hidden">
+                        <div
+                          className="bg-[#0B3142] h-2 rounded-full transition-all duration-500"
+                          style={{ width: `${getProgressPercent(item)}%` }}
+                        />
+                      </div>
+
+                      <span className="text-sm text-[#9C9C9C] mt-1 block">
+                        {getProgressPercent(item)}% paid
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+            <div className="flex flex-col">
+              <span className="text-[#000000] text-[18px] font-semibold">
+                Payment Transaction History
+              </span>
+              <span className="text-[#9C9C9C] text-[16px] font-normal">
+                All Payment transactions for this student
+              </span>
+            </div>
+
+            <div className="p-4">
+              <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg">
+                <table className="w-full">
+                  <thead className="bg-[#F5F7F7]">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        <div className="flex items-center gap-2">
+                          <span>Date</span>
+                        </div>
+                      </th>
+
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        <div className="flex items-center gap-2">
+                          <span>Transaction ID</span>
+                        </div>
+                      </th>
+
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Month
+                      </th>
+
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Amount
+                      </th>
+
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Payment Method
+                      </th>
+
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Recipt No.
+                      </th>
+
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Paid By
+                      </th>
+
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Status
+                      </th>
+
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {paymentHistory.map((item, id) => (
+                      <tr key={id} className="border-b border-[#e6e6e6]">
+                        <td className="px-4 py-3 text-left text-sm font-semibold">
+                          {item.date}
+                        </td>
+                        <td className="px-4 py-3 text-left text-sm font-semibold">
+                          {item.transactionId}
+                        </td>
+                        <td className="px-4 py-3 text-left text-sm font-semibold">
+                          {item.month}
+                        </td>
+                        <td className="px-4 py-3 text-left text-sm font-semibold">
+                          {item.amount}
+                        </td>
+                        <td className="px-4 py-3 text-left text-sm font-semibold">
+                          {item.paymentmethod}
+                        </td>
+                        <td className="px-4 py-3 text-left text-sm font-semibold">
+                          {item.receiptNo}
+                        </td>
+                        <td className="px-4 py-3 text-left text-sm font-semibold">
+                          {item.paidBy}
+                        </td>
+                        <td className="px-4 py-3 text-left text-sm font-semibold">
+                          <span className={`inline-flex items-center gap-1 px-3 py-1 rounded text-xs font-semibold ${paymentStatus[item.status]|| "bg-gray-100 text-gray-600"}`}>• {item.status}</span>
+                        </td>
+                        <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 "></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
