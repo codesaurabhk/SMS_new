@@ -44,12 +44,18 @@ import mikasa from "../../assets/images/mikasa.png";
 import { Link } from "react-router-dom";
 
 import calender from "../../assets/images/calender.gif";
+import calender2 from "../../assets/images/calender2.gif";
 import Money from "../../assets/images/money.gif";
 import Correct from "../../assets/images/correct.gif";
 import Danger from "../../assets/images/Danger.gif";
+import { CiCalendar } from "react-icons/ci";
 
 function DetailsContent({ active }) {
-  const documentData = [
+  
+  
+  switch (active) {
+    case "Personal Info":
+      const documentData = [
     {
       img: mikasa,
       documentName: "Photo ID",
@@ -115,74 +121,6 @@ function DetailsContent({ active }) {
       fileSize: "50",
     },
   ];
-  const cardData = [
-    {
-      des: "Basic Salary",
-      number: "₹45,000",
-      
-      gif: Money,
-    },
-    {
-      des: "Gross Salary",
-      number: "₹60,500",
-     
-      gif: Correct,
-    },
-    {
-      des: "Deductions",
-      number: "₹10,900",
-     
-      gif: Danger,
-    },
-    {
-      des: "Net Salary",
-      number: "₹49,600",
-      
-      gif: calender,
-    },
-  ];
-  const salaryComponents = [
-  { label: "Basic Salary", amount: "₹ 45,000" },
-  { label: "HRA", amount: "₹ 9,000" },
-  { label: "Transport Allowance", amount: "₹ 2,000" },
-  { label: "Medical Allowance", amount: "₹ 1,500" },
-  { label: "Special Allowance", amount: "₹ 3,000" },
-];
-
-const deductions = [
-  { label: "Provident Fund", amount: "₹ 5,400" },
-  { label: "Tax Deduction", amount: "₹ 4,500" },
-  { label: "Insurance", amount: "₹ 1,000" },
-];
-
-const paymentHistory = [
-  {
-    month: "November 2024",
-    gross: "₹ 60,500",
-    net: "₹ 60,500",
-    deduction: "₹ 60,500",
-    status: "Paid",
-    date: "2024-11-30",
-  },
-  {
-    month: "October 2024",
-    gross: "₹ 60,500",
-    net: "₹ 60,500",
-    deduction: "₹ 60,500",
-    status: "Paid",
-    date: "2024-10-31",
-  },
-  {
-    month: "September 2024",
-    gross: "₹ 60,500",
-    net: "₹ 60,500",
-    deduction: "₹ 60,500",
-    status: "Paid",
-    date: "2024-09-30",
-  },
-];
-  switch (active) {
-    case "Personal Info":
       return (
         <div className="">
           {/* <------------------------------------------------------ Basics Information ------------------------------------------------> */}
@@ -547,370 +485,228 @@ const paymentHistory = [
       );
 
     case "Attendance":
-      const performanceData = [
-        {
-          subject: "Mathematics",
-          marksObtained: 85,
-          totalMarks: 100,
-          percentage: 85,
-          grade: "A+",
-          texts: "good performance",
-        },
-        {
-          subject: "Science",
-          marksObtained: 90,
-          totalMarks: 100,
-          percentage: 90,
-          grade: "C",
-          texts: "good performance",
-        },
-        {
-          subject: "English",
-          marksObtained: 90,
-          totalMarks: 100,
-          percentage: 90,
-          grade: "B+",
-          texts: "good performance",
-        },
-        {
-          subject: "Hindi",
-          marksObtained: 90,
-          totalMarks: 100,
-          percentage: 90,
-          grade: "B",
-          texts: "good performance",
-        },
-        {
-          subject: "History",
-          marksObtained: 90,
-          totalMarks: 100,
-          percentage: 90,
-          grade: "A",
-          texts: "good performance",
-        },
-        {
-          subject: "Geography",
-          marksObtained: 90,
-          totalMarks: 100,
-          percentage: 90,
-          grade: "D+",
-          texts: "good performance but need",
-        },
-      ];
+         const AttendancecardData = [
+    {
+      des: "Working Days",
+      number: "240",
+      
+      gif: calender2,
+    },
+    {
+      des: "Present",
+      number: "231",
+     
+      gif: Correct,
+    },
+    {
+      des: "Absent",
+      number: "2",
+     
+      gif: Danger,
+    },
+    {
+      des: "Attendance %",
+      number: "96.25%",
+      
+      gif: calender,
+    },
+  ];
+  const attendanceData = [
+  { month: "January", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "February", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "March", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "April", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "May", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "June", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "July", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "August", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "September", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "October", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "November", working: 22, present: 21, absent: 0, leave: 1 },
+  { month: "December", working: 22, present: 21, absent: 0, leave: 1 },
+];
 
-      const subjectHoverColors = {
-        Mathematics: "hover:bg-[#007AFF]/20",
-        Science: "hover:bg-[#00A87C]/20",
-        Englis: "hover:bg-[#118AB2]/20",
-        Hindi: "hover:bg-[#894B00]/20",
-        History: "hover:bg-[#FFF4F4]",
-        Geography: "hover:bg-[#0077B6]/20",
-        default: "hover:bg-gray-100",
-      };
 
-      const gradeColors = {
-        "A+": "bg-green-500",
-        A: "bg-blue-500",
-        "B+": "bg-teal-500",
-        B: "bg-yellow-500",
-        "c+": "bg-purple-500",
-        C: "bg-orange-500",
-        "D+": "bg-pink-500",
-        D: "bg-red-500",
-      };
-
-      const examPerformanceData = [
-        {
-          examName: "UT 1",
-          maxMarks: 600,
-          marksObtained: 540,
-          percentage: 90,
-          grade: "A",
-          result: "Pass",
-          rank: 1,
-        },
-        {
-          examName: "Mid Term",
-          maxMarks: 600,
-          marksObtained: 310,
-          percentage: 85,
-          grade: "B+",
-          result: "Pass",
-          rank: 2,
-        },
-        {
-          examName: "UT 2",
-          maxMarks: 600,
-          marksObtained: 380,
-          percentage: 80,
-          grade: "B",
-          result: "Pass",
-          rank: 3,
-        },
-        {
-          examName: "Annual",
-          maxMarks: 600,
-          marksObtained: 40,
-          percentage: 75,
-          grade: "C",
-          result: "Fail",
-          rank: 5,
-        },
-      ];
-
-      const ResultColors = {
-        Pass: "bg-[#D4EDDA] text-[#155724]",
-        Fail: "bg-[#F8D7DA] text-[#721C24]",
-      };
-
+  
       return (
-        <div>
-          <div className="mt-6 bg-white rounded-lg p-4">
-            <div className="flex items-center gap-2 text-[#1c1c1c]">
-              <SlBadge size={20} className="text-[#696969]" />
-              <span className="font-semibold">Overall Performance Summary</span>
-            </div>
-            <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-6">
-              <div className="flex flex-col">
-                <span className="text-[#696969] font-normal text-[16px]">
-                  Class & Section
-                </span>
-                <span className="text-[#1c1c1c] text-[16px]">Grade 10 - A</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[#696969] font-normal text-[16px]">
-                  Overall Percentage
-                </span>
-                <span className="text-[#1c1c1c] text-[16px] items-center gap-2 flex">
-                  85.4%
-                  <p className="px-4 bg-[#009638] rounded text-white">A</p>
-                </span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[#696969] font-normal text-[16px]">
-                  Class Rank
-                </span>
-                <span className="text-[#1c1c1c] text-[16px]">1 / 120</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[#696969] font-normal text-[16px]">
-                  Section Rank
-                </span>
-                <span className="text-[#1c1c1c] text-[16px]">1</span>
-              </div>
-            </div>
-          </div>
-          {/* <---------------------------------------------- Table -----------------------------------------------> */}
-          <div className="mt-6 bg-white rounded-lg p-4">
-            <div className="flex items-center justify-between">
-              <div className="flex gap-3 items-center">
-                <LuTarget size={20} className="text-[#696969]" />
-                <span className="font-semibold text-[#1c1c1c]">
-                  Subject-wise Performance Breakdown
-                </span>
-              </div>
-              {/* <------------------------------------- Filter -----------------------------------------> */}
-              <div className="inline-flex items-center gap-3">
-                <label For="Exam"></label>
-                <select
-                  name=""
-                  id="Exam"
-                  className="bg-[#EFF2F2] rounded-md px-4 py-1 border-0 outline-0 text-[#1c1c1c] font-normal"
-                >
-                  <option value="">UT 1</option>
-                  <option value="">UT 2</option>
-                  <option value="">Mid Term</option>
-                  <option value="">Annual</option>
-                </select>
-              </div>
-            </div>
-            <div className="mt-6">
-              <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg">
-                <table className="min-w-full border-collapse ">
-                  <thead>
-                    <tr className="bg-[#F5F5F5]">
-                      <th className="px-4 py-2 text-left">Subject</th>
-                      <th className="px-4 py-2 text-left">Marks Obtained</th>
-                      <th className="px-4 py-2 text-left">Total Marks</th>
-                      <th className="px-4 py-2 text-left">Percentage</th>
-                      <th className="px-4 py-2 text-left">Grade</th>
-                      <th className="px-4 py-2 text-left w-60">
-                        Teacher Remark
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {performanceData.map((item, index) => (
-                      <tr
-                        key={index}
-                        className={
-                          subjectHoverColors[item.subject] ||
-                          subjectHoverColors.default
-                        }
-                      >
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]  ">
-                          {item.subject}
-                        </td>
-                        <td className=" px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c] text-left">
-                          {item.marksObtained}
-                        </td>
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
-                          {item.totalMarks}
-                        </td>
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
-                          {item.percentage}%
-                        </td>
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#ffffff]">
-                          <span
-                            className={`inline-block min-w-12 px-3 py-1 rounded text-white font-semibold text-center ${
-                              gradeColors[item.grade] || "bg-gray-500"
-                            }`}
-                          >
-                            {item.grade}
-                          </span>
-                        </td>
-                        <td className="px-3 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
-                          <textarea
-                            name=""
-                            id=""
-                            className="bg-gray-200 rounded border border-[#E6E6E6] w-full h-12 p-2 resize-none outline-0"
-                          >
-                            {item.texts}
-                          </textarea>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        <div className="min-h-screen space-y-6">
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-3">
+        {AttendancecardData.map((item, index) => (
+          <div key={index} className="box-shadow bg-white rounded-2xl p-4">
+            <div className="flex items-center justify-between ">
+              {/* LEFT CONTENT */}
+              <div className="flex flex-col justify-center">
+                <p className=" text-[16px] text-[#696969]">
+                  {item.des}
+                </p>
 
-            <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-6">
-              <div className="p-4 bg-[#F8F3F3] border-2 border-[#FBD1D1] rounded-lg">
-                <div className="flex flex-col">
-                  <span className="text-[#696969] font-normal text-[16px] flex items-center gap-2">
-                    <CiWarning size={28} className="fill-[red]" />
-                    <span className="text-[#DC2626] text-[18px]">
-                      Weakest Subject
-                    </span>
-                  </span>
-                  <span className="text-[#DC2626] text-[16px]">
-                    Hindi - 60% (Need to improve Writing Skill)
-                  </span>
-                </div>
-              </div>
-              <div className="p-4 bg-[#D0FFE2] border-2 border-[#B5FFD1] rounded-lg">
-                <div className="flex flex-col">
-                  <span className="text-[#696969] font-normal text-[16px] flex items-center gap-2">
-                    <CiStar size={28} className="fill-[#04ff04] " />
-                    <span className="text-[#267E3E] text-[18px]">
-                      Strongest Subject
-                    </span>
-                  </span>
-                  <span className="text-[#267E3E] text-[16px]">
-                    Hindi - 60% (Excelent Writing Skill)
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+                <span className="font-bold text-[28px] text-[#1c1c1c] mt-6 leading-none">
+                 {item.des === "Working Days"
+                    ? <span className="text-[#1C1C1C]">{item.number}</span>
+                    : item.des === "Present"
+                    ?  <span className="text-[#009638]">{item.number}</span>
+                    : item.des === "Attendance %"
+                    ? <span className=" text-[#007AFF]">{item.number}</span>
+                    : item.des === "Absent"
+                    ?  <span className="text-[#DC2626]">{item.number}</span>
+                    : <span className="text-[#1C1C1C]">{item.number}</span>}
 
-          {/* <------------------------------------- Exam Performance Summary ---------------------------------------> */}
-          <div className="mt-6 bg-white rounded-lg p-4">
-            <div className="flex items-center justify-between">
-              <div className="flex gap-3 items-center">
-                <FaClipboardList size={20} className="text-[#696969]" />
-                <span className="font-semibold text-[#1c1c1c]">
-                  Exam Performance Summary
                 </span>
+
+               
               </div>
-              {/* <------------------------------------- Filter -----------------------------------------> */}
-              <div className="inline-flex items-center gap-3">
-                <label For="Exam"></label>
-                <select
-                  name=""
-                  id="Exam"
-                  className="bg-[#EFF2F2] rounded-md px-4 py-1 border-0 outline-0 text-[#1c1c1c] font-normal"
-                >
-                  <option value="">UT 1</option>
-                  <option value="">UT 2</option>
-                  <option value="">Mid Term</option>
-                  <option value="">Annual</option>
-                </select>
-              </div>
-            </div>
-            <div className="mt-6">
-              <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg">
-                <table className="min-w-full border-collapse ">
-                  <thead>
-                    <tr className="bg-[#F5F5F5]">
-                      <th className="px-4 py-2 text-left">Exam Name</th>
-                      <th className="px-4 py-2 text-left">Marks Obtained</th>
-                      <th className="px-4 py-2 text-left">Max Marks</th>
-                      <th className="px-4 py-2 text-left">Percentage</th>
-                      <th className="px-4 py-2 text-left">Grade</th>
-                      <th className="px-4 py-2 text-left">Rank</th>
-                      <th className="px-4 py-2 text-left">Result</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {examPerformanceData.map((item, index) => (
-                      <tr
-                        key={index}
-                        className={
-                          subjectHoverColors[item.subject] ||
-                          subjectHoverColors.default
-                        }
-                      >
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]  ">
-                          {item.examName}
-                        </td>
-                        <td className=" px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c] text-left">
-                          {item.marksObtained}
-                        </td>
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
-                          {item.maxMarks}
-                        </td>
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
-                          {item.percentage}%
-                        </td>
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#ffffff]">
-                          <span
-                            className={`inline-block min-w-12 px-3 py-1 rounded text-white font-semibold text-center ${
-                              gradeColors[item.grade] || "bg-gray-500"
-                            }`}
-                          >
-                            {item.grade}
-                          </span>
-                        </td>
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
-                          #{item.rank}
-                        </td>
-                        <td className="px-4 py-2 border-b border-[#e6e6e6] text-[#1c1c1c]">
-                          <span
-                            className={`inline-flex items-center gap-2 px-2 py-1  rounded font-semibold min-w-24 text-center justify-center ${
-                              ResultColors[item.result] ||
-                              "bg-gray-200 text-gray-700"
-                            }`}
-                          >
-                            <span className="text-lg leading-none">•</span>
-                            {item.result}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+
+              {/* RIGHT ICON / GIF */}
+              <div className="flex items-center justify-center w-16 h-16">
+                <img
+                  src={item.gif}
+                  alt="student"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
           </div>
+        ))}
+      </div>
+       <div className="p-2 rounded-2xl  w-full justify-center items-center bg-white shadow-md">
+              
+               <div className="flex justify-between items-center p-3">
+            <div className="flex items-center gap-2 mb-2">
+                <CiCalendar size={18} className="text-[#696969]" />
+                <h3 className="font-semibold">Attendance Record</h3>
+              </div>
+          
+          <select className="border border-[#EFF2F2] rounded-md px-3 py-1 text-sm text-[#696969]">
+            <option>2025-26</option>
+          </select>
+        </div>
+             
+              <div className="bg-white  p-4">
+      {/* Header */}
+    
+
+      {/* Table */}
+      <div className="rounded-xl border border-gray-200 overflow-hidden p-0">
+      
+        <table className="w-full text-sm ">
+          <thead>
+            <tr className="border-b border-[#E6E6E6] text-gray-600">
+              <th className="px-6 py-3 text-left font-medium">Month</th>
+              <th className="px-6 py-3 text-left font-medium">Working Days</th>
+              <th className="px-6 py-3 text-left font-medium">Present</th>
+              <th className="px-6 py-3 text-left font-medium">Absent</th>
+              <th className="px-6 py-3 text-left font-medium">Leave</th>
+              <th className="px-6 py-3 text-left font-medium">Percentage</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {attendanceData.map((item) => {
+              const percentage = ((item.present / item.working) * 100).toFixed(1);
+
+              return (
+                <tr
+                  key={item.month}
+                  className="border-b border-[#E6E6E6] last:border-none hover:bg-gray-50"
+                >
+                  <td className="py-3 px-6">{item.month}</td>
+                  <td className="py-3 px-6">{item.working}</td>
+                  <td className="py-3 px-6 text-green-600 font-medium">
+                    {item.present}
+                  </td>
+                  <td className="py-3 px-6 text-red-500 font-medium">
+                    {item.absent}
+                  </td>
+                  <td className="py-3 px-6 text-orange-500 font-medium">
+                    {item.leave}
+                  </td>
+                  <td className="py-3 px-6">
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-md text-xs font-semibold">
+                      {percentage}%
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+            </div>
         </div>
       );
 
     case "Salary":
-      return <div className="min-h-screen space-y-6">
+      const SalarycardData = [
+    {
+      des: "Basic Salary",
+      number: "₹45,000",
+      
+      gif: Money,
+    },
+    {
+      des: "Gross Salary",
+      number: "₹60,500",
+     
+      gif: Correct,
+    },
+    {
+      des: "Deductions",
+      number: "₹10,900",
+     
+      gif: Danger,
+    },
+    {
+      des: "Net Salary",
+      number: "₹49,600",
+      
+      gif: calender,
+    },
+  ];
+  const salaryComponents = [
+  { label: "Basic Salary", amount: "₹ 45,000" },
+  { label: "HRA", amount: "₹ 9,000" },
+  { label: "Transport Allowance", amount: "₹ 2,000" },
+  { label: "Medical Allowance", amount: "₹ 1,500" },
+  { label: "Special Allowance", amount: "₹ 3,000" },
+];
+
+const deductions = [
+  { label: "Provident Fund", amount: "₹ 5,400" },
+  { label: "Tax Deduction", amount: "₹ 4,500" },
+  { label: "Insurance", amount: "₹ 1,000" },
+];
+
+const paymentHistory = [
+  {
+    month: "November 2024",
+    gross: "₹ 60,500",
+    net: "₹ 60,500",
+    deduction: "₹ 60,500",
+    status: "Paid",
+    date: "2024-11-30",
+  },
+  {
+    month: "October 2024",
+    gross: "₹ 60,500",
+    net: "₹ 60,500",
+    deduction: "₹ 60,500",
+    status: "Paid",
+    date: "2024-10-31",
+  },
+  {
+    month: "September 2024",
+    gross: "₹ 60,500",
+    net: "₹ 60,500",
+    deduction: "₹ 60,500",
+    status: "Paid",
+    date: "2024-09-30",
+  },
+];
+      return (
+      <div className="min-h-screen space-y-6">
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-3">
-        {cardData.map((item, index) => (
+        {SalarycardData.map((item, index) => (
           <div key={index} className="box-shadow bg-white rounded-2xl p-4">
             <div className="flex items-center justify-between ">
               {/* LEFT CONTENT */}
@@ -969,9 +765,9 @@ const paymentHistory = [
               </div>
             ))}
 
-            <div className="flex justify-between bg-green-200 px-4 py-2 rounded-md font-semibold text-sm">
+            <div className="flex justify-between bg-green-200 px-4 py-2 rounded-md text-sm">
               <span>Total Gross</span>
-              <span>₹ 60,500</span>
+              <span className=" font-semibold">₹ 60,500</span>
             </div>
           </div>
         </div>
@@ -1023,27 +819,27 @@ const paymentHistory = [
           <table className="w-full  overflow-hidden">
             <thead className="bg-gray-100 text-left ">
               <tr>
-                <th className="px-4 py-2 font-normal">Month</th>
-                <th className="px-4 py-2 font-normal">Gross</th>
-                <th className="px-4 py-2 font-normal">Net Salary</th>
-                <th className="px-4 py-2 font-normal">Deductions</th>
-                <th className="px-4 py-2 font-normal">Status</th>
-                <th className="px-4 py-2 font-normal">Date</th>
+                <th className="px-4 py-2  font-medium">Month</th>
+                <th className="px-4 py-2 font-medium">Gross</th>
+                <th className="px-4 py-2 font-medium">Net Salary</th>
+                <th className="px-4 py-2 font-medium">Deductions</th>
+                <th className="px-4 py-2 font-medium">Status</th>
+                <th className="px-4 py-2 font-medium">Date</th>
               </tr>
             </thead>
             <tbody>
               {paymentHistory.map((row, i) => (
                 <tr key={i} className="border-t border-gray-200 hover:bg-gray-50">
-                  <td className="px-4 py-2">{row.month}</td>
+                  <td className="px-4 py-2 font-medium">{row.month}</td>
                   <td className="px-4 py-2">{row.gross}</td>
-                  <td className="px-4 py-2 text-green-600 font-medium">
+                  <td className="px-4 py-2 text-green-600">
                     {row.net}
                   </td>
                   <td className="px-4 py-2 text-red-600">
                     {row.deduction}
                   </td>
                   <td className="px-4 py-2">
-                    <span className="inline-flex items-center gap-1.5 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+                    <span className="inline-flex items-center gap-1.5 bg-[#D4EDDA] text-[#009638] px-3 py-1 rounded-full text-xs font-semibold">
   <SiTicktick className="text-sm" />
   Paid
 </span>
@@ -1057,7 +853,8 @@ const paymentHistory = [
         </div>
       </div>
    
-      </div>;
+      </div>
+      );
 
     case "System Access":
       return <div>Fees Details Content</div>;
