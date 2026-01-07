@@ -17,6 +17,7 @@ import {
   FaEye,
   FaClipboardList,
   FaEnvelope,
+  FaRegUserCircle,
 } from "react-icons/fa";
 import { MdFamilyRestroom } from "react-icons/md";
 import { LuUser } from "react-icons/lu";
@@ -49,6 +50,12 @@ import Money from "../../assets/images/money.gif";
 import Correct from "../../assets/images/correct.gif";
 import Danger from "../../assets/images/Danger.gif";
 import { CiCalendar } from "react-icons/ci";
+import { LuClipboardList } from "react-icons/lu";
+import { MdOutlineSecurity } from "react-icons/md";
+import { CiUser } from "react-icons/ci";
+import { CiLock } from "react-icons/ci";
+import { HiOutlineEye } from "react-icons/hi";
+import { FiKey, FiSend } from "react-icons/fi";
 
 function DetailsContent({ active }) {
   
@@ -527,6 +534,95 @@ function DetailsContent({ active }) {
 ];
 
 
+      const leaveData = [
+        {
+          // date: "03 Oct 2025",
+          type: "Sick",
+          description: "Feeling unwell since last night and visiting doctor for a proper check-up.",
+          status: "Approved",
+          duration: "1 day",
+          dateApplied: "03 Oct 2025",
+          tillDate: "03 Oct 2025",
+          dateAppliedTime: "02 Oct 2025, 08:30 AM",
+        },
+        
+        {
+          date: "2024-06-10",
+          type: "Casual Leave",
+          description: "Feeling unwell since last night and visiting doctor for a proper check-up.",
+          status: "Pending",
+          duration: "1 days",
+          dateApplied: "03 Oct 2025",
+          tillDate: "03 Oct 2025",
+          dateAppliedTime: "02 Oct 2025, 08:30 AM",
+        },
+        
+        
+        {
+          date: "2024-06-15",
+          type: "Casual Leave",
+          description: "Attending a close wedding ceremony out of town with parents for two days.",
+          status: "Rejected",
+          duration: "1 day",
+          dateApplied: "03 Oct 2025",
+          tillDate: "03 Oct 2025",
+          dateAppliedTime: "05 Oct 2024, 09:00 AM",
+        },
+        {
+          date: "2024-06-15",
+          type: "Casual Leave",
+          description: "Feeling unwell since last night and visiting the doctor for a proper check-up.",
+          status: "Approved",
+          duration: "1 day",
+          dateApplied: "03 Oct 2025",
+          tillDate: "03 Oct 2025",
+          dateAppliedTime: "22 Sep 2025, 10:30 AM",
+        },
+        {
+          date: "2024-06-15",
+          type: "Paid Leave",
+          description: "feeling unwell since last night and visiting doctor for a proper check-up.",
+          status: "Approved",
+          duration: "1 day",
+            dateApplied: "03 Oct 2025",
+            tillDate: "03 Oct 2025",
+          dateAppliedTime: "02 Oct 2025, 08:30 AM",
+        },
+      ];
+
+      const leaveBalance = [
+  {
+    title: "Sick Leave",
+    total: 12,
+    used: 5,
+    remaining: 7,
+  },
+  {
+    title: "Casual Leave",
+    total: 12,
+    used: 5,
+    remaining: 7,
+  },
+  {
+    title: "Paid Leave",
+    total: 12,
+    used: 5,
+    remaining: 7,
+  },
+  {
+    title: "Maternity Leave",
+    total: 12,
+    used: 5,
+    remaining: 7,
+  },
+  {
+    title: "Paternity Leave",
+    total: "-",
+    used: "-",
+    remaining: "-",
+  },
+      ];
+       
   
       return (
         <div className="min-h-screen space-y-6">
@@ -631,8 +727,147 @@ function DetailsContent({ active }) {
           </tbody>
         </table>
       </div>
-    </div>
+              </div>
+        </div>
+        <div className="bg-white rounded-xl shadow-sm p-6">
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-5">
+        <LuClipboardList className="text-gray-600"/>
+      
+        <h2 className="font-semibold text-lg">Leave Balance</h2>
+      </div>
+
+      {/* Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {leaveBalance.map((leave, index) => (
+          <div
+            key={index}
+            className="bg-indigo-50 rounded-xl p-5"
+          >
+            <h3 className="font-semibold mb-4">{leave.title}</h3>
+
+            <div className="grid grid-cols-3 gap-4 text-sm">
+              <div>
+                <p className="text-gray-400">Total</p>
+                <p className="font-medium">{leave.total}</p>
+              </div>
+
+              <div>
+                <p className="text-gray-400">Used</p>
+                <p className="font-medium text-red-500">
+                  {leave.used}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-gray-400">Remaining</p>
+                <p className="font-medium text-green-600">
+                  {leave.remaining}
+                </p>
+              </div>
             </div>
+          </div>
+        ))}
+      </div>
+        </div>
+        <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+            <div className="flex items-center gap-2 text-[#1c1c1c]">
+              <div className="flex flex-col">
+                <span className="text-[1c1c1c] font-normal">
+                  Leave Requests
+                </span>
+                <span className="text-[#9C9C9C]">
+                  Previous leave Requests History
+                </span>
+              </div>
+            </div>
+            {leaveData.map((item, index) => (
+              <div className="flex items-center mt-3">
+                <div key={index} className="relative w-12 h-12 ">
+                  {/* VERTICAL DOTTED LINE */}
+                  <span className="absolute left-2 bottom-12 h-7 border-l-2 border-dotted border-[#9C9C9C]"></span>
+
+                  {/* DOT */}
+                  <span className="absolute left-1 top-1 w-3 h-3 bg-white border-2 border-[#9C9C9C] rounded-full"></span>
+
+                  {/* VERTICAL DOTTED LINE */}
+                  {index !== leaveData.length - 1 && (
+                    <span className="absolute left-2 top-5 h-17 border-l-2 border-dotted border-[#9C9C9C] z-10"></span>
+                  )}
+
+                  {/* HORIZONTAL DOTTED LINE */}
+                  <span className="absolute left-5 top-2 w-7 border-t-2 border-dotted border-[#9C9C9C]"></span>
+                </div>
+                <div className="p-4 bg-white rounded-lg border-2 border-[#E6E6E6] w-full">
+                  <div className="flex w-full">
+                    <div className="flex flex-col items-start flex-1">
+                      <span
+                        className="font-semibold text-[16px]"
+                      >
+                        {/* {item.type} */}
+                        {item.type === "Casual Leave" ? (<span className="text-[#EF476F]">Casual Leave</span>) : item.type === "Sick" ? 
+                        (<span className="text-[#007AFF]">Sick Leave</span>) : item.type === "Paid Leave"? 
+                        (<span className="text-[#F97316]">Paid Leave</span>): item.type === "Maternity Leave" ? 
+                        ( <span className="text-[#00ADAD]">Maternity Leave</span> ): item.type === "Paternity Leave" ? 
+                        ( <span className="text-[#FFD166]">Paternity Leave</span> ): (<span className="text-[#1c1c1c]">{item.type}</span>)}
+                      </span>
+
+                      <span className="text-[#1c1c1c] font-semibold text-[16px]">
+                        Reason
+                      </span>
+                      <span className="text-[#9c9c9c] font-semibold text-[14px]">
+                        {item.description}
+                      </span>
+                    </div>
+                    <div className="flex gap-12 ">
+                      <div className="flex flex-1 flex-col">
+                        <span className="text-[#1c1c1c] font-semibold text-[16px]">
+                          Date (From - To)
+                        </span>
+                        <span className="text-[#9c9c9c] font-semibold text-[14px]">
+                          {item.dateApplied} - {item.tillDate}
+                        </span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[#1c1c1c] font-semibold text-[16px]">
+                          Duration
+                        </span>
+                        <span className="text-[#9c9c9c] font-semibold text-[14px]">
+                          {item.duration}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col relative items-end flex-1">
+                      <span className="text-[#9c9c9c] font-semibold text-[12px]">
+                        {item.dateAppliedTime}
+                      </span>
+                      <span
+                        className="font-normal text-[14px] absolute bottom-0 "
+                      >
+                        {item.status=== "Approved" ? (
+                          <span className="text-[#009638] px-2 py-1 rounded-md">
+                            {item.status} by Principal
+                          </span>
+                        ) : item.status === "Pending" ? (
+                          <span className="text-[#F97316]  px-2 py-1 rounded-md">
+                            {item.status} by Principal
+                          </span>
+                        ) : item.status === "Rejected" ? (
+                          <span className="text-[#DC2626] px-2 py-1 rounded-md">
+                            {item.status} by Principal
+                          </span>
+                        ) : (
+                          <span className="text-[#007AFF]  px-2 py-1 rounded-md">
+                            {item.status} by Principal
+                          </span>
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       );
 
@@ -857,7 +1092,152 @@ const paymentHistory = [
       );
 
     case "System Access":
-      return <div>Fees Details Content</div>;
+      const LoginActivity = [
+  {
+    date: "2024-12-04",
+    time: "08:30 AM",
+    device: "Desktop",
+  },
+  {
+    date: "2024-12-04",
+    time: "08:30 AM",
+    device: "Desktop",
+  },
+  {
+    date: "2024-12-04",
+    time: "08:30 AM",
+    device: "Desktop",
+  },
+  
+];
+      return (
+      <div className="min-h-screen space-y-6 mt-4">
+      <div className="bg-white rounded-xl shadow-sm p-6">
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-6">
+        <FaRegUserCircle size={18} className="text-[#696969]" />
+        <h3 className="font-semibold">Login Details</h3>
+      </div>
+
+      {/* Inputs */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5 text-sm">
+        {/* Username */}
+        <div>
+          <p className="text-[#8A8A8A] mb-1">Username</p>
+          <div className="flex items-center gap-2 bg-[#EDF0FA] px-3 py-2.5 rounded-md">
+            <CiUser size={17} className="text-[#696969]" />
+            <input
+              type="text"
+              value="michael.chen@school.com"
+              readOnly
+              className="bg-transparent outline-none w-full text-[#1C1C1C]"
+            />
+          </div>
+        </div>
+
+        {/* Password */}
+        <div>
+          <p className="text-[#8A8A8A] mb-1">Password</p>
+          <div className="flex items-center gap-2 bg-[#EDF0FA] px-3 py-2.5 rounded-md">
+            <CiLock size={17} className="text-[#696969]" />
+            <input
+              type="password"
+              value="**************"
+              readOnly
+              className="bg-transparent outline-none w-full text-[#1C1C1C]"
+            />
+            <HiOutlineEye
+              size={16}
+              className="text-[#696969] cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Buttons */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-end mt-6">
+        <button className="flex items-center justify-center gap-2 bg-[#118AB2] text-white px-6 py-2.5 rounded-md text-sm font-medium hover:opacity-90 transition">
+          <FiKey />
+          Reset Password
+        </button>
+
+        <button className="flex items-center justify-center gap-2 border border-gray-300 px-6 py-2.5 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+          <FiSend />
+          Send Reset Password Link
+        </button>
+      </div>
+    </div>
+        <div className="bg-white rounded-xl shadow-sm p-5 ">
+          <div className="flex items-center gap-2 mb-6">
+                <MdOutlineSecurity size={18} className="text-[#696969]" />
+                <h3 className="font-semibold">System Permission</h3>
+              </div>
+          
+          <div className="grid grid-cols-1 sm:grid-col-1 lg:grid-cols-2 gap-x-6 text-sm gap-y-4">
+            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+              
+               <SiTicktick size={16} className="text-[#009638]" /> View Student Records
+               </div>
+            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+              
+               <SiTicktick size={16} className="text-[#009638]" /> Update Attendance
+               </div>
+            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+              
+               <SiTicktick size={16} className="text-[#009638]" /> Enter Marks
+               </div>
+            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+              
+               <SiTicktick size={16} className="text-[#009638]" /> Generate Reports
+               </div>
+            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+              
+               <SiTicktick size={16} className="text-[#009638]" /> Access Library
+               </div>
+            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+              
+               <SiTicktick size={16} className="text-[#009638]" /> View Timetable
+               </div>
+            
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-xl shadow-sm p-5 ">
+        <div className="flex justify-between items-center mb-4">
+            <div className="flex items-center gap-2 mb-2">
+                <RiHistoryFill size={18} className="text-[#696969]" />
+                <h3 className="font-semibold">Recent Login Activity</h3>
+              </div>
+          
+          
+        </div>
+
+        <div className="overflow-x-auto border text-sm border-gray-200 rounded-lg ">
+          <table className="w-full  overflow-hidden">
+            <thead className="bg-gray-100 text-left ">
+              <tr>
+                <th className="px-4 py-2  font-medium">Date</th>
+                <th className="px-4 py-2 font-medium">Time</th>
+                <th className="px-4 py-2 font-medium">Device</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              {LoginActivity.map((row, i) => (
+                <tr key={i} className="border-t border-gray-200 hover:bg-gray-50">
+                  <td className="px-4 py-2">{row.date}</td>
+                  <td className="px-4 py-2">{row.time}</td>
+                  <td className="px-4 py-2">
+                    {row.device}
+                  </td>
+                 
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>);
 
     default:
       return null;
