@@ -45,6 +45,7 @@ import ReportAndAnalytics from "../page/Report&Analytics/ReportAndAnalytics.jsx"
 import Settings from "../page/Settings/Settings.jsx";
 import StudentDetails from "../page/Student/StudentDetails.jsx";
 import AddStaff from "../page/Staffs/AddStaff.jsx";
+import EditStaff from "../page/Staffs/EditStaff.jsx";
 import StaffDetails from "../page/Staffs/StaffDetails.jsx";
 
 
@@ -74,6 +75,7 @@ function AppRouter() {
            {/* // staffs  */}
           <Route path="all-staffs" element={<AllStaff/>} />
           <Route path="add-staffs" element={<AddStaff/>} />
+          <Route path="edit-staffs" element={<EditStaff/>} />
           <Route path="staffDetails" element={<StaffDetails/>} />
           <Route path="staff-attendance" element={<StaffAttendance/>} />
           <Route path="staffLeave-request" element={<StaffLeaveRequest/>} />

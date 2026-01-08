@@ -58,76 +58,74 @@ import { HiOutlineEye } from "react-icons/hi";
 import { FiKey, FiSend } from "react-icons/fi";
 
 function DetailsContent({ active }) {
-  
-  
   switch (active) {
     case "Personal Info":
       const documentData = [
-    {
-      img: mikasa,
-      documentName: "Photo ID",
-      date: "2018-05-15",
-      fileType: "image",
-      fileSize: "512",
-    },
-    {
-      img: mikasa,
-      documentName: "Resume/CV",
-      date: "2024-04-10",
-      fileType: "pdf",
-      fileSize: "312",
-    },
-    {
-      img: mikasa,
-      documentName: "Eduactional Certificate",
-      date: "2024-04-10",
-      fileType: "pdf",
-      fileSize: "520",
-    },
-    {
-      img: mikasa,
-      documentName: "Experience Letters",
-      date: "2024-04-10",
-      fileType: "pdf",
-      fileSize: "520",
-    },
-    {
-      img: mikasa,
-      documentName: "Aadhar Card",
-      date: "2024-04-10",
-      fileType: "pdf",
-      fileSize: "520",
-    },
-    {
-      img: mikasa,
-      documentName: "PAN Card",
-      date: "2024-04-10",
-      fileType: "pdf",
-      fileSize: "520",
-    },
-    {
-      img: mikasa,
-      documentName: "Address Proof",
-      date: "2024-04-10",
-      fileType: "pdf",
-      fileSize: "420",
-    },
-    ,
-    {
-      img: mikasa,
-      documentName: "Police Verification",
-      date: "2024-04-10",
-      fileType: "jpg",
-      fileSize: "50",
-    },
-    {
-      img: mikasa,
-      documentName: "Medical Certificate",
-      date: "2024-04-10",
-      fileType: "jpg",
-      fileSize: "50",
-    },
-  ];
+        {
+          img: mikasa,
+          documentName: "Photo ID",
+          date: "2018-05-15",
+          fileType: "image",
+          fileSize: "512",
+        },
+        {
+          img: mikasa,
+          documentName: "Resume/CV",
+          date: "2024-04-10",
+          fileType: "pdf",
+          fileSize: "312",
+        },
+        {
+          img: mikasa,
+          documentName: "Eduactional Certificate",
+          date: "2024-04-10",
+          fileType: "pdf",
+          fileSize: "520",
+        },
+        {
+          img: mikasa,
+          documentName: "Experience Letters",
+          date: "2024-04-10",
+          fileType: "pdf",
+          fileSize: "520",
+        },
+        {
+          img: mikasa,
+          documentName: "Aadhar Card",
+          date: "2024-04-10",
+          fileType: "pdf",
+          fileSize: "520",
+        },
+        {
+          img: mikasa,
+          documentName: "PAN Card",
+          date: "2024-04-10",
+          fileType: "pdf",
+          fileSize: "520",
+        },
+        {
+          img: mikasa,
+          documentName: "Address Proof",
+          date: "2024-04-10",
+          fileType: "pdf",
+          fileSize: "420",
+        },
+        ,
+        {
+          img: mikasa,
+          documentName: "Police Verification",
+          date: "2024-04-10",
+          fileType: "jpg",
+          fileSize: "50",
+        },
+        {
+          img: mikasa,
+          documentName: "Medical Certificate",
+          date: "2024-04-10",
+          fileType: "jpg",
+          fileSize: "50",
+        },
+      ];
       return (
         <div className="">
           {/* <------------------------------------------------------ Basics Information ------------------------------------------------> */}
@@ -283,7 +281,7 @@ function DetailsContent({ active }) {
           <div className="bg-white mt-6 rounded-2xl shadow-[0_0_8px_0_rgba(0,0,0,0.15)] p-6">
             {/* Header */}
             <div className="flex items-center gap-2 mb-4">
-              <PiGraduationCap className="text-[#696969]" size={18}  />
+              <PiGraduationCap className="text-[#696969]" size={18} />
               <h3 className="text-base font-semibold text-gray-900">
                 Educational Qualifications
               </h3>
@@ -356,13 +354,26 @@ function DetailsContent({ active }) {
                   {/* <--------------------------------------- LEFT CONTENT --------------------------------------> */}
                   <div className="flex gap-4 items-center">
                     {/* <-------------------------------------- IMAGE ----------------------------------------> */}
-                    <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-tl-md rounded-bl-md relative flex justify-center items-center overflow-hidden">
+                    <div
+                      // 1. Fixed Dimensions & Border Radius from specs
+                      className="relative w-[99px] h-[84px] rounded-tl-[8px] rounded-bl-[8px] overflow-hidden"
+                    >
+                      {/* Background Image */}
                       <img
                         src={mikasa}
                         alt=""
-                        className="w-full h-full object-cover opacity-90 inset-shadow-lg"
+                        className="absolute inset-0 w-full h-full object-cover"
                       />
-                      <MdOutlineImage className="absolute text-white text-[20px]" />
+
+                      {/* 2. Color Overlay: Black at 51% Opacity */}
+                      <div className="absolute inset-0 bg-black/51 pointer-events-none" />
+
+                      {/* 3. Layout: Padding & Gap
+     Using flex to handle the content within the padding constraints 
+  */}
+                      <div className="absolute inset-0 flex flex-row items-center justify-center gap-[10px] py-[14px] px-[35px]">
+                        <MdOutlineImage className="text-white text-[20px] drop-shadow-md z-10" />
+                      </div>
                     </div>
 
                     {/* TEXT */}
@@ -402,8 +413,7 @@ function DetailsContent({ active }) {
           <div className="bg-white mt-6 shadow-[0_0_8px_0_rgba(0,0,0,0.15)]   rounded-xl p-6">
             {/* Header */}
             <div className="flex items-center gap-2 mb-6">
-              
-               <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2 mb-3">
                 <MdWorkOutline size={18} className="text-[#706f6f]" />
                 <h3 className="font-semibold">Current Position Details</h3>
               </div>
@@ -455,8 +465,7 @@ function DetailsContent({ active }) {
           <div className="bg-white shadow-[0_0_8px_0_rgba(0,0,0,0.15)] rounded-xl p-6 mt-6">
             {/* Header */}
             <div className="flex items-center gap-2 mb-2">
-              
-               <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-2 mb-6">
                 <BiBookOpen size={18} className="text-[#706f6f]" />
                 <h3 className="font-semibold">Subjects & Classes</h3>
               </div>
@@ -492,76 +501,77 @@ function DetailsContent({ active }) {
       );
 
     case "Attendance":
-         const AttendancecardData = [
-    {
-      des: "Working Days",
-      number: "240",
-      
-      gif: calender2,
-    },
-    {
-      des: "Present",
-      number: "231",
-     
-      gif: Correct,
-    },
-    {
-      des: "Absent",
-      number: "2",
-     
-      gif: Danger,
-    },
-    {
-      des: "Attendance %",
-      number: "96.25%",
-      
-      gif: calender,
-    },
-  ];
-  const attendanceData = [
-  { month: "January", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "February", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "March", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "April", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "May", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "June", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "July", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "August", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "September", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "October", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "November", working: 22, present: 21, absent: 0, leave: 1 },
-  { month: "December", working: 22, present: 21, absent: 0, leave: 1 },
-];
+      const AttendancecardData = [
+        {
+          des: "Working Days",
+          number: "240",
 
+          gif: calender2,
+        },
+        {
+          des: "Present",
+          number: "231",
+
+          gif: Correct,
+        },
+        {
+          des: "Absent",
+          number: "2",
+
+          gif: Danger,
+        },
+        {
+          des: "Attendance %",
+          number: "96.25%",
+
+          gif: calender,
+        },
+      ];
+      const attendanceData = [
+        { month: "January", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "February", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "March", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "April", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "May", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "June", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "July", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "August", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "September", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "October", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "November", working: 22, present: 21, absent: 0, leave: 1 },
+        { month: "December", working: 22, present: 21, absent: 0, leave: 1 },
+      ];
 
       const leaveData = [
         {
           // date: "03 Oct 2025",
           type: "Sick",
-          description: "Feeling unwell since last night and visiting doctor for a proper check-up.",
+          description:
+            "Feeling unwell since last night and visiting doctor for a proper check-up.",
           status: "Approved",
           duration: "1 day",
           dateApplied: "03 Oct 2025",
           tillDate: "03 Oct 2025",
           dateAppliedTime: "02 Oct 2025, 08:30 AM",
         },
-        
+
         {
           date: "2024-06-10",
           type: "Casual Leave",
-          description: "Feeling unwell since last night and visiting doctor for a proper check-up.",
+          description:
+            "Feeling unwell since last night and visiting doctor for a proper check-up.",
           status: "Pending",
           duration: "1 days",
           dateApplied: "03 Oct 2025",
           tillDate: "03 Oct 2025",
           dateAppliedTime: "02 Oct 2025, 08:30 AM",
         },
-        
-        
+
         {
           date: "2024-06-15",
           type: "Casual Leave",
-          description: "Attending a close wedding ceremony out of town with parents for two days.",
+          description:
+            "Attending a close wedding ceremony out of town with parents for two days.",
           status: "Rejected",
           duration: "1 day",
           dateApplied: "03 Oct 2025",
@@ -571,7 +581,8 @@ function DetailsContent({ active }) {
         {
           date: "2024-06-15",
           type: "Casual Leave",
-          description: "Feeling unwell since last night and visiting the doctor for a proper check-up.",
+          description:
+            "Feeling unwell since last night and visiting the doctor for a proper check-up.",
           status: "Approved",
           duration: "1 day",
           dateApplied: "03 Oct 2025",
@@ -581,196 +592,196 @@ function DetailsContent({ active }) {
         {
           date: "2024-06-15",
           type: "Paid Leave",
-          description: "feeling unwell since last night and visiting doctor for a proper check-up.",
+          description:
+            "feeling unwell since last night and visiting doctor for a proper check-up.",
           status: "Approved",
           duration: "1 day",
-            dateApplied: "03 Oct 2025",
-            tillDate: "03 Oct 2025",
+          dateApplied: "03 Oct 2025",
+          tillDate: "03 Oct 2025",
           dateAppliedTime: "02 Oct 2025, 08:30 AM",
         },
       ];
 
       const leaveBalance = [
-  {
-    title: "Sick Leave",
-    total: 12,
-    used: 5,
-    remaining: 7,
-  },
-  {
-    title: "Casual Leave",
-    total: 12,
-    used: 5,
-    remaining: 7,
-  },
-  {
-    title: "Paid Leave",
-    total: 12,
-    used: 5,
-    remaining: 7,
-  },
-  {
-    title: "Maternity Leave",
-    total: 12,
-    used: 5,
-    remaining: 7,
-  },
-  {
-    title: "Paternity Leave",
-    total: "-",
-    used: "-",
-    remaining: "-",
-  },
+        {
+          title: "Sick Leave",
+          total: 12,
+          used: 5,
+          remaining: 7,
+        },
+        {
+          title: "Casual Leave",
+          total: 12,
+          used: 5,
+          remaining: 7,
+        },
+        {
+          title: "Paid Leave",
+          total: 12,
+          used: 5,
+          remaining: 7,
+        },
+        {
+          title: "Maternity Leave",
+          total: 12,
+          used: 5,
+          remaining: 7,
+        },
+        {
+          title: "Paternity Leave",
+          total: "-",
+          used: "-",
+          remaining: "-",
+        },
       ];
-       
-  
+
       return (
         <div className="min-h-screen space-y-6">
-            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-3">
-        {AttendancecardData.map((item, index) => (
-          <div key={index} className="box-shadow bg-white rounded-2xl p-4">
-            <div className="flex items-center justify-between ">
-              {/* LEFT CONTENT */}
-              <div className="flex flex-col justify-center">
-                <p className=" text-[16px] text-[#696969]">
-                  {item.des}
-                </p>
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-3">
+            {AttendancecardData.map((item, index) => (
+              <div key={index} className="box-shadow bg-white rounded-2xl p-4">
+                <div className="flex items-center justify-between ">
+                  {/* LEFT CONTENT */}
+                  <div className="flex flex-col justify-center">
+                    <p className=" text-[16px] text-[#696969]">{item.des}</p>
 
-                <span className="font-bold text-[28px] text-[#1c1c1c] mt-6 leading-none">
-                 {item.des === "Working Days"
-                    ? <span className="text-[#1C1C1C]">{item.number}</span>
-                    : item.des === "Present"
-                    ?  <span className="text-[#009638]">{item.number}</span>
-                    : item.des === "Attendance %"
-                    ? <span className=" text-[#007AFF]">{item.number}</span>
-                    : item.des === "Absent"
-                    ?  <span className="text-[#DC2626]">{item.number}</span>
-                    : <span className="text-[#1C1C1C]">{item.number}</span>}
+                    <span className="font-bold text-[28px] text-[#1c1c1c] mt-6 leading-none">
+                      {item.des === "Working Days" ? (
+                        <span className="text-[#1C1C1C]">{item.number}</span>
+                      ) : item.des === "Present" ? (
+                        <span className="text-[#009638]">{item.number}</span>
+                      ) : item.des === "Attendance %" ? (
+                        <span className=" text-[#007AFF]">{item.number}</span>
+                      ) : item.des === "Absent" ? (
+                        <span className="text-[#DC2626]">{item.number}</span>
+                      ) : (
+                        <span className="text-[#1C1C1C]">{item.number}</span>
+                      )}
+                    </span>
+                  </div>
 
-                </span>
-
-               
+                  {/* RIGHT ICON / GIF */}
+                  <div className="flex items-center justify-center w-16 h-16">
+                    <img
+                      src={item.gif}
+                      alt="student"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
               </div>
-
-              {/* RIGHT ICON / GIF */}
-              <div className="flex items-center justify-center w-16 h-16">
-                <img
-                  src={item.gif}
-                  alt="student"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
-       <div className="p-2 rounded-2xl  w-full justify-center items-center bg-white shadow-md">
-              
-               <div className="flex justify-between items-center p-3">
-            <div className="flex items-center gap-2 mb-2">
+          <div className="p-2 rounded-2xl  w-full justify-center items-center bg-white shadow-md">
+            <div className="flex justify-between items-center p-3">
+              <div className="flex items-center gap-2 mb-2">
                 <CiCalendar size={18} className="text-[#696969]" />
                 <h3 className="font-semibold">Attendance Record</h3>
               </div>
-          
-          <select className="border border-[#EFF2F2] rounded-md px-3 py-1 text-sm text-[#696969]">
-            <option>2025-26</option>
-          </select>
-        </div>
-             
-              <div className="bg-white  p-4">
-      {/* Header */}
-    
 
-      {/* Table */}
-      <div className="rounded-xl border border-gray-200 overflow-hidden p-0">
-      
-        <table className="w-full text-sm ">
-          <thead>
-            <tr className="border-b border-[#E6E6E6] text-gray-600">
-              <th className="px-6 py-3 text-left font-medium">Month</th>
-              <th className="px-6 py-3 text-left font-medium">Working Days</th>
-              <th className="px-6 py-3 text-left font-medium">Present</th>
-              <th className="px-6 py-3 text-left font-medium">Absent</th>
-              <th className="px-6 py-3 text-left font-medium">Leave</th>
-              <th className="px-6 py-3 text-left font-medium">Percentage</th>
-            </tr>
-          </thead>
+              <select className="border border-[#EFF2F2] rounded-md px-3 py-1 text-sm text-[#696969]">
+                <option>2025-26</option>
+              </select>
+            </div>
 
-          <tbody>
-            {attendanceData.map((item) => {
-              const percentage = ((item.present / item.working) * 100).toFixed(1);
+            <div className="bg-white  p-4">
+              {/* Header */}
 
-              return (
-                <tr
-                  key={item.month}
-                  className="border-b border-[#E6E6E6] last:border-none hover:bg-gray-50"
-                >
-                  <td className="py-3 px-6">{item.month}</td>
-                  <td className="py-3 px-6">{item.working}</td>
-                  <td className="py-3 px-6 text-green-600 font-medium">
-                    {item.present}
-                  </td>
-                  <td className="py-3 px-6 text-red-500 font-medium">
-                    {item.absent}
-                  </td>
-                  <td className="py-3 px-6 text-orange-500 font-medium">
-                    {item.leave}
-                  </td>
-                  <td className="py-3 px-6">
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-md text-xs font-semibold">
-                      {percentage}%
-                    </span>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-              </div>
-        </div>
-        <div className="bg-white rounded-xl shadow-sm p-6">
-      {/* Header */}
-      <div className="flex items-center gap-2 mb-5">
-        <LuClipboardList className="text-gray-600"/>
-      
-        <h2 className="font-semibold text-lg">Leave Balance</h2>
-      </div>
+              {/* Table */}
+              <div className="rounded-xl border border-gray-200 overflow-hidden p-0">
+                <table className="w-full text-sm ">
+                  <thead>
+                    <tr className="border-b border-[#E6E6E6] text-gray-600">
+                      <th className="px-6 py-3 text-left font-medium">Month</th>
+                      <th className="px-6 py-3 text-left font-medium">
+                        Working Days
+                      </th>
+                      <th className="px-6 py-3 text-left font-medium">
+                        Present
+                      </th>
+                      <th className="px-6 py-3 text-left font-medium">
+                        Absent
+                      </th>
+                      <th className="px-6 py-3 text-left font-medium">Leave</th>
+                      <th className="px-6 py-3 text-left font-medium">
+                        Percentage
+                      </th>
+                    </tr>
+                  </thead>
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {leaveBalance.map((leave, index) => (
-          <div
-            key={index}
-            className="bg-indigo-50 rounded-xl p-5"
-          >
-            <h3 className="font-semibold mb-4">{leave.title}</h3>
+                  <tbody>
+                    {attendanceData.map((item) => {
+                      const percentage = (
+                        (item.present / item.working) *
+                        100
+                      ).toFixed(1);
 
-            <div className="grid grid-cols-3 gap-4 text-sm">
-              <div>
-                <p className="text-gray-400">Total</p>
-                <p className="font-medium">{leave.total}</p>
-              </div>
-
-              <div>
-                <p className="text-gray-400">Used</p>
-                <p className="font-medium text-red-500">
-                  {leave.used}
-                </p>
-              </div>
-
-              <div>
-                <p className="text-gray-400">Remaining</p>
-                <p className="font-medium text-green-600">
-                  {leave.remaining}
-                </p>
+                      return (
+                        <tr
+                          key={item.month}
+                          className="border-b border-[#E6E6E6] last:border-none hover:bg-gray-50"
+                        >
+                          <td className="py-3 px-6">{item.month}</td>
+                          <td className="py-3 px-6">{item.working}</td>
+                          <td className="py-3 px-6 text-green-600 font-medium">
+                            {item.present}
+                          </td>
+                          <td className="py-3 px-6 text-red-500 font-medium">
+                            {item.absent}
+                          </td>
+                          <td className="py-3 px-6 text-orange-500 font-medium">
+                            {item.leave}
+                          </td>
+                          <td className="py-3 px-6">
+                            <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-md text-xs font-semibold">
+                              {percentage}%
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-        ))}
-      </div>
-        </div>
-        <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+          <div className="bg-white rounded-xl shadow-sm p-6">
+            {/* Header */}
+            <div className="flex items-center gap-2 mb-5">
+              <LuClipboardList className="text-gray-600" />
+
+              <h2 className="font-semibold text-lg">Leave Balance</h2>
+            </div>
+
+            {/* Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {leaveBalance.map((leave, index) => (
+                <div key={index} className="bg-indigo-50 rounded-xl p-5">
+                  <h3 className="font-semibold mb-4">{leave.title}</h3>
+
+                  <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <p className="text-gray-400">Total</p>
+                      <p className="font-medium">{leave.total}</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-400">Used</p>
+                      <p className="font-medium text-red-500">{leave.used}</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-400">Remaining</p>
+                      <p className="font-medium text-green-600">
+                        {leave.remaining}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
             <div className="flex items-center gap-2 text-[#1c1c1c]">
               <div className="flex flex-col">
                 <span className="text-[1c1c1c] font-normal">
@@ -801,15 +812,25 @@ function DetailsContent({ active }) {
                 <div className="p-4 bg-white rounded-lg border-2 border-[#E6E6E6] w-full">
                   <div className="flex w-full">
                     <div className="flex flex-col items-start flex-1">
-                      <span
-                        className="font-semibold text-[16px]"
-                      >
+                      <span className="font-semibold text-[16px]">
                         {/* {item.type} */}
-                        {item.type === "Casual Leave" ? (<span className="text-[#EF476F]">Casual Leave</span>) : item.type === "Sick" ? 
-                        (<span className="text-[#007AFF]">Sick Leave</span>) : item.type === "Paid Leave"? 
-                        (<span className="text-[#F97316]">Paid Leave</span>): item.type === "Maternity Leave" ? 
-                        ( <span className="text-[#00ADAD]">Maternity Leave</span> ): item.type === "Paternity Leave" ? 
-                        ( <span className="text-[#FFD166]">Paternity Leave</span> ): (<span className="text-[#1c1c1c]">{item.type}</span>)}
+                        {item.type === "Casual Leave" ? (
+                          <span className="text-[#EF476F]">Casual Leave</span>
+                        ) : item.type === "Sick" ? (
+                          <span className="text-[#007AFF]">Sick Leave</span>
+                        ) : item.type === "Paid Leave" ? (
+                          <span className="text-[#F97316]">Paid Leave</span>
+                        ) : item.type === "Maternity Leave" ? (
+                          <span className="text-[#00ADAD]">
+                            Maternity Leave
+                          </span>
+                        ) : item.type === "Paternity Leave" ? (
+                          <span className="text-[#FFD166]">
+                            Paternity Leave
+                          </span>
+                        ) : (
+                          <span className="text-[#1c1c1c]">{item.type}</span>
+                        )}
                       </span>
 
                       <span className="text-[#1c1c1c] font-semibold text-[16px]">
@@ -841,10 +862,8 @@ function DetailsContent({ active }) {
                       <span className="text-[#9c9c9c] font-semibold text-[12px]">
                         {item.dateAppliedTime}
                       </span>
-                      <span
-                        className="font-normal text-[14px] absolute bottom-0 "
-                      >
-                        {item.status=== "Approved" ? (
+                      <span className="font-normal text-[14px] absolute bottom-0 ">
+                        {item.status === "Approved" ? (
                           <span className="text-[#009638] px-2 py-1 rounded-md">
                             {item.status} by Principal
                           </span>
@@ -873,371 +892,361 @@ function DetailsContent({ active }) {
 
     case "Salary":
       const SalarycardData = [
-    {
-      des: "Basic Salary",
-      number: "₹45,000",
-      
-      gif: Money,
-    },
-    {
-      des: "Gross Salary",
-      number: "₹60,500",
-     
-      gif: Correct,
-    },
-    {
-      des: "Deductions",
-      number: "₹10,900",
-     
-      gif: Danger,
-    },
-    {
-      des: "Net Salary",
-      number: "₹49,600",
-      
-      gif: calender,
-    },
-  ];
-  const salaryComponents = [
-  { label: "Basic Salary", amount: "₹ 45,000" },
-  { label: "HRA", amount: "₹ 9,000" },
-  { label: "Transport Allowance", amount: "₹ 2,000" },
-  { label: "Medical Allowance", amount: "₹ 1,500" },
-  { label: "Special Allowance", amount: "₹ 3,000" },
-];
+        {
+          des: "Basic Salary",
+          number: "₹45,000",
 
-const deductions = [
-  { label: "Provident Fund", amount: "₹ 5,400" },
-  { label: "Tax Deduction", amount: "₹ 4,500" },
-  { label: "Insurance", amount: "₹ 1,000" },
-];
+          gif: Money,
+        },
+        {
+          des: "Gross Salary",
+          number: "₹60,500",
 
-const paymentHistory = [
-  {
-    month: "November 2024",
-    gross: "₹ 60,500",
-    net: "₹ 60,500",
-    deduction: "₹ 60,500",
-    status: "Paid",
-    date: "2024-11-30",
-  },
-  {
-    month: "October 2024",
-    gross: "₹ 60,500",
-    net: "₹ 60,500",
-    deduction: "₹ 60,500",
-    status: "Paid",
-    date: "2024-10-31",
-  },
-  {
-    month: "September 2024",
-    gross: "₹ 60,500",
-    net: "₹ 60,500",
-    deduction: "₹ 60,500",
-    status: "Paid",
-    date: "2024-09-30",
-  },
-];
+          gif: Correct,
+        },
+        {
+          des: "Deductions",
+          number: "₹10,900",
+
+          gif: Danger,
+        },
+        {
+          des: "Net Salary",
+          number: "₹49,600",
+
+          gif: calender,
+        },
+      ];
+      const salaryComponents = [
+        { label: "Basic Salary", amount: "₹ 45,000" },
+        { label: "HRA", amount: "₹ 9,000" },
+        { label: "Transport Allowance", amount: "₹ 2,000" },
+        { label: "Medical Allowance", amount: "₹ 1,500" },
+        { label: "Special Allowance", amount: "₹ 3,000" },
+      ];
+
+      const deductions = [
+        { label: "Provident Fund", amount: "₹ 5,400" },
+        { label: "Tax Deduction", amount: "₹ 4,500" },
+        { label: "Insurance", amount: "₹ 1,000" },
+      ];
+
+      const paymentHistory = [
+        {
+          month: "November 2024",
+          gross: "₹ 60,500",
+          net: "₹ 60,500",
+          deduction: "₹ 60,500",
+          status: "Paid",
+          date: "2024-11-30",
+        },
+        {
+          month: "October 2024",
+          gross: "₹ 60,500",
+          net: "₹ 60,500",
+          deduction: "₹ 60,500",
+          status: "Paid",
+          date: "2024-10-31",
+        },
+        {
+          month: "September 2024",
+          gross: "₹ 60,500",
+          net: "₹ 60,500",
+          deduction: "₹ 60,500",
+          status: "Paid",
+          date: "2024-09-30",
+        },
+      ];
       return (
-      <div className="min-h-screen space-y-6">
+        <div className="min-h-screen space-y-6">
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-3">
-        {SalarycardData.map((item, index) => (
-          <div key={index} className="box-shadow bg-white rounded-2xl p-4">
-            <div className="flex items-center justify-between ">
-              {/* LEFT CONTENT */}
-              <div className="flex flex-col justify-center">
-                <p className=" text-[16px] text-[#696969]">
-                  {item.des}
-                </p>
+            {SalarycardData.map((item, index) => (
+              <div key={index} className="box-shadow bg-white rounded-2xl p-4">
+                <div className="flex items-center justify-between ">
+                  {/* LEFT CONTENT */}
+                  <div className="flex flex-col justify-center">
+                    <p className=" text-[16px] text-[#696969]">{item.des}</p>
 
-                <span className="font-bold text-[28px] text-[#1c1c1c] mt-6 leading-none">
-                 {item.des === "Basic Salary"
-                    ? <span className="text-[#1C1C1C]">{item.number}</span>
-                    : item.des === "Gross Salary"
-                    ?  <span className="text-[#009638]">{item.number}</span>
-                    : item.des === "Net Salary"
-                    ? <span className=" text-[#007AFF]">{item.number}</span>
-                    : item.des === "Deductions"
-                    ?  <span className="text-[#DC2626]">{item.number}</span>
-                    : <span className="text-[#1C1C1C]">{item.number}</span>}
+                    <span className="font-bold text-[28px] text-[#1c1c1c] mt-6 leading-none">
+                      {item.des === "Basic Salary" ? (
+                        <span className="text-[#1C1C1C]">{item.number}</span>
+                      ) : item.des === "Gross Salary" ? (
+                        <span className="text-[#009638]">{item.number}</span>
+                      ) : item.des === "Net Salary" ? (
+                        <span className=" text-[#007AFF]">{item.number}</span>
+                      ) : item.des === "Deductions" ? (
+                        <span className="text-[#DC2626]">{item.number}</span>
+                      ) : (
+                        <span className="text-[#1C1C1C]">{item.number}</span>
+                      )}
+                    </span>
+                  </div>
 
-                </span>
-
-               
+                  {/* RIGHT ICON / GIF */}
+                  <div className="flex items-center justify-center w-16 h-16">
+                    <img
+                      src={item.gif}
+                      alt="student"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
               </div>
-
-              {/* RIGHT ICON / GIF */}
-              <div className="flex items-center justify-center w-16 h-16">
-                <img
-                  src={item.gif}
-                  alt="student"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
-      
-      {/* ===== TOP SECTION ===== */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Salary Components */}
-        <div className="bg-white rounded-xl shadow-sm p-5">
-            <div className="flex items-center gap-2 mb-6">
+
+          {/* ===== TOP SECTION ===== */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Salary Components */}
+            <div className="bg-white rounded-xl shadow-sm p-5">
+              <div className="flex items-center gap-2 mb-6">
                 <MdCurrencyRupee size={18} className="text-[#009638]" />
                 <h3 className="font-semibold">Salary Components</h3>
               </div>
-        
 
-          <div className="space-y-3">
-            {salaryComponents.map((item, i) => (
-              <div
-                key={i}
-                className="flex justify-between bg-[#F3F5FF] px-4 py-2 rounded-md text-sm"
-              >
-                <span>{item.label}</span>
-                <span className="font-medium">{item.amount}</span>
+              <div className="space-y-3">
+                {salaryComponents.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex justify-between bg-[#F3F5FF] px-4 py-2 rounded-md text-sm"
+                  >
+                    <span>{item.label}</span>
+                    <span className="font-medium">{item.amount}</span>
+                  </div>
+                ))}
+
+                <div className="flex justify-between bg-green-200 px-4 py-2 rounded-md text-sm">
+                  <span>Total Gross</span>
+                  <span className=" font-semibold">₹ 60,500</span>
+                </div>
               </div>
-            ))}
-
-            <div className="flex justify-between bg-green-200 px-4 py-2 rounded-md text-sm">
-              <span>Total Gross</span>
-              <span className=" font-semibold">₹ 60,500</span>
             </div>
-          </div>
-        </div>
 
-        {/* Deductions */}
-        <div className="bg-white rounded-xl shadow-sm p-5">
-            <div className="flex items-center gap-2 mb-6">
+            {/* Deductions */}
+            <div className="bg-white rounded-xl shadow-sm p-5">
+              <div className="flex items-center gap-2 mb-6">
                 <MdCurrencyRupee size={18} className="text-[#DC2626]" />
                 <h3 className="font-semibold"> Deductions</h3>
               </div>
-          <div className="space-y-3">
-            {deductions.map((item, i) => (
-              <div
-                key={i}
-                className="flex justify-between bg-[#F3F5FF] px-4 py-2 rounded-md text-sm"
-              >
-                <span>{item.label}</span>
-                <span className="font-medium">{item.amount}</span>
+              <div className="space-y-3">
+                {deductions.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex justify-between bg-[#F3F5FF] px-4 py-2 rounded-md text-sm"
+                  >
+                    <span>{item.label}</span>
+                    <span className="font-medium">{item.amount}</span>
+                  </div>
+                ))}
+
+                <div className="flex justify-between bg-red-200 px-4 py-2 rounded-md text-sm font-semibold text-red-600">
+                  <span>Total Deductions</span>
+                  <span>₹ 10,900</span>
+                </div>
+
+                <div className="flex justify-between bg-indigo-50 px-4 py-2 rounded-md text-sm font-semibold text-blue-600">
+                  <span>Net Salary</span>
+                  <span>₹ 49,600</span>
+                </div>
               </div>
-            ))}
-
-            <div className="flex justify-between bg-red-200 px-4 py-2 rounded-md text-sm font-semibold text-red-600">
-              <span>Total Deductions</span>
-              <span>₹ 10,900</span>
-            </div>
-
-            <div className="flex justify-between bg-indigo-50 px-4 py-2 rounded-md text-sm font-semibold text-blue-600">
-              <span>Net Salary</span>
-              <span>₹ 49,600</span>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* ===== SALARY PAYMENT HISTORY ===== */}
-      <div className="bg-white rounded-xl shadow-sm p-5">
-        <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center gap-2 mb-6">
+          {/* ===== SALARY PAYMENT HISTORY ===== */}
+          <div className="bg-white rounded-xl shadow-sm p-5">
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center gap-2 mb-6">
                 <RiHistoryFill size={18} className="text-[#696969]" />
                 <h3 className="font-semibold">Salary Payment History</h3>
               </div>
-          
-          <select className="border border-[#EFF2F2] rounded-md px-3 py-1 text-sm text-[#696969]">
-            <option>2025-26</option>
-          </select>
-        </div>
 
-        <div className="overflow-x-auto border text-sm border-gray-200 rounded-lg ">
-          <table className="w-full  overflow-hidden">
-            <thead className="bg-gray-100 text-left ">
-              <tr>
-                <th className="px-4 py-2  font-medium">Month</th>
-                <th className="px-4 py-2 font-medium">Gross</th>
-                <th className="px-4 py-2 font-medium">Net Salary</th>
-                <th className="px-4 py-2 font-medium">Deductions</th>
-                <th className="px-4 py-2 font-medium">Status</th>
-                <th className="px-4 py-2 font-medium">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paymentHistory.map((row, i) => (
-                <tr key={i} className="border-t border-gray-200 hover:bg-gray-50">
-                  <td className="px-4 py-2 font-medium">{row.month}</td>
-                  <td className="px-4 py-2">{row.gross}</td>
-                  <td className="px-4 py-2 text-green-600">
-                    {row.net}
-                  </td>
-                  <td className="px-4 py-2 text-red-600">
-                    {row.deduction}
-                  </td>
-                  <td className="px-4 py-2">
-                    <span className="inline-flex items-center gap-1.5 bg-[#D4EDDA] text-[#009638] px-3 py-1 rounded-full text-xs font-semibold">
-  <SiTicktick className="text-sm" />
-  Paid
-</span>
+              <select className="border border-[#EFF2F2] rounded-md px-3 py-1 text-sm text-[#696969]">
+                <option>2025-26</option>
+              </select>
+            </div>
 
-                  </td>
-                  <td className="px-4 py-2">{row.date}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <div className="overflow-x-auto border text-sm border-gray-200 rounded-lg ">
+              <table className="w-full  overflow-hidden">
+                <thead className="bg-gray-100 text-left ">
+                  <tr>
+                    <th className="px-4 py-2  font-medium">Month</th>
+                    <th className="px-4 py-2 font-medium">Gross</th>
+                    <th className="px-4 py-2 font-medium">Net Salary</th>
+                    <th className="px-4 py-2 font-medium">Deductions</th>
+                    <th className="px-4 py-2 font-medium">Status</th>
+                    <th className="px-4 py-2 font-medium">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {paymentHistory.map((row, i) => (
+                    <tr
+                      key={i}
+                      className="border-t border-gray-200 hover:bg-gray-50"
+                    >
+                      <td className="px-4 py-2 font-medium">{row.month}</td>
+                      <td className="px-4 py-2">{row.gross}</td>
+                      <td className="px-4 py-2 text-green-600">{row.net}</td>
+                      <td className="px-4 py-2 text-red-600">
+                        {row.deduction}
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="inline-flex items-center gap-1.5 bg-[#D4EDDA] text-[#009638] px-3 py-1 rounded-full text-xs font-semibold">
+                          <SiTicktick className="text-sm" />
+                          Paid
+                        </span>
+                      </td>
+                      <td className="px-4 py-2">{row.date}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-      </div>
-   
-      </div>
       );
 
     case "System Access":
       const LoginActivity = [
-  {
-    date: "2024-12-04",
-    time: "08:30 AM",
-    device: "Desktop",
-  },
-  {
-    date: "2024-12-04",
-    time: "08:30 AM",
-    device: "Desktop",
-  },
-  {
-    date: "2024-12-04",
-    time: "08:30 AM",
-    device: "Desktop",
-  },
-  
-];
+        {
+          date: "2024-12-04",
+          time: "08:30 AM",
+          device: "Desktop",
+        },
+        {
+          date: "2024-12-04",
+          time: "08:30 AM",
+          device: "Desktop",
+        },
+        {
+          date: "2024-12-04",
+          time: "08:30 AM",
+          device: "Desktop",
+        },
+      ];
       return (
-      <div className="min-h-screen space-y-6 mt-4">
-      <div className="bg-white rounded-xl shadow-sm p-6">
-      {/* Header */}
-      <div className="flex items-center gap-2 mb-6">
-        <FaRegUserCircle size={18} className="text-[#696969]" />
-        <h3 className="font-semibold">Login Details</h3>
-      </div>
+        <div className="min-h-screen space-y-6 mt-4">
+          <div className="bg-white rounded-xl shadow-sm p-6">
+            {/* Header */}
+            <div className="flex items-center gap-2 mb-6">
+              <FaRegUserCircle size={18} className="text-[#696969]" />
+              <h3 className="font-semibold">Login Details</h3>
+            </div>
 
-      {/* Inputs */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5 text-sm">
-        {/* Username */}
-        <div>
-          <p className="text-[#8A8A8A] mb-1">Username</p>
-          <div className="flex items-center gap-2 bg-[#EDF0FA] px-3 py-2.5 rounded-md">
-            <CiUser size={17} className="text-[#696969]" />
-            <input
-              type="text"
-              value="michael.chen@school.com"
-              readOnly
-              className="bg-transparent outline-none w-full text-[#1C1C1C]"
-            />
-          </div>
-        </div>
-
-        {/* Password */}
-        <div>
-          <p className="text-[#8A8A8A] mb-1">Password</p>
-          <div className="flex items-center gap-2 bg-[#EDF0FA] px-3 py-2.5 rounded-md">
-            <CiLock size={17} className="text-[#696969]" />
-            <input
-              type="password"
-              value="**************"
-              readOnly
-              className="bg-transparent outline-none w-full text-[#1C1C1C]"
-            />
-            <HiOutlineEye
-              size={16}
-              className="text-[#696969] cursor-pointer"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-end mt-6">
-        <button className="flex items-center justify-center gap-2 bg-[#118AB2] text-white px-6 py-2.5 rounded-md text-sm font-medium hover:opacity-90 transition">
-          <FiKey />
-          Reset Password
-        </button>
-
-        <button className="flex items-center justify-center gap-2 border border-gray-300 px-6 py-2.5 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
-          <FiSend />
-          Send Reset Password Link
-        </button>
-      </div>
-    </div>
-        <div className="bg-white rounded-xl shadow-sm p-5 ">
-          <div className="flex items-center gap-2 mb-6">
-                <MdOutlineSecurity size={18} className="text-[#696969]" />
-                <h3 className="font-semibold">System Permission</h3>
+            {/* Inputs */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5 text-sm">
+              {/* Username */}
+              <div>
+                <p className="text-[#8A8A8A] mb-1">Username</p>
+                <div className="flex items-center gap-2 bg-[#EDF0FA] px-3 py-2.5 rounded-md">
+                  <CiUser size={17} className="text-[#696969]" />
+                  <input
+                    type="text"
+                    value="michael.chen@school.com"
+                    // readOnly
+                    className="bg-transparent outline-none w-full text-[#1C1C1C]"
+                  />
+                </div>
               </div>
-          
-          <div className="grid grid-cols-1 sm:grid-col-1 lg:grid-cols-2 gap-x-6 text-sm gap-y-4">
-            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
-              
-               <SiTicktick size={16} className="text-[#009638]" /> View Student Records
-               </div>
-            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
-              
-               <SiTicktick size={16} className="text-[#009638]" /> Update Attendance
-               </div>
-            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
-              
-               <SiTicktick size={16} className="text-[#009638]" /> Enter Marks
-               </div>
-            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
-              
-               <SiTicktick size={16} className="text-[#009638]" /> Generate Reports
-               </div>
-            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
-              
-               <SiTicktick size={16} className="text-[#009638]" /> Access Library
-               </div>
-            <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
-              
-               <SiTicktick size={16} className="text-[#009638]" /> View Timetable
-               </div>
-            
+
+              {/* Password */}
+              <div>
+                <p className="text-[#8A8A8A] mb-1">Password</p>
+                <div className="flex items-center gap-2 bg-[#EDF0FA] px-3 py-2.5 rounded-md">
+                  <CiLock size={17} className="text-[#696969]" />
+                  <input
+                    type="password"
+                    value="**************"
+                    // readOnly
+                    className="bg-transparent outline-none w-full text-[#1C1C1C]"
+                  />
+                  <HiOutlineEye
+                    size={16}
+                    className="text-[#696969] cursor-pointer"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-end mt-6">
+              <button className="flex items-center justify-center gap-2 bg-[#118AB2] text-white px-6 py-2.5 rounded-md text-sm font-medium hover:opacity-90 transition">
+                <FiKey />
+                Reset Password
+              </button>
+
+              <button className="flex items-center justify-center gap-2 border border-gray-300 px-6 py-2.5 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+                <FiSend />
+                Send Reset Password Link
+              </button>
+            </div>
           </div>
-        </div>
-        
-        <div className="bg-white rounded-xl shadow-sm p-5 ">
-        <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center gap-2 mb-2">
+          <div className="bg-white rounded-xl shadow-sm p-5 ">
+            <div className="flex items-center gap-2 mb-6">
+              <MdOutlineSecurity size={18} className="text-[#696969]" />
+              <h3 className="font-semibold">System Permission</h3>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-col-1 lg:grid-cols-2 gap-x-6 text-sm gap-y-4">
+              <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+                <SiTicktick size={16} className="text-[#009638]" /> View Student
+                Records
+              </div>
+              <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+                <SiTicktick size={16} className="text-[#009638]" /> Update
+                Attendance
+              </div>
+              <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+                <SiTicktick size={16} className="text-[#009638]" /> Enter Marks
+              </div>
+              <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+                <SiTicktick size={16} className="text-[#009638]" /> Generate
+                Reports
+              </div>
+              <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+                <SiTicktick size={16} className="text-[#009638]" /> Access
+                Library
+              </div>
+              <div className="bg-[#EBFFF3] text-[#1C1C1C] px-2 py-2 rounded-md inline-flex items-center gap-2.5">
+                <SiTicktick size={16} className="text-[#009638]" /> View
+                Timetable
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-5 ">
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center gap-2 mb-2">
                 <RiHistoryFill size={18} className="text-[#696969]" />
                 <h3 className="font-semibold">Recent Login Activity</h3>
               </div>
-          
-          
-        </div>
+            </div>
 
-        <div className="overflow-x-auto border text-sm border-gray-200 rounded-lg ">
-          <table className="w-full  overflow-hidden">
-            <thead className="bg-gray-100 text-left ">
-              <tr>
-                <th className="px-4 py-2  font-medium">Date</th>
-                <th className="px-4 py-2 font-medium">Time</th>
-                <th className="px-4 py-2 font-medium">Device</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              {LoginActivity.map((row, i) => (
-                <tr key={i} className="border-t border-gray-200 hover:bg-gray-50">
-                  <td className="px-4 py-2">{row.date}</td>
-                  <td className="px-4 py-2">{row.time}</td>
-                  <td className="px-4 py-2">
-                    {row.device}
-                  </td>
-                 
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <div className="overflow-x-auto border text-sm border-gray-200 rounded-lg ">
+              <table className="w-full  overflow-hidden">
+                <thead className="bg-gray-100 text-left ">
+                  <tr>
+                    <th className="px-4 py-2  font-medium">Date</th>
+                    <th className="px-4 py-2 font-medium">Time</th>
+                    <th className="px-4 py-2 font-medium">Device</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {LoginActivity.map((row, i) => (
+                    <tr
+                      key={i}
+                      className="border-t border-gray-200 hover:bg-gray-50"
+                    >
+                      <td className="px-4 py-2">{row.date}</td>
+                      <td className="px-4 py-2">{row.time}</td>
+                      <td className="px-4 py-2">{row.device}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>);
+      );
 
     default:
       return null;
@@ -1293,13 +1302,22 @@ function StaffDetails() {
               {/* NAME + STATUS */}
               <div className="flex flex-wrap gap-4 items-center">
                 <span className="text-lg font-semibold">Anushka Sharma</span>
+                <div class="flex items-center justify-center p-1.5">
+                  <div class="relative flex h-[20px] w-[60px] items-center justify-center">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-[25px] bg-[#009638] opacity-80"></span>
 
-                <div className="relative inline-flex items-center px-3 py-1 rounded-full overflow-hidden">
-                  <span className="absolute inset-0 bg-[#009638] rounded-full animate-spread"></span>
+                    <span class="relative inline-flex h-full w-full items-center justify-center rounded-[25px] bg-[#009638] px-3 text-sm font-medium text-white">
+                      Active
+                    </span>
+                  </div>
+                </div>
+
+                {/* <div className="relative inline-flex items-center px-3 py-1 rounded-full overflow-hidden">
+                  <span className="absolute inset-0 bg-[#009638] rounded-full animate-ping opacity-80"></span>
                   <span className="relative z-10 bg-[#009638] text-white text-sm font-semibold rounded-full px-3">
                     Active
                   </span>
-                </div>
+                </div> */}
               </div>
 
               {/* BASIC INFO */}
