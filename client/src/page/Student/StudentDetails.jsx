@@ -1020,7 +1020,7 @@ function DetailsContent({ active }) {
                       <span className="font-medium">{item.documentName}</span>
 
                       <span className="text-[#696969] text-xs sm:text-sm">
-                        uploaded: {item.date} • {item.fileType} •{" "}
+                        uploaded: {item.date} • {item.fileType} •
                         {item.fileSize} KB
                         <span className="ml-2 px-1.5 py-0.5 rounded-md bg-[#D4EDDA] text-[#009638] text-xs">
                           verified
