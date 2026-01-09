@@ -97,13 +97,13 @@ const AddStudent = () => {
           <h2 className="text-lg font-semibold border-l-[3px] border-[#00C950] pl-2">
             1. Student Information
           </h2>
-          <div className="flex gap-4 w-full">
-            <div className="flex flex-col gap-1 w-full">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6 gap-5">
+            <div className="flex flex-col gap-1 ">
               <label className="text-sm text-[#696969]">
                 Application Number
               </label>
 
-              <div className="flex gap-4 items-center w-[125]">
+              <div className="flex gap-4 items-cente">
                 <input
                   type="text"
                   placeholder="Enter Application Number"
@@ -115,6 +115,8 @@ const AddStudent = () => {
                 </button>
               </div>
             </div>
+            <div></div>
+            <div></div>
           </div>
 
           <span className="text-[#696969] font-medium ">Profile Photo</span>
