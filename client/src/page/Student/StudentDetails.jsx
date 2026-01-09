@@ -27,6 +27,7 @@ import { CiStar } from "react-icons/ci";
 import { FaClipboardList } from "react-icons/fa";
 import { LuDownload } from "react-icons/lu";
 import { SiTicktick } from "react-icons/si";
+import { FiPrinter } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 /** <------------------------------------ images -------------------------------> */
@@ -2157,6 +2158,39 @@ function DetailsContent({ active }) {
         Failed: "bg-[#F8D7DA] text-[#C92131]",
       };
 
+      const upcomigInstallmentPayment = [
+        {
+          id: 1,
+          date: "2026-05-06",
+          installment: "installment 1",
+          month: "May",
+          amount: "3000",
+          paymentmethod: "UPI",
+          paidDate: "2025-10-05",
+          status: "Success",
+        },
+        {
+          id: 2,
+          date: "2026-05-06",
+          installment: "installment 1",
+          month: "May",
+          amount: "3000",
+          paymentmethod: "UPI",
+          paidDate: "2025-10-05",
+          status: "Success",
+        },
+        {
+          id: 3,
+          date: "2026-05-06",
+          installment: "installment 1",
+          month: "May",
+          amount: "3000",
+          paymentmethod: "UPI",
+          paidDate: "2025-10-05",
+          status: "Success",
+        },
+      ];
+
       return (
         <div>
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:grid-col-3 gap-x-3 gap-y-3">
@@ -2341,7 +2375,8 @@ function DetailsContent({ active }) {
               </div>
             </div>
           </div>
-
+                  
+          {/* <--------------------------------- Month Wise Payments -----------------------------------------> */}
           <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
@@ -2481,6 +2516,7 @@ function DetailsContent({ active }) {
             ))}
           </div>
 
+          {/* <--------------------------------- transaction History -----------------------------------------> */}
           <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
             <div className="flex flex-col">
               <span className="text-[#000000] text-[18px] font-semibold">
@@ -2491,85 +2527,189 @@ function DetailsContent({ active }) {
               </span>
             </div>
 
-            <div className="p-4">
-              <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg">
-                <table className="w-full">
-                  <thead className="bg-[#F5F7F7]">
-                    <tr>
-                      <th className="px-4 py-3 text-left text-sm font-semibold">
-                        <div className="flex items-center gap-2">
-                          <span>Date</span>
-                        </div>
-                      </th>
+            <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg mt-4">
+              <table className="w-full">
+                <thead className="bg-[#F5F7F7]">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      <div className="flex items-center gap-2">
+                        <span>Date</span>
+                      </div>
+                    </th>
 
-                      <th className="px-4 py-3 text-left text-sm font-semibold">
-                        <div className="flex items-center gap-2">
-                          <span>Transaction ID</span>
-                        </div>
-                      </th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      <div className="flex items-center gap-2">
+                        <span>Transaction ID</span>
+                      </div>
+                    </th>
 
-                      <th className="px-4 py-3 text-left text-sm font-semibold">
-                        Month
-                      </th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Month
+                    </th>
 
-                      <th className="px-4 py-3 text-left text-sm font-semibold">
-                        Amount
-                      </th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Amount
+                    </th>
 
-                      <th className="px-4 py-3 text-left text-sm font-semibold">
-                        Payment Method
-                      </th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Payment Method
+                    </th>
 
-                      <th className="px-4 py-3 text-left text-sm font-semibold">
-                        Recipt No.
-                      </th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Recipt No.
+                    </th>
 
-                      <th className="px-4 py-3 text-left text-sm font-semibold">
-                        Paid By
-                      </th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Paid By
+                    </th>
 
-                      <th className="px-4 py-3 text-left text-sm font-semibold">
-                        Status
-                      </th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Status
+                    </th>
 
-                      <th className="px-4 py-3 text-left text-sm font-semibold">
-                        Action
-                      </th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {paymentHistory.map((item, id) => (
+                    <tr
+                      key={id}
+                      className="border-b border-[#e6e6e6] hover:bg-[#F9FAFC]"
+                    >
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.date}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.transactionId}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.month}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.amount}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.paymentmethod}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.receiptNo}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.paidBy}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        <span
+                          className={`inline-flex items-center gap-1 px-3 py-1 rounded text-xs font-semibold ${
+                            paymentStatus[item.status] ||
+                            "bg-gray-100 text-gray-600"
+                          }`}
+                        >
+                          • {item.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
+                        <span>
+                          <LuDownload size={24} className="text-[#9C9C9C]" />
+                        </span>
+                        <span>
+                          <FiPrinter size={24} className="text-[#9C9C9C]" />
+                        </span>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {paymentHistory.map((item, id) => (
-                      <tr key={id} className="border-b border-[#e6e6e6]">
-                        <td className="px-4 py-3 text-left text-sm font-semibold">
-                          {item.date}
-                        </td>
-                        <td className="px-4 py-3 text-left text-sm font-semibold">
-                          {item.transactionId}
-                        </td>
-                        <td className="px-4 py-3 text-left text-sm font-semibold">
-                          {item.month}
-                        </td>
-                        <td className="px-4 py-3 text-left text-sm font-semibold">
-                          {item.amount}
-                        </td>
-                        <td className="px-4 py-3 text-left text-sm font-semibold">
-                          {item.paymentmethod}
-                        </td>
-                        <td className="px-4 py-3 text-left text-sm font-semibold">
-                          {item.receiptNo}
-                        </td>
-                        <td className="px-4 py-3 text-left text-sm font-semibold">
-                          {item.paidBy}
-                        </td>
-                        <td className="px-4 py-3 text-left text-sm font-semibold">
-                          <span className={`inline-flex items-center gap-1 px-3 py-1 rounded text-xs font-semibold ${paymentStatus[item.status]|| "bg-gray-100 text-gray-600"}`}>• {item.status}</span>
-                        </td>
-                        <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 "></td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* <--------------------------------- Installment Wise Payments ----------------------------------> */}
+          <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+            <div className="flex flex-col">
+              <span className="text-[#000000] text-[18px] font-semibold">
+                Installment Plan
+              </span>
+              <span className="text-[#9C9C9C] text-[16px] font-normal">
+                Upcoming & Completed Installment Payments
+              </span>
+            </div>
+            <div className="w-full overflow-x-auto border border-[#e6e6e6] rounded-lg mt-4">
+              <table className="w-full">
+                <thead className="bg-[#F5F7F7]">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      <div className="flex items-center gap-2">
+                        <span>Date</span>
+                      </div>
+                    </th>
+
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      <div className="flex items-center gap-2">
+                        <span>Installment</span>
+                      </div>
+                    </th>
+
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Month
+                    </th>
+
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Amount
+                    </th>
+
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Payment Method
+                    </th>
+
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Paid Date
+                    </th>
+
+                    <th className="px-4 py-3 text-left text-sm font-semibold">
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {upcomigInstallmentPayment.map((item, id) => (
+                    <tr
+                      key={id}
+                      className="border-b border-[#e6e6e6] hover:bg-[#F9FAFC]"
+                    >
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.date}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.installment}
+                      </td>
+
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.month}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.amount}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.paymentmethod}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        {item.paidDate}
+                      </td>
+                      <td className="px-4 py-3 text-left text-sm font-semibold">
+                        <span
+                          className={`inline-flex items-center gap-1 px-3 py-1 rounded text-xs font-semibold ${
+                            paymentStatus[item.status] ||
+                            "bg-gray-100 text-gray-600"
+                          }`}
+                        >
+                          • {item.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
