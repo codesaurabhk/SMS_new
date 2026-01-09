@@ -5,52 +5,7 @@ import { GoArrowRight } from "react-icons/go";
 import {  useNavigate } from "react-router-dom";
 
 
-/* =======================
-   Reusable Input Field
-======================= */
-const InputField = ({ label, required, placeholder, type = "text" }) => (
-  <div className="flex flex-col gap-1">
-    <label className="text-sm text-[#696969]">
-      {label} {required && <span className="text-red-500">*</span>}
-    </label>
-    <input
-      type={type}
-      placeholder={placeholder}
-      className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
-    />
-  </div>
-);
 
-/* =======================
-   Reusable Select Field
-======================= */
-const SelectField = ({ label, required, options }) => (
-  <div className="flex flex-col gap-1">
-    <label className="text-sm text-[#696969]">
-      {label} {required && <span className="text-red-500">*</span>}
-    </label>
-    <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
-      <option value="">Select</option>
-      {options.map((op, i) => (
-        <option key={i}>{op}</option>
-      ))}
-    </select>
-  </div>
-);
-
-/* =======================
-   Upload Box
-======================= */
-const UploadBox = ({ title }) => (
-  <div className="border-2 border-dashed border-[#BDEBD3] rounded-xl p-6 flex flex-col items-center justify-center text-center gap-2">
-    <span className="text-sm font-medium text-[#1C1C1C]">{title}</span>
-    <p className="text-xs text-[#696969]">
-      Drag & Drop to upload or{" "}
-      <span className="text-[#00C950] cursor-pointer">Browse</span>
-    </p>
-    <p className="text-[11px] text-[#9A9A9A]">Only PDF file allowed</p>
-  </div>
-);
 
 /* =======================
    Main Component
