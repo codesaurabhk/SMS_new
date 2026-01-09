@@ -237,10 +237,14 @@ const Student = () => {
               Bulk Import
             </button>
 
-            <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
+            <div>
+              <Link to='/AddStudent'>
+              <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
               <GrUserAdd className="text-white" />
               Add Student
             </button>
+            </Link>
+            </div>
           </div>
         </div>
 
