@@ -183,7 +183,7 @@ const absentStaff = [
     img: everdeen,
     reason: "No information",
     status: "Absent",
-    role : "Teacher",
+    role: "Teacher",
 
   },
   {
@@ -192,7 +192,7 @@ const absentStaff = [
     img: everdeen,
     reason: "No information",
     status: "Absent",
-    role : "Receptionist",
+    role: "Receptionist",
 
   },
   {
@@ -201,7 +201,7 @@ const absentStaff = [
     img: meave,
     reason: "No information",
     status: "Absent",
-    role : "Teacher",
+    role: "Teacher",
 
   },
   {
@@ -210,7 +210,7 @@ const absentStaff = [
     img: meave,
     reason: "No information",
     status: "Absent",
-    role : "Teacher",
+    role: "Teacher",
 
   },
   {
@@ -219,16 +219,16 @@ const absentStaff = [
     img: meave,
     reason: "No information",
     status: "Absent",
-    role : "Librarian",
+    role: "Librarian",
 
   },
   {
     staffname: "Meavea Johnson",
     empId: "EMP654321",
     img: meave,
-    reason: "No information",
+    reason: "Sick Leave",
     status: "Leave",
-    role : "Teacher",
+    role: "Teacher",
 
   },
 
@@ -255,14 +255,6 @@ const StaffAttendance = () => {
                 <span className="font-bold text-[28px] text-[#1c1c1c] mt-2 leading-none">
                   {item.number}
                 </span>
-
-                {/* <p className="mt-3 flex items-center gap-2 text-[14px] font-semibold ">
-                 
-                  <span className={`${item.text.includes("last month")
-                      ? "text-[#009638]" 
-                      :  "text-[#696969]"
-                      }`} >{item.text}</span>
-                </p> */}
                 <p className="mt-4 text-[14px] font-medium text-[#6B7280]">
                   {item.highlight && (
                     <span className="text-[#009638] font-semibold mr-1">
@@ -487,36 +479,33 @@ const StaffAttendance = () => {
                         {/* Glow layer */}
                         <span
                           className={`absolute inline-flex h-full w-full rounded-[25px] opacity-20
-        ${
-          item.status === "Present"
-            ? "bg-[#009638]"
-            : item.status === "Absent"
-            ? "bg-[#DC3545]"
-            : "bg-[#F4A100]"
-        }`}
+        ${item.status === "Present"
+                              ? "bg-[#009638]"
+                              : item.status === "Absent"
+                                ? "bg-[#DC3545]"
+                                : "bg-[#F4A100]"
+                            }`}
                         ></span>
 
                         {/* Main pill */}
                         <span
                           className={`relative inline-flex h-full w-full items-center justify-center gap-2 rounded-[25px] px-3 text-sm font-medium
-        ${
-          item.status === "Present"
-            ? "bg-[#D4EDDA] text-[#009638]"
-            : item.status === "Absent"
-            ? "bg-[#F8D7DA] text-[#C92131]"
-            : "bg-[#FFEDB4] text-[#A14700]"
-        }`}
+        ${item.status === "Present"
+                              ? "bg-[#D4EDDA] text-[#009638]"
+                              : item.status === "Absent"
+                                ? "bg-[#F8D7DA] text-[#C92131]"
+                                : "bg-[#FFEDB4] text-[#A14700]"
+                            }`}
                         >
                           {/* Dot */}
                           <span
                             className={`h-2 w-2 rounded-full
-          ${
-            item.status === "Present"
-              ? "bg-[#009638]"
-              : item.status === "Absent"
-              ? "bg-[#DC3545]"
-              : "bg-[#F4A100]"
-          }`}
+          ${item.status === "Present"
+                                ? "bg-[#009638]"
+                                : item.status === "Absent"
+                                  ? "bg-[#DC3545]"
+                                  : "bg-[#F4A100]"
+                              }`}
                           ></span>
 
                           {item.status}
@@ -546,59 +535,63 @@ const StaffAttendance = () => {
         <Pagination />
       </div>
 
-      <div  className="box-shadow mt-3 bg-white rounded-xl">
-           <div className="flex flex-col p-4">
-              <span className="text-[16px] md:text-[18px] text-[#1c1c1c] font-semibold">
-                Today's Absent Staff
-              </span>        
-            </div> 
-            <div className="grid grid-cols-1 lg:grid-cols-2 mx-3">
-             {absentStaff.map((item, index) =>(
+      <div className="box-shadow mt-3 bg-white rounded-xl">
+        <div className="flex flex-col p-4">
+          <span className="text-[16px] md:text-[18px] text-[#1c1c1c] font-semibold">
+            Today's Absent Staff
+          </span>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 mx-3">
+          {absentStaff.map((item, index) => (
             <div key={index} className="m-1.5 px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center border border-[#E6E6E6] rounded-sm">
-                <div className="flex justify-between  w-full">
-                      <div className="flex gap-4">
-                        <div className="w-13 h-13 rounded-full overflow-hidden">
-                          <img
-                            src={item.img}
-                            alt=""
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
+              <div className="flex justify-between  w-full">
+                <div className="flex gap-4">
+                  <div className="w-13 h-13 rounded-full overflow-hidden">
+                    <img
+                      src={item.img}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
-                        {/* Name + ID */}
-                        <div className="flex flex-col leading-tight">
-                          <div className="flex items-center gap-3">
-                          <span className="text-[#12516E] font-semibold">
-                            {item.staffname }
-                            {/* Meavea Johnson */}
-                          </span>
-                          <div className=" border-[#007AFF] text-xs text-[#007AFF] border-2 rounded-sm px-1">
-                            {/* Teacher */}
-                            {item.role}
-                            </div>
-                          </div>
-                          <span className="text-sm text-[#9c9c9c] font-normal">
-                            {item.empId}
-                            {/* EMP654321 */}
-                          </span>
-                          <span className="font-normal">
-                           <span className="text-[#696969]">Reason- </span>  
-                            {/* No information */}
-                           <span className="text-[#00ADAD]"> {item.reason}</span> 
-                          </span>
-                        </div>
+                  {/* Name + ID */}
+                  <div className="flex flex-col leading-tight">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[#12516E] font-semibold">
+                        {item.staffname}
+                        {/* Meavea Johnson */}
+                      </span>
+                      <div
+                        className={`  border-2 rounded-sm px-1 text-xs ${item.role === "Teacher" ? "border-[#007AFF] text-[#007AFF]" : item.role === "Receptionist" ? "border-[#A8038D] text-[#A8038D]" : item.role === "Librarian" ? "border-[#4BA803] text-[#4BA803]" : "border-[#007AFF] text-[#007AFF]"}  `}
+                      >
+                        {/* Teacher */}
+                        {item.role}
                       </div>
-                    <div > <span className="bg-[#DC26261A] text-[#DC2626] font-normal rounded-sm px-2 py-0.5">
-                      {/* Absent */}
-                      {item.status}
-                      </span> </div>
+                    </div>
+                    <span className="text-sm text-[#9c9c9c] font-normal">
+                      {item.empId}
+                      {/* EMP654321 */}
+                    </span>
+                    <span className="font-normal">
+                      <span className="text-[#696969]">Reason- </span>
+                      {/* No information */}
+                      <span
+                        className={`${item.reason === "Sick Leave" ? "text-[#F97316] " : "text-[#00ADAD]"} `}
+                      > {item.reason}</span>
+                    </span>
+                  </div>
+                </div>
+                <div > <span className={` font-normal rounded-sm px-2 py-0.5 ${item.status === "Leave" ? "bg-[#F973161A] text-[#F97316]" : "bg-[#DC26261A] text-[#DC2626]"} `}>
+                  {/* Absent */}
+                  {item.status}
+                </span> </div>
+              </div>
+
             </div>
-            
-            </div>
-              ))}
-            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </div >
   );
 };
 
