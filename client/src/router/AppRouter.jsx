@@ -48,6 +48,7 @@ import AddStaff from "../page/Staffs/AddStaff.jsx";
 import EditStaff from "../page/Staffs/EditStaff.jsx";
 import StaffDetails from "../page/Staffs/StaffDetails.jsx";
 import AddStudent from "../page/Student/AddStudent.jsx";
+import EditStudent from "../page/Student/EditStudent.jsx";
 
 
 
@@ -73,6 +74,8 @@ function AppRouter() {
           <Route path="manage-login" element={<ManageLogin/>} />
           <Route path="promote" element={<Promote/>} />
           <Route path="AddStudent" element={<AddStudent />} />
+          <Route path="EditStudent" element={<EditStudent />} />
+
 
            {/* // staffs  */}
           <Route path="all-staffs" element={<AllStaff/>} />

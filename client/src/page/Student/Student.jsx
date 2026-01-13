@@ -373,7 +373,7 @@ const Student = () => {
               
                 <tbody>
                   {studentData.map((item, index) => (
-                  <tr key={index} onClick={() => Navigate("/StudentDetails")} className="border-b border-[#e6e6e6]">
+                  <tr key={index} className="border-b border-[#e6e6e6]">
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
                       <input type="checkbox" />
                       <Link to='/StudentDetails'>
@@ -421,7 +421,7 @@ const Student = () => {
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
                       <Link to='/StudentDetails'><CgProfile className="w-5 h-5 text-[#9C9C9C]" /></Link>
-                      <FiEdit className="w-5 h-5 text-[#9C9C9C]" />
+                      <Link to='/EditStudent'><FiEdit className="w-5 h-5 text-[#9C9C9C]" /></Link>
                       <FaRegFileAlt className="w-5 h-5 text-[#9C9C9C]" />
                       <RiDeleteBin5Line className="w-5 h-5 text-[#FF4B4B]" />
                     </td>
