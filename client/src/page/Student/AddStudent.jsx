@@ -27,6 +27,7 @@ const AddStudent = () => {
   const fileInputRefs = useRef({});
   const [profilePreview, setProfilePreview] = useState(null);
   const [uploadedFiles, setUploadedFiles] = useState({});
+  const [transportOpted, setTransportOpted] = useState("no");
 
   const handleClick = (id) => {
     fileInputRefs.current[id]?.click();
@@ -1129,69 +1130,77 @@ const AddStudent = () => {
                 Transport Opted.
                 {/* <span className="text-red-500">*</span> */}
               </label>
-              <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
-                <option value="">yes</option>
-                <option value="">No</option>
-              </select>
-            </div>
-            <div></div>
-            <div></div>
-          </div>
-          <div className="grid sm:grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-5 mt-3">
-            <div className="flex flex-col gap-1">
-              <label className="text-sm text-[#696969]">
-                Assigne Route
-                {/* <span className="text-red-500">*</span> */}
-              </label>
-              <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
-                <option value="">Choose Route</option>
-              </select>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-sm text-[#696969]">
-                Bus Stop
-                {/* <span className="text-red-500">*</span> */}
-              </label>
-              <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
-                <option value="">Choose Bus Stop</option>
-              </select>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-sm text-[#696969]">
-                Bus Number / Vechile No.
-                {/* <span className="text-red-500">*</span> */}
-              </label>
-              <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
-                <option value="">Choose Bus Number / Vechile No.</option>
-              </select>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-sm text-[#696969]">
-                Driver name
-                {/* <span className="text-red-500">*</span> */}
-              </label>
-              <input
-                type="text"
-                placeholder="Driver Name"
+              <select
                 className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
-              />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-sm text-[#696969]">
-                Transport Fees
-                {/* <span className="text-red-500">*</span> */}
-              </label>
-              <input
-                type="text"
-                placeholder="₹"
-                className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969] text-[#1C1C1C]"
-              />
+                value={transportOpted}
+                onChange={(e) => setTransportOpted(e.target.value)}
+              >
+                <option value="" disabled>
+                  Select
+                </option>
+                <option value="Yes">yes</option>
+                <option value="No">No</option>
+              </select>
             </div>
           </div>
+
+          {transportOpted === "Yes" && (
+            <div className="grid sm:grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-5 mt-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-sm text-[#696969]">
+                  Assigne Route
+                  {/* <span className="text-red-500">*</span> */}
+                </label>
+                <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
+                  <option value="">Choose Route</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-sm text-[#696969]">
+                  Bus Stop
+                  {/* <span className="text-red-500">*</span> */}
+                </label>
+                <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
+                  <option value="">Choose Bus Stop</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-sm text-[#696969]">
+                  Bus Number / Vechile No.
+                  {/* <span className="text-red-500">*</span> */}
+                </label>
+                <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
+                  <option value="">Choose Bus Number / Vechile No.</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-sm text-[#696969]">
+                  Driver name
+                  {/* <span className="text-red-500">*</span> */}
+                </label>
+                <input
+                  type="text"
+                  placeholder="Driver Name"
+                  className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-sm text-[#696969]">
+                  Transport Fees
+                  {/* <span className="text-red-500">*</span> */}
+                </label>
+                <input
+                  type="text"
+                  placeholder="₹"
+                  className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969] text-[#1C1C1C]"
+                />
+              </div>
+            </div>
+          )}
         </section>
 
         <section className="space-y-4">
-            <h2 className="text-lg font-semibold border-l-[3px] border-[#FF6900] pl-2">
+          <h2 className="text-lg font-semibold border-l-[3px] border-[#FF6900] pl-2">
             8. Fee & concession Details
           </h2>
 
@@ -1225,7 +1234,7 @@ const AddStudent = () => {
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-sm text-[#696969]">
-                Consession % or Amount 
+                Consession % or Amount
                 {/* <span className="text-red-500">*</span> */}
               </label>
               <input
