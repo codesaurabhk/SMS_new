@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../CSS/Style.css";
+import * as d3 from "d3";
 {
   /* <----------------------------------------------- GIF ----------------------------------------------------> */
 }
@@ -63,7 +64,7 @@ const cardData = [
 ];
 
 /* <--------------------------------------------------- student Dummy Data --------------------------------------------> */
-const staffData = [
+const staffDatas = [
   {
     staff: "Anushka Sharma",
     empId: "EMP123456",
@@ -233,10 +234,384 @@ const absentStaff = [
   },
 
 ]
+// function ExamPerformanceTrendChart() {
+//   const svgRef = useRef(null);
+//   const wrapperRef = useRef(null);
+//   const tooltipRef = useRef(null);
+//   const [width, setWidth] = useState(0);
+
+//   const data = [
+//     { exam: "UT 1", score: 55 },
+//     { exam: "UT 2", score: 75 },
+//     { exam: "Mid-Term", score: 90 },
+//     { exam: "UT 3", score: 82 },
+//     { exam: "UT 4", score: 52 },
+//     { exam: "Final", score: 98 },
+//   ];
+
+//   /* ---------------- Resize Observer ---------------- */
+//   useEffect(() => {
+//     if (!wrapperRef.current) return;
+//     const observer = new ResizeObserver((entries) => {
+//       setWidth(entries[0].contentRect.width);
+//     });
+//     observer.observe(wrapperRef.current);
+//     return () => observer.disconnect();
+//   }, []);
+
+//   /* ---------------- Draw Chart ---------------- */
+//   useEffect(() => {
+//     if (!width) return;
+
+//     const height = 300;
+//     const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+
+//     const svg = d3.select(svgRef.current);
+//     svg.selectAll("*").remove();
+//     svg.attr("width", width).attr("height", height);
+
+//     const chart = svg
+//       .append("g")
+//       .attr("transform", `translate(${margin.left},${margin.top})`);
+
+//     /* ---------------- Gradient Definition ---------------- */
+//     const defs = svg.append("defs");
+
+//     const gradient = defs
+//       .append("linearGradient")
+//       .attr("id", "area-gradient")
+//       .attr("x1", "0%")
+//       .attr("y1", "0%")
+//       .attr("x2", "0%")
+//       .attr("y2", "100%");
+
+//     gradient
+//       .append("stop")
+//       .attr("offset", "0%")
+//       .attr("stop-color", "#007AFF")
+//       .attr("stop-opacity", 0.35);
+
+//     gradient
+//       .append("stop")
+//       .attr("offset", "100%")
+//       .attr("stop-color", "#007AFF")
+//       .attr("stop-opacity", 0);
+
+//     const innerWidth = width - margin.left - margin.right;
+//     const innerHeight = height - margin.top - margin.bottom;
+
+//     const xScale = d3
+//       .scalePoint()
+//       .domain(data.map((d) => d.exam))
+//       .range([0, innerWidth])
+//       .padding(0);
+
+//     const yScale = d3
+//       .scaleLinear()
+//       .domain([0, 100])
+//       .nice()
+//       .range([innerHeight, 0]);
+
+//     /* ---------------- Grid Lines ---------------- */
+//     const grid = chart
+//       .append("g")
+//       .call(
+//         d3
+//           .axisLeft(yScale)
+//           .tickValues([0, 25, 50, 75, 100])
+//           .tickSize(-innerWidth)
+//           .tickFormat("")
+//       );
+
+//     grid
+//       .selectAll("line")
+//       .attr("stroke", "#e6e6e6")
+//       .attr("stroke-dasharray", "2 2");
+
+//     /* REMOVE top grid line (100) */
+//     grid
+//       .selectAll("line")
+//       .filter((d) => d === 100)
+//       .remove();
+
+//     /* ---------------- Y Axis (numbers only) ---------------- */
+//     chart
+//       .append("g")
+//       .attr("class", "y-axis")
+//       .call(d3.axisLeft(yScale).tickValues([0, 25, 50, 75, 100]));
+
+//     /* REMOVE Y-axis black line */
+//     chart.select(".y-axis").select(".domain").remove();
+
+//     /* 🔥 REMOVE Y-axis tick dashes (-) */
+//     chart.selectAll(".y-axis .tick line").remove();
+
+//     /* ---------------- X Axis ---------------- */
+//     chart
+//       .append("g")
+//       .attr("transform", `translate(0,${innerHeight})`)
+//       .call(d3.axisBottom(xScale));
+
+//     /* REMOVE all remaining domain lines */
+//     chart.selectAll(".domain").remove();
+
+//     chart
+//       .append("line")
+//       .attr("x1", 0)
+//       .attr("x2", innerWidth)
+//       .attr("y1", yScale(100))
+//       .attr("y2", yScale(100))
+//       .attr("stroke", "#9CA3AF")
+//       .attr("stroke-width", 1)
+//       .attr("stroke-dasharray", "2 2");
+
+//     /* ---------------- Area ---------------- */
+//     const area = d3
+//       .area()
+//       .x((d) => xScale(d.exam))
+//       .y0(innerHeight)
+//       .y1((d) => yScale(d.score))
+//       .curve(d3.curveMonotoneX);
+
+//     chart
+//       .append("path")
+//       .datum(data)
+//       .attr("fill", "url(#area-gradient)")
+//       .attr("d", area);
+
+//     /* ---------------- Line ---------------- */
+//     const line = d3
+//       .line()
+//       .x((d) => xScale(d.exam))
+//       .y((d) => yScale(d.score))
+//       .curve(d3.curveMonotoneX);
+
+//     chart
+//       .append("path")
+//       .datum(data)
+//       .attr("fill", "none")
+//       .attr("stroke", "#007AFF")
+//       .attr("stroke-width", 3)
+//       .attr("d", line);
+
+//     /* ---------------- Hover Line ---------------- */
+//     const hoverLine = chart
+//       .append("line")
+//       .attr("stroke", "#007AFF")
+//       .attr("y1", 0)
+//       .attr("y2", innerHeight)
+//       .style("opacity", 0);
+
+//     /* ---------------- Dots + Tooltip ---------------- */
+//     chart
+//       .selectAll(".dot")
+//       .data(data)
+//       .enter()
+//       .append("circle")
+//       .attr("cx", (d) => xScale(d.exam))
+//       .attr("cy", (d) => yScale(d.score))
+//       .attr("r", 6)
+//       .attr("fill", "#007AFF")
+//       .on("mouseenter", (event, d) => {
+//         const cy = yScale(d.score);
+//         hoverLine
+//           .attr("x1", xScale(d.exam))
+//           .attr("x2", xScale(d.exam))
+//           .attr("y1", cy) // ✅ start from circle
+//           .attr("y2", innerHeight)
+//           .style("opacity", 1);
+
+//         d3.select(tooltipRef.current)
+//           .style("opacity", 1)
+//           .html(`<strong>${d.exam}</strong><br/>Score: ${d.score}`);
+//       })
+//       .on("mousemove", (event) => {
+//         const bounds = wrapperRef.current.getBoundingClientRect();
+//         d3.select(tooltipRef.current)
+//           .style("left", event.clientX - bounds.left + 10 + "px")
+//           .style("top", event.clientY - bounds.top - 40 + "px");
+//       })
+//       .on("mouseleave", () => {
+//         hoverLine.style("opacity", 0);
+//         d3.select(tooltipRef.current).style("opacity", 0);
+//       });
+//   }, [width]);
+
+//   return (
+//     <div ref={wrapperRef} className="relative w-full">
+//       <svg ref={svgRef} />
+//       <div
+//         ref={tooltipRef}
+//         className="absolute bg-[#0B3142] text-white px-3 py-2 rounded text-sm pointer-events-none opacity-0"
+//       />
+//     </div>
+//   );
+// }
+const teacherData = [
+  { month: "Jan", value: 60 },
+  { month: "Feb", value: 95 },
+  { month: "Mar", value: 110 },
+  { month: "Apr", value: 100 },
+  { month: "May", value: 72 },
+  { month: "Jun", value: 115 },
+  { month: "Jul", value: 105 },
+  { month: "Aug", value: 112 },
+  { month: "Sep", value: 98 },
+  { month: "Oct", value: 108 },
+  { month: "Nov", value: 102 },
+  { month: "Dec", value: 110 },
+];
+
+const staffData = [
+  { month: "Jan", value: 45 },
+  { month: "Feb", value: 70 },
+  { month: "Mar", value: 85 },
+  { month: "Apr", value: 80 },
+  { month: "May", value: 60 },
+  { month: "Jun", value: 90 },
+  { month: "Jul", value: 88 },
+  { month: "Aug", value: 92 },
+  { month: "Sep", value: 85 },
+  { month: "Oct", value: 95 },
+  { month: "Nov", value: 90 },
+  { month: "Dec", value: 98 },
+];
+
+
+/* ======================= CHART ======================= */
+
+function AttendanceChart({ data }) {
+  const svgRef = useRef();
+  const wrapperRef = useRef();
+  const tooltipRef = useRef();
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const obs = new ResizeObserver(entries => {
+      setWidth(entries[0].contentRect.width); 
+    });
+    obs.observe(wrapperRef.current);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!width) return;
+
+    const height = 280;
+    const margin = { top: 20, right: 30, bottom: 40, left: 40 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    const svg = d3.select(svgRef.current);
+    svg.selectAll("*").remove();
+    svg.attr("width", width).attr("height", height);
+
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scalePoint().domain(data.map(d => d.month)).range([0, innerWidth]).padding(0.5);
+    const y = d3.scaleLinear().domain([0, 120]).range([innerHeight, 0]);
+
+    /* Grid */
+    g.append("g")
+  .call(
+    d3
+      .axisLeft(y)
+      .tickValues([25, 50, 100])
+      .tickSize(-innerWidth)
+      .tickFormat("")
+  )
+  .selectAll("line")
+  .attr("stroke", "#D1D5DB")   // soft grey
+  .attr("stroke-width", 1)
+  .attr("stroke-dasharray", "4 4"); // dotted
+
+
+    g.append("g").call(d3.axisLeft(y).tickValues([25, 50, 100])).select(".domain").remove();
+    g.selectAll(".tick line").remove();
+    g.append("g").attr("transform", `translate(0,${innerHeight})`).call(d3.axisBottom(x)).select(".domain").remove();
+
+    /* Gradient */ 
+    const defs = svg.append("defs");
+    const grad = defs.append("linearGradient").attr("id", "grad").attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+    grad.append("stop").attr("offset", "0%").attr("stop-color", "#00AEEF").attr("stop-opacity", 0.18);
+    grad.append("stop").attr("offset", "100%").attr("stop-color", "#00AEEF").attr("stop-opacity", 0);
+
+    /* Area */
+    const area = d3.area()
+      .x(d => x(d.month))
+      .y0(innerHeight)
+      .y1(d => y(d.value))
+      .curve(d3.curveCatmullRom.alpha(0.6));
+
+    g.append("path").datum(data).attr("fill", "url(#grad)").attr("d", area);
+
+    /* Line */
+    const line = d3.line()
+      .x(d => x(d.month))
+      .y(d => y(d.value))
+      .curve(d3.curveCatmullRom.alpha(0.6));
+
+    g.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "#00AEEF")
+      .attr("stroke-width", 2.5)
+      .attr("d", line);
+
+    /* Hover */
+    const hoverLine = g.append("line").attr("stroke", "#7DD3FC").attr("stroke-width", 1.5).attr("y1", 0).attr("y2", innerHeight).style("opacity", 0);
+
+    g.selectAll("circle")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("cx", d => x(d.month))
+      .attr("cy", d => y(d.value))
+      .attr("r", 5)
+      .attr("fill", "#00AEEF")
+      .attr("opacity", 0)
+      .style("filter", "drop-shadow(0px 0px 6px rgba(0,174,239,.7))")
+      .on("mouseenter", (e, d) => {
+        hoverLine.attr("x1", x(d.month)).attr("x2", x(d.month)).style("opacity", 1);
+        d3.select(e.target).attr("opacity", 1).attr("r", 9);
+
+        d3.select(tooltipRef.current)
+          .style("opacity", 1)
+          .html(`<div class="text-xs text-gray-500">Attendance rate</div><div class="text-[#00AEEF] font-semibold">${d.value}%</div>`);
+      })
+      .on("mousemove", e => {
+        const box = wrapperRef.current.getBoundingClientRect();
+        d3.select(tooltipRef.current)
+          .style("left", e.clientX - box.left + 15 + "px")
+          .style("top", e.clientY - box.top - 40 + "px");
+      })
+      .on("mouseleave", e => {
+        hoverLine.style("opacity", 0);
+        d3.select(e.target).attr("opacity", 0).attr("r", 5);
+        d3.select(tooltipRef.current).style("opacity", 0);
+      });
+
+  }, [data, width]);
+
+  return (
+    <div ref={wrapperRef} className="relative w-full">
+      <svg ref={svgRef} />
+      <div ref={tooltipRef} className="absolute bg-white px-4 py-2 rounded-xl shadow-xl border border-[#E5F2FA] text-sm opacity-0 pointer-events-none" />
+    </div>
+  );
+}
 
 const StaffAttendance = () => {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
+   const [tab, setTab] = useState("teacher");
+   const [months, setMonths] = useState(6);
+
+
+   const fullData = tab === "teacher" ? teacherData : staffData;
+  const filteredData = fullData.slice(-months);
+
+
 
   const navigate = useNavigate();
   return (
@@ -421,7 +796,7 @@ const StaffAttendance = () => {
               </thead>
 
               <tbody>
-                {staffData.map((item, index) => (
+                {staffDatas.map((item, index) => (
                   <tr
                     key={index}
                     onClick={() => Navigate("/staffDetails")}
@@ -591,6 +966,54 @@ const StaffAttendance = () => {
           ))}
         </div>
       </div>
+      <div className="bg-white rounded-xl mt-5 p-5 shadow-sm">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-4">
+        <div>
+          <div className="text-lg font-semibold">Attendance Trend</div>
+
+          {/* Month Dropdown */}
+          <select
+            value={months}
+            onChange={(e) => setMonths(Number(e.target.value))}
+            className="mt-1 text-sm bg-[#F1F5F9] rounded-md px-3 py-1 outline-none"
+          >
+            <option value={3}>Last 3 month</option>
+            <option value={6}>Last 6 month</option>
+            <option value={9}>Last 9 month</option>
+            <option value={12}>Last 12 month</option>
+          </select>
+        </div>
+
+        {/* Teacher / Staff Toggle */}
+        <div className="flex bg-[#F1F5F9] rounded-full p-1">
+          <button
+            onClick={() => setTab("teacher")}
+            className={`px-4 py-1 rounded-full text-sm transition ${
+              tab === "teacher"
+                ? "bg-white shadow text-black"
+                : "text-gray-400"
+            }`}
+          >
+            Teacher
+          </button>
+
+          <button
+            onClick={() => setTab("staff")}
+            className={`px-4 py-1 rounded-full text-sm transition ${
+              tab === "staff"
+                ? "bg-white shadow text-black"
+                : "text-gray-400"
+            }`}
+          >
+            Other Staff
+          </button>
+        </div>
+      </div>
+
+      {/* Chart */}
+      <AttendanceChart data={filteredData} />
+    </div>
     </div >
   );
 };
