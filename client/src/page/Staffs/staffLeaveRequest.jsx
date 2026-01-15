@@ -20,6 +20,8 @@ import { FiEdit, FiSearch } from "react-icons/fi";
 import { FaRegFileAlt } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { PiPlus } from "react-icons/pi";
+import { SiTicktick } from "react-icons/si";
+import { MdOutlineCancel } from "react-icons/md";
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
 import everdeen from "../../assets/images/katnis.jpg";
@@ -34,7 +36,8 @@ import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const cardData = [
   {
@@ -74,111 +77,96 @@ const staffData = [
     empId: "EMP123456",
     img: everdeen,
     role: "Teacher",
-    department: "Academics",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
+    durationTo :"Oct 7, 2025",
+    durationFrom :"Oct 7, 2025",
+    createAT : "13:00PM",
+    leaveType : "Sick Leave",
+    Reason :" Fever and flu symptoms",
+    Status :"Pending",
   },
   {
     staff: "Ranveer Singh",
     empId: "EMP123456",
     img: everdeen,
     role: "Accountant",
-    department: "Finance Department",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "99%",
+    durationTo :"Oct 7, 2025",
+    durationFrom :"Oct 7, 2025",
+    createAT : "13:00PM",
+    leaveType : "Sick Leave",
+    Reason :" Fever and flu symptoms",
+    Status :"Approved",
   },
   {
     staff: "Kareena Kapoor",
     empId: "EMP123456",
     img: everdeen,
     role: "Receptionist",
-    department: "Front Office",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "70%",
+    durationTo :"Oct 7, 2025",
+    durationFrom :"Oct 7, 2025",
+    createAT : "13:00PM",
+    leaveType : "Sick Leave",
+    Reason :" Fever and flu symptoms",
+    Status :"Rejected",
   },
   {
     staff: "Sharaddha Kapoor",
     empId: "EMP123456",
     img: everdeen,
     role: "Teacher",
-    department: "Academics",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "95%",
+    durationTo :"Oct 7, 2025",
+    durationFrom :"Oct 7, 2025",
+    createAT : "13:00PM",
+    leaveType : "Sick Leave",
+    Reason :" Fever and flu symptoms",
+    Status :"Rejected",
   },
   {
     staff: "Hrithik Roshan",
     empId: "EMP123456",
     img: everdeen,
     role: "Librarian",
-    department: "Library Department",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
+   durationTo :"Oct 7, 2025",
+    durationFrom :"Oct 7, 2025",
+    createAT : "13:00PM",
+    leaveType : "Sick Leave",
+    Reason :" Fever and flu symptoms",
+    Status :"Rejected",
   },
   {
     staff: "Virat Kohli",
     empId: "EMP123456",
     img: everdeen,
     role: "Super Admin",
-    department: "Administration",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
+   durationTo :"Oct 7, 2025",
+    durationFrom :"Oct 7, 2025",
+    createAT : "13:00PM",
+    leaveType : "Sick Leave",
+    Reason :" Fever and flu symptoms",
+    Status :"Rejected",
   },
   {
     staff: "Jhanvi Kapoor",
     empId: "EMP123456",
     img: everdeen,
     role: "Teacher",
-    department: "Academics",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
+   durationTo :"Oct 7, 2025",
+    durationFrom :"Oct 7, 2025",
+    createAT : "13:00PM",
+    leaveType : "Sick Leave",
+    Reason :" Fever and flu symptoms",
+    Status :"Rejected",
   },
-  {
-    staff: "Ranbir Kapoor",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Driver",
-    department: "Transport Department",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "80%",
-  },
-  {
-    staff: "Ananya Panday",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Teacher",
-    department: "Academics",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
-  },
-  {
-    student: "Meave Wiley",
-    img: meave,
-    studentId: "009",
-    class: "12C",
-    parent: "Otis Milburn",
-    number: 620489625,
-    status: "Active",
-    staff: "Shahid Kapoor",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Cleaner",
-    department: "Maintenance",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "80%",
-  },
+  
 
 ];
 
+const leaveData = [
+  { label: "Sick leave", count: 3, percent: 43 },
+  { label: "Paid Leave", count: 1, percent: 14 },
+  { label: "Casual Leave", count: 1, percent: 14 },
+  { label: "Maternity Leave", count: 1, percent: 14 },
+  { label: "Paternity Leave", count: 1, percent: 14 },
+];
 
 
 const AllStaff = () => {
@@ -241,7 +229,7 @@ const AllStaff = () => {
             </button> */}
 
             <button
-              onClick={() => navigate("/add-staffs")}
+              
               className="inline-flex items-center gap-2 px-6 py-2 cursor-pointer bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
               {/* <GrUserAdd  /> */}
               <PiPlus size={19} className="text-white"/>
@@ -342,7 +330,7 @@ const AllStaff = () => {
                 {staffData.map((item, index) => (
                   <tr
                     key={index}
-                    onClick={() => Navigate("/staffDetails")}
+                    
                     className="border-b border-[#e6e6e6]"
                   >
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
@@ -384,28 +372,54 @@ const AllStaff = () => {
                       </Link>
                     </td>
                     <td className="px-4 py-3 text-left text-sm ">
-                      <Link to="/staffDetails">{item.department}</Link>
+                      <span className="text-[#026C7C]">{item.durationTo}</span> | <span className="text-[#B6174B]">{item.durationFrom}</span>
                     </td>
                     <td className="px-4 py-3 text-left text-sm ">
-                      <Link to="/staffDetails">{item.mob}</Link>
+                      <span>{item.durationFrom}</span> <span className="text-gray-400"> • {item.createAT}</span>
                     </td>
                     <td className="px-4 py-3 text-left text-sm ">
 
-                      <span>{item.email}</span>
+                      <span className="text-[#4B4B4B] font-semibold">{item.leaveType}</span>
                     </td>
-                    <td className={`text-center ${item.attendance >= "90%"
-                      ? "text-[#009638]"
-                      : item.attendance >= "75%"
-                        ? "text-[#FFAA00]"
-                        : "text-[#FF4B4B]"
-                      }`}>{item.attendance}</td>
+                    <td className="px-4 py-3 text-left text-sm ">
+
+                      <span  className="border px-5 py-2.5 text-[#696969] border-[#E6E6E6] ">{item.Reason}</span>
+                    </td>
+                    <td >
+                    <div className="relative flex h-[32px] w-[95px] items-center justify-center">
+                       
+                        <span
+                          className={`relative inline-flex h-full w-full items-center justify-center gap-2 rounded-[25px] px-2 text-sm font-medium
+        ${item.Status === "Approved"
+                              ? "bg-[#D4EDDA] text-[#009638]"
+                              : item.Status === "Rejected"
+                                ? "bg-[#F8D7DA] text-[#C92131]"
+                                : item.Status === "Pending"
+                                ? "bg-[#E3F2FD] text-[#1565C0]"
+                                : "bg-[#FFEDB4] text-[#A14700]"
+                            }`}
+                        >
+                          {/* Dot */}
+                          <span
+                            className={`h-2 w-2 rounded-full
+          ${item.Status === "Approved"
+                                ? "bg-[#009638]"
+                                : item.Status === "Rejected"
+                                  ? "bg-[#DC3545]"
+                                  : item.Status === "Pending"
+                                  ? "bg-[#1565C0]"
+                                  : "bg-[#F4A100]"
+                              }`}
+                          ></span>
+
+                          {item.Status}
+                        </span>
+                      </div>
+                    </td>
+                    
                     <td className="px-4 py-3 text-left text-sm  font-semibold flex gap-3 ">
-                      <Link to="/staffDetails">
-                        <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
-                      </Link>
-                      <FiEdit onClick={() => navigate("/edit-staffs")} className="w-5 h-5 text-[#9C9C9C] cursor-pointer" />
-                      <FaRegFileAlt className="w-5 h-5 text-[#9C9C9C]" />
-                      <RiDeleteBin5Line className="w-5 h-5 text-[#FF4B4B]" />
+                      {/* <span>{item.status}</span> */} 
+                      <SiTicktick size={19} className="text-[#009638]" /> <MdOutlineCancel size={20} className="text-[#DC2626]" />
                     </td>
                   </tr>
                 ))}
@@ -417,6 +431,43 @@ const AllStaff = () => {
         {/* <------------------------------------------- pagination ---------------------------------> */}
         <Pagination />
       </div>
+
+       <div className="bg-white rounded-xl border border-[#E6E6E6] mt-4 p-5 shadow-sm">
+      {/* Header */}
+      <div className="mb-5">
+        <h3 className="text-lg font-semibold text-[#1C1C1C]">
+          Leave Statistics
+        </h3>
+        <p className="text-sm text-[#9CA3AF]">
+          Leave request breakdown by type
+        </p>
+      </div>
+
+      {/* List */}
+      <div className="space-y-5">
+        {leaveData.map((item) => (
+          <div key={item.label}>
+            {/* Top Row */}
+            <div className="flex justify-between mb-1 text-sm">
+              <span className="font-medium text-[#1C1C1C]">
+                {item.label}
+              </span>
+              <span className="text-[#9CA3AF]">
+                {item.count} ({item.percent}%)
+              </span>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="w-full h-[6px] bg-[#E5E7EB] rounded-full overflow-hidden">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#0B4A6F] to-[#1E88E5]"
+                style={{ width: `${item.percent}%` }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
     </div>
   );
 };
