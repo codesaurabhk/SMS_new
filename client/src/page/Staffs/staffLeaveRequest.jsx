@@ -169,7 +169,7 @@ const leaveData = [
 ];
 
 
-const AllStaff = () => {
+const  staffLeaveRequest = () => {
   const navigate = useNavigate();
   return (
     <div>
@@ -472,4 +472,5 @@ const AllStaff = () => {
   );
 };
 
-export default AllStaff;
+export default  staffLeaveRequest;
+
