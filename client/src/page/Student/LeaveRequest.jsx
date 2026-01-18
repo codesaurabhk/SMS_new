@@ -1,16 +1,16 @@
 import React, { useState } from "react";
+/* <----------------------------------------------- Import gif -------------------------------------------------------> */
 import task from "../../assets/images/task.gif";
 import rejected from "../../assets/images/rejected.gif";
 import file from "../../assets/images/file.gif";
 import id from "../../assets/images/idcard.gif";
-import { TbFileImport } from "react-icons/tb";
+
+/* <----------------------------------------------- Import icons -------------------------------------------------------> */
 import { IoAdd } from "react-icons/io5";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
+import { IoClose } from "react-icons/io5";
+import { SiTicktick } from "react-icons/si";
+import { MdOutlineCancel } from "react-icons/md";
 import { PiArrowsDownUpThin } from "react-icons/pi";
-import { FiEdit, FiSearch } from "react-icons/fi";
-import { FaRegFileAlt } from "react-icons/fa";
-import { RiDeleteBin5Line } from "react-icons/ri";
 import { format } from "date-fns";
 import { LuCalendarDays } from "react-icons/lu";
 import { DayPicker } from "react-day-picker";
@@ -24,7 +24,6 @@ import thanos from "../../assets/images/thanos.jpg";
 import Joffrey from "../../assets/images/Joffrey.jpg";
 import doll from "../../assets/images/bella.jpg";
 import prime from "../../assets/images/prime.jpg";
-import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
@@ -33,6 +32,7 @@ import { Link } from "react-router-dom";
 function LeaveRequest() {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
+  const [applyLeave, setApplyLeave] = useState(false);
 
   const leaveCardData = [
     {
@@ -69,8 +69,16 @@ function LeaveRequest() {
       class: "12B",
       parent: "Peeta Mallak",
       number: 620489625,
-      status: "Active",
+      status: "Approved",
+      appliedDate: "Oct 01, 2026",
+      time: "10 : 30 am",
+      startDate: "Oct 03, 2026",
+      endDate: "Oct 05, 2026",
+      totalDays: "2 Days",
+      leaveType: "Casual Leave",
+      reason: "Family work at home",
     },
+
     {
       student: "Goku",
       studentId: "002",
@@ -78,8 +86,16 @@ function LeaveRequest() {
       class: "11B",
       parent: "Bodok",
       number: 620489855,
-      status: "Inactive",
+      status: "Rejected",
+      appliedDate: "Oct 02, 2026",
+      time: "11 : 00 am",
+      startDate: "Oct 04, 2026",
+      endDate: "Oct 06, 2026",
+      totalDays: "2 Days",
+      leaveType: "Personal Leave",
+      reason: "Going out of station",
     },
+
     {
       student: "Katniss langford",
       studentId: "010",
@@ -87,8 +103,16 @@ function LeaveRequest() {
       class: "1B",
       parent: "Jensen",
       number: 620489625,
-      status: "Active",
+      status: "Approved",
+      appliedDate: "Oct 03, 2026",
+      time: "09 : 15 am",
+      startDate: "Oct 04, 2026",
+      endDate: "Oct 04, 2026",
+      totalDays: "1 Day",
+      leaveType: "Emergency Leave",
+      reason: "Urgent home work",
     },
+
     {
       student: "Homelander",
       img: homelander,
@@ -96,8 +120,16 @@ function LeaveRequest() {
       class: "10C",
       parent: "Soldier Boy",
       number: 620489625,
-      status: "Inactive",
+      status: "Pending",
+      appliedDate: "Oct 04, 2026",
+      time: "12 : 10 pm",
+      startDate: "Oct 06, 2026",
+      endDate: "Oct 08, 2026",
+      totalDays: "2 Days",
+      leaveType: "Medical Leave",
+      reason: "Doctor suggested rest",
     },
+
     {
       student: "Thanos",
       studentId: "004",
@@ -105,8 +137,16 @@ function LeaveRequest() {
       class: "9A",
       parent: "A'Lars",
       number: 629639625,
-      status: "Alumni",
+      status: "Rejected",
+      appliedDate: "Oct 01, 2026",
+      time: "02 : 00 pm",
+      startDate: "Oct 02, 2026",
+      endDate: "Oct 03, 2026",
+      totalDays: "1 Day",
+      leaveType: "Casual Leave",
+      reason: "Personal work",
     },
+
     {
       student: "Joffrey Baratheon",
       img: Joffrey,
@@ -114,8 +154,16 @@ function LeaveRequest() {
       class: "11A",
       parent: "Robert Baratheon",
       number: 620489625,
-      status: "Active",
+      status: "Approved",
+      appliedDate: "Oct 05, 2026",
+      time: "03 : 40 pm",
+      startDate: "Oct 06, 2026",
+      endDate: "Oct 06, 2026",
+      totalDays: "1 Day",
+      leaveType: "Sick Leave",
+      reason: "Headache and fever",
     },
+
     {
       student: "Annembella",
       img: doll,
@@ -123,8 +171,16 @@ function LeaveRequest() {
       class: "11B",
       parent: "Nun",
       number: 600489625,
-      status: "Active",
+      status: "Pending",
+      appliedDate: "Oct 06, 2026",
+      time: "01 : 20 pm",
+      startDate: "Oct 08, 2026",
+      endDate: "Oct 10, 2026",
+      totalDays: "2 Days",
+      leaveType: "Medical Leave",
+      reason: "Cold and cough",
     },
+
     {
       student: "optimus Prime",
       img: prime,
@@ -132,8 +188,16 @@ function LeaveRequest() {
       class: "7A",
       parent: "Bumble Bee",
       number: 620489625,
-      status: "Active",
+      status: "Rejected",
+      appliedDate: "Oct 02, 2026",
+      time: "09 : 45 am",
+      startDate: "Oct 03, 2026",
+      endDate: "Oct 04, 2026",
+      totalDays: "1 Day",
+      leaveType: "Personal Leave",
+      reason: "Function at home",
     },
+
     {
       student: "Gamora ",
       img: gamora,
@@ -141,27 +205,38 @@ function LeaveRequest() {
       class: "12A",
       parent: "Thanos",
       number: 620489625,
-      status: "Active",
+      status: "Pending",
+      appliedDate: "Oct 03, 2026",
+      time: "04 : 10 pm",
+      startDate: "Oct 05, 2026",
+      endDate: "Oct 06, 2026",
+      totalDays: "1 Day",
+      leaveType: "Emergency Leave",
+      reason: "Urgent family issue",
     },
+
     {
       student: "Meave Wiley",
       img: meave,
       studentId: "009",
       class: "12C",
       parent: "Otis Milburn",
+      number: 620489625,
       appliedDate: "Oct 05, 2026",
       time: "13 : 00 pm",
-      status: "Active",
+      status: "Approved",
       endDate: "Oct 07, 2026",
       startDate: "Oct 07, 2026",
-      totalDays: "1 Day"
+      totalDays: "1 Day",
+      leaveType: "Sick Leave",
+      reason: "Fever and Cold",
     },
   ];
 
   const statusStyle = {
-    Active: "bg-[#D4EDDA] text-[#009638]",
-    Inactive: "bg-[#DEDEDE] text-[#696969]",
-    Alumni: "bg-[#FDEBD0] text-[#D35400]",
+    Approved: "bg-[#D4EDDA] text-[#009638]",
+    Pending: "bg-[#E3F2FD] text-[#1565C0]",
+    Rejected: "bg-[#F8D7DA] text-[#C92131]",
   };
 
   return (
@@ -211,13 +286,141 @@ function LeaveRequest() {
 
           {/* RIGHT BUTTONS */}
           <div>
-            <Link to="/AddStudent">
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
-                <IoAdd className="text-white" />
-                Leave request
-              </button>
-            </Link>
+            <button
+              onClick={() => setApplyLeave(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg"
+            >
+              <IoAdd className="text-white" />
+              Leave request
+            </button>
           </div>
+
+          {/* Popup Modal */}
+          {applyLeave && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-3"
+              onClick={() => setApplyLeave(false)} // click outside close
+            >
+              {/* Modal Box */}
+              <div
+                className="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative"
+                onClick={(e) => e.stopPropagation()} // stop closing when clicking inside
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setApplyLeave(false)}
+                  className="absolute top-4 right-4 text-gray-600 hover:text-black"
+                >
+                  <IoClose size={22} />
+                </button>
+
+                {/* Heading */}
+                <h2 className="text-lg font-semibold text-[#0B3142]">
+                  Submit Leave Request
+                </h2>
+                <p className="text-sm text-gray-500 mt-1">
+                  Fill in the details for the student leave request
+                </p>
+
+                {/* Form */}
+                <div className="mt-5 flex flex-col gap-4">
+
+                  <div>
+                    {/* Student Name */}
+                    <div className="flex justify-between">
+                      <div>
+                        <label className="text-sm font-medium text-gray-700">
+                        Student Name
+                      </label>
+                      <select className="border rounded-md px-3 py-2 outline-none w-full">
+                        <option value="">Select Student</option>
+                        <option value="katniss Everdeen">katniss Everdeen</option>
+                        <option value="Goku">Goku</option>
+                        <option value="Katniss langford">Katniss langford</option>
+                        <option value="Homelander">Homelander</option>
+                      </select>
+                      </div>
+                      <div>
+                        {/* Class */}
+                        <label className="text-sm font-medium text-gray-700">
+                          Class 
+                        </label>
+                        <select className="border rounded-md px-3 py-2 outline-none w-full">
+                          <option value="">Select Class</option>
+                          <option value="12B">12B</option>
+                          <option value="11B">11B</option>
+                          <option value="1B">1B</option>
+                          <option value="10C">10C</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Leave Type */}
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium text-gray-700">
+                      Leave Type
+                    </label>
+                    <select className="border rounded-md px-3 py-2 outline-none">
+                      <option value="">Select Leave Type</option>
+                      <option value="Sick Leave">Sick Leave</option>
+                      <option value="Casual Leave">Casual Leave</option>
+                      <option value="Personal Leave">Personal Leave</option>
+                      <option value="Emergency Leave">Emergency Leave</option>
+                    </select>
+                  </div>
+
+                  {/* Date Row */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1">
+                      <label className="text-sm font-medium text-gray-700">
+                        Start Date
+                      </label>
+                      <input
+                        type="date"
+                        className="border rounded-md px-3 py-2 outline-none"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <label className="text-sm font-medium text-gray-700">
+                        End Date
+                      </label>
+                      <input
+                        type="date"
+                        className="border rounded-md px-3 py-2 outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Reason */}
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium text-gray-700">
+                      Reason
+                    </label>
+                    <textarea
+                      rows={3}
+                      placeholder="Write reason..."
+                      className="border rounded-md px-3 py-2 outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Footer Buttons */}
+                <div className="flex justify-end gap-3 mt-6">
+                  <button
+                    onClick={() => setApplyLeave(false)}
+                    className="px-5 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100"
+                  >
+                    Cancel
+                  </button>
+
+                  <button className="px-5 py-2 rounded-md bg-[#0B3142] text-white hover:opacity-90">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* <-------------------------------------- search & filter ------------------------------> */}
@@ -329,7 +532,7 @@ function LeaveRequest() {
 
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     Leave Type
-                  </th>  
+                  </th>
 
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     Reason
@@ -347,7 +550,10 @@ function LeaveRequest() {
 
               <tbody>
                 {studentData.map((item, index) => (
-                  <tr key={index} className="border-b border-[#e6e6e6]">
+                  <tr
+                    key={index}
+                    className="border-b border-[#e6e6e6] hover:bg-[#FAFBFF]"
+                  >
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
                       <input type="checkbox" />
                       <Link to="/StudentDetails">
@@ -378,46 +584,55 @@ function LeaveRequest() {
                     </td>
                     <td className="px-4 py-3 text-left text-[14px] font-normal">
                       <Link to="/StudentDetails">
-                      <div className="flex gap-2">
-                        <span className="text-[#026C7C]">{item.startDate}</span> | <span className="text-[#B6174B]">{item.endDate}</span>
-                      </div>
-                      <div>
-                        <span className="text-[#9C9C9C]">{item.totalDays}</span>
-                      </div>
+                        <div className="flex gap-2">
+                          <span className="text-[#026C7C]">
+                            {item.startDate}
+                          </span>{" "}
+                          |{" "}
+                          <span className="text-[#B6174B]">{item.endDate}</span>
+                        </div>
+                        <div>
+                          <span className="text-[#9C9C9C]">
+                            {item.totalDays}
+                          </span>
+                        </div>
                       </Link>
                     </td>
                     <td className="px-4 py-3 text-left text-[14px] font-normal">
-                      <Link to="/StudentDetails">
-                      <div className="flex gap-2">
-                        <span className="text-[#1c1c1c]">{item.appliedDate}</span>
-                        <span className="text-[#9c9c9c]">• {item.time}</span>
+                      <div className="flex">
+                        <span className="text-[#1c1c1c]">
+                          {item.appliedDate}
+                        </span>
+                        <span className="text-[#9c9c9c]">•{item.time}</span>
                       </div>
-                      </Link>
                     </td>
-                    <td></td>
-                    <td></td>
-                    
+                    <td className="px-4 py-3 text-left text-[14px] font-normal">
+                      {item.leaveType}
+                    </td>
+                    <td className="px-4 py-3 text-left text-[14px] font-normal">
+                      <textarea
+                        defaultValue={item.reason}
+                        className="w-full border px-2 py-1 rounded text-[#696969] text-14px font-normal border-[#e6e6e6] bg-transparent"
+                        rows={2}
+                        readOnly
+                      />
+                    </td>
+
                     <td className="px-4 py-3 text-left text-[14px] font-normal">
                       <span
-                        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        className={`inline-flex items-center gap-1 px-3 py-1 rounded text-xs font-semibold ${
                           statusStyle[item.status] ||
                           "bg-gray-100 text-gray-600"
                         }`}
                       >
                         <span className="text-sm leading-none">
-                          <Link to="/StudentDetails">•{item.status}</Link>
+                          •{item.status}
                         </span>
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
-                      <Link to="/StudentDetails">
-                        <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
-                      </Link>
-                      <Link to="/EditStudent">
-                        <FiEdit className="w-5 h-5 text-[#9C9C9C]" />
-                      </Link>
-                      <FaRegFileAlt className="w-5 h-5 text-[#9C9C9C]" />
-                      <RiDeleteBin5Line className="w-5 h-5 text-[#FF4B4B]" />
+                    <td className="px-4 py-3 text-left text-sm  font-semibold flex gap-3 ">
+                      <SiTicktick size={19} className="text-[#009638]" />
+                      <MdOutlineCancel size={20} className="text-[#DC2626]" />
                     </td>
                   </tr>
                 ))}
