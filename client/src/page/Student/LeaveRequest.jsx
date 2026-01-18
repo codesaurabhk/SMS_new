@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 /* <----------------------------------------------- Import gif -------------------------------------------------------> */
 import task from "../../assets/images/task.gif";
 import rejected from "../../assets/images/rejected.gif";
@@ -13,6 +13,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { PiArrowsDownUpThin } from "react-icons/pi";
 import { format } from "date-fns";
 import { LuCalendarDays } from "react-icons/lu";
+import { FiUpload } from "react-icons/fi";
 import { DayPicker } from "react-day-picker";
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
@@ -239,6 +240,15 @@ function LeaveRequest() {
     Rejected: "bg-[#F8D7DA] text-[#C92131]",
   };
 
+  const fileRef = useRef(null);
+  const [fileName, setFileName] = useState("");
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  };
   return (
     <div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
@@ -298,12 +308,12 @@ function LeaveRequest() {
           {/* Popup Modal */}
           {applyLeave && (
             <div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-3"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-[#9c9c9c]/10 backdrop-blur-sm px-3"
               onClick={() => setApplyLeave(false)} // click outside close
             >
               {/* Modal Box */}
               <div
-                className="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative"
+                className="bg-white w-full max-w-xl rounded-xl shadow-lg p-6 relative"
                 onClick={(e) => e.stopPropagation()} // stop closing when clicking inside
               >
                 {/* Close Button */}
@@ -315,92 +325,134 @@ function LeaveRequest() {
                 </button>
 
                 {/* Heading */}
-                <h2 className="text-lg font-semibold text-[#0B3142]">
+                <h2 className="font-semibold text-[#0B3142] text-[18px]">
                   Submit Leave Request
                 </h2>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="font-normal text-[#9C9C9C] text-[16px]  mt-1">
                   Fill in the details for the student leave request
                 </p>
 
                 {/* Form */}
-                <div className="mt-5 flex flex-col gap-4">
-
-                  <div>
-                    {/* Student Name */}
-                    <div className="flex justify-between">
-                      <div>
-                        <label className="text-sm font-medium text-gray-700">
-                        Student Name
-                      </label>
-                      <select className="border rounded-md px-3 py-2 outline-none w-full">
-                        <option value="">Select Student</option>
-                        <option value="katniss Everdeen">katniss Everdeen</option>
-                        <option value="Goku">Goku</option>
-                        <option value="Katniss langford">Katniss langford</option>
-                        <option value="Homelander">Homelander</option>
-                      </select>
-                      </div>
-                      <div>
-                        {/* Class */}
-                        <label className="text-sm font-medium text-gray-700">
-                          Class 
-                        </label>
-                        <select className="border rounded-md px-3 py-2 outline-none w-full">
-                          <option value="">Select Class</option>
-                          <option value="12B">12B</option>
-                          <option value="11B">11B</option>
-                          <option value="1B">1B</option>
-                          <option value="10C">10C</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Leave Type */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6 gap-5">
                   <div className="flex flex-col gap-1">
-                    <label className="text-sm font-medium text-gray-700">
-                      Leave Type
+                    <label className="text-sm text-[#1c1c1c]">
+                      Select Class
+                      <span className="text-red-500">*</span>
                     </label>
-                    <select className="border rounded-md px-3 py-2 outline-none">
-                      <option value="">Select Leave Type</option>
-                      <option value="Sick Leave">Sick Leave</option>
-                      <option value="Casual Leave">Casual Leave</option>
-                      <option value="Personal Leave">Personal Leave</option>
-                      <option value="Emergency Leave">Emergency Leave</option>
+                    <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
+                      <option value="" disabled hidden>
+                        Select Class
+                      </option>
+                      <option value=""></option>
+                      <option value=""></option>
+                      <option value=""></option>
                     </select>
                   </div>
-
-                  {/* Date Row */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-1">
-                      <label className="text-sm font-medium text-gray-700">
-                        Start Date
-                      </label>
-                      <input
-                        type="date"
-                        className="border rounded-md px-3 py-2 outline-none"
-                      />
-                    </div>
-
-                    <div className="flex flex-col gap-1">
-                      <label className="text-sm font-medium text-gray-700">
-                        End Date
-                      </label>
-                      <input
-                        type="date"
-                        className="border rounded-md px-3 py-2 outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Reason */}
                   <div className="flex flex-col gap-1">
-                    <label className="text-sm font-medium text-gray-700">
-                      Reason
+                    <label className="text-sm text-[#1c1c1c]">
+                      Select Student <span className="text-red-500">*</span>
                     </label>
-                    <textarea
-                      rows={3}
-                      placeholder="Write reason..."
-                      className="border rounded-md px-3 py-2 outline-none"
+                    <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
+                      <option value="" disabled hidden>
+                        Select Student
+                      </option>
+                      <option value=""></option>
+                      <option value=""></option>
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1 mt-6">
+                  <label className="text-sm text-[#1c1c1c]">
+                    Leave type
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
+                    <option value="" disabled hidden>
+                      Select leave
+                    </option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                  </select>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6 gap-5 ">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-[#1c1c1c]">
+                      Start date
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      placeholder="Enter Student name"
+                      className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-[#1c1c1c]">
+                      End Date <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      placeholder="Enter Student name"
+                      className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1 mt-6">
+                  <label className="text-sm text-[#1c1c1c]">leave Type</label>
+                  <textarea
+                    placeholder="Provide Detailed reason for leave request"
+                    className="w-full border rounded-sm p-2"
+                  ></textarea>
+                </div>
+
+                <div className="w-full mt-6">
+                  {/* Heading */}
+                  <p className="text-sm font-medium text-[#1c1c1c] mb-2">
+                    Supporting Document
+                    <span className="text-[#1c1c1c]">(Optional)</span>
+                  </p>
+
+                  {/* Upload Box */}
+                  <div
+                    onClick={() => fileRef.current.click()}
+                    className="w-full rounded-md border-4 border-dashed border-[#118AB2] px-4 py-6 flex flex-col items-center justify-center cursor-pointer bg-white"
+                  >
+                    {/* Icon */}
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center text-[#118AB2]">
+                      <FiUpload size={28} />
+                    </div>
+
+                    {/* Text */}
+                    <p className="text-[16px] text-[#1c1c1c] mt-2 font-medium">
+                      Drag & Drop to upload or
+                      <span className="text-[#0B3142] font-semibold">
+                        Browse
+                      </span>
+                    </p>
+
+                    <p className="text-[14px] text-[#696969] mt-1">
+                      Only Pdf file are allowed.
+                    </p>
+
+                    {/* Show file name after select */}
+                    {fileName && (
+                      <p className="text-xs text-green-600 mt-3 font-semibold">
+                        Selected: {fileName}
+                      </p>
+                    )}
+
+                    {/* Hidden input */}
+                    <input
+                      ref={fileRef}
+                      type="file"
+                      accept="application/pdf"
+                      className="hidden"
+                      onChange={handleFileChange}
                     />
                   </div>
                 </div>
@@ -509,7 +561,6 @@ function LeaveRequest() {
                 <tr>
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     <div className="flex items-center gap-2">
-                      <input type="checkbox" />
                       <span>Student Name</span>
                       <PiArrowsDownUpThin />
                     </div>
@@ -555,28 +606,25 @@ function LeaveRequest() {
                     className="border-b border-[#e6e6e6] hover:bg-[#FAFBFF]"
                   >
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
-                      <input type="checkbox" />
-                      <Link to="/StudentDetails">
-                        <div className="flex gap-4">
-                          <div className="w-10 h-10 rounded-full overflow-hidden">
-                            <img
-                              src={item.img}
-                              alt=""
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-
-                          {/* Name + ID */}
-                          <div className="flex flex-col leading-tight">
-                            <span className="text-[#12516E] font-semibold">
-                              {item.student}
-                            </span>
-                            <span className="text-sm text-[#9c9c9c] font-semibold">
-                              {item.studentId}
-                            </span>
-                          </div>
+                      <div className="flex gap-4">
+                        <div className="w-10 h-10 rounded-full overflow-hidden">
+                          <img
+                            src={item.img}
+                            alt=""
+                            className="w-full h-full object-cover"
+                          />
                         </div>
-                      </Link>
+
+                        {/* Name + ID */}
+                        <div className="flex flex-col leading-tight">
+                          <span className="text-[#12516E] font-semibold">
+                            {item.student}
+                          </span>
+                          <span className="text-sm text-[#9c9c9c] font-semibold">
+                            {item.studentId}
+                          </span>
+                        </div>
+                      </div>
                     </td>
 
                     <td className="px-4 py-3 text-left text-sm font-semibold">
