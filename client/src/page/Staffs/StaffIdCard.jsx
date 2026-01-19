@@ -424,7 +424,7 @@ const StaffIdCard = () => {
         {/* <------------------------------------------- pagination ---------------------------------> */}
         <Pagination />
       </div>
-      <div className="border border-[#e6e6e6] rounded-lg p-4 bg-white">
+      <div className="border border-[#e6e6e6] rounded-lg p-4 mt-3 shadow-sm bg-white">
   {previewStaffList.length > 0 && (
         <div className="p-4">
           <h3 className="font-semibold mb-3">
@@ -435,12 +435,12 @@ const StaffIdCard = () => {
             {previewStaffList.map((staff, index) => (
               <div
                 key={index}
-                className="w-[240px] bg-white rounded-xl shadow-md overflow-hidden mx-auto"
+                className="w-60 bg-white rounded-xl shadow-md overflow-hidden mx-auto"
               >
                 <img
                   src={staff.img}
                   alt=""
-                  className="w-full h-[150px] object-cover"
+                  className="w-full h-37.5 object-cover"
                 />
 
                 <div className="p-3 text-center">

@@ -673,7 +673,7 @@ const StaffAttendance = () => {
               {/* PILL INPUT */}
               <button
                 onClick={() => setOpen(!open)}
-                className="flex items-center justify-between gap-2 bg-[#F2F5F4] rounded-lg px-5 py-3 w-[200px]"
+                className="flex items-center justify-between gap-2 bg-[#F2F5F4] rounded-lg px-5 py-3 w-50"
               >
                 <span className="text-[16px] font-medium text-[#1C1C1C]">
                   {format(date, "d MMMM, yyyy")}
@@ -695,7 +695,7 @@ const StaffAttendance = () => {
                         setOpen(false);
                       }
                     }}
-                    className="!p-0"
+                    className="p-0"
                     classNames={{
                       caption: "flex justify-between items-center mb-4",
                       caption_label: "font-semibold text-[16px]",
@@ -850,7 +850,7 @@ const StaffAttendance = () => {
                       <span>{item.hours}</span>
                     </td>
                     <td>
-                      <div className="relative flex h-[32px] w-[87px] items-center justify-center">
+                      <div className="relative flex h-8 w-21.75 items-center justify-center">
                         {/* Glow layer */}
                         <span
                           className={`absolute inline-flex h-full w-full rounded-[25px] opacity-20
