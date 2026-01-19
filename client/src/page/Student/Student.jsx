@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../CSS/Style.css";
-import { Link, Navigate } from "react-router-dom";
+import { Link,   useNavigate } from "react-router-dom";
 
 {
   /* <----------------------------------------------- GIF ----------------------------------------------------> */
@@ -179,6 +179,7 @@ const Student = () => {
     "bg-[#F5F7F7] text-[#0B3142] border border-[#ffffff] rounded-full px-15 py-2 ";
 
   const inactiveBtn = "text-[#9EA1A1] px-15 py-2";
+   const navigate = useNavigate();
 
   return (
     <div>
@@ -238,12 +239,17 @@ const Student = () => {
             </button>
 
             <div>
-              <Link to='/AddStudent'>
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
+              {/* <Link to='../addStudent'> */}
+              <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg" 
+              //  onClick={() => navigate("/addStudent")}
+              onClick={() => navigate("/addStudent")}
+
+               >
               <GrUserAdd className="text-white" />
               Add Student
             </button>
-            </Link>
+            
+            {/* </Link> */}
             </div>
           </div>
         </div>
@@ -421,7 +427,7 @@ const Student = () => {
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
                       <Link to='/StudentDetails'><CgProfile className="w-5 h-5 text-[#9C9C9C]" /></Link>
-                      <Link to='/EditStudent'><FiEdit className="w-5 h-5 text-[#9C9C9C]" /></Link>
+                      <Link to='/editStudent'><FiEdit className="w-5 h-5 text-[#9C9C9C]" /></Link>
                       <FaRegFileAlt className="w-5 h-5 text-[#9C9C9C]" />
                       <RiDeleteBin5Line className="w-5 h-5 text-[#FF4B4B]" />
                     </td>

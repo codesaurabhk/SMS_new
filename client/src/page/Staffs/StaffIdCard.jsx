@@ -315,7 +315,7 @@ const StaffIdCard = () => {
                     </div>
                   </th>
 
-                  <th className="px-4 py-3 w-[20%] text-right  text-sm font-semibold">
+                  <th className="px-4 py-3 w-[20%] text-left  text-sm font-semibold">
                     <div className="flex items-center justify-end gap-2">
                       <span>Role</span>
 
