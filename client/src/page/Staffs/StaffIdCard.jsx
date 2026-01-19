@@ -300,23 +300,27 @@ const StaffIdCard = () => {
         {/* <------------------------------------------ Table ---------------------------------------> */}
         <div className="p-4">
           <div className="w-full border border-[#e6e6e6] rounded-lg overflow-hidden">
-            <table className="w-full table-fixed">
+            <table className="w-full table  table-responsive">
               <thead className="bg-[#F5F7F7]">
                 <tr>
-                  <th className="w-[5%] px-4 py-3">
+                  {/* <th className="px-4 py-3 text-left">
                   <input type="checkbox"  checked={selectedStaffIds.length === staffData.length}
   onChange={handleSelectAll} />
-                </th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold w-[55%] ">
-                    <div className="flex items-center gap-1">
-                      <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span>
-                      <span>Staff</span>
+                </th> */}
+                  <th className="px-4 py-3 text-left text-sm font-semibold w-[70%]">
+                    <div className="flex items-center gap-10">
+                       <input type="checkbox" 
+                        checked={selectedStaffIds.length === staffData.length}
+                         onChange={handleSelectAll} 
+                        />
+                      
+                      <span className="flex  gap-2 items-center"><span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span>Staff</span>
 
                     </div>
                   </th>
 
-                  <th className="px-4 py-3 w-[20%] text-left  text-sm font-semibold">
-                    <div className="flex items-center justify-end gap-2">
+                  <th className="px-4 py-3 text-left text-sm font-semibold">
+                    <div className="flex items-center gap-2">
                       <span>Role</span>
 
                     </div>
@@ -324,9 +328,10 @@ const StaffIdCard = () => {
 
                   
 
-                  <th className="px-4 py-3 w-[20%] text-center text-sm font-semibold">
+                  <th className="px-4 py-3 text-center text-sm font-semibold">
                     Action
                   </th>
+                  <th></th>
                 </tr>
               </thead>
 
@@ -337,18 +342,23 @@ const StaffIdCard = () => {
                     
                     className="border-b border-[#e6e6e6]"
                   >
-                    <td className="px-4 py-3">
+                    {/* <td className="px-4 py-3">
                     <input
                       type="checkbox"
                       checked={selectedStaffIds.includes(item.empId)}
                       onChange={() => handleCheckboxChange(item.empId)}
                     />
-                  </td>
+                  </td> */}
                     
-                    <td className="px-4 py-3 text-left text-sm font-semibold ">
+                    <td className="px-4 py-3 text-left text-sm font-semibold w-[80%] ">
 
                       
-                        <div className="flex gap-4 items-center">
+                        <div className="flex gap-10">
+                          <input
+                      type="checkbox"
+                      checked={selectedStaffIds.includes(item.empId)}
+                      onChange={() => handleCheckboxChange(item.empId)}
+                    />
                           <div className="w-10 h-10 rounded-full overflow-hidden">
                             <img
                               src={item.img}
@@ -370,19 +380,24 @@ const StaffIdCard = () => {
                       
                     </td>
 
-                    <td className="px-4 py-3 text-right  text-sm  font-semibold">
-                      
-                        <span className={`inline-flex border  px-8  rounded-md ${item.role == "Teacher" ? "border-[#007AFF] text-[#007AFF]" :
-                          item.role == "Accountant" ? "border-[#894B00] text-[#894B00]" :
-                            item.role == "Receptionist" ? "border-[#A8038D] text-[#A8038D]" :
-                              item.role == "Librarian" ? "border-[#4BA803] text-[#4BA803]" :
-                                item.role == "Super Admin" ? "border-[#C1891B] text-[#C1891B]" :
-                                  item.role == "Driver" ? "border-[#00ADAD] text-[#00ADAD]" :
-                                    item.role == "Cleaner" ? "border-[#EF476F] text-[#EF476F]" : ""
+                    <td className="px-4 py-3 text-left text-sm font-semibold">
+  <div className="flex items-center">
+    <span
+      className={`inline-flex px-4 py-1 rounded-md border ${
+        item.role === "Teacher" ? "border-[#007AFF] text-[#007AFF]" :
+        item.role === "Accountant" ? "border-[#894B00] text-[#894B00]" :
+        item.role === "Receptionist" ? "border-[#A8038D] text-[#A8038D]" :
+        item.role === "Librarian" ? "border-[#4BA803] text-[#4BA803]" :
+        item.role === "Super Admin" ? "border-[#C1891B] text-[#C1891B]" :
+        item.role === "Driver" ? "border-[#00ADAD] text-[#00ADAD]" :
+        item.role === "Cleaner" ? "border-[#EF476F] text-[#EF476F]" : ""
+      }`}
+    >
+      {item.role}
+    </span>
+  </div>
+</td>
 
-                          } `}>{item.role}</span>
-                      
-                    </td>
                    
                    
                     <td className="px-4 py-3    text-sm  font-semibold   ">
@@ -394,6 +409,7 @@ const StaffIdCard = () => {
                       <PiPrinterLight className="w-5 h-5 text-[#9C9C9C]"/>
                      </div>
                     </td>
+                    <td></td>
                   </tr>
                 ))}
               </tbody>
