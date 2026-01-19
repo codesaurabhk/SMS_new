@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+/* <----------------------------------------------- Import gif -------------------------------------------------------> */
 import task from "../../assets/images/task.gif";
 import rejected from "../../assets/images/rejected.gif";
 import file from "../../assets/images/file.gif";
 import id from "../../assets/images/idcard.gif";
-import { TbFileImport } from "react-icons/tb";
+
+/* <----------------------------------------------- Import icons -------------------------------------------------------> */
 import { IoAdd } from "react-icons/io5";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
+import { IoClose } from "react-icons/io5";
+import { SiTicktick } from "react-icons/si";
+import { MdOutlineCancel } from "react-icons/md";
 import { PiArrowsDownUpThin } from "react-icons/pi";
-import { FiEdit, FiSearch } from "react-icons/fi";
-import { FaRegFileAlt } from "react-icons/fa";
-import { RiDeleteBin5Line } from "react-icons/ri";
 import { format } from "date-fns";
 import { LuCalendarDays } from "react-icons/lu";
+import { FiUpload } from "react-icons/fi";
 import { DayPicker } from "react-day-picker";
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
@@ -24,7 +25,6 @@ import thanos from "../../assets/images/thanos.jpg";
 import Joffrey from "../../assets/images/Joffrey.jpg";
 import doll from "../../assets/images/bella.jpg";
 import prime from "../../assets/images/prime.jpg";
-import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
@@ -33,6 +33,7 @@ import { Link } from "react-router-dom";
 function LeaveRequest() {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
+  const [applyLeave, setApplyLeave] = useState(false);
 
   const leaveCardData = [
     {
@@ -69,8 +70,16 @@ function LeaveRequest() {
       class: "12B",
       parent: "Peeta Mallak",
       number: 620489625,
-      status: "Active",
+      status: "Approved",
+      appliedDate: "Oct 01, 2026",
+      time: "10 : 30 am",
+      startDate: "Oct 03, 2026",
+      endDate: "Oct 05, 2026",
+      totalDays: "2 Days",
+      leaveType: "Casual Leave",
+      reason: "Family work at home",
     },
+
     {
       student: "Goku",
       studentId: "002",
@@ -78,8 +87,16 @@ function LeaveRequest() {
       class: "11B",
       parent: "Bodok",
       number: 620489855,
-      status: "Inactive",
+      status: "Rejected",
+      appliedDate: "Oct 02, 2026",
+      time: "11 : 00 am",
+      startDate: "Oct 04, 2026",
+      endDate: "Oct 06, 2026",
+      totalDays: "2 Days",
+      leaveType: "Personal Leave",
+      reason: "Going out of station",
     },
+
     {
       student: "Katniss langford",
       studentId: "010",
@@ -87,8 +104,16 @@ function LeaveRequest() {
       class: "1B",
       parent: "Jensen",
       number: 620489625,
-      status: "Active",
+      status: "Approved",
+      appliedDate: "Oct 03, 2026",
+      time: "09 : 15 am",
+      startDate: "Oct 04, 2026",
+      endDate: "Oct 04, 2026",
+      totalDays: "1 Day",
+      leaveType: "Emergency Leave",
+      reason: "Urgent home work",
     },
+
     {
       student: "Homelander",
       img: homelander,
@@ -96,8 +121,16 @@ function LeaveRequest() {
       class: "10C",
       parent: "Soldier Boy",
       number: 620489625,
-      status: "Inactive",
+      status: "Pending",
+      appliedDate: "Oct 04, 2026",
+      time: "12 : 10 pm",
+      startDate: "Oct 06, 2026",
+      endDate: "Oct 08, 2026",
+      totalDays: "2 Days",
+      leaveType: "Medical Leave",
+      reason: "Doctor suggested rest",
     },
+
     {
       student: "Thanos",
       studentId: "004",
@@ -105,8 +138,16 @@ function LeaveRequest() {
       class: "9A",
       parent: "A'Lars",
       number: 629639625,
-      status: "Alumni",
+      status: "Rejected",
+      appliedDate: "Oct 01, 2026",
+      time: "02 : 00 pm",
+      startDate: "Oct 02, 2026",
+      endDate: "Oct 03, 2026",
+      totalDays: "1 Day",
+      leaveType: "Casual Leave",
+      reason: "Personal work",
     },
+
     {
       student: "Joffrey Baratheon",
       img: Joffrey,
@@ -114,8 +155,16 @@ function LeaveRequest() {
       class: "11A",
       parent: "Robert Baratheon",
       number: 620489625,
-      status: "Active",
+      status: "Approved",
+      appliedDate: "Oct 05, 2026",
+      time: "03 : 40 pm",
+      startDate: "Oct 06, 2026",
+      endDate: "Oct 06, 2026",
+      totalDays: "1 Day",
+      leaveType: "Sick Leave",
+      reason: "Headache and fever",
     },
+
     {
       student: "Annembella",
       img: doll,
@@ -123,8 +172,16 @@ function LeaveRequest() {
       class: "11B",
       parent: "Nun",
       number: 600489625,
-      status: "Active",
+      status: "Pending",
+      appliedDate: "Oct 06, 2026",
+      time: "01 : 20 pm",
+      startDate: "Oct 08, 2026",
+      endDate: "Oct 10, 2026",
+      totalDays: "2 Days",
+      leaveType: "Medical Leave",
+      reason: "Cold and cough",
     },
+
     {
       student: "optimus Prime",
       img: prime,
@@ -132,8 +189,16 @@ function LeaveRequest() {
       class: "7A",
       parent: "Bumble Bee",
       number: 620489625,
-      status: "Active",
+      status: "Rejected",
+      appliedDate: "Oct 02, 2026",
+      time: "09 : 45 am",
+      startDate: "Oct 03, 2026",
+      endDate: "Oct 04, 2026",
+      totalDays: "1 Day",
+      leaveType: "Personal Leave",
+      reason: "Function at home",
     },
+
     {
       student: "Gamora ",
       img: gamora,
@@ -141,29 +206,49 @@ function LeaveRequest() {
       class: "12A",
       parent: "Thanos",
       number: 620489625,
-      status: "Active",
+      status: "Pending",
+      appliedDate: "Oct 03, 2026",
+      time: "04 : 10 pm",
+      startDate: "Oct 05, 2026",
+      endDate: "Oct 06, 2026",
+      totalDays: "1 Day",
+      leaveType: "Emergency Leave",
+      reason: "Urgent family issue",
     },
+
     {
       student: "Meave Wiley",
       img: meave,
       studentId: "009",
       class: "12C",
       parent: "Otis Milburn",
+      number: 620489625,
       appliedDate: "Oct 05, 2026",
       time: "13 : 00 pm",
-      status: "Active",
+      status: "Approved",
       endDate: "Oct 07, 2026",
       startDate: "Oct 07, 2026",
-      totalDays: "1 Day"
+      totalDays: "1 Day",
+      leaveType: "Sick Leave",
+      reason: "Fever and Cold",
     },
   ];
 
   const statusStyle = {
-    Active: "bg-[#D4EDDA] text-[#009638]",
-    Inactive: "bg-[#DEDEDE] text-[#696969]",
-    Alumni: "bg-[#FDEBD0] text-[#D35400]",
+    Approved: "bg-[#D4EDDA] text-[#009638]",
+    Pending: "bg-[#E3F2FD] text-[#1565C0]",
+    Rejected: "bg-[#F8D7DA] text-[#C92131]",
   };
 
+  const fileRef = useRef(null);
+  const [fileName, setFileName] = useState("");
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  };
   return (
     <div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
@@ -211,13 +296,183 @@ function LeaveRequest() {
 
           {/* RIGHT BUTTONS */}
           <div>
-            <Link to="/AddStudent">
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
-                <IoAdd className="text-white" />
-                Leave request
-              </button>
-            </Link>
+            <button
+              onClick={() => setApplyLeave(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg"
+            >
+              <IoAdd className="text-white" />
+              Leave request
+            </button>
           </div>
+
+          {/* Popup Modal */}
+          {applyLeave && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-[#9c9c9c]/10 backdrop-blur-sm px-3"
+              onClick={() => setApplyLeave(false)} // click outside close
+            >
+              {/* Modal Box */}
+              <div
+                className="bg-white w-full max-w-xl rounded-xl shadow-lg p-6 relative"
+                onClick={(e) => e.stopPropagation()} // stop closing when clicking inside
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setApplyLeave(false)}
+                  className="absolute top-4 right-4 text-gray-600 hover:text-black"
+                >
+                  <IoClose size={22} />
+                </button>
+
+                {/* Heading */}
+                <h2 className="font-semibold text-[#0B3142] text-[18px]">
+                  Submit Leave Request
+                </h2>
+                <p className="font-normal text-[#9C9C9C] text-[16px]  mt-1">
+                  Fill in the details for the student leave request
+                </p>
+
+                {/* Form */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6 gap-5">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-[#1c1c1c]">
+                      Select Class
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
+                      <option value="" disabled hidden>
+                        Select Class
+                      </option>
+                      <option value=""></option>
+                      <option value=""></option>
+                      <option value=""></option>
+                    </select>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-[#1c1c1c]">
+                      Select Student <span className="text-red-500">*</span>
+                    </label>
+                    <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
+                      <option value="" disabled hidden>
+                        Select Student
+                      </option>
+                      <option value=""></option>
+                      <option value=""></option>
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1 mt-6">
+                  <label className="text-sm text-[#1c1c1c]">
+                    Leave type
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <select className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]">
+                    <option value="" disabled hidden>
+                      Select leave
+                    </option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                  </select>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6 gap-5 ">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-[#1c1c1c]">
+                      Start date
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      placeholder="Enter Student name"
+                      className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-[#1c1c1c]">
+                      End Date <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      placeholder="Enter Student name"
+                      className="border rounded-sm px-3 py-3 text-sm outline-none border-[#9C9C9C] focus:ring-2 focus:ring-[#696969]"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1 mt-6">
+                  <label className="text-sm text-[#1c1c1c]">leave Type</label>
+                  <textarea
+                    placeholder="Provide Detailed reason for leave request"
+                    className="w-full border rounded-sm p-2"
+                  ></textarea>
+                </div>
+
+                <div className="w-full mt-6">
+                  {/* Heading */}
+                  <p className="text-sm font-medium text-[#1c1c1c] mb-2">
+                    Supporting Document
+                    <span className="text-[#1c1c1c]">(Optional)</span>
+                  </p>
+
+                  {/* Upload Box */}
+                  <div
+                    onClick={() => fileRef.current.click()}
+                    className="w-full rounded-md border-4 border-dashed border-[#118AB2] px-4 py-6 flex flex-col items-center justify-center cursor-pointer bg-white"
+                  >
+                    {/* Icon */}
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center text-[#118AB2]">
+                      <FiUpload size={28} />
+                    </div>
+
+                    {/* Text */}
+                    <p className="text-[16px] text-[#1c1c1c] mt-2 font-medium">
+                      Drag & Drop to upload or
+                      <span className="text-[#0B3142] font-semibold">
+                        Browse
+                      </span>
+                    </p>
+
+                    <p className="text-[14px] text-[#696969] mt-1">
+                      Only Pdf file are allowed.
+                    </p>
+
+                    {/* Show file name after select */}
+                    {fileName && (
+                      <p className="text-xs text-green-600 mt-3 font-semibold">
+                        Selected: {fileName}
+                      </p>
+                    )}
+
+                    {/* Hidden input */}
+                    <input
+                      ref={fileRef}
+                      type="file"
+                      accept="application/pdf"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                  </div>
+                </div>
+
+                {/* Footer Buttons */}
+                <div className="flex justify-end gap-3 mt-6">
+                  <button
+                    onClick={() => setApplyLeave(false)}
+                    className="px-5 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100"
+                  >
+                    Cancel
+                  </button>
+
+                  <button className="px-5 py-2 rounded-md bg-[#0B3142] text-white hover:opacity-90">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* <-------------------------------------- search & filter ------------------------------> */}
@@ -306,7 +561,6 @@ function LeaveRequest() {
                 <tr>
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     <div className="flex items-center gap-2">
-                      <input type="checkbox" />
                       <span>Student Name</span>
                       <PiArrowsDownUpThin />
                     </div>
@@ -329,7 +583,7 @@ function LeaveRequest() {
 
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     Leave Type
-                  </th>  
+                  </th>
 
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     Reason
@@ -347,30 +601,30 @@ function LeaveRequest() {
 
               <tbody>
                 {studentData.map((item, index) => (
-                  <tr key={index} className="border-b border-[#e6e6e6]">
+                  <tr
+                    key={index}
+                    className="border-b border-[#e6e6e6] hover:bg-[#FAFBFF]"
+                  >
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
-                      <input type="checkbox" />
-                      <Link to="/StudentDetails">
-                        <div className="flex gap-4">
-                          <div className="w-10 h-10 rounded-full overflow-hidden">
-                            <img
-                              src={item.img}
-                              alt=""
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-
-                          {/* Name + ID */}
-                          <div className="flex flex-col leading-tight">
-                            <span className="text-[#12516E] font-semibold">
-                              {item.student}
-                            </span>
-                            <span className="text-sm text-[#9c9c9c] font-semibold">
-                              {item.studentId}
-                            </span>
-                          </div>
+                      <div className="flex gap-4">
+                        <div className="w-10 h-10 rounded-full overflow-hidden">
+                          <img
+                            src={item.img}
+                            alt=""
+                            className="w-full h-full object-cover"
+                          />
                         </div>
-                      </Link>
+
+                        {/* Name + ID */}
+                        <div className="flex flex-col leading-tight">
+                          <span className="text-[#12516E] font-semibold">
+                            {item.student}
+                          </span>
+                          <span className="text-sm text-[#9c9c9c] font-semibold">
+                            {item.studentId}
+                          </span>
+                        </div>
+                      </div>
                     </td>
 
                     <td className="px-4 py-3 text-left text-sm font-semibold">
@@ -378,46 +632,55 @@ function LeaveRequest() {
                     </td>
                     <td className="px-4 py-3 text-left text-[14px] font-normal">
                       <Link to="/StudentDetails">
-                      <div className="flex gap-2">
-                        <span className="text-[#026C7C]">{item.startDate}</span> | <span className="text-[#B6174B]">{item.endDate}</span>
-                      </div>
-                      <div>
-                        <span className="text-[#9C9C9C]">{item.totalDays}</span>
-                      </div>
+                        <div className="flex gap-2">
+                          <span className="text-[#026C7C]">
+                            {item.startDate}
+                          </span>{" "}
+                          |{" "}
+                          <span className="text-[#B6174B]">{item.endDate}</span>
+                        </div>
+                        <div>
+                          <span className="text-[#9C9C9C]">
+                            {item.totalDays}
+                          </span>
+                        </div>
                       </Link>
                     </td>
                     <td className="px-4 py-3 text-left text-[14px] font-normal">
-                      <Link to="/StudentDetails">
-                      <div className="flex gap-2">
-                        <span className="text-[#1c1c1c]">{item.appliedDate}</span>
-                        <span className="text-[#9c9c9c]">• {item.time}</span>
+                      <div className="flex">
+                        <span className="text-[#1c1c1c]">
+                          {item.appliedDate}
+                        </span>
+                        <span className="text-[#9c9c9c]">•{item.time}</span>
                       </div>
-                      </Link>
                     </td>
-                    <td></td>
-                    <td></td>
-                    
+                    <td className="px-4 py-3 text-left text-[14px] font-normal">
+                      {item.leaveType}
+                    </td>
+                    <td className="px-4 py-3 text-left text-[14px] font-normal">
+                      <textarea
+                        defaultValue={item.reason}
+                        className="w-full border px-2 py-1 rounded text-[#696969] text-14px font-normal border-[#e6e6e6] bg-transparent"
+                        rows={2}
+                        readOnly
+                      />
+                    </td>
+
                     <td className="px-4 py-3 text-left text-[14px] font-normal">
                       <span
-                        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        className={`inline-flex items-center gap-1 px-3 py-1 rounded text-xs font-semibold ${
                           statusStyle[item.status] ||
                           "bg-gray-100 text-gray-600"
                         }`}
                       >
                         <span className="text-sm leading-none">
-                          <Link to="/StudentDetails">•{item.status}</Link>
+                          •{item.status}
                         </span>
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
-                      <Link to="/StudentDetails">
-                        <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
-                      </Link>
-                      <Link to="/EditStudent">
-                        <FiEdit className="w-5 h-5 text-[#9C9C9C]" />
-                      </Link>
-                      <FaRegFileAlt className="w-5 h-5 text-[#9C9C9C]" />
-                      <RiDeleteBin5Line className="w-5 h-5 text-[#FF4B4B]" />
+                    <td className="px-4 py-3 text-left text-sm  font-semibold flex gap-3 ">
+                      <SiTicktick size={19} className="text-[#009638]" />
+                      <MdOutlineCancel size={20} className="text-[#DC2626]" />
                     </td>
                   </tr>
                 ))}
