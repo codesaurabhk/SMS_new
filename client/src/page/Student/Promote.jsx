@@ -13,14 +13,10 @@ import chair from "../../assets/images/chair.gif";
 {
   /* <---------------------------------------------- icon -----------------------------------------------------> */
 }
-import { TbFileImport } from "react-icons/tb";
-import { GrUserAdd } from "react-icons/gr";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
 import { PiArrowsDownUpThin } from "react-icons/pi";
-import { FiEdit, FiSearch } from "react-icons/fi";
-import { FaRegFileAlt } from "react-icons/fa";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import { FaArrowTrendUp } from "react-icons/fa6";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { FaUser } from "react-icons/fa";
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
 import everdeen from "../../assets/images/katnis.jpg";
@@ -31,7 +27,6 @@ import thanos from "../../assets/images/thanos.jpg";
 import Joffrey from "../../assets/images/Joffrey.jpg";
 import doll from "../../assets/images/bella.jpg";
 import prime from "../../assets/images/prime.jpg";
-import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
@@ -73,98 +68,112 @@ const studentData = [
     student: "katniss Everdeen",
     studentId: "001",
     img: everdeen,
-    class: "12B",
-    parent: "Peeta Mallak",
-    number: 620489625,
-    status: "Active",
+    class: "UKG",
+    updatedClass: "1A",
+    status: "Promoted",
+    date: "07 Aug, 2025",
+    action: "Promoted",
   },
   {
     student: "Goku",
     studentId: "002",
     img: goku,
     class: "11B",
-    parent: "Bodok",
-    number: 620489855,
-    status: "Inactive",
+    updatedClass: "12B",
+    status: "Pending Review",
+    date: "07 Aug, 2025",
+    action: "Promoted",
   },
   {
     student: "Katniss langford",
     studentId: "010",
     img: langford,
     class: "1B",
-    parent: "Jensen",
-    number: 620489625,
-    status: "Active",
+    updatedClass: "2B",
+    status: "Promoted",
+    date: "07 Aug, 2025",
+    action: "Promoted",
   },
   {
     student: "Homelander",
     img: homelander,
     studentId: "003",
     class: "10C",
-    parent: "Soldier Boy",
-    number: 620489625,
-    status: "Inactive",
+    updatedClass: "11C",
+    status: "Pending Review",
+    date: "07 Aug, 2025",
+    action: "Promoted",
   },
   {
     student: "Thanos",
     studentId: "004",
     img: thanos,
     class: "9A",
-    parent: "A'Lars",
-    number: 629639625,
-    status: "Alumni",
+    updatedClass: "10A",
+    status: "Hold Back",
+    date: "07 Aug, 2025",
+    action: "Promoted",
   },
   {
     student: "Joffrey Baratheon",
     img: Joffrey,
     studentId: "005",
     class: "11A",
-    parent: "Robert Baratheon",
-    number: 620489625,
-    status: "Active",
+    updatedClass: "12A",
+    status: "Promoted",
+    date: "07 Aug, 2025",
+    action: "Promoted",
   },
   {
     student: "Annembella",
     img: doll,
     studentId: "006",
     class: "11B",
-    parent: "Nun",
-    number: 600489625,
-    status: "Active",
+    updatedClass: "12A",
+    status: "Promoted",
+    date: "07 Aug, 2025",
+    action: "Promoted",
   },
   {
     student: "optimus Prime",
     img: prime,
     studentId: "007",
     class: "7A",
-    parent: "Bumble Bee",
-    number: 620489625,
-    status: "Active",
+    updatedClass: "8A",
+    status: "Pending Review",
+    date: "07 Aug, 2025",
+    action: "Promoted",
   },
   {
     student: "Gamora ",
     img: gamora,
     studentId: "008",
-    class: "12A",
-    parent: "Thanos",
-    number: 620489625,
-    status: "Active",
+    class: "10A",
+    updatedClass: "11A",
+    status: "Hold Back",
+    date: "07 Aug, 2025",
+    action: "Promoted",
   },
   {
     student: "Meave Wiley",
     img: meave,
+    studentId: "009",
     class: "11C",
     updatedClass: "12A",
     status: "prometed",
     date: "07 Aug, 2025",
-    Action: "Promote",
+    action: "Promoted",
   },
 ];
 
 const statusStyle = {
-  Approved: "bg-[#D4EDDA] text-[#009638]",
-  Pending: "bg-[#E3F2FD] text-[#1565C0]",
-  Rejected: "bg-[#F8D7DA] text-[#C92131]",
+  Promoted: "bg-[#D4EDDA] text-[#009638]",
+  "Pending Review": "bg-[#DEDEDE] text-[#696969]",
+  "Hold Back": "bg-[#F8D7DA] text-[#C92131]",
+};
+
+const actionStyle = {
+  Promoted: "bg-[#118AB2] text-[#ffffff]",
 };
 
 function Promote() {
@@ -192,10 +201,10 @@ function Promote() {
             </button>
 
             <div>
-                <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
-                  {/* <GrUserAdd className="text-white" /> */}
-                  Promote (1)
-                </button>
+              <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
+                <FaArrowTrendUp className="text-white" />
+                Promote (1)
+              </button>
             </div>
           </div>
         </div>
@@ -272,9 +281,10 @@ function Promote() {
             <table className="w-full">
               <thead className="bg-[#F5F7F7]">
                 <tr>
-                  <th className="px-4 py-3 text-left text-sm font-semibold w-130">
+                  <th className="px-4 py-3 text-left text-sm font-semibold w-2/4">
                     <div className="flex items-center gap-2">
                       <input type="checkbox" />
+                      &ensp; &ensp;
                       <span>Student Name</span>
                       <PiArrowsDownUpThin />
                     </div>
@@ -286,9 +296,7 @@ function Promote() {
                     </div>
                   </th>
 
-                  <th className="px-4 py-3 text-left text-sm font-semibold">
-                    
-                  </th>
+                  <th className="px-4 py-3 text-left text-sm font-semibold"></th>
 
                   <th className="px-4 py-3 text-left text-sm font-semibold">
                     Next Class
@@ -310,50 +318,64 @@ function Promote() {
 
               <tbody>
                 {studentData.map((item, index) => (
-                  <tr key={index} className="border-b border-[#e6e6e6]">
-                    <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center w-130">
+                  <tr
+                    key={index}
+                    className="border-b border-[#e6e6e6] hover:bg-[#FAFBFF]"
+                  >
+                    <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
                       <input type="checkbox" />
-                        <div className="flex gap-4">
-                          <div className="w-10 h-10 rounded-full overflow-hidden">
-                            <img
-                              src={item.img}
-                              alt=""
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-
-                          {/* Name + ID */}
-                          <div className="flex flex-col leading-tight">
-                            <span className="text-[#12516E] font-semibold">
-                              {item.student}
-                            </span>
-                            <span className="text-sm text-[#9c9c9c] font-semibold">
-                              {item.studentId}
-                            </span>
-                          </div>
+                      &ensp;
+                      <div className="flex gap-4">
+                        <div className="w-10 h-10 rounded-full overflow-hidden">
+                          <img
+                            src={item.img}
+                            alt=""
+                            className="w-full h-full object-cover"
+                          />
                         </div>
+
+                        {/* Name + ID */}
+                        <div className="flex flex-col leading-tight">
+                          <span className="text-[#12516E] font-semibold">
+                            {item.student}
+                          </span>
+                          <span className="text-sm text-[#9c9c9c] font-semibold">
+                            {item.studentId}
+                          </span>
+                        </div>
+                      </div>
                     </td>
 
-                    <td className="px-4 py-3 text-left text-sm font-semibold">
+                    <td className="px-4 py-3 text-left text-[14px] text-[#1C1C1C] font-semibold">
                       {item.class}
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold">
-                      {item.parent}
+                      <IoIosArrowRoundForward size={20} className="text-[#9C9C9C]" />
                     </td>
-                    <td className="px-4 py-3 text-left text-sm font-semibold">
-                      {item.number}
+                    <td className="px-4 py-3 text-left text-[14px] font-semibold text-[#007AFF]">
+                      {item.updatedClass}
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold">
                       <span
-                        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${statusStyle[item.status] || "bg-gray-100 text-gray-600"}`}
+                        className={`inline-flex items-center gap-1 px-3 py-1 rounded text-xs font-semibold ${statusStyle[item.status] || "bg-gray-100 text-gray-600"}`}
                       >
                         <span className="text-sm leading-none">
-                          •{item.status}
+                          {item.status}
                         </span>
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
-                      
+                    <td className="px-4 py-3 text-left text-[14px] font-normal flex gap-3 text-[#696969]">
+                      {item.date}
+                    </td>
+                    <td className="px-4 py-3 text-left">
+                      <span
+                        className={`px-3 py-1 rounded text-sm font-semibold ${
+                          actionStyle[item.action] ||
+                          "bg-gray-200 text-gray-700"
+                        }`}
+                      >
+                        {item.action}
+                      </span>
                     </td>
                   </tr>
                 ))}
