@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Menu from "../../src/components/Menu";
 import Sidebar from "../../src/components/Sidebar/Sidebar";
 import Student from "../page/Student/Student.jsx";
@@ -57,14 +57,16 @@ import EditStudent from "../page/Student/EditStudent.jsx";
 
 
 function AppRouter() {
+  const location = useLocation();
+
   return (
     <>
       <Routes>
         <Route path="/" element={<Menu />}>
-        
-          <Route path="/dashboard" element={<Dashboard />} />
+
+          <Route path="dashboard" element={<Dashboard />} />
             {/* // student routes */}
-          <Route path="students" element={<Student/>} />
+          <Route path="students" element={<Student/>}/>
           <Route path="Studentdetails" element={<StudentDetails/>} />
           <Route path="unassign-students" element={<UnassignStudent/>} />
           <Route path="attendance" element={<Attendance/>} />
@@ -73,8 +75,8 @@ function AppRouter() {
           <Route path="id-card" element={<IdCard/>} />
           <Route path="manage-login" element={<ManageLogin/>} />
           <Route path="promote" element={<Promote/>} />
-          <Route path="AddStudent" element={<AddStudent />} />
-          <Route path="EditStudent" element={<EditStudent />} />
+          <Route path="addStudent" element={<AddStudent />} />
+          <Route path="editStudent" element={<EditStudent />} />
 
 
            {/* // staffs  */}

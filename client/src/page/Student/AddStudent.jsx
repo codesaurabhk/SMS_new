@@ -24,14 +24,12 @@ const uploadFields = [
 ];
 
 const AddStudent = () => {
-  const fileInputRefs = useRef({});
+ 
   const [profilePreview, setProfilePreview] = useState(null);
   const [uploadedFiles, setUploadedFiles] = useState({});
   const [transportOpted, setTransportOpted] = useState("no");
 
-  const handleClick = (id) => {
-    fileInputRefs.current[id]?.click();
-  };
+  
 
   const handleFileChange = (e, id) => {
     const file = e.target.files[0];
@@ -65,13 +63,17 @@ const AddStudent = () => {
     }));
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-6">
       {/* ===== Breadcrumb ===== */}
       <div className="flex gap-1 items-center text-[#696969]">
         <span
           className="text-2xl font-semibold cursor-pointer hover:text-black"
-          onClick={() => navigate("/Students")}
+          onClick={() => navigate("/students")} 
+          // onClick={() => navigate(-1)}
+
         >
           All Student
         </span>
@@ -125,7 +127,7 @@ const AddStudent = () => {
           <div className="flex items-center gap-4 mt-2">
             {/* Avatar */}
             <div
-              onClick={handleClick}
+              // onClick={handleClick}
               className="w-24 h-24 rounded-full border-2 border-[#D1D5DC] flex items-center justify-center bg-[#F3F4F6] cursor-pointer overflow-hidden"
             >
               {profilePreview ? (
@@ -143,7 +145,7 @@ const AddStudent = () => {
             <div>
               <button
                 type="button"
-                onClick={handleClick}
+                // onClick={handleClick}
                 className="text-sm text-[#007AFF] font-medium bg-[#EFF6FF] px-4 py-1.5 rounded-lg hover:bg-[#007AFF] hover:text-[#EFF6FF] transition"
               >
                 Upload Photo
@@ -155,7 +157,7 @@ const AddStudent = () => {
 
             {/* Hidden Input */}
             <input
-              ref={fileInputRefs}
+              
               type="file"
               accept="image/png, image/jpeg"
               onChange={handleFileChange}
@@ -973,7 +975,7 @@ const AddStudent = () => {
 
                   {/* Upload Box */}
                   <div
-                    onClick={() => handleClick(item.id)}
+                    // onClick={() => handleClick(item.id)}
                     className="cursor-pointer border border-dashed border-[#118AB2] rounded-lg px-4 py-7 flex flex-col items-center justify-center gap-2 hover:bg-[#F5FBFF] transition"
                   >
                     {!uploaded ? (
@@ -1012,7 +1014,7 @@ const AddStudent = () => {
 
                   {/* Hidden Input */}
                   <input
-                    ref={(el) => (fileInputRefs.current[item.id] = el)}
+                   
                     type="file"
                     accept="application/pdf,image/*"
                     onChange={(e) => handleFileChange(e, item.id)}
