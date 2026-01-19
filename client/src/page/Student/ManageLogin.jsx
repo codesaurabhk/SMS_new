@@ -34,6 +34,9 @@ import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
 
+{/* <--------------------------------------------------- calender -----------------------------------------------> */}
+import { DayPicker } from "react-day-picker";
+
 const cardData = [
   {
     des: "Total Student",

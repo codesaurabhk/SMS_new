@@ -25,7 +25,7 @@ const uploadFields = [
 
 
 function EditStudent() {
-    const fileInputRefs = useRef({});
+    // const fileInputRefs = useRef({});
       const [profilePreview, setProfilePreview] = useState(null);
       const [uploadedFiles, setUploadedFiles] = useState({});
     
@@ -154,7 +154,7 @@ function EditStudent() {
     
                 {/* Hidden Input */}
                 <input
-                  ref={fileInputRefs}
+                  // ref={fileInputRefs}
                   type="file"
                   accept="image/png, image/jpeg"
                   onChange={handleFileChange}
@@ -1011,7 +1011,7 @@ function EditStudent() {
     
                       {/* Hidden Input */}
                       <input
-                        ref={(el) => (fileInputRefs.current[item.id] = el)}
+                        // ref={(el) => (fileInputRefs.current[item.id] = el)}
                         type="file"
                         accept="application/pdf,image/*"
                         onChange={(e) => handleFileChange(e, item.id)}
