@@ -170,6 +170,8 @@ const leaveData = [
 
 
 const  staffLeaveRequest = () => {
+  const [openLeaveModal, setOpenLeaveModal] = useState(false);
+
   const navigate = useNavigate();
   return (
     <div>
@@ -229,7 +231,7 @@ const  staffLeaveRequest = () => {
             </button> */}
 
             <button
-              
+                onClick={() => setOpenLeaveModal(true)}
               className="inline-flex items-center gap-2 px-6 py-2 cursor-pointer bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
               {/* <GrUserAdd  /> */}
               <PiPlus size={19} className="text-white"/>
@@ -468,6 +470,103 @@ const  staffLeaveRequest = () => {
         ))}
       </div>
     </div>
+    {openLeaveModal && (
+  <div className="fixed inset-0 z-50 flex items-center px-7  justify-center bg-black/40">
+    <div className="bg-white  max-w-3xl rounded-2xl w-full  shadow-lg p-6 relative">
+
+      {/* Header */}
+      <div className="flex justify-between items-start mb-6">
+        <div>
+          <h2 className="text-lg font-semibold text-gray-900">
+            Submit Leave Request
+          </h2>
+          <p className="text-sm text-[#9C9C9C]">
+            Fill in the details for the staff leave request
+          </p>
+        </div>
+
+        <button
+          onClick={() => setOpenLeaveModal(false)}
+          className="text-gray-400 hover:text-gray-600"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* Form */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="text-sm font-medium">Select Role</label>
+          <select className="w-full mt-1 px-3 py-2 border rounded-lg text-[#9C9C9C]">
+            <option>Choose Role</option>
+            <option>Teacher</option>
+            <option>Accountant</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="text-sm font-medium">Select Employee</label>
+          <select className="w-full mt-1 px-3 py-2 border rounded-lg text-[#9C9C9C]">
+            <option>Choose Employee</option>
+          </select>
+        </div>
+
+        <div className="md:col-span-2">
+          <label className="text-sm font-medium">Leave Type</label>
+          <select className="w-full mt-1 px-3 py-2 border rounded-lg text-[#9C9C9C]">
+            <option>Select leave type</option>
+            <option>Sick Leave</option>
+            <option>Casual Leave</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="text-sm font-medium">Start Date</label>
+          <input type="date" className="w-full mt-1 px-3 py-2 border rounded-lg text-[#9C9C9C]" />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium">End Date</label>
+          <input type="date" className="w-full mt-1 px-3 py-2 border rounded-lg text-[#9C9C9C]" />
+        </div>
+
+        <div className="md:col-span-2">
+          <label className="text-sm font-medium">Reason</label>
+          <textarea
+            rows={3}
+            className="w-full mt-1 px-3 py-2 border rounded-lg"
+            placeholder="Provide detailed reason for leave request"
+          />
+        </div>
+
+        {/* Upload */}
+        <div className="md:col-span-2">
+          <label className="text-sm font-medium">
+            Supporting Document (Optional)
+          </label>
+          <div className="mt-2 border-2 border-dashed rounded-lg p-6 text-center text-sm text-[#9C9C9C]">
+            Drag & Drop to upload or <span className="text-blue-600">Browse</span>
+            <p className="text-xs mt-1">Only PDF files are allowed</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="flex justify-end gap-3 mt-6">
+        <button
+          onClick={() => setOpenLeaveModal(false)}
+          className="px-4 py-2 border rounded-lg text-gray-600"
+        >
+          Cancel
+        </button>
+        <button className="px-4 py-2 bg-[#0B3142] text-white rounded-lg">
+          Submit Request
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
