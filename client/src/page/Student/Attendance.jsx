@@ -433,7 +433,7 @@ function Attendance() {
     }, [width]);
 
     return (
-      <div ref={wrapperRef} className="relative w-full h-[320px]">
+      <div ref={wrapperRef} className="relative w-full h-80">
         <svg ref={svgRef} className="w-full h-full" />
         <div
           ref={tooltipRef}
