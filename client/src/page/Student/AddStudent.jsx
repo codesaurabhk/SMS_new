@@ -1,149 +1,1433 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { LuUser } from "react-icons/lu";
 import { HiDocumentText } from "react-icons/hi";
 import { MdClass } from "react-icons/md";
 import { RiFileList3Fill } from "react-icons/ri";
+import { LiaLongArrowAltRightSolid } from "react-icons/lia";
+import { IoAdd } from "react-icons/io5";
 
 function AddStudent() {
+  const steps = [
+    { title: "Student and Parents Info", icon: <LuUser size={24} /> },
+    { title: "Documents", icon: <HiDocumentText size={24} /> },
+    { title: "Class Details", icon: <MdClass size={24} /> },
+    { title: "Final Review", icon: <RiFileList3Fill size={24} /> },
+  ];
+
+  const [rows, setRows] = useState([
+    { subject: "", maxMarks: "", obtained: "" },
+  ]);
+
+  const handleFileChange = (index, field, value) => {
+    const updated = [...rows];
+    updated[index][field] = value;
+    setRows(updated);
+  };
+
+  const handleAddRow = () => {
+    setRows([...rows, { subject: "", maxMarks: "", obtained: "" }]);
+  };
+
+  const calcPercent = (maxMarks, obtained) => {
+    const max = Number(maxMarks);
+    const get = Number(obtained);
+    if (!max || max <= 0 || !get) return "";
+    return ((get / max) * 100).toFixed(2);
+  };
+
   return (
-    <div>
-      <div className="flex items-center gap-2">
-        <span className="text-[#696969] text-[24px] font-semibold">
-          {" "}
+    <div className="w-full">
+      {/* Breadcrumb */}
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-[#696969] text-[18px] sm:text-[20px] md:text-[24px] font-semibold">
           All Student
         </span>
-        <span className="text-[#696969] ">
+
+        <span className="text-[#696969]">
           <IoIosArrowForward size={18} />
         </span>
-        <span className="text-[#1c1c1c] text-[24px] font-semibold">
+
+        <span className="text-[#1c1c1c] text-[18px] sm:text-[20px] md:text-[24px] font-semibold">
           Add Student
         </span>
       </div>
 
-      <div className="mt-6 bg-white p-4 rounded-md shadow-md">
-        <div className="flex justify-center">
-          <div className="flex flex-col items-center gap-1">
-            <span className="text-[#1c1c1c] text-[18px] font-semibold">
+      {/* Card */}
+      <div className="mt-6 bg-white p-4 sm:p-6 rounded-md shadow-md">
+        {/* Heading */}
+        <div className="flex justify-center text-center">
+          <div className="flex flex-col gap-1">
+            <span className="text-[#1c1c1c] text-[16px] sm:text-[18px] font-semibold">
               Add New Student
             </span>
-            <span className="text-[#9c9c9c] text-[16px] font-normal ">
+            <span className="text-[#9c9c9c] text-[13px] sm:text-[15px] font-normal">
               Enter student information to enroll them in the school
             </span>
           </div>
         </div>
 
-        {/* <----------------------------- stepper --------------------> */}
-        {/* <div className="flex justify-center items-center mt-8 px-50">
-          <div className="flex-auto p-0.5 rounded bg-[#eeeeee]"></div>
+        {/* Stepper */}
+        <div className="px-10 sm:px-30 md:px-50 mt-18 pb-24">
+          <div className="relative h-2 bg-[#eeeeee] rounded-full">
+            <div className="absolute -top-6 left-0 w-full flex justify-between">
+              {steps.map((step, index) => (
+                <div key={index} className="flex flex-col items-center">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#E9C05A] text-[#0B3142] shadow-sm">
+                    {step.icon}
+                  </div>
 
-          <div className="flex flex-col items-center">
-            <div className="flex flex-col items-center gap-2">
-            <div className="bg-[#E9C05A] text-[#0B3142] p-3 rounded-full w-12">
-              <LuUser size={24} className=""/>
-            </div>
-            <div className="w-24">
-            <span className="text-[#1c1c1c] text-[16px] font-medium">
-              Student and Parents Info
-            </span>
-            </div>
+                  <span className="w-30 mt-5 text-[#1c1c1c] text-[14px] sm:text-[16px] md:text-[18px] font-semibold leading-tight text-center">
+                    {step.title}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
 
-          <div className="flex-auto p-0.5 rounded bg-[#eeeeee]"></div>
-          
-          <div className="flex flex-col items-center">
-            <div>
-            <div className="bg-[#E0E0E0] text-white p-3 rounded-full">
-              <HiDocumentText size={24} />
+        {/* <-------------------------------- Form ------------------------------> */}
+
+        <div className="mt-6">
+          <div className="flex flex-col gap-2 sm:gap-3">
+            <label className="text-[#1c1c1c] font-medium text-[14px] sm:text-[16px]">
+              Application Number
+            </label>
+
+            <div className="flex gap-4">
+              <input
+                type="text"
+                placeholder="Enter Application Number"
+                className="w-full sm:w-75 border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+              />
+              <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
+                Proceed
+              </button>
             </div>
+
+            {/* <=========================== Student ===============================> */}
+            <div className="mt-6 flex flex-col gap-2 sm:gap-3">
+              <div className="flex gap-4 items-center">
+                <div className="p-1 rounded-full h-10 bg-[#00C950]"></div>
+                <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                  <span>1. Student Information</span>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3">
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label className="text-[#696969] font-medium text-[14px] ">
+                      Student Name
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Enter Student Name"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="academicYear"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Academic Year
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <select
+                    name="academicYear"
+                    id="academicYear"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                    defaultValue="Acedemic Year"
+                  >
+                    <option value="">Select Your Academic Year</option>
+                    <option value="">2023-2024</option>
+                    <option value="">2024-2025</option>
+                    <option value="">2025-2026</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="appliedClass"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Applied Class
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <select
+                    name="appliedClass"
+                    id="appliedClass"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                    defaultValue="Applied Class"
+                  >
+                    <option value="">Select Your Class</option>
+                    <option value="">UKG</option>
+                    <option value="">Class 5</option>
+                    <option value="">Class 6</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="birthday"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Date of Birth
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <input
+                    type="date"
+                    id="birthday"
+                    name="birthday"
+                    placeholder="Enter Student Name"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="aadhaarNumber"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Adhar Number
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <input
+                    type="number"
+                    id="adhaarNumber"
+                    name="adhaarNumber"
+                    placeholder="Enter Your Aadhaar Number"
+                    inputMode="numeric"
+                    maxLength={12}
+                    pattern="[0-9]{12}"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="selecteGender"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Gender
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <select
+                    name="selecteGender"
+                    id="selecteGender"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                    defaultValue="Applied Class"
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="">Male</option>
+                    <option value="">Female</option>
+                    <option value="">Other</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="nationality"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Nationality
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <select
+                    name="nationality"
+                    id="nationality"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                    defaultValue="Applied Class"
+                  >
+                    <option value="">Nationality</option>
+                    <option value="">India</option>
+                    <option value="">U.S.A</option>
+                    <option value="">U.K</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="selecteCategory"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Category
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <select
+                    name="selecteCategory"
+                    id="selecteCategory"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                    defaultValue="Applied Class"
+                  >
+                    <option value="">Select Category</option>
+                    <option value="">Genral</option>
+                    <option value="">OBC</option>
+                    <option value="">SC</option>
+                    <option value="">ST</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="selecteReligion"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Religion
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <select
+                    name="selecteReligion"
+                    id="selecteReligion"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                    defaultValue="Applied Class"
+                  >
+                    <option value="">Select Religion</option>
+                    <option value="">Hindu</option>
+                    <option value="">Muslims</option>
+                    <option value="">Sikh</option>
+                    <option value="">Christian</option>
+                    <option value="">Other</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="selecteBloodGroup"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Blood Group
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <select
+                    name="selecteBloodGroup"
+                    id="selecteBloodGroup"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                    defaultValue="Applied Class"
+                  >
+                    <option value="">Select Blood Group</option>
+                    <option value="">A+</option>
+                    <option value="">B+</option>
+                    <option value="">A-</option>
+                    <option value="">B-</option>
+                    <option value="">AB-</option>
+                    <option value="">AB+</option>
+                    <option value="">O-</option>
+                    <option value="">+O</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label className="text-[#696969] font-medium text-[14px] ">
+                      Place of Birth
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Enter Place of Birth"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label className="text-[#696969] font-medium text-[14px] ">
+                      Mother Tounge
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Enter Mother Tounge"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label
+                      htmlFor="languageKnown"
+                      className="text-[#696969] font-medium text-[14px] "
+                    >
+                      Language Known
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <select
+                    name="languageKnown"
+                    id="languageKnown"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                    defaultValue="Applied Class"
+                  >
+                    <option value="">Known Language</option>
+                    <option value="">Hindi</option>
+                    <option value="">English</option>
+                    <option value="">Other</option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <span className="text-[#9c9c9c] text-[16px] font-medium">
-              Upload Document
+
+            {/* <---------------------------------------- Contact Information -------------------------------------> */}
+            <div className="mt-6">
+              <div className="flex gap-4 items-center">
+                <div className="p-1 rounded-full h-10 bg-[#2B7FFF]"></div>
+                <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                  <span>2. Contact Information</span>
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-4">
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label className="text-[#696969] font-medium text-[14px] ">
+                      Mobile Number
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <input
+                    type="number"
+                    placeholder="Enter Mobile Number"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <label className="text-[#696969] font-medium text-[14px] ">
+                      Email
+                    </label>
+                    <span className="text-[#DC2626] text-[14px]">*</span>
+                  </div>
+                  <input
+                    type="number"
+                    placeholder="Enter Email"
+                    className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  />
+                </div>
+              </div>
+            </div>
+            {/* <---------------------------------------- Address Details -------------------------------------> */}
+            <div className="grid lg:grid-cols-3 mt-4">
+              <div className="border-b-2 border-[#12516E] p-2 text-[16px] font-semibold text-[#1c1c1c]">
+                <span>Current Address</span>
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Address Line 1
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Address Line 1"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="selecteCountry"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Country
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="selecteCountry"
+                  id="selecteCountry"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Select Country</option>
+                  <option value="">India</option>
+                  <option value="">Nepal</option>
+                  <option value="">Other</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="selecteState"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    State
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="selecteState"
+                  id="selecteState"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Select State </option>
+                  <option value="">Bihar</option>
+                  <option value="">Uttar Pradesh</option>
+                  <option value="">Other</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    City
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="City"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Pin Code
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="code"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+            </div>
+            <div className="flex items-center gap-2 mt-4">
+              <span>
+                <LiaLongArrowAltRightSolid
+                  size={20}
+                  className="text-[#118AB2] font-semibold"
+                />
+              </span>
+              <span className="text-[17px] text-[#1c1c1c] font-semibold">
+                is Current & Permament Address is Same ?{" "}
+              </span>
+              <input type="checkbox" />
+            </div>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-4">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Address Line 1
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Address Line 1"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="selecteCountry"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Country
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="selecteCountry"
+                  id="selecteCountry"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Select Country</option>
+                  <option value="">India</option>
+                  <option value="">Nepal</option>
+                  <option value="">Other</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="selecteState"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    State
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="selecteState"
+                  id="selecteState"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Select State </option>
+                  <option value="">Bihar</option>
+                  <option value="">Uttar Pradesh</option>
+                  <option value="">Other</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    City
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="City"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Pin Code
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="code"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+            </div>
+
+            {/* <-------------------------- Parent Details ---------------------------> */}
+            <div className="flex gap-4 items-center mt-4">
+              <div className="p-1 rounded-full h-10 bg-[#FF6900]"></div>
+              <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                <span>3. Parent/Guardian/Sibling Details</span>
+              </div>
+            </div>
+            <div className="grid lg:grid-cols-3">
+              <div className="border-b-2 border-[#12516E] p-2 text-[16px] font-semibold text-[#1c1c1c]">
+                <span>Father Details</span>
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-2">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Father Name
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Father Name"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Mobile Number
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="number"
+                  placeholder="Enter Mobile Number"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Email
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="email"
+                  placeholder="Enter Email"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="occupation"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Occupation
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="occupation"
+                  id="occupation"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Occupation</option>
+                  <option value="">Goverment Employee</option>
+                  <option value="">Bussiness</option>
+                  <option value="">Unemployed</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="qualification"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Qualification
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="qualification"
+                  id="qualification"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Qualification</option>
+                  <option value="">Matriculation</option>
+                  <option value="">Intermediate</option>
+                  <option value="">Graduaction</option>
+                  <option value="">Masters</option>
+                  <option value="">P.H.D</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Designation
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Designation"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Organization Name
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Organization Name"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Organization Address
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Organization Address"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Annual Income
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Annual Income"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+            </div>
+            {/* <=================================== Mother Details ====================================> */}
+            <div className="grid lg:grid-cols-3">
+              <div className="border-b-2 border-[#12516E] p-2 text-[16px] font-semibold text-[#1c1c1c]">
+                <span>Mother Details</span>
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-2">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Father Name
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Father Name"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Mobile Number
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="number"
+                  placeholder="Enter Mobile Number"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Email
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="email"
+                  placeholder="Enter Email"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="occupation"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Occupation
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="occupation"
+                  id="occupation"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Occupation</option>
+                  <option value="">Goverment Employee</option>
+                  <option value="">Bussiness</option>
+                  <option value="">Unemployed</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="qualification"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Qualification
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="qualification"
+                  id="qualification"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Qualification</option>
+                  <option value="">Matriculation</option>
+                  <option value="">Intermediate</option>
+                  <option value="">Graduaction</option>
+                  <option value="">Masters</option>
+                  <option value="">P.H.D</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Designation
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Designation"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Organization Name
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Organization Name"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Organization Address
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Organization Address"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Annual Income
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Annual Income"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+            </div>
+
+            {/* <=============================== Local =================================> */}
+            <div className="grid lg:grid-cols-3">
+              <div className="flex items-center gap-2 mt-4 border-b-2 border-[#12516E] p-2">
+                <span className=" text-[17px] text-[#1c1c1c] font-semibold">
+                  Local Guardian Details if Any
+                </span>
+                <input type="checkbox" />
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-2">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Full Name
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Name"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Mobile Number
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Mobile Number"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Email
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="email"
+                  placeholder="Enter Email"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="relation"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Relation
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="relation"
+                  id="relation"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Relation</option>
+                  <option value="">Friend</option>
+                  <option value="">Relative</option>
+                </select>
+              </div>
+            </div>
+            {/* <============================== Sibling ==================================> */}
+            <div className="grid lg:grid-cols-3">
+              <div className="flex items-center gap-2 mt-4 border-b-2 border-[#12516E] p-2">
+                <span className=" text-[17px] text-[#1c1c1c] font-semibold">
+                  Sibling Information
+                </span>
+                <input type="checkbox" />
+              </div>
+            </div>
+            <span className="text-[#DC2626] underline text-[14px]">
+              *if Sibling are enrolled in the same school, Please provide
+              details for each student
             </span>
-          </div>
-          <div className="flex-auto p-0.5 rounded bg-[#EEEEEE]"></div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="bg-[#E0E0E0] text-white p-3 rounded-full">
-              <MdClass size={24} />
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-2">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Sibling Name
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Name"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Admission Number
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Admission Number"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="class"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Class
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="class"
+                  id="class"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Nurcessary</option>
+                  <option value="">LKG</option>
+                  <option value="">UKG</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="selecteGender"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Gender
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="selecteGender"
+                  id="selecteGender"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied gender"
+                >
+                  <option value="">Select Gender</option>
+                  <option value="">Male</option>
+                  <option value="">Female</option>
+                  <option value="">Other</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="relation"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Relation
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="relation"
+                  id="relation"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Relation</option>
+                  <option value="">Friend</option>
+                  <option value="">Relative</option>
+                </select>
+              </div>
+              <div className="mt-6">
+                <button className="flex items-center gap-2 px-4 py-1.5 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
+                  <span>
+                    <IoAdd />
+                  </span>
+                  Add
+                </button>
+              </div>
             </div>
-            <span className="text-[#9c9c9c] text-[16px] font-medium">
-              Assign Class
-            </span>
-          </div>
-          <div className="flex-auto p-0.5 rounded bg-[#EEEEEE]"></div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="bg-[#E0E0E0] text-white p-3 rounded-full">
-              <RiFileList3Fill size={24} />
+            {/* <-------------------------- Acedemic Information ---------------------------> */}
+            <div className="flex gap-4 items-center mt-4">
+              <div className="p-1 rounded-full h-10 bg-[#00C950]"></div>
+              <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                <span>4. Acdemic Information</span>
+              </div>
             </div>
-            <span className="text-[#9c9c9c] text-[16px] font-medium">
-              Review & Submit
-            </span>
-          </div>
-          <div className="flex-auto p-0.5 rounded bg-[#EEEEEE]"></div>
-        </div> */}
-        <div className="px-50 mt-8">
-          <div className="bg-[#eeeeee] p-0.5  flex justify-between relative">
-            <div
-              style={{
-                position: "absolute",
-                display: "flex",
-                zIndex: "999",
-                width: "100%",
-                justifyContent: "space-between",
-                padding: "0 50px",
-                top: "0px",
-                bottom: "0",
-              }}
-            >
-              <div className="flex flex-col items-center">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="bg-[#E9C05A] text-[#0B3142] p-3 rounded-full w-12">
-                    <LuUser size={24} className="" />
-                  </div>
-                  <div className="w-24">
-                    <span className="text-[#1c1c1c] text-[16px] font-medium">
-                      Student and Parents Info
-                    </span>
-                  </div>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-2">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Previous School Name
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
                 </div>
+                <input
+                  type="text"
+                  placeholder="Enter School Name"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
               </div>
-              <div className="flex flex-col items-center">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="bg-[#E9C05A] text-[#0B3142] p-3 rounded-full w-12">
-                    <LuUser size={24} className="" />
-                  </div>
-                  <div className="w-24">
-                    <span className="text-[#1c1c1c] text-[16px] font-medium">
-                      Student and Parents Info
-                    </span>
-                  </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="class"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Class
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
                 </div>
+                <select
+                  name="class"
+                  id="class"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">Nurcessary</option>
+                  <option value="">LKG</option>
+                  <option value="">UKG</option>
+                </select>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="bg-[#E9C05A] text-[#0B3142] p-3 rounded-full w-12">
-                    <LuUser size={24} className="" />
-                  </div>
-                  <div className="w-24">
-                    <span className="text-[#1c1c1c] text-[16px] font-medium">
-                      Student and Parents Info
-                    </span>
-                  </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="class"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Year of Passing
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
                 </div>
+                <select
+                  name="class"
+                  id="class"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Applied Class"
+                >
+                  <option value="">2025</option>
+                  <option value="">2024</option>
+                  <option value="">202</option>
+                </select>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="bg-[#E9C05A] text-[#0B3142] p-3 rounded-full w-12">
-                    <LuUser size={24} className="" />
-                  </div>
-                  <div className="w-24">
-                    <span className="text-[#1c1c1c] text-[16px] font-medium">
-                      Student and Parents Info
-                    </span>
-                  </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Previous Board
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
                 </div>
+                <input
+                  type="text"
+                  placeholder="Enter Previous Board"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
               </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    School Code
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter School Code"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    %markes/Grade Obtain
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="%markes/Grade Obtain"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Transfer Certificate No.
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Transfer Certificate No."
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Transfer Reason
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Transfer Reason"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+            </div>
+            <div className="mt-4">
+              <span className="text-[18px] text-[#1c1c1c] font-semibold">
+                Details of Marks Obtained:
+              </span>
+            </div>
+            
+            {/* <============================= Table ==================================> */}
+            <div className="mt-4">
+              <div className="w-full overflow-hidden rounded-lg border border-[#e6e6e6]">
+                <table className="w-full">
+                  <thead className="bg-[#F5F7F7]">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Subject
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Max Marks
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        Marks Obtained
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">
+                        % of Marks
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {rows.map((row, index) => (
+                      <tr key={index} className="border-t border-[#e6e6e6]">
+                        <td className="px-4 py-3">
+                          <input
+                            type="text"
+                            placeholder="Enter subject"
+                            value={row.subject}
+                            onChange={(e) =>
+                              handleFileChange(index, "subject", e.target.value)
+                            }
+                            className="w-full rounded-md px-3 py-2 outline-none"
+                          />
+                        </td>
+
+                        <td className="px-4 py-3">
+                          <input
+                            type="number"
+                            placeholder="Max"
+                            value={row.maxMarks}
+                            onChange={(e) =>
+                              handleFileChange(
+                                index,
+                                "maxMarks",
+                                e.target.value,
+                              )
+                            }
+                            className="w-full rounded-md px-3 py-2 outline-none"
+                          />
+                        </td>
+
+                        <td className="px-4 py-3">
+                          <input
+                            type="number"
+                            placeholder="Obtained"
+                            value={row.obtained}
+                            onChange={(e) =>
+                              handleFileChange(
+                                index,
+                                "obtained",
+                                e.target.value,
+                              )
+                            }
+                            className="w-full rounded-md px-3 py-2 outline-none"
+                          />
+                        </td>
+
+                        <td className="px-4 py-3 text-sm font-semibold text-[#0B3142]">
+                          {calcPercent(row.maxMarks, row.obtained)
+                            ? `${calcPercent(row.maxMarks, row.obtained)}%`
+                            : "Percentage"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-6">
+                <button
+                  type="button"
+                  onClick={handleAddRow}
+                  className="flex items-center gap-2 px-4 py-1.5 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg"
+                >
+                  <span>
+                    <IoAdd />
+                  </span>
+                  Add
+                </button>
+              </div>
+            </div>
+            {/* <----------------------------- Medical information ---------------------> */}
+            <div className="flex gap-4 items-center mt-4">
+              <div className="p-1 rounded-full h-10 bg-[#AD46FF]"></div>
+              <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                <span>5. Medical Information</span>
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-2">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Allergies (If any)
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Peanuts, Dust, etc"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Chronic Illness
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Asthama"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Dietary Restrictions
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Dietary Restrictions"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="class"
+                    className="text-[#696969] font-medium text-[14px] "
+                  >
+                    Class
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <select
+                  name="physicalDisability"
+                  id="physicalDisability"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                  defaultValue="Physical Disability"
+                >
+                  <option value="">Physical Disability</option>
+                  <option value="">Yes</option>
+                  <option value="">No</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Medication
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Medication"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Doctor Name
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter Doctor Name"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Doctor's Contact Number
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="Number"
+                  placeholder="Enter number"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+            </div>
+
+            {/* <========================================== Medical Notes ===================================> */}
+            <div className="flex flex-col gap-1 mt-3">
+              <label htmlFor="medical" className="text-[#696969] text-[14px] font-normal">Medical Notes</label>
+              <div className="w-full border border-[#9C9C9C] rounded">
+              <input type="text" className="p-2 w-full h-20" />
+            </div>
             </div>
           </div>
         </div>

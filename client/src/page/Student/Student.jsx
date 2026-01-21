@@ -241,7 +241,6 @@ const Student = () => {
             <div>
               {/* <Link to='../addStudent'> */}
               <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg" 
-              //  onClick={() => navigate("/addStudent")}
               onClick={() => navigate("/addStudent")}
 
                >
