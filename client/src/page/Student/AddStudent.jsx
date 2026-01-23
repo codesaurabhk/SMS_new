@@ -1,4 +1,7 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+
+{/* <--------------------------------------- icons ------------------------------------> */}
 import { FiUpload } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
 import { LuUser } from "react-icons/lu";
@@ -7,6 +10,8 @@ import { MdClass } from "react-icons/md";
 import { RiFileList3Fill } from "react-icons/ri";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import { IoAdd } from "react-icons/io5";
+
+{/* <--------------------------------------- imgs ------------------------------------> */}
 import baker from "../../assets/images/kathrine.jpg";
 import stephen from "../../assets/images/super.jpg";
 import mother from "../../assets/images/mother.jpg";
@@ -1992,7 +1997,7 @@ function AddStudent() {
                   <div className="w-full bg-[#12516E] text-white px-6 py-3 rounded text-[20px] font-semibold">
                     <span>Review Your Detail:</span>
                   </div>
-                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                  <div className="rounded w-full border border-[#118AB240] bg-[#118ab225] p-6">
                     <div className="flex gap-4 items-center">
                       <div className="p-1 rounded-full h-10 bg-[#00C950]"></div>
                       <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
@@ -2145,7 +2150,7 @@ function AddStudent() {
                   </div>
 
                   {/* <-------------------------------------------Contact ----------------------------------------> */}
-                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                  <div className="rounded w-full border border-[#118AB240] bg-[#118ab225] p-6">
                     <div className="flex gap-4 items-center">
                       <div className="p-1 rounded-full h-10 bg-[#2B7FFF]"></div>
                       <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
@@ -2305,7 +2310,7 @@ function AddStudent() {
                   </div>
 
                   {/* <------------------------------------------- Parent Guardian & sibling Info ----------------------------------------------> */}
-                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                  <div className="rounded w-full border border-[#118AB240] bg-[#118ab225] p-6">
                     <div className="flex gap-4 items-center">
                       <div className="p-1 rounded-full h-10 bg-[#FF6900]"></div>
                       <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
@@ -2650,8 +2655,9 @@ function AddStudent() {
                       </div>
                     </div>
                   </div>
+
                   {/* <-------------------------------------------------- Academic ---------------------------------------------> */}
-                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                  <div className="rounded w-full border border-[#118AB240] bg-[#118ab225] p-6">
                     <div className="flex gap-4 items-center">
                       <div className="p-1 rounded-full h-10 bg-[#FF6900]"></div>
                       <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
@@ -2769,10 +2775,18 @@ function AddStudent() {
 
                           <tbody className="bg-[#F5F7F7]">
                             <tr className="border-t border-[#e6e6e6] text-[#1C1C1C]">
-                              <td className="px-4 py-3 font-semibold text-[14px]">Math</td>
-                              <td className="px-4 py-3 font-normal text-[14px]">100</td>
-                              <td className="px-4 py-3 font-normal text-[14px]">99</td>
-                              <td className="px-4 py-3 font-normal text-[14px]">99%</td>
+                              <td className="px-4 py-3 font-semibold text-[14px]">
+                                Math
+                              </td>
+                              <td className="px-4 py-3 font-normal text-[14px]">
+                                100
+                              </td>
+                              <td className="px-4 py-3 font-normal text-[14px]">
+                                99
+                              </td>
+                              <td className="px-4 py-3 font-normal text-[14px]">
+                                99%
+                              </td>
                             </tr>
                           </tbody>
                         </table>
@@ -2781,7 +2795,7 @@ function AddStudent() {
                   </div>
 
                   {/* <===================================== medical ==================================> */}
-                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                  <div className="rounded w-full border border-[#118AB240] bg-[#118ab225] p-6">
                     <div className="flex gap-4 items-center">
                       <div className="p-1 rounded-full h-10 bg-[#AD46FF]"></div>
                       <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
@@ -2877,6 +2891,46 @@ function AddStudent() {
                       </div>
                     </div>
                   </div>
+
+                  {/* <==================================== Other Information =============================> */}
+                  <div className="rounded w-full border border-[#118AB240] bg-[#118ab225] p-6">
+                    <div className="flex gap-4 items-center">
+                      <div className="p-1 rounded-full h-10 bg-[#00C950]"></div>
+                      <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                        <span>6. Academic Details</span>
+                      </div>
+                    </div>
+                    <div className="w-full mt-4">
+                      <div className="flex flex-col gap-1">
+                        <div className="flex gap-1">
+                          <label className="text-[#696969] font-medium text-[15px] ">
+                            Any other information about your ward which the
+                            school should be aware of ?
+                          </label>
+                        </div>
+                        <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                          --
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <==================================== Documents =============================> */}
+                  <div className="rounded w-full border border-[#118AB240] bg-[#118ab225] p-6">
+                    <div className="flex gap-4 items-center">
+                      <div className="p-1 rounded-full h-10 bg-[#FF6900]"></div>
+                      <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                        <span>8. Upload Documents</span>
+                      </div>
+                    </div>
+                    <div className="w-full mt-4">
+                      <div className="flex gap-1">
+                        <div className=" h-45 w-40 overflow-hidden ronded">
+                          <img src={mother} alt="baker" className="rounded" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               );
 
@@ -2900,12 +2954,14 @@ function AddStudent() {
             )}
             {/* Next OR Submit Button */}
             {currentIndex === pages.length - 1 ? (
+              <Link to="/admissionLetter">
               <button
                 onClick={handleSubmit}
                 className="inline-flex px-6 py-3 bg-[#FF6900] text-white border border-[#FF6900] rounded-lg"
               >
                 Submit
               </button>
+              </Link>
             ) : (
               <button
                 onClick={nextPage}

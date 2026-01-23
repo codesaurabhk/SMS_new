@@ -48,6 +48,7 @@ import AddStaff from "../page/Staffs/AddStaff.jsx";
 import EditStaff from "../page/Staffs/EditStaff.jsx";
 import StaffDetails from "../page/Staffs/StaffDetails.jsx";
 import AddStudent from "../page/Student/AddStudent.jsx";
+import AddmissionLetter from "../page/Student/Admission.jsx"
 import EditStudent from "../page/Student/EditStudent.jsx";
 
 
@@ -77,6 +78,7 @@ function AppRouter() {
           <Route path="promote" element={<Promote/>} />
           <Route path="addStudent" element={<AddStudent />} />
           <Route path="editStudent" element={<EditStudent />} />
+          <Route path="admissionLetter" element={<AddmissionLetter />} />
 
 
            {/* // staffs  */}
