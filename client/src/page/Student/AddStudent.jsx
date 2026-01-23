@@ -7,6 +7,10 @@ import { MdClass } from "react-icons/md";
 import { RiFileList3Fill } from "react-icons/ri";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import { IoAdd } from "react-icons/io5";
+import baker from "../../assets/images/kathrine.jpg";
+import stephen from "../../assets/images/super.jpg";
+import mother from "../../assets/images/mother.jpg";
+import bat from "../../assets/images/batman.jpg";
 
 function AddStudent() {
   const pages = ["student", "documents", "academic", "review"];
@@ -105,6 +109,10 @@ function AddStudent() {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
+  };
+
+  const handleSubmit = () => {
+    console.log("Form Submitted");
   };
 
   return (
@@ -1296,103 +1304,100 @@ function AddStudent() {
                   </div>
 
                   {/* <============================= Table ==================================> */}
-                  <div className="mt-4">
-                    <div className="w-full overflow-hidden rounded-lg border border-[#e6e6e6]">
-                      <table className="w-full">
-                        <thead className="bg-[#F5F7F7]">
-                          <tr>
-                            <th className="px-4 py-3 text-left text-sm font-semibold">
-                              Subject
-                            </th>
-                            <th className="px-4 py-3 text-left text-sm font-semibold">
-                              Max Marks
-                            </th>
-                            <th className="px-4 py-3 text-left text-sm font-semibold">
-                              Marks Obtained
-                            </th>
-                            <th className="px-4 py-3 text-left text-sm font-semibold">
-                              % of Marks
-                            </th>
+
+                  <div className="w-full overflow-hidden rounded-lg border border-[#e6e6e6] mt-4">
+                    <table className="w-full">
+                      <thead className="bg-[#F5F7F7]">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">
+                            Subject
+                          </th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">
+                            Max Marks
+                          </th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">
+                            Marks Obtained
+                          </th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">
+                            % of Marks
+                          </th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {rows.map((row, index) => (
+                          <tr key={index} className="border-t border-[#e6e6e6]">
+                            <td className="px-4 py-3">
+                              <input
+                                type="text"
+                                placeholder="Enter subject"
+                                value={row.subject}
+                                onChange={(e) =>
+                                  handleFileChange(
+                                    index,
+                                    "subject",
+                                    e.target.value,
+                                  )
+                                }
+                                className="w-full rounded-md px-3 py-2 outline-none"
+                              />
+                            </td>
+
+                            <td className="px-4 py-3">
+                              <input
+                                type="number"
+                                placeholder="Max"
+                                value={row.maxMarks}
+                                onChange={(e) =>
+                                  handleFileChange(
+                                    index,
+                                    "maxMarks",
+                                    e.target.value,
+                                  )
+                                }
+                                className="w-full rounded-md px-3 py-2 outline-none"
+                              />
+                            </td>
+
+                            <td className="px-4 py-3">
+                              <input
+                                type="number"
+                                placeholder="Obtained"
+                                value={row.obtained}
+                                onChange={(e) =>
+                                  handleFileChange(
+                                    index,
+                                    "obtained",
+                                    e.target.value,
+                                  )
+                                }
+                                className="w-full rounded-md px-3 py-2 outline-none"
+                              />
+                            </td>
+
+                            <td className="px-4 py-3 text-sm font-semibold text-[#0B3142]">
+                              {calcPercent(row.maxMarks, row.obtained)
+                                ? `${calcPercent(row.maxMarks, row.obtained)}%`
+                                : "Percentage"}
+                            </td>
                           </tr>
-                        </thead>
-
-                        <tbody>
-                          {rows.map((row, index) => (
-                            <tr
-                              key={index}
-                              className="border-t border-[#e6e6e6]"
-                            >
-                              <td className="px-4 py-3">
-                                <input
-                                  type="text"
-                                  placeholder="Enter subject"
-                                  value={row.subject}
-                                  onChange={(e) =>
-                                    handleFileChange(
-                                      index,
-                                      "subject",
-                                      e.target.value,
-                                    )
-                                  }
-                                  className="w-full rounded-md px-3 py-2 outline-none"
-                                />
-                              </td>
-
-                              <td className="px-4 py-3">
-                                <input
-                                  type="number"
-                                  placeholder="Max"
-                                  value={row.maxMarks}
-                                  onChange={(e) =>
-                                    handleFileChange(
-                                      index,
-                                      "maxMarks",
-                                      e.target.value,
-                                    )
-                                  }
-                                  className="w-full rounded-md px-3 py-2 outline-none"
-                                />
-                              </td>
-
-                              <td className="px-4 py-3">
-                                <input
-                                  type="number"
-                                  placeholder="Obtained"
-                                  value={row.obtained}
-                                  onChange={(e) =>
-                                    handleFileChange(
-                                      index,
-                                      "obtained",
-                                      e.target.value,
-                                    )
-                                  }
-                                  className="w-full rounded-md px-3 py-2 outline-none"
-                                />
-                              </td>
-
-                              <td className="px-4 py-3 text-sm font-semibold text-[#0B3142]">
-                                {calcPercent(row.maxMarks, row.obtained)
-                                  ? `${calcPercent(row.maxMarks, row.obtained)}%`
-                                  : "Percentage"}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                    <div className="mt-6">
-                      <button
-                        type="button"
-                        onClick={handleAddRow}
-                        className="flex items-center gap-2 px-4 py-1.5 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg"
-                      >
-                        <span>
-                          <IoAdd />
-                        </span>
-                        Add
-                      </button>
-                    </div>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
+                  <div className="mt-6">
+                    <button
+                      type="button"
+                      onClick={handleAddRow}
+                      className="flex items-center gap-2 px-4 py-1.5 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg"
+                    >
+                      <span>
+                        <IoAdd />
+                      </span>
+                      Add
+                    </button>
+                  </div>
+
                   {/* <----------------------------- Medical information ---------------------> */}
                   <div className="flex gap-4 items-center mt-4">
                     <div className="p-1 rounded-full h-10 bg-[#AD46FF]"></div>
@@ -1939,14 +1944,941 @@ function AddStudent() {
                   </section>
 
                   {/* <------------------------------- Attach Document -------------------------------------> */}
-                  <div>
-                    
+                  <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-5 mt-6">
+                    <div className="flex flex-col gap-1">
+                      <label className="text-[18px] text-[#1c1c1c] font-medium">
+                        Attach Document
+                      </label>
+                      <div className="w-full">
+                        <div
+                          className="relative w-full border border-dashed border-[#118AB2] rounded-lg bg-white px-2 py-4 cursor-pointer hover:bg-[#F8FBFF] hover:border-[#0B77FF] transition"
+                          onClick={() =>
+                            document.getElementById("doc-other").click()
+                          }
+                        >
+                          <div className="flex flex-col items-center justify-center text-center">
+                            <FiUpload className="text-[#118AB2]" size={28} />
+
+                            <p className="flex flex-wrap justify-center gap-1 mt-2 text-[16px] text-[#1c1c1c] font-medium">
+                              Drag & Drop to upload or{" "}
+                              <span className="text-[#0B77FF] font-semibold">
+                                Browse
+                              </span>
+                            </p>
+
+                            <p className="mt-1 text-[14px] text-[#696969]">
+                              Only PDF file are allowed.
+                            </p>
+
+                            {/* Hidden Input */}
+                            <input
+                              id="doc-other"
+                              type="file"
+                              accept="application/pdf"
+                              className="hidden"
+                              onClick={(e) => e.stopPropagation()}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               );
 
             case "review":
-              return <div>rwfrgghkrhfdjdjhdjfdjgjsdgjgjdg</div>;
+              return (
+                <div className="mt-6 flex flex-col gap-9 ">
+                  <div className="w-full bg-[#12516E] text-white px-6 py-3 rounded text-[20px] font-semibold">
+                    <span>Review Your Detail:</span>
+                  </div>
+                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                    <div className="flex gap-4 items-center">
+                      <div className="p-1 rounded-full h-10 bg-[#00C950]"></div>
+                      <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                        <span>1. Student Information</span>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-3 gap-x-10 gap-y-3 ">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Acedemic Year
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            2025-2026
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Date of Birth
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            05-10-1999
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Nationality
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Indian
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Blood Group
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            A+
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Language
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Hindi, English
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Class
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Class 12A
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Aadhaar Number
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            4520 8900 6605
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Category
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            OBC
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Place of birth
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Australia
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Student Name
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Hannna Baker
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Gender
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Female
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Religion
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Hindu
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Mother Tounge
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            English
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex justify-center items-center">
+                        <div className=" h-50 w-40 overflow-hidden ronded">
+                          <img src={baker} alt="baker" className="rounded" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <-------------------------------------------Contact ----------------------------------------> */}
+                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                    <div className="flex gap-4 items-center">
+                      <div className="p-1 rounded-full h-10 bg-[#2B7FFF]"></div>
+                      <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                        <span>2. Contact Information</span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between">
+                      <div className="flex flex-col gap-1">
+                        <div className="flex gap-1">
+                          <label className="text-[#696969] font-medium text-[15px] ">
+                            Mobile No.
+                          </label>
+                        </div>
+                        <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                          6202124896
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex gap-1">
+                          <label className="text-[#696969] font-medium text-[15px] ">
+                            Email ID
+                          </label>
+                        </div>
+                        <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                          KattyKathrine1999@gmail.com
+                        </span>
+                      </div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <div className="grid lg:grid-cols-3 mt-3">
+                      <div className="border-b-2 border-[#12516E] p-2 text-[16px] font-semibold text-[#1c1c1c]">
+                        <span>Current Address</span>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3 gap-x-10 gap-y-3">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Address
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Perth, Australia
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              City
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Perth
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Country
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Australia
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Pin Code
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            4520890
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              State
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Perth
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="grid lg:grid-cols-3 mt-3">
+                      <div className="border-b-2 border-[#12516E] p-2 text-[16px] font-semibold text-[#1c1c1c]">
+                        <span>Permanent Address</span>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3 gap-x-10 gap-y-3">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Address
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Perth, Australia
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              City
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Perth
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Country
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Australia
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Pin Code
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            4520890
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              State
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Perth
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <------------------------------------------- Parent Guardian & sibling Info ----------------------------------------------> */}
+                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                    <div className="flex gap-4 items-center">
+                      <div className="p-1 rounded-full h-10 bg-[#FF6900]"></div>
+                      <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                        <span>3. Parent/Guardian/Sibling Details</span>
+                      </div>
+                    </div>
+                    <div className="grid lg:grid-cols-3 mt-3">
+                      <div className="border-b-2 border-[#12516E] p-2 text-[16px] font-semibold text-[#1c1c1c]">
+                        <span>Father Details</span>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-3 gap-x-10 gap-y-3 ">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Full Name
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Stephen Langford
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Occupation
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Writer
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Organization Name
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Mobile Number
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            1285963470
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Organization Address
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Qualification
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            MBA
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Email ID
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            LangofrdStephen69@gmail.com
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Designation
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Senior Editor & Writer
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Annual Income
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex justify-center items-center">
+                        <div className=" h-50 w-40 overflow-hidden ronded">
+                          <img src={stephen} alt="baker" className="rounded" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="grid lg:grid-cols-3 mt-3">
+                      <div className="border-b-2 border-[#12516E] p-2 text-[16px] font-semibold text-[#1c1c1c]">
+                        <span>Mother Details</span>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-3 gap-x-10 gap-y-3 ">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Full Name
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Elizabeth Langford
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Occupation
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Actress
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Organization Name
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Mobile Number
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            5896321047
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Organization Address
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Qualification
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Email ID
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            ElizabethLangford96@gmail.com
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Designation
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Annual Income
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex justify-center items-center">
+                        <div className=" h-50 w-40 overflow-hidden ronded">
+                          <img src={mother} alt="baker" className="rounded" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="grid lg:grid-cols-3 mt-3">
+                      <div className="border-b-2 border-[#12516E] p-2 text-[16px] font-semibold text-[#1c1c1c]">
+                        <span>Local Guardian</span>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-3 gap-x-10 gap-y-3 ">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Full Name
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Batman
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Relation
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Uncle
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Mobile Number
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Harvey Dent(9660285089)
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Email ID
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            JusticeLeauge@batmail.com
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex justify-center items-center">
+                        <div className=" h-50 w-40 overflow-hidden ronded">
+                          <img src={bat} alt="baker" className="rounded" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="grid lg:grid-cols-3 mt-1">
+                      <div className="border-b-2 border-[#12516E] p-2 text-[16px] font-semibold text-[#1c1c1c]">
+                        <span>Sibling Information</span>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-3 gap-x-10 gap-y-3 ">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Full Name
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Robin
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Relation
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Brother
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Admission Number
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            ADM-992
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Gender
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Male
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Class
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Class 10A
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <-------------------------------------------------- Academic ---------------------------------------------> */}
+                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                    <div className="flex gap-4 items-center">
+                      <div className="p-1 rounded-full h-10 bg-[#FF6900]"></div>
+                      <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                        <span>4. Academic Details</span>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3 gap-x-10 gap-y-3 ">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Previous School Name
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Shadowlight Academy
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Previous Board
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Marvel Board of SHIELD
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Transfer Certificate Number
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Class
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            11A
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              School Code
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            MAR-007
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Transfer Certificate
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Year of Passing
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            2025
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              %Mark/Grad Obtain
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            96%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-4">
+                      <span>Details Of Marks Obtained:</span>
+                      <div className="w-full overflow-hidden rounded-lg border border-[#e6e6e6] mt-3">
+                        <table className="w-full">
+                          <thead className="bg-[#F5F7F7]">
+                            <tr>
+                              <th className="px-4 py-3 text-left text-sm font-semibold">
+                                Subject
+                              </th>
+                              <th className="px-4 py-3 text-left text-sm font-semibold">
+                                Max Marks
+                              </th>
+                              <th className="px-4 py-3 text-left text-sm font-semibold">
+                                Marks Obtained
+                              </th>
+                              <th className="px-4 py-3 text-left text-sm font-semibold">
+                                % of Marks
+                              </th>
+                            </tr>
+                          </thead>
+
+                          <tbody className="bg-[#F5F7F7]">
+                            <tr className="border-t border-[#e6e6e6] text-[#1C1C1C]">
+                              <td className="px-4 py-3 font-semibold text-[14px]">Math</td>
+                              <td className="px-4 py-3 font-normal text-[14px]">100</td>
+                              <td className="px-4 py-3 font-normal text-[14px]">99</td>
+                              <td className="px-4 py-3 font-normal text-[14px]">99%</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <===================================== medical ==================================> */}
+                  <div className="rounded w-full border-[#118AB240] bg-[#118ab225] p-6">
+                    <div className="flex gap-4 items-center">
+                      <div className="p-1 rounded-full h-10 bg-[#AD46FF]"></div>
+                      <div className="text-[#1c1c1c] font-medium text-[18px] leading-tight flex gap-2 items-center">
+                        <span>5. Medical Information</span>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3 gap-x-10 gap-y-3 ">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Allergies (if any)
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Dark Matter
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Physical Disability
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            No
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Doctor Contact No
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Chornics Illness
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Medical Notes
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Medication
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Dietary Restrictions
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            --
+                          </span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex gap-1">
+                            <label className="text-[#696969] font-medium text-[15px] ">
+                              Doctor Name
+                            </label>
+                          </div>
+                          <span className="text-[15px] text-[#1C1C1C] font-semibold">
+                            Doctor Fate
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
 
             default:
               return;
@@ -1956,26 +2888,32 @@ function AddStudent() {
         {/* <-------------------------------- previous & next button ---------------------------> */}
         <div className="mt-6 border-t-2 border-[#e6e6e6]">
           <div className="flex justify-end p-2 mt-3 gap-4">
-            {currentIndex === 0 ? (
-              ""
-            ) : (
-              <div className="flex gap-4">
-                <button
-                  onClick={prevPage}
-                  disabled={currentIndex === 0}
-                  className="inline-flex px-6 py-3 text-[#696969] border border-[#9c9c9c] rounded-lg disabled:opacity-50"
-                >
-                  Previous
-                </button>
-              </div>
+            {/* Previous Button */}
+            {currentIndex !== 0 && (
+              <button
+                onClick={prevPage}
+                disabled={currentIndex === 0}
+                className="inline-flex px-6 py-3 text-[#696969] border border-[#9c9c9c] rounded-lg disabled:opacity-50"
+              >
+                Previous
+              </button>
             )}
-            <button
-              onClick={nextPage}
-              disabled={currentIndex === pages.length - 1}
-              className="inline-flex px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg disabled:opacity-50"
-            >
-              Next
-            </button>
+            {/* Next OR Submit Button */}
+            {currentIndex === pages.length - 1 ? (
+              <button
+                onClick={handleSubmit}
+                className="inline-flex px-6 py-3 bg-[#FF6900] text-white border border-[#FF6900] rounded-lg"
+              >
+                Submit
+              </button>
+            ) : (
+              <button
+                onClick={nextPage}
+                className="inline-flex px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg"
+              >
+                Next
+              </button>
+            )}
           </div>
         </div>
       </div>
