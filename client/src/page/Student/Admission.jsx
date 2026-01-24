@@ -20,23 +20,38 @@ function Admission() {
       </div>
 
       <div className="w-full">
-        <div className="flex justify-around mt-8 w-[80%]">
-          <div className="pt-3 bg-linear-to-r from-[#0F4057] via-[#118AB2] to-[#0077B6] rounded-full">
-            <div className="bg-white rounded-full mt-2 p-6 items-center">
-              <div className="flex justify-between p-4">
-                <div className="w-83 h-21 rounded-full overflow-hidden">
+        <div className="flex justify-around mt-8 ">
+          <div className="pt-3 bg-linear-to-r from-[#0F4057] via-[#118AB2] to-[#0077B6] w-[80%]">
+            <div className="bg-white mt-2 p-6 w-full h-100">
+              <div className="flex flex-wrap justify-between p-4 border-b-2 border-dashed border-[#9C9C9C] mb-8">
+                <div className="w-63 h-40 overflow-hidden">
                   <img src={logo} alt="" />
                 </div>
-                <div className="flex flex-col gap-1">
-                  <span>Kasper Infotech Private Limited</span>
-                  <span>123, Education Avenue, springfield, || il 62710</span>
-                  <span>
-                    Phone:- +91 620 212 4896 | Email:- info@greenwood.edu
-                  </span>
+                <div className="flex flex-col gap-2">
+                  <div className="text-[#000000] text-[24px] font-semibold">
+                    <span>Kasper Infotech Private Limited</span>
+                  </div>
+                  <div className="flex justify-center text-[16px] font-normal text-[#000000]">
+                    <span>123, Education Avenue, springfield, IL 62710</span>
+                  </div>
+                  <div className="flex justify-center text-[16px] font-normal text-[#000000]">
+                    <span>
+                      Phone:- +91 620 212 4896 | Email:- info@greenwood.edu
+                    </span>
+                  </div>
                 </div>
                 <div>
-                  <button>Active</button>
+                  <button className="px-3 py-2 bg-[#B5FFD1] border border-[#5BCB85] rounded-md font-semibold text-[#009638] text-[16px]">
+                    • Active
+                  </button>
                 </div>
+              </div>
+              {/* <<--------------------------------------- id & login ----------------------------------->> */}
+              <div className="mt-7 p-2 flex gap-12">
+                {/* <<=========================== id card preview ===========================>> */}
+                <div className="shadow-lg p-4 b">hh</div>
+                {/* <<=========================== login id & password ===========================>> */}
+                <div></div>
               </div>
             </div>
           </div>
