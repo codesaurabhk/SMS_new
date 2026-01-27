@@ -388,7 +388,7 @@ const  staffLeaveRequest = () => {
                       <span  className="border px-5 py-2.5 text-[#696969] border-[#E6E6E6] ">{item.Reason}</span>
                     </td>
                     <td >
-                    <div className="relative flex h-[32px] w-[95px] items-center justify-center">
+                    <div className="relative flex h-8 w-23.75 items-center justify-center">
                        
                         <span
                           className={`relative inline-flex h-full w-full items-center justify-center gap-2 rounded-[25px] px-2 text-sm font-medium
@@ -460,9 +460,9 @@ const  staffLeaveRequest = () => {
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full h-[6px] bg-[#E5E7EB] rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-[#E5E7EB] rounded-full overflow-hidden">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-[#0B4A6F] to-[#1E88E5]"
+                className="h-full rounded-full bg-linear-to-r from-[#0B4A6F] to-[#1E88E5]"
                 style={{ width: `${item.percent}%` }}
               />
             </div>
