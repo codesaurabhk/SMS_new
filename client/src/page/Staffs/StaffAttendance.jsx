@@ -32,6 +32,8 @@ import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
+import AttendanceRegister from "./AttendanceRegister";
+
 const cardData = [
   {
     des: "Present Staff",
@@ -649,7 +651,7 @@ function DetailsContent({ active }) {
       );
 
     case "Attendance Register":
-      return <div>academic</div>;
+      return <AttendanceRegister />;
 
     case "Update Attendance":
       return <div>performance</div>;
@@ -862,6 +864,18 @@ function ExamPerformanceTrendChart() {
         ref={tooltipRef}
         className="absolute bg-[#0B3142] text-white px-3 py-2 rounded text-sm pointer-events-none opacity-0"
       />
+    </div>
+  );
+}
+
+/* Legend Card */
+function Legend({ label, badge, bg, badgeBg }) {
+  return (
+    <div className={`flex justify-between items-center px-4 py-3 rounded-lg ${bg}`}>
+      <span className="font-medium">{label}</span>
+      <span className={`w-8 h-8 flex items-center justify-center rounded-md text-white text-sm font-semibold ${badgeBg}`}>
+        {badge}
+      </span>
     </div>
   );
 }
