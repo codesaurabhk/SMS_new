@@ -25,6 +25,11 @@ import { format } from "date-fns";
 import "react-day-picker/dist/style.css";
 import { LuCalendarDays } from "react-icons/lu";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { FiChevronDown } from "react-icons/fi";
+import { MdOutlineCalendarToday, MdOutlineAccessTime } from "react-icons/md";
+// import { MdOutlineAccessTime } from "react-icons/md";
+import { FiEdit2 } from "react-icons/fi";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
 import everdeen from "../../assets/images/katnis.jpg";
@@ -274,7 +279,7 @@ function DetailsContent({ active }) {
       const navigate = useNavigate();
       return (
         <div>
-          <div className="box-shadow mt-3 bg-white rounded-xl">
+          <div className="box-shadow bg-white rounded-xl">
             <div className="flex flex-col md:flex-row md:justify-between gap-4 p-4 items-center">
               {/* LEFT CONTENT */}
               <div>
@@ -654,12 +659,231 @@ function DetailsContent({ active }) {
       return <AttendanceRegister />;
 
     case "Update Attendance":
-      return <div>performance</div>;
+      return  <div className="bg-white rounded-xl p-6 shadow-sm">
+            {/* Header */}
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-gray-900">
+                Update Attendance
+              </h2>
+              <p className="text-sm text-gray-500">
+                You can update staff attendance here
+              </p>
+            </div>
+      
+            {/* Form */}
+            <div className="bg-gray-50 rounded-lg p-6">
+              {/* Row 1 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                {/* Role */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Role</label>
+                  <div className="relative">
+                    <select className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none appearance-none">
+                      <option>Select role</option>
+                    </select>
+                    <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                  </div>
+                </div>
+      
+                {/* Staff */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Staff</label>
+                  <div className="relative">
+                    <select className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none appearance-none">
+                      <option>Select staff</option>
+                    </select>
+                    <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                  </div>
+                </div>
+              </div>
+      
+              {/* Row 2 */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                {/* Date */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Date</label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="12-01-2025"
+                      className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                    />
+                    <MdOutlineCalendarToday className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                  </div>
+                </div>
+      
+                {/* Login Time */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Login Time</label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="--:--"
+                      className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                    />
+                    <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                  </div>
+                </div>
+      
+                {/* Logout Time */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Logout Time</label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="--:--"
+                      className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                    />
+                    <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                  </div>
+                </div>
+              </div>
+      
+              {/* Remark */}
+              <div className="mb-8">
+                <label className="block text-sm font-medium mb-1">Remark</label>
+                <input
+                  type="text"
+                  placeholder="Type here"
+                  className="w-full px-4 py-3 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                />
+              </div>
+      
+              {/* Actions */}
+              <div className="flex justify-end gap-4">
+                <button className="px-6 py-2.5 border  rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">
+                  Reset
+                </button>
+                <button className="px-6 py-2.5 bg-[#0B2C3D] text-white rounded-lg text-sm font-medium hover:opacity-90">
+                  Update Attendance
+                </button>
+              </div>
+            </div>
+          </div>;
 
     case "Shift Management":
       return (
         <div>
-          <div>attendance</div>
+          <div className="bg-white rounded-xl p-6 shadow-sm">
+                {/* Header */}
+                <div className="mb-6">
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    Shift Management
+                  </h2>
+                  <p className="text-sm text-gray-500">
+                    You can create and view all shifts here
+                  </p>
+                </div>
+          
+                {/* Create Shift */}
+                <div className="bg-gray-50 rounded-lg p-6 mb-8">
+                  {/* Shift Name */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-1">
+                      Shift Name
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Enter Shift Name"
+                      className="w-full px-4 py-3 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                    />
+                  </div>
+          
+                  {/* Start & End Time */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">
+                        Start Time
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          placeholder="--:-- --"
+                          className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                        />
+                        <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                      </div>
+                    </div>
+          
+                    <div>
+                      <label className="block text-sm font-medium mb-1">
+                        End Time
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          placeholder="--:-- --"
+                          className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                        />
+                        <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                      </div>
+                    </div>
+                  </div>
+          
+                  {/* Minimum Login Hour */}
+                  <div className="mb-8">
+                    <label className="block text-sm font-medium mb-1">
+                      Minimum Login Hour
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="-- hrs -- min"
+                      className="w-full px-4 py-3 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                    />
+                  </div>
+          
+                  {/* Buttons */}
+                  <div className="flex justify-end gap-4">
+                    <button className="px-6 py-2.5 border rounded-lg bg-white text-sm font-medium text-gray-700 hover:bg-gray-100">
+                      Reset
+                    </button>
+                    <button className="px-6 py-2.5 bg-[#0B2C3D] text-white rounded-lg text-sm font-medium hover:opacity-90">
+                      Create
+                    </button>
+                  </div>
+                </div>
+          
+                {/* Shift Table */}
+                <div className="border border-[#E6E6E6] rounded-lg overflow-hidden w-237 ">
+                  <table className="w-full text-sm">
+                    <thead className="border-b border-[#E6E6E6]">
+                      <tr>
+                        <th className="p-4 text-left">
+                          <input type="checkbox" />
+                        </th>
+                        <th className="p-4 text-left font-medium">Shift Name</th>
+                        <th className="p-4 text-left font-medium">Start Time</th>
+                        <th className="p-4 text-left font-medium">End Time</th>
+                        <th className="p-4 text-left font-medium">Min Login Hours</th>
+                        <th className="p-4 text-left font-medium">Action</th>
+                      </tr>
+                    </thead>
+          
+                    <tbody>
+                      {[
+                        { name: "Shift 1", start: "8:00 AM", end: "4:00 PM" },
+                        { name: "Shift 2", start: "8:25 AM", end: "4:25 PM" },
+                        { name: "Shift 3", start: "8:15 AM", end: "4:15 PM" },
+                        { name: "Shift 4", start: "8:10 AM", end: "4:10 PM" },
+                      ].map((shift, index) => (
+                        <tr key={index} className="border-b border-[#E6E6E6] last:border-b-0">
+                          <td className="p-4">
+                            <input type="checkbox" />
+                          </td>
+                          <td className="p-4">{shift.name}</td>
+                          <td className="p-4">{shift.start}</td>
+                          <td className="p-4">{shift.end}</td>
+                          <td className="p-4">7 hrs 45 min</td>
+                          <td className="p-4 flex gap-3">
+                            <FiEdit2 className="text-gray-500 cursor-pointer" />
+                            <RiDeleteBin6Line className="text-red-500 cursor-pointer" />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
         </div>
       );
 
@@ -922,7 +1146,7 @@ const StaffAttendance = () => {
         ))}
       </div>
 
-      <div className="w-full mt-6 bg-white rounded-full shadow-md">
+      <div className="w-full mb-5 mt-6 bg-white rounded-full shadow-md">
         <div
           className="
       flex

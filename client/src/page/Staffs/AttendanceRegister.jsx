@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
+import { PiArrowsDownUpThin } from "react-icons/pi";
 
 /* Generate dates till 31 Dec */
 const generateDecemberDates = () => {
@@ -63,7 +64,7 @@ export default function AttendanceRegister() {
   );
 
   return (
-    <div className="bg-white rounded-xl border shadow-sm border-[#E6E6E6] mt-5  p-6">
+    <div className="bg-white rounded-xl border shadow-sm border-[#E6E6E6]  p-6">
 
       {/* Header */}
       <div className="mb-4">
@@ -76,8 +77,8 @@ export default function AttendanceRegister() {
       </div>
 
       {/* Search + Filters */}
-      <div className="flex justify-between items-center gap-4 mb-4">
-        <div className="relative w-full max-w-xl">
+      <div className="flex  items-center gap-4 mb-4">
+        <div className="relative basis-[80%]  ">
           <FiSearch className="absolute left-3 top-3 text-gray-400" />
           <input
             type="text"
@@ -88,7 +89,7 @@ export default function AttendanceRegister() {
           />
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 basis-[20%] justify-end">
           <select className="px-3 py-2 bg-gray-100 rounded-md text-sm">
             <option>2025</option>
           </select>
@@ -106,7 +107,10 @@ export default function AttendanceRegister() {
           <thead className="bg-gray-50 border-b border-[#E6E6E6]">
             <tr>
               <th className="sticky left-0 z-20 bg-gray-50 px-4 py-3 text-left font-medium">
-                Staff
+                 <div className="flex items-center gap-1">
+                <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span>
+                <span>Staff</span>
+                </div>
               </th>
               {days.map(day => (
                 <th
@@ -139,7 +143,7 @@ export default function AttendanceRegister() {
                       </div>
                     )}
                     <div>
-                      <p className="font-medium text-blue-700">
+                      <p className="font-medium text-[#12516E]">
                         {staff.name}
                       </p>
                       <p className="text-xs text-gray-500">
@@ -187,7 +191,7 @@ export default function AttendanceRegister() {
 /* Legend Card */
 function Legend({ label, badge, bg, text, badgeBg }) {
   return (
-    <div className={`flex justify-between items-center px-4 py-3 rounded-lg w-92.25 h-18 ${bg}`}>
+    <div className={`flex justify-between items-center px-4 py-3 rounded-lg w-92.20 h-18 ${bg}`}>
       <span className={`text-xl ${text}`}>{label}</span>
       <span className={`w-8.5 h-10 flex items-center justify-center rounded-md text-white text-base font-semibold ${badgeBg}`}>
         {badge}
