@@ -132,7 +132,7 @@ function EditStudent() {
             </span>
     
             <span className="text-[#1c1c1c] text-[18px] sm:text-[20px] md:text-[24px] font-semibold">
-              Add Student
+              Edit Student
             </span>
           </div>
     
