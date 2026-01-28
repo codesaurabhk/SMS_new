@@ -37,13 +37,9 @@ function Admission() {
         <div className="flex justify-around mt-8 ">
           <div className="pt-3 bg-linear-to-r from-[#0F4057] via-[#118AB2] to-[#0077B6] w-[80%] rounded-4xl relative">
             <img src={bottom} alt="logo" className="absolute top-5 left-0" />
-             <img
-    src={top}
-    alt=""
-    className="absolute bottom-0 right-0"
-  />
+            <img src={top} alt="" className="absolute bottom-0 right-0" />
 
-            <div className="bg-white mt-2 p-6 w-full rounded-2xl">
+            <div className="bg-white mt-2 p-6 w-full rounded-4xl">
               <div className="flex flex-wrap justify-between p-4 border-b-2 border-dashed border-[#9C9C9C] mb-8">
                 <div className="w-63 h-40 overflow-hidden">
                   <img src={logo} alt="" />

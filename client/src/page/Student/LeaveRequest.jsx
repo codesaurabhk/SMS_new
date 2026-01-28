@@ -14,6 +14,10 @@ import { PiArrowsDownUpThin } from "react-icons/pi";
 import { format } from "date-fns";
 import { LuCalendarDays } from "react-icons/lu";
 import { FiUpload } from "react-icons/fi";
+import { IoIosMale } from "react-icons/io";
+import { IoFemaleOutline } from "react-icons/io5";
+import { SlCalender } from "react-icons/sl";
+import { FiMessageSquare } from "react-icons/fi";
 import { DayPicker } from "react-day-picker";
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
@@ -27,6 +31,7 @@ import doll from "../../assets/images/bella.jpg";
 import prime from "../../assets/images/prime.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
+import baker from "../../assets/images/kathrine.jpg";
 import Pagination from "../../components/Pagination";
 import { Link } from "react-router-dom";
 
@@ -34,6 +39,11 @@ function LeaveRequest() {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
   const [applyLeave, setApplyLeave] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [fileName, setFileName] = useState("");
+  const fileRef = useRef(null);
 
   const leaveCardData = [
     {
@@ -240,15 +250,32 @@ function LeaveRequest() {
     Rejected: "bg-[#F8D7DA] text-[#C92131]",
   };
 
-  const fileRef = useRef(null);
-  const [fileName, setFileName] = useState("");
-
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
     if (file) {
       setFileName(file.name);
     }
   };
+
+  const openModal = (item) => {
+    setSelectedStudent(item);
+
+    if (item.status === "Approved") {
+      setModalType("approved");
+    } else if (item.status === "Pending") {
+      setModalType("pending");
+    } else {
+      setModalType(null); // rejected or others
+    }
+
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedStudent(null);
+  };
+
   return (
     <div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
@@ -308,7 +335,7 @@ function LeaveRequest() {
           {/* Popup Modal */}
           {applyLeave && (
             <div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-[#9c9c9c]/10 backdrop-blur-sm px-3"
+              className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
               onClick={() => setApplyLeave(false)} // click outside close
             >
               {/* Modal Box */}
@@ -489,7 +516,7 @@ function LeaveRequest() {
 
           {/* FILTER BUTTONS */}
           <div className="inline-flex items-center gap-3">
-            <div className="flex flex-col sm:flex-row gap-3 ">
+            <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative w-fit ">
                 {/* PILL INPUT */}
                 <button
@@ -534,22 +561,24 @@ function LeaveRequest() {
               </div>
             </div>
             <label For="Export"></label>
-            <select
-              name=""
-              id="Export"
-              className="bg-[#EFF2F2] rounded px-2 py-2 border-0 outline-0"
-            >
-              <option value="">All Status</option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-            </select>
+            <div className="bg-[#EFF2F2] rounded p-1">
+              <select
+                name=""
+                id="Export"
+                className="border-0 outline-0 bg-transparent px-2 py-2"
+              >
+                <option value="">All Status</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -603,7 +632,8 @@ function LeaveRequest() {
                 {studentData.map((item, index) => (
                   <tr
                     key={index}
-                    className="border-b border-[#e6e6e6] hover:bg-[#FAFBFF]"
+                    onClick={() => openModal(item)}
+                    className="border-b border-[#e6e6e6] hover:bg-[#FAFBFF] cursor-pointer"
                   >
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
                       <div className="flex gap-4">
@@ -628,23 +658,16 @@ function LeaveRequest() {
                     </td>
 
                     <td className="px-4 py-3 text-left text-sm font-semibold">
-                      <Link to="/StudentDetails">{item.class}</Link>
+                      {item.class}
                     </td>
                     <td className="px-4 py-3 text-left text-[14px] font-normal">
-                      <Link to="/StudentDetails">
-                        <div className="flex gap-2">
-                          <span className="text-[#026C7C]">
-                            {item.startDate}
-                          </span>{" "}
-                          |{" "}
-                          <span className="text-[#B6174B]">{item.endDate}</span>
-                        </div>
-                        <div>
-                          <span className="text-[#9C9C9C]">
-                            {item.totalDays}
-                          </span>
-                        </div>
-                      </Link>
+                      <div className="flex gap-2">
+                        <span className="text-[#026C7C]">{item.startDate}</span>{" "}
+                        | <span className="text-[#B6174B]">{item.endDate}</span>
+                      </div>
+                      <div>
+                        <span className="text-[#9C9C9C]">{item.totalDays}</span>
+                      </div>
                     </td>
                     <td className="px-4 py-3 text-left text-[14px] font-normal">
                       <div className="flex">
@@ -688,6 +711,398 @@ function LeaveRequest() {
             </table>
           </div>
         </div>
+
+        {isModalOpen && selectedStudent && modalType === "approved" && (
+          <div
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            onClick={closeModal}
+          >
+            <div
+              className="bg-white w-full max-w-4xl rounded-xl shadow-lg p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* HEADER */}
+              <div className="flex justify-between">
+                <div className="flex flex-col gap-1">
+                  <span className="text-[18px] font-semibold text-[#1C1C1C]">
+                    Leave Request Details
+                  </span>
+                  <span className="text-[16px] font-normal text-[#9c9c9c]">
+                    Request ID: LR001
+                  </span>
+                </div>
+
+                <div>
+                  <button
+                    onClick={closeModal}
+                    className=" text-[#1F1F1F] font-semibold w-6 h-6"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+
+              {/* BODY */}
+              <div className="flex justify-between p-6 bg-linear-to-r from-[#C9D6FF] to-[#EBCDCD] rounded-lg mt-6">
+                <div className="flex gap-6">
+                  <div className="w-20 h-20 rounded-full overflow-hidden">
+                    <img src={baker} alt="" />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#12516E] text-[16px] font-semibold flex gap-2">
+                      Kathrine Langford <IoFemaleOutline />
+                    </span>
+                    <span className="text-[#696969] font-normal text-[14px]">
+                      Student ID: STU001
+                    </span>
+                    <div className="flex gap-1">
+                      <span className="text-[#12516E]">•</span>
+                      <span className="text-[#696969] font-normal text-[14px]">
+                        Class:
+                      </span>
+                      <span className="text-[#1c1c1c] text-[14px] font-semibold">
+                        12A
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <span className="text-[#118AB2]">•</span>
+                    <span className="text-[16px] text-[#696969] font-normal">
+                      {" "}
+                      Leave Type
+                    </span>
+                  </div>
+                  <span className="text-[16px] font-semibold text-[#1C1C1C]">
+                    Family Event
+                  </span>
+                </div>
+                <div className="">
+                  <button className="bg-[#D4EDDA] text-[#009638] font-semibold text-[12px] px-2 py-2 rounded">
+                    • Approve
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex justify-between mt-5 gap-6">
+                <div className="px-3 py-4 border border-[#71B3FF] rounded-lg w-full">
+                  <div className="flex gap-2 items-center">
+                    <div className="">
+                      <SlCalender
+                        style={{
+                          width: "24px",
+                          height: "24px",
+                          color: "#1F1F1F",
+                        }}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[14px] font-normal text-[#1C1C1C]">
+                        Start Date
+                      </span>
+                      <span className="text-[16px] font-semibold text-[#0077B6]">
+                        Oct 10, 2025
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="px-3 py-4 border border-[#71B3FF] rounded-lg w-full">
+                  <div className="flex gap-2 items-center">
+                    <div className="">
+                      <SlCalender
+                        style={{
+                          width: "24px",
+                          height: "24px",
+                          color: "#1F1F1F",
+                        }}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[14px] font-normal text-[#1C1C1C]">
+                        End Date
+                      </span>
+                      <span className="text-[16px] font-semibold text-[#0077B6]">
+                        Oct 16, 2025
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="px-3 py-4 bg-linear-to-r from-[#36D1DC] to-[#5B86E5] rounded-lg w-full">
+                  <div className="flex gap-2 items-center">
+                    <div className="">
+                      <SlCalender
+                        style={{
+                          width: "24px",
+                          height: "24px",
+                          color: "#ffffff",
+                        }}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[14px] font-normal text-[#ffffff]">
+                        Duration
+                      </span>
+                      <span className="text-[16px] font-semibold text-[#ffffff]">
+                        7 Days
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border border-[#71B3FF] p-4 rounded-lg mt-6">
+                <div className="flex gap-2 items-center">
+                  <span className="text-[#0077B6]">
+                    <FiMessageSquare />
+                  </span>
+                  <span className="text-[#0077B6] text-[16px] font-semibold">
+                    Reason for leave
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <textarea
+                    name=""
+                    id=""
+                    placeholder="Reason You Applied for ........"
+                    className="bg-[#FAFBFF] w-full p-2 rounded-lg resize-none h-25 text-[#696969] text-normal text-[14px]"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div className="mt-6 border border-[#71B3FF] p-4 rounded-lg">
+                <div className="flex flex-col gap-1">
+                  <span className="text-[14px] text-[#9C9C9C] font-normal">
+                    Submitted on
+                  </span>
+                  <div>
+                    <span className="text-[16px] text-[#1c1c1c] font-semibold">
+                      Oct, 2025 •{" "}
+                    </span>
+                    <span className="text-[16px] text-[#9C9C9C] font-semibold">
+                      {" "}
+                      13 : 10 PM
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 border border-[#71B3FF] p-4 rounded-lg">
+                <div className="flex flex-col gap-1 ">
+                  <span className="text-[14px] text-[#9C9C9C] font-normal">
+                    Approved By
+                  </span>
+                  <div className="flex gap-2 items-center">
+                    <span className="text-[16px] text-[#1c1c1c] font-semibold">
+                      Joginder Yadav
+                    </span>
+                    <span className="text-[16px] text-[#1c1c1c] font-normal bg-white px-0.5 py-2">
+                      Class Teacher
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        )}
+
+        
+        {isModalOpen && selectedStudent && modalType === "pending" && (
+          <div
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            onClick={closeModal}
+          >
+            <div
+              className="bg-white w-full max-w-4xl rounded-xl shadow-lg p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* HEADER */}
+              <div className="flex justify-between">
+                <div className="flex flex-col gap-1">
+                  <span className="text-[18px] font-semibold text-[#1C1C1C]">
+                    Leave Request Details
+                  </span>
+                  <span className="text-[16px] font-normal text-[#9c9c9c]">
+                    Request ID: LR001
+                  </span>
+                </div>
+
+                <div>
+                  <button
+                    onClick={closeModal}
+                    className=" text-[#1F1F1F] font-semibold w-6 h-6"
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+
+              {/* BODY */}
+              <div className="flex justify-between p-6 bg-linear-to-r from-[#C9D6FF] to-[#EBCDCD] rounded-lg mt-6">
+                <div className="flex gap-6">
+                  <div className="w-20 h-20 rounded-full overflow-hidden">
+                    <img src={baker} alt="" />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#12516E] text-[16px] font-semibold flex gap-2">
+                      Kathrine Langford <IoFemaleOutline />
+                    </span>
+                    <span className="text-[#696969] font-normal text-[14px]">
+                      Student ID: STU001
+                    </span>
+                    <div className="flex gap-1">
+                      <span className="text-[#12516E]">•</span>
+                      <span className="text-[#696969] font-normal text-[14px]">
+                        Class:
+                      </span>
+                      <span className="text-[#1c1c1c] text-[14px] font-semibold">
+                        12A
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex gap-1">
+                    <span className="text-[#118AB2]">•</span>
+                    <span className="text-[16px] text-[#696969] font-normal">
+                      {" "}
+                      Leave Type
+                    </span>
+                  </div>
+                  <span className="text-[16px] font-semibold text-[#1C1C1C]">
+                    Family Event
+                  </span>
+                </div>
+                <div className="">
+                  <button className="bg-[#D4EDDA] text-[#009638] font-semibold text-[12px] px-2 py-2 rounded">
+                    • Approve
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex justify-between mt-5 gap-6">
+                <div className="px-3 py-4 border border-[#71B3FF] rounded-lg w-full">
+                  <div className="flex gap-2 items-center">
+                    <div className="">
+                      <SlCalender
+                        style={{
+                          width: "24px",
+                          height: "24px",
+                          color: "#1F1F1F",
+                        }}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[14px] font-normal text-[#1C1C1C]">
+                        Start Date
+                      </span>
+                      <span className="text-[16px] font-semibold text-[#0077B6]">
+                        Oct 10, 2025
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="px-3 py-4 border border-[#71B3FF] rounded-lg w-full">
+                  <div className="flex gap-2 items-center">
+                    <div className="">
+                      <SlCalender
+                        style={{
+                          width: "24px",
+                          height: "24px",
+                          color: "#1F1F1F",
+                        }}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[14px] font-normal text-[#1C1C1C]">
+                        End Date
+                      </span>
+                      <span className="text-[16px] font-semibold text-[#0077B6]">
+                        Oct 16, 2025
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="px-3 py-4 bg-linear-to-r from-[#36D1DC] to-[#5B86E5] rounded-lg w-full">
+                  <div className="flex gap-2 items-center">
+                    <div className="">
+                      <SlCalender
+                        style={{
+                          width: "24px",
+                          height: "24px",
+                          color: "#ffffff",
+                        }}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[14px] font-normal text-[#ffffff]">
+                        Duration
+                      </span>
+                      <span className="text-[16px] font-semibold text-[#ffffff]">
+                        7 Days
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border border-[#71B3FF] p-4 rounded-lg mt-6">
+                <div className="flex gap-2 items-center">
+                  <span className="text-[#0077B6]">
+                    <FiMessageSquare />
+                  </span>
+                  <span className="text-[#0077B6] text-[16px] font-semibold">
+                    Reason for leave
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <textarea
+                    name=""
+                    id=""
+                    placeholder="Reason You Applied for ........"
+                    className="bg-[#FAFBFF] w-full p-2 rounded-lg resize-none h-25 text-[#696969] text-normal text-[14px]"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div className="mt-6 border border-[#71B3FF] p-4 rounded-lg">
+                <div className="flex flex-col gap-1">
+                  <span className="text-[14px] text-[#9C9C9C] font-normal">
+                    Submitted on
+                  </span>
+                  <div>
+                    <span className="text-[16px] text-[#1c1c1c] font-semibold">
+                      Oct, 2025 •{" "}
+                    </span>
+                    <span className="text-[16px] text-[#9C9C9C] font-semibold">
+                      {" "}
+                      13 : 10 PM
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 border border-[#71B3FF] p-4 rounded-lg">
+                <div className="flex flex-col gap-1 ">
+                  <span className="text-[14px] text-[#9C9C9C] font-normal">
+                    Approved By
+                  </span>
+                  <div className="flex gap-2 items-center">
+                    <span className="text-[16px] text-[#1c1c1c] font-semibold">
+                      Joginder Yadav
+                    </span>
+                    <span className="text-[16px] text-[#1c1c1c] font-normal bg-white px-0.5 py-2">
+                      Class Teacher
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* <------------------------------------------- pagination ---------------------------------> */}
         <Pagination />
