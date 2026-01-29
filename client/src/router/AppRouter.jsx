@@ -50,6 +50,7 @@ import StaffDetails from "../page/Staffs/StaffDetails.jsx";
 import AddStudent from "../page/Student/AddStudent.jsx";
 import AddmissionLetter from "../page/Student/Admission.jsx"
 import EditStudent from "../page/Student/EditStudent.jsx";
+import JobLetter from "../page/Staffs/JobLetter.jsx";
 
 
 
@@ -90,6 +91,7 @@ function AppRouter() {
           <Route path="staffLeave-request" element={<StaffLeaveRequest/>} />
           <Route path="staff-id" element={<StaffIdCard/>} />
           <Route path="staff-manageLogin" element={<StaffManageLogin/>} />
+          <Route path="job-letter" element={<JobLetter/>} />
 
             {/* // Academic */}
           <Route path="academic-rooms" element={<Rooms/>} />
