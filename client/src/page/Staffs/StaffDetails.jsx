@@ -184,12 +184,12 @@ function DetailsContent({ active }) {
             </div>
           </div>
 
-          {/* <------------------------------------------------------ Identification Details ------------------------------------------------> */}
+          {/* <------------------------------------------------------ Contact Details ------------------------------------------------> */}
 
           <div className="bg-white mt-6 rounded-lg shadow-[0_0_8px_0_rgba(0,0,0,0.15)] p-6">
             <div className="flex mb-6 items-center gap-2 text-[#1c1c1c]">
               <MdOutlineContactPage size={18} className="text-[#9A9A9A]" />
-              <span className="font-semibold">Identification Details</span>
+              <span className="font-semibold">Contact Details</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-b pb-5 border-[#E6E6E6]">
               <div>
@@ -1266,15 +1266,16 @@ function StaffDetails() {
 
   return (
     <div className="p-4">
+       <Link to="/all-staffs">
       <div className="flex gap-4 items-center text-[#1C1C1C] font-semibold">
+       
         <span>
-          <Link to="/students">
             <IoMdArrowBack />
-          </Link>
         </span>
         <span>Back</span>
+       
       </div>
-
+      </Link>
       <div
         className="mt-3 p-4 sm:p-6 lg:p-7.5 rounded-lg w-full 
   bg-linear-to-r from-[#9796F0] to-[#FBC7D4]"

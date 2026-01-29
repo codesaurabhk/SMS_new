@@ -406,7 +406,7 @@ const AllStaff = () => {
                         <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
                       </Link>
                       <FiEdit onClick={() => navigate("/edit-staffs")} className="w-5 h-5 text-[#9C9C9C] cursor-pointer" />
-                      <FaRegFileAlt className="w-5 h-5 text-[#9C9C9C]" />
+                      <FaRegFileAlt onClick={() => navigate("/job-letter")} className="w-5 h-5 text-[#9C9C9C]" />
                       <RiDeleteBin5Line className="w-5 h-5 text-[#FF4B4B]" />
                     </td>
                   </tr>

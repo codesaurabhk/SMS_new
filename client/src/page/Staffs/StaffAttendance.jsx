@@ -30,6 +30,8 @@ import { MdOutlineCalendarToday, MdOutlineAccessTime } from "react-icons/md";
 // import { MdOutlineAccessTime } from "react-icons/md";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { FiClock } from "react-icons/fi";
+
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
 import everdeen from "../../assets/images/katnis.jpg";
@@ -79,6 +81,7 @@ function DetailsContent({ active }) {
       const [date, setDate] = useState(new Date());
       const [tab, setTab] = useState("teacher");
       const [months, setMonths] = useState(6);
+      const [openLeaveModal, setOpenLeaveModal] = useState(false);
 
       const staffDatas = [
         {
@@ -311,7 +314,7 @@ function DetailsContent({ active }) {
 
                   {/* CALENDAR POPOVER */}
                   {open && (
-                    <div className="absolute z-50 mt-3 bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.12)] p-4">
+                    <div className="absolute z-50 mt-3   bg-white right-0  rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.12)] p-4">
                       <DayPicker
                         mode="single"
                         selected={date}
@@ -522,7 +525,7 @@ function DetailsContent({ active }) {
                         <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
                       </Link> */}
                           <FiEdit
-                            onClick={() => navigate("/edit-staffs")}
+                            onClick={() => setOpenLeaveModal(true)}
                             className="w-5 h-5 text-[#9C9C9C] cursor-pointer"
                           />
                           {/* <FaRegFileAlt className="w-5 h-5 text-[#9C9C9C]" />
@@ -652,6 +655,91 @@ function DetailsContent({ active }) {
             {/* Chart */}
             <ExamPerformanceTrendChart />
           </div>
+          {openLeaveModal && (
+             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+  <div className="w-full max-w-3xl rounded-2xl bg-white p-6 shadow-xl">
+    {/* Header */}
+    <div className="flex items-start justify-between pb-2">
+      <div>
+        <h2 className="text-[20px] font-semibold text-[#1c1c1c]">
+          Update Attendance
+        </h2>
+        <p className="text-[14px] text-[#9C9C9C]">
+          You can update staff attendance here
+        </p>
+      </div>
+       <button
+          onClick={() => setOpenLeaveModal(false)}
+          className="text-gray-400 hover:text-gray-600 cursor-pointer text-xl font-bold"
+        >
+          ✕
+        </button>
+    </div>
+
+    {/* CONTENT PANEL (Form + Buttons) */}
+    <div className="mt-6 rounded-xl bg-[#FAFBFF] p-6">
+      {/* Form */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {/* Role */}
+        <div>
+          <label className="mb-1 block text-[14px] font-medium">Role</label>
+          <select className="w-full rounded-lg border border-[#E6E6E6] bg-white px-4 py-3 text-[14px] text-[#696969]">
+            <option>Teacher</option>
+          </select>
+        </div>
+
+        {/* Staff */}
+        <div>
+          <label className="mb-1 block text-[14px] font-medium">Staff</label>
+          <select className="w-full rounded-lg border border-[#E6E6E6] bg-white px-4 py-3 text-[14px] text-[#696969]">
+            <option>Anushka Sharma (EP123456)</option>
+          </select>
+        </div>
+
+        {/* Login Time */}
+        <div>
+          <label className="mb-1 block text-[14px] font-medium">Login Time</label>
+          <input
+            value="08:00 AM"
+            readOnly
+            className="w-full rounded-lg border border-[#E6E6E6] bg-white px-4 py-3 text-[14px] text-[#696969]"
+          />
+        </div>
+
+        {/* Logout Time */}
+        <div>
+          <label className="mb-1 block text-[14px] font-medium">Logout Time</label>
+          <input
+            value="04:00 PM"
+            readOnly
+            className="w-full rounded-lg border border-[#E6E6E6] bg-white px-4 py-3 text-[14px] text-[#696969]"
+          />
+        </div>
+
+        {/* Remark */}
+        <div className="md:col-span-2">
+          <label className="mb-1 block text-[14px] font-medium">Remark</label>
+          <input
+            placeholder="Type here..."
+            className="w-full rounded-lg border border-[#E6E6E6] bg-white px-4 py-3 text-[14px] text-[#696969]"
+          />
+        </div>
+      </div>
+
+      {/* Buttons (INSIDE same bg) */}
+      <div className="mt-6 flex justify-end gap-4">
+        <button className="rounded-lg border border-[#D1D1D1] bg-white px-6 py-2 text-[14px] font-medium text-[#696969]">
+          Reset
+        </button>
+        <button className="rounded-lg bg-[#0B3142] px-6 py-2 text-[14px] font-semibold text-white">
+          Update Attendance
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+          )}
         </div>
       );
 
@@ -659,231 +747,242 @@ function DetailsContent({ active }) {
       return <AttendanceRegister />;
 
     case "Update Attendance":
-      return  <div className="bg-white rounded-xl p-6 shadow-sm">
-            {/* Header */}
-            <div className="mb-6">
-              <h2 className="text-lg font-semibold text-gray-900">
+      return (
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          {/* Header */}
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold text-gray-900">
+              Update Attendance
+            </h2>
+            <p className="text-sm text-gray-500">
+              You can update staff attendance here
+            </p>
+          </div>
+
+          {/* Form */}
+          <div className="bg-gray-50 rounded-lg p-6">
+            {/* Row 1 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              {/* Role */}
+              <div>
+                <label className="block text-sm font-medium mb-1">Role</label>
+                <div className="relative">
+                  <select className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none appearance-none">
+                    <option>Select role</option>
+                  </select>
+                  <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                </div>
+              </div>
+
+              {/* Staff */}
+              <div>
+                <label className="block text-sm font-medium mb-1">Staff</label>
+                <div className="relative">
+                  <select className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none appearance-none">
+                    <option>Select staff</option>
+                  </select>
+                  <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                </div>
+              </div>
+            </div>
+
+            {/* Row 2 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              {/* Date */}
+              <div>
+                <label className="block text-sm font-medium mb-1">Date</label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="12-01-2025"
+                    className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                  />
+                  <MdOutlineCalendarToday className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                </div>
+              </div>
+
+              {/* Login Time */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Login Time
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="--:--"
+                    className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                  />
+                  <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                </div>
+              </div>
+
+              {/* Logout Time */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Logout Time
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="--:--"
+                    className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                  />
+                  <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                </div>
+              </div>
+            </div>
+
+            {/* Remark */}
+            <div className="mb-8">
+              <label className="block text-sm font-medium mb-1">Remark</label>
+              <input
+                type="text"
+                placeholder="Type here"
+                className="w-full px-4 py-3 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+              />
+            </div>
+
+            {/* Actions */}
+            <div className="flex justify-end gap-4">
+              <button className="px-6 py-2.5 border  rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">
+                Reset
+              </button>
+              <button className="px-6 py-2.5 bg-[#0B2C3D] text-white rounded-lg text-sm font-medium hover:opacity-90">
                 Update Attendance
-              </h2>
-              <p className="text-sm text-gray-500">
-                You can update staff attendance here
-              </p>
+              </button>
             </div>
-      
-            {/* Form */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              {/* Row 1 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                {/* Role */}
-                <div>
-                  <label className="block text-sm font-medium mb-1">Role</label>
-                  <div className="relative">
-                    <select className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none appearance-none">
-                      <option>Select role</option>
-                    </select>
-                    <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                  </div>
-                </div>
-      
-                {/* Staff */}
-                <div>
-                  <label className="block text-sm font-medium mb-1">Staff</label>
-                  <div className="relative">
-                    <select className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none appearance-none">
-                      <option>Select staff</option>
-                    </select>
-                    <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                  </div>
-                </div>
-              </div>
-      
-              {/* Row 2 */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                {/* Date */}
-                <div>
-                  <label className="block text-sm font-medium mb-1">Date</label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="12-01-2025"
-                      className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
-                    />
-                    <MdOutlineCalendarToday className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                  </div>
-                </div>
-      
-                {/* Login Time */}
-                <div>
-                  <label className="block text-sm font-medium mb-1">Login Time</label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="--:--"
-                      className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
-                    />
-                    <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                  </div>
-                </div>
-      
-                {/* Logout Time */}
-                <div>
-                  <label className="block text-sm font-medium mb-1">Logout Time</label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="--:--"
-                      className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
-                    />
-                    <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                  </div>
-                </div>
-              </div>
-      
-              {/* Remark */}
-              <div className="mb-8">
-                <label className="block text-sm font-medium mb-1">Remark</label>
-                <input
-                  type="text"
-                  placeholder="Type here"
-                  className="w-full px-4 py-3 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
-                />
-              </div>
-      
-              {/* Actions */}
-              <div className="flex justify-end gap-4">
-                <button className="px-6 py-2.5 border  rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">
-                  Reset
-                </button>
-                <button className="px-6 py-2.5 bg-[#0B2C3D] text-white rounded-lg text-sm font-medium hover:opacity-90">
-                  Update Attendance
-                </button>
-              </div>
-            </div>
-          </div>;
+          </div>
+        </div>
+      );
 
     case "Shift Management":
       return (
         <div>
           <div className="bg-white rounded-xl p-6 shadow-sm">
-                {/* Header */}
-                <div className="mb-6">
-                  <h2 className="text-lg font-semibold text-gray-900">
-                    Shift Management
-                  </h2>
-                  <p className="text-sm text-gray-500">
-                    You can create and view all shifts here
-                  </p>
-                </div>
-          
-                {/* Create Shift */}
-                <div className="bg-gray-50 rounded-lg p-6 mb-8">
-                  {/* Shift Name */}
-                  <div className="mb-6">
-                    <label className="block text-sm font-medium mb-1">
-                      Shift Name
-                    </label>
+            {/* Header */}
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-gray-900">
+                Shift Management
+              </h2>
+              <p className="text-sm text-gray-500">
+                You can create and view all shifts here
+              </p>
+            </div>
+
+            {/* Create Shift */}
+            <div className="bg-gray-50 rounded-lg p-6 mb-8">
+              {/* Shift Name */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium mb-1">
+                  Shift Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter Shift Name"
+                  className="w-full px-4 py-3 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                />
+              </div>
+
+              {/* Start & End Time */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    Start Time
+                  </label>
+                  <div className="relative">
                     <input
                       type="text"
-                      placeholder="Enter Shift Name"
-                      className="w-full px-4 py-3 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                      placeholder="--:-- --"
+                      className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
                     />
-                  </div>
-          
-                  {/* Start & End Time */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-1">
-                        Start Time
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          placeholder="--:-- --"
-                          className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
-                        />
-                        <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                      </div>
-                    </div>
-          
-                    <div>
-                      <label className="block text-sm font-medium mb-1">
-                        End Time
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          placeholder="--:-- --"
-                          className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
-                        />
-                        <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                      </div>
-                    </div>
-                  </div>
-          
-                  {/* Minimum Login Hour */}
-                  <div className="mb-8">
-                    <label className="block text-sm font-medium mb-1">
-                      Minimum Login Hour
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="-- hrs -- min"
-                      className="w-full px-4 py-3 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
-                    />
-                  </div>
-          
-                  {/* Buttons */}
-                  <div className="flex justify-end gap-4">
-                    <button className="px-6 py-2.5 border rounded-lg bg-white text-sm font-medium text-gray-700 hover:bg-gray-100">
-                      Reset
-                    </button>
-                    <button className="px-6 py-2.5 bg-[#0B2C3D] text-white rounded-lg text-sm font-medium hover:opacity-90">
-                      Create
-                    </button>
+                    <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
                   </div>
                 </div>
-          
-                {/* Shift Table */}
-                <div className="border border-[#E6E6E6] rounded-lg overflow-hidden w-237 ">
-                  <table className="w-full text-sm">
-                    <thead className="border-b border-[#E6E6E6]">
-                      <tr>
-                        <th className="p-4 text-left">
-                          <input type="checkbox" />
-                        </th>
-                        <th className="p-4 text-left font-medium">Shift Name</th>
-                        <th className="p-4 text-left font-medium">Start Time</th>
-                        <th className="p-4 text-left font-medium">End Time</th>
-                        <th className="p-4 text-left font-medium">Min Login Hours</th>
-                        <th className="p-4 text-left font-medium">Action</th>
-                      </tr>
-                    </thead>
-          
-                    <tbody>
-                      {[
-                        { name: "Shift 1", start: "8:00 AM", end: "4:00 PM" },
-                        { name: "Shift 2", start: "8:25 AM", end: "4:25 PM" },
-                        { name: "Shift 3", start: "8:15 AM", end: "4:15 PM" },
-                        { name: "Shift 4", start: "8:10 AM", end: "4:10 PM" },
-                      ].map((shift, index) => (
-                        <tr key={index} className="border-b border-[#E6E6E6] last:border-b-0">
-                          <td className="p-4">
-                            <input type="checkbox" />
-                          </td>
-                          <td className="p-4">{shift.name}</td>
-                          <td className="p-4">{shift.start}</td>
-                          <td className="p-4">{shift.end}</td>
-                          <td className="p-4">7 hrs 45 min</td>
-                          <td className="p-4 flex gap-3">
-                            <FiEdit2 className="text-gray-500 cursor-pointer" />
-                            <RiDeleteBin6Line className="text-red-500 cursor-pointer" />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    End Time
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="--:-- --"
+                      className="w-full px-4 py-3 pr-10 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                    />
+                    <MdOutlineAccessTime className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                  </div>
                 </div>
               </div>
+
+              {/* Minimum Login Hour */}
+              <div className="mb-8">
+                <label className="block text-sm font-medium mb-1">
+                  Minimum Login Hour
+                </label>
+                <input
+                  type="text"
+                  placeholder="-- hrs -- min"
+                  className="w-full px-4 py-3 bg-white border border-[#E6E6E6] rounded-lg text-sm outline-none"
+                />
+              </div>
+
+              {/* Buttons */}
+              <div className="flex justify-end gap-4">
+                <button className="px-6 py-2.5 border rounded-lg bg-white text-sm font-medium text-gray-700 hover:bg-gray-100">
+                  Reset
+                </button>
+                <button className="px-6 py-2.5 bg-[#0B2C3D] text-white rounded-lg text-sm font-medium hover:opacity-90">
+                  Create
+                </button>
+              </div>
+            </div>
+
+            {/* Shift Table */}
+            <div className="border border-[#E6E6E6] rounded-lg overflow-hidden w-237 ">
+              <table className="w-full text-sm">
+                <thead className="border-b border-[#E6E6E6]">
+                  <tr>
+                    <th className="p-4 text-left">
+                      <input type="checkbox" />
+                    </th>
+                    <th className="p-4 text-left font-medium">Shift Name</th>
+                    <th className="p-4 text-left font-medium">Start Time</th>
+                    <th className="p-4 text-left font-medium">End Time</th>
+                    <th className="p-4 text-left font-medium">
+                      Min Login Hours
+                    </th>
+                    <th className="p-4 text-left font-medium">Action</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {[
+                    { name: "Shift 1", start: "8:00 AM", end: "4:00 PM" },
+                    { name: "Shift 2", start: "8:25 AM", end: "4:25 PM" },
+                    { name: "Shift 3", start: "8:15 AM", end: "4:15 PM" },
+                    { name: "Shift 4", start: "8:10 AM", end: "4:10 PM" },
+                  ].map((shift, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-[#E6E6E6] last:border-b-0"
+                    >
+                      <td className="p-4">
+                        <input type="checkbox" />
+                      </td>
+                      <td className="p-4">{shift.name}</td>
+                      <td className="p-4">{shift.start}</td>
+                      <td className="p-4">{shift.end}</td>
+                      <td className="p-4">7 hrs 45 min</td>
+                      <td className="p-4 flex gap-3">
+                        <FiEdit2 className="text-gray-500 cursor-pointer" />
+                        <RiDeleteBin6Line className="text-red-500 cursor-pointer" />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       );
 
@@ -1095,9 +1194,13 @@ function ExamPerformanceTrendChart() {
 /* Legend Card */
 function Legend({ label, badge, bg, badgeBg }) {
   return (
-    <div className={`flex justify-between items-center px-4 py-3 rounded-lg ${bg}`}>
+    <div
+      className={`flex justify-between items-center px-4 py-3 rounded-lg ${bg}`}
+    >
       <span className="font-medium">{label}</span>
-      <span className={`w-8 h-8 flex items-center justify-center rounded-md text-white text-sm font-semibold ${badgeBg}`}>
+      <span
+        className={`w-8 h-8 flex items-center justify-center rounded-md text-white text-sm font-semibold ${badgeBg}`}
+      >
         {badge}
       </span>
     </div>
@@ -1170,7 +1273,8 @@ const StaffAttendance = () => {
           flex
           items-center
           justify-center
-          w-[20%]
+          w-[25%]
+          h-8
           py-2
           text-sm
           sm:text-base

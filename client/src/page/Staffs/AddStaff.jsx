@@ -951,10 +951,10 @@ const AddStaff = () => {
 
         {/* ===== Buttons ===== */}
         <div className="flex justify-center gap-4 pt-6">
-          <button className="border border-red-500 text-red-500 px-6 py-2 rounded-lg">
+          <button onClick={() => navigate("/all-staffs")} className="border border-red-500 text-red-500 px-6 py-2 rounded-lg cursor-pointer">
             ❌ Cancel
           </button>
-          <button className="bg-[#0B2B2E] text-white px-6 py-2 rounded-lg">
+          <button onClick={() => navigate("/job-letter")} className="bg-[#0B2B2E] text-white px-6 py-2 rounded-lg cursor-pointer">
             ✓ Submit
           </button>
         </div>

@@ -12,16 +12,20 @@ import { BsFillShieldLockFill } from "react-icons/bs";
 import { IoPrintOutline } from "react-icons/io5";
 import { GrDownload } from "react-icons/gr";
 import logo from "../../assets/images/logo.png";
-import baker from "../../assets/images/kathrine.jpg";
+import idphoto from "../../assets/images/id-photo.png";
 import top from "../../assets/images/top.png";
 import bottom from "../../assets/images/bottom.png";
+import { PiCalendarBlankLight } from "react-icons/pi";
+import { LiaSitemapSolid } from "react-icons/lia";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
-function Admission() {
+function JobLetter() {
+    const navigate = useNavigate();
   return (
     <div>
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-[#696969] text-[18px] sm:text-[20px] md:text-[24px] font-semibold">
-          All Student
+        <span onClick={() => navigate("/all-staffs")} className="text-[#696969] text-[18px] cursor-pointer sm:text-[20px] md:text-[24px] font-semibold">
+          All Staff
         </span>
 
         <span className="text-[#696969]">
@@ -29,7 +33,7 @@ function Admission() {
         </span>
 
         <span className="text-[#1c1c1c] text-[18px] sm:text-[20px] md:text-[24px] font-semibold">
-          Admission Letter
+          Job Letter
         </span>
       </div>
 
@@ -40,11 +44,11 @@ function Admission() {
             <img src={top} alt="" className="absolute bottom-0 right-0" />
 
             <div className="bg-white mt-2 p-6 w-full rounded-4xl">
-              <div className="flex flex-wrap justify-between p-4 border-b-2 border-dashed border-[#9C9C9C] mb-8">
-                <div className="w-63 h-40 overflow-hidden">
+              <div className="flex flex-wrap justify-between p-3 border-b-2 border-dashed border-[#9C9C9C] mb-15 ">
+                <div className="w-63 h-35 overflow-hidden">
                   <img src={logo} alt="" />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-0">
                   <div className="text-[#000000] text-[24px] font-semibold">
                     <span>Kasper Infotech Private Limited</span>
                   </div>
@@ -58,13 +62,13 @@ function Admission() {
                   </div>
                 </div>
                 <div>
-                  <button className="px-3 py-2 bg-[#B5FFD1] border border-[#5BCB85] rounded-md font-semibold text-[#009638] text-[16px]">
-                    • Active
+                  <button className=" h-8.5 w-23.25 bg-[#B5FFD1] border border-[#5BCB85] rounded-md font-semibold text-[#009638] text-[16px] shadow-md">
+                   •  Active
                   </button>
                 </div>
               </div>
               {/* <<--------------------------------------- id & login ----------------------------------->> */}
-              <div className="mt-7 p-4 flex gap-12 w-full">
+              <div className="mt-0 p-4 flex gap-12 w-full">
                 {/* <<=========================== id card preview ===========================>> */}
                 <div
                   className="p-8 w-[25%] rounded-lg bg-linear-to-r from-[#F9FAFB] to-[#ffffff]"
@@ -81,30 +85,30 @@ function Admission() {
                       }}
                     >
                       <img
-                        src={baker}
-                        alt="baker"
+                        src={idphoto}
+                        alt="idphoto"
                         className="h-full w-full rounded-lg object-cover border-2 border-white"
                       />
                     </div>
                     <div className="flex flex-col gap-1 justify-center items-center px-8 py-4 border-b border-[#E6E6E6] w-full">
                       <span className="text-[18px] text-[#000000] font-semibold">
-                        Varsha Singh
+                        Anushka Sharma
                       </span>
                       <span className="text-[16px] text-[#9C9C9C] font-semibold">
-                        STUD-1234
+                        EMP-1234
                       </span>
                     </div>
 
                     <div className="flex gap-3 border border-[#E6E6E6] px-3 py-4 w-full rounded-lg items-center">
                       <span className="text-[#155DFC] bg-[#D2E9FE] rounded-lg p-2">
-                        <FaHashtag size={30} />
+                        <PiCalendarBlankLight  size={30} />
                       </span>
                       <div className="flex flex-col gap-1">
                         <span className="text-[14px] font-normal text-[#696969]">
-                          Admission Number
+                          Date of Joining
                         </span>
                         <span className="font-semibold text-[#1C1C1C] text-[16px]">
-                          12345678
+                          12 November, 2025
                         </span>
                       </div>
                     </div>
@@ -115,24 +119,24 @@ function Admission() {
                       </span>
                       <div className="flex flex-col gap-1">
                         <span className="text-[14px] font-normal text-[#696969]">
-                          Class
+                          Employee Role
                         </span>
                         <span className="font-semibold text-[#1C1C1C] text-[16px]">
-                          12 A
+                          Teacher
                         </span>
                       </div>
                     </div>
 
                     <div className="flex gap-3 border border-[#E6E6E6] px-3 py-4 w-full rounded-lg items-center">
                       <span className="text-[#E60076] bg-[#FEE5EB] rounded-lg p-2">
-                        <SlCalender size={30} />
+                        <LiaSitemapSolid size={30} />
                       </span>
                       <div className="flex flex-col gap-1">
                         <span className="text-[14px] font-normal text-[#696969]">
-                          Admission Date
+                          Department
                         </span>
                         <span className="font-semibold text-[#1C1C1C] text-[16px]">
-                          13 November, 2025
+                          Academic
                         </span>
                       </div>
                     </div>
@@ -171,7 +175,7 @@ function Admission() {
                               User Name
                             </span>
                             <span className="font-semibold text-[#1C1C1C] text-[16px]">
-                              Langford@99gmail.com
+                              anushka.sharma@EMP1234
                             </span>
                           </div>
                         </div>
@@ -194,10 +198,10 @@ function Admission() {
                           </span>
                           <div className="flex flex-col">
                             <span className="text-[16px] font-normal text-[#696969]">
-                              User Name
+                              Password
                             </span>
                             <span className="font-semibold text-[#1C1C1C] text-[16px]">
-                              Langford@99gmail.com
+                              ************
                             </span>
                           </div>
                         </div>
@@ -232,10 +236,10 @@ function Admission() {
                   </div>
 
                   <div className="flex gap-6 mt-8">
-                    <button className="w-full flex items-center bg-[#0B3142] justify-center p-2 gap-4 rounded text-[#ffffff] text-[18px] font-semibold">
+                    <button className="w-full flex items-center bg-gradient-to-r from-[#0F4057] to-[#118AB2] justify-center p-2 gap-4 rounded text-[#ffffff] text-[18px] font-semibold">
                       <IoPrintOutline /> Print Letter
                     </button>
-                    <button className="w-full flex items-center bg-[#e6e6e6] border-2 border-[#E6E6E6] text-[#696969] justify-center p-2 gap-4 rounded text-[18px] font-semibold relative">
+                    <button className="w-full flex items-center bg-[#FFFFFF] border-2 border-[#E6E6E6] text-[#696969] justify-center p-2 gap-4 rounded text-[18px] font-semibold relative">
                       <GrDownload />
                       Download Pdf
                     </button>
@@ -250,4 +254,5 @@ function Admission() {
   );
 }
 
-export default Admission;
+export default JobLetter;
+
