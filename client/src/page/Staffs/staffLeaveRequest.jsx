@@ -22,6 +22,17 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { PiPlus } from "react-icons/pi";
 import { SiTicktick } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
+import { SlCalender } from "react-icons/sl";
+import { FiMessageSquare } from "react-icons/fi";
+import Pagination from "../../components/Pagination";
+import { Link, useNavigate } from "react-router-dom";
+import { CiCalendar } from "react-icons/ci";
+import { IoMdTime } from "react-icons/io";
+import { MdOutlineMale } from "react-icons/md";
+import { CgGenderFemale } from "react-icons/cg";
+
+
+
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
 import everdeen from "../../assets/images/katnis.jpg";
@@ -35,8 +46,9 @@ import prime from "../../assets/images/prime.jpg";
 import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
-import Pagination from "../../components/Pagination";
-import { Link, useNavigate } from "react-router-dom";
+import leavedocs from "../../assets/images/leaverqdocs.png";
+
+
 
 
 const cardData = [
@@ -83,11 +95,12 @@ const staffData = [
     leaveType : "Sick Leave",
     Reason :" Fever and flu symptoms",
     Status :"Pending",
+     gender: "female",
   },
   {
     staff: "Ranveer Singh",
     empId: "EMP123456",
-    img: everdeen,
+    img: meave,
     role: "Accountant",
     durationTo :"Oct 7, 2025",
     durationFrom :"Oct 7, 2025",
@@ -95,6 +108,7 @@ const staffData = [
     leaveType : "Sick Leave",
     Reason :" Fever and flu symptoms",
     Status :"Approved",
+     gender: "male",
   },
   {
     staff: "Kareena Kapoor",
@@ -107,6 +121,7 @@ const staffData = [
     leaveType : "Sick Leave",
     Reason :" Fever and flu symptoms",
     Status :"Rejected",
+     gender: "female",
   },
   {
     staff: "Sharaddha Kapoor",
@@ -119,6 +134,7 @@ const staffData = [
     leaveType : "Sick Leave",
     Reason :" Fever and flu symptoms",
     Status :"Rejected",
+     gender: "female",
   },
   {
     staff: "Hrithik Roshan",
@@ -131,6 +147,7 @@ const staffData = [
     leaveType : "Sick Leave",
     Reason :" Fever and flu symptoms",
     Status :"Rejected",
+     gender: "male",
   },
   {
     staff: "Virat Kohli",
@@ -143,6 +160,7 @@ const staffData = [
     leaveType : "Sick Leave",
     Reason :" Fever and flu symptoms",
     Status :"Rejected",
+     gender: "male",
   },
   {
     staff: "Jhanvi Kapoor",
@@ -155,6 +173,7 @@ const staffData = [
     leaveType : "Sick Leave",
     Reason :" Fever and flu symptoms",
     Status :"Rejected",
+     gender: "female",
   },
   
 
@@ -171,6 +190,16 @@ const leaveData = [
 
 const  staffLeaveRequest = () => {
   const [openLeaveModal, setOpenLeaveModal] = useState(false);
+  const [openDetailsModal, setOpenDetailsModal] = useState(false);
+const [selectedLeave, setSelectedLeave] = useState(null);
+
+
+
+  const handleRowClick = (leave) => {
+  setSelectedLeave(leave);
+  setOpenDetailsModal(true);
+};
+
 
   const navigate = useNavigate();
   return (
@@ -332,12 +361,13 @@ const  staffLeaveRequest = () => {
                 {staffData.map((item, index) => (
                   <tr
                     key={index}
+                     onClick={() => handleRowClick(item)}
                     
                     className="border-b border-[#e6e6e6]"
                   >
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
 
-                      <Link to="/staffDetails">
+                      {/* <Link to="/staffDetails"> */}
                         <div className="flex gap-4">
                           <div className="w-10 h-10 rounded-full overflow-hidden">
                             <img
@@ -357,7 +387,7 @@ const  staffLeaveRequest = () => {
                             </span>
                           </div>
                         </div>
-                      </Link>
+                      {/* </Link> */}
                     </td>
 
                     <td className="px-4 py-3 text-left text-sm  font-semibold">
@@ -566,6 +596,162 @@ const  staffLeaveRequest = () => {
     </div>
   </div>
 )}
+
+{openDetailsModal && selectedLeave && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div
+      className="bg-white w-full max-w-4xl rounded-xl shadow-lg p-6"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* HEADER */}
+      <div className="flex justify-between">
+        <div className="flex flex-col gap-1">
+          <span className="text-[18px] font-semibold text-[#1C1C1C]">
+            Leave Request Details
+          </span>
+          <span className="text-[16px] font-normal text-[#9c9c9c]">
+            Request ID: LR001
+          </span>
+        </div>
+
+        <button
+          onClick={() => setOpenDetailsModal(false)}
+          className="text-[#1F1F1F] font-semibold w-6 h-6"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* PROFILE SECTION */}
+      <div className="flex justify-between p-6 bg-linear-to-r from-[#C9D6FF] to-[#EBCDCD] rounded-lg mt-6">
+        <div className="flex gap-6">
+          <div className="w-20 h-20 rounded-full overflow-hidden">
+            <img src={selectedLeave.img} alt="" />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <span className="flex items-center gap-2 text-[18px]">
+             <span className="text-[#12516E] text-[16px] font-semibold"> {selectedLeave.staff}</span> <span> {selectedLeave.gender === "male" ?<MdOutlineMale className="text-[#0084FF]" />:<CgGenderFemale className="text-[#FF61D7]" />}</span>
+            </span>
+            <span className="text-[#696969] text-[14px]">
+              Employee ID: {selectedLeave.empId}
+            </span>
+            <span className=" text-[14px] ">
+          <span className="text-[#118AB2]">● </span> <span className="text-[#696969]">  Role:</span> <span className="font-semibold text-[#1c1c1c]">{selectedLeave.role}</span> 
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <span className="text-[#696969] text-[14px]"> <span className="text-[#118AB2] text-[16px] font-semibold">● </span>Leave Type :</span>
+          <p className="text-[16px] font-semibold">
+            {selectedLeave.leaveType}
+          </p>
+        </div>
+
+        {/* STATUS BADGE */}
+        <div>
+          {selectedLeave.Status === "Pending" ? (
+            <span className="bg-[#FFF3CD] text-[#A14700] px-3 py-2 rounded-full text-sm font-semibold">
+              ● Pending
+            </span>
+          ) : selectedLeave.Status === "Approved" ? (
+            <span className="bg-[#D4EDDA] text-[#009638] px-3 py-2 rounded-full text-sm font-semibold">
+              ● Approved
+            </span>
+          ) : (
+            <span className="bg-[#F8D7DA] text-[#C92131] px-3 py-2 rounded-full text-sm font-semibold">
+              ● Rejected
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* DATES */}
+      <div className="flex justify-between mt-5 gap-6">
+        <div className="px-3 py-4 border border-[#71B3FF] rounded-lg w-full flex gap-3 items-center">
+          <div ><CiCalendar size={25} /></div> <div>
+          <span className="text-sm text-[#696969]">Start Date</span>
+          <p className="text-[#0077B6] font-semibold">
+            {selectedLeave.durationFrom}
+          </p></div>
+        </div>
+
+        <div className="px-3 py-4 border border-[#71B3FF] rounded-lg w-full flex gap-3 items-center">
+          <div ><CiCalendar size={25} /></div> 
+          <div>
+          <span className="text-sm text-[#696969]">End Date</span>
+          <p className="text-[#0077B6] font-semibold">
+            {selectedLeave.durationTo}
+          </p>
+          </div>
+        </div>
+
+        <div className="px-3 py-4 bg-linear-to-r from-[#36D1DC] to-[#5B86E5] rounded-lg w-full flex gap-3 items-center">
+          <div><IoMdTime size={25} className="text-white"/></div>
+          <div>
+          <span className="text-sm text-white">Duration</span>
+          <p className="text-white font-semibold">1 Day</p>
+          </div>
+        </div>
+      </div>
+
+      {/* REASON */}
+      <div className="border border-[#71B3FF] p-4 rounded-lg mt-6">
+        <span className="text-[#0077B6] font-semibold flex items-center gap-2">
+       <span><FiMessageSquare /> </span>  <span>Reason for Leave</span>
+        </span>
+
+        <textarea
+          value={selectedLeave.Reason}
+          readOnly={selectedLeave.Status !== "Pending"}
+          className="bg-[#FAFBFF] w-full p-3 rounded-lg resize-none h-24 mt-3
+                     text-[#696969] text-[14px]"
+        />
+      </div>
+
+      {/* SUBMITTED ON */}
+      <div className="mt-6 border border-[#71B3FF] p-4 rounded-lg">
+        <span className="text-sm text-[#9C9C9C]">Submitted On</span>
+        <p className="font-semibold ">
+          {selectedLeave.durationFrom} • <span className="text-[#9C9C9C]">{selectedLeave.createAT}</span>
+        </p>
+      </div>
+
+      {/* APPROVED BY (ONLY IF NOT PENDING) */}
+      {selectedLeave.Status !== "Pending" && (
+        <div className="mt-6 border border-[#71B3FF] p-4 rounded-lg">
+          <span className="text-sm text-[#9C9C9C]">Approved By</span>
+          <p className="font-semibold">Joginder Yadav (Principal)</p>
+        </div>
+      )}
+
+      {/* ACTION BUTTONS (ONLY FOR PENDING) */}
+      {selectedLeave.Status === "Pending" && (
+        <div>
+          <div className="mt-6 border border-[#71B3FF] p-0 rounded-lg pl-4 pt-3 w-auto h-50">
+        <span className="text-sm text-[#9C9C9C]">Supported Documents</span>
+        <span > <img src={leavedocs} alt="Supported Documents" className="w-51 h-34 pt-2 mt-2" /></span>
+          </div>
+       
+        <div className="flex justify-end gap-4 mt-6">
+         
+          <button className="px-6 py-2 rounded-lg bg-green-600 text-white font-semibold">
+            Approve
+          </button>
+           <button className="px-6 py-2 rounded-lg bg-red-600 text-white font-semibold">
+            Reject
+          </button>
+            <button onClick={() => setOpenDetailsModal(false)} className="px-6 py-2 rounded-lg bg-[#FFFFFF] text-[#696969] font-semibold border border-[#9C9C9C]">
+            Cancel
+          </button>
+        </div> </div>
+      )}
+    </div>
+  </div>
+)}
+
+
 
     </div>
   );
