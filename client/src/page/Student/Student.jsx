@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../CSS/Style.css";
-import { Link,   useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 {
   /* <----------------------------------------------- GIF ----------------------------------------------------> */
@@ -35,9 +35,6 @@ import peter from "../../assets/images/lord.jpg";
 import gamora from "../../assets/images/gamora.jpg";
 import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
-
-
-
 
 const cardData = [
   {
@@ -165,10 +162,10 @@ const studentData = [
 ];
 
 const statusStyle = {
-  Active: 'bg-[#D4EDDA] text-[#009638]',
-  Inactive: 'bg-[#DEDEDE] text-[#696969]',
-  Alumni: "bg-[#FDEBD0] text-[#D35400]"
-}
+  Active: "bg-[#D4EDDA] text-[#009638]",
+  Inactive: "bg-[#DEDEDE] text-[#696969]",
+  Alumni: "bg-[#FDEBD0] text-[#D35400]",
+};
 
 const Student = () => {
   const [active, setActive] = useState("All");
@@ -179,7 +176,7 @@ const Student = () => {
     "bg-[#F5F7F7] text-[#0B3142] border border-[#ffffff] rounded-full px-15 py-2 ";
 
   const inactiveBtn = "text-[#9EA1A1] px-15 py-2";
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -240,15 +237,15 @@ const Student = () => {
 
             <div>
               {/* <Link to='../addStudent'> */}
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg" 
-              onClick={() => navigate("/addStudent")}
+              <button
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg"
+                onClick={() => navigate("/addStudent")}
+              >
+                <GrUserAdd className="text-white" />
+                Add Student
+              </button>
 
-               >
-              <GrUserAdd className="text-white" />
-              Add Student
-            </button>
-            
-            {/* </Link> */}
+              {/* </Link> */}
             </div>
           </div>
         </div>
@@ -274,8 +271,7 @@ const Student = () => {
         <div className="mt-3 p-4 flex items-center gap-36">
           {/* SEARCH */}
           <div className="flex-1">
-            <span>
-            </span>
+            <span></span>
             <input
               type="search"
               placeholder="🔎︎ Search Student by name or admission Number..."
@@ -287,53 +283,55 @@ const Student = () => {
           <div className="inline-flex items-center gap-3">
             <div className="flex justify-between">
               <label For="class" className=""></label>
-              <select
-                name=""
-                id="class"
-                className="bg-[#EFF2F2] rounded px-2 py-2 border-0 outline-0"
-              >
-                <option value="">Class</option>
-                <option value="">Nursery </option>
-                <option value="">UKG</option>
-                <option value="">Class 1</option>
-                <option value="">Class 2</option>
-                <option value="">Class 3</option>
-                <option value="">Class 4</option>
-                <option value="">Class 5</option>
-                <option value="">Class 6</option>
-                <option value="">Class 7</option>
-                <option value="">Class 8</option>
-              </select>
+              <div className="bg-[#EFF2F2] rounded px-2 py-2">
+                <select name="" id="class" className="border-0 outline-0">
+                  <option value="">Class</option>
+                  <option value="">Nursery </option>
+                  <option value="">UKG</option>
+                  <option value="">Class 1</option>
+                  <option value="">Class 2</option>
+                  <option value="">Class 3</option>
+                  <option value="">Class 4</option>
+                  <option value="">Class 5</option>
+                  <option value="">Class 6</option>
+                  <option value="">Class 7</option>
+                  <option value="">Class 8</option>
+                </select>
+              </div>
             </div>
             <label For="Section"></label>
-            <select
-              name=""
-              id="Section"
-              className="bg-[#EFF2F2] rounded px-2 py-2 border-0 outline-0"
-            >
-              <option value="">Section</option>
-              <option value="">A</option>
-              <option value="">B</option>
-              <option value="">C</option>
-              <option value="">D</option>
-            </select>
+            <div className="bg-[#EFF2F2] rounded px-1 py-1">
+              <select
+                name=""
+                id="Section"
+                className="px-1 py-1 border-0 outline-0"
+              >
+                <option value="">Section</option>
+                <option value="">A</option>
+                <option value="">B</option>
+                <option value="">C</option>
+                <option value="">D</option>
+              </select>
+            </div>
             <label For="Export"></label>
-            <select
-              name=""
-              id="Export"
-              className="bg-[#EFF2F2] rounded px-2 py-2 border-0 outline-0"
-            >
-              <option value="">Export As</option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-              <option value=""></option>
-            </select>
+            <div className="bg-[#EFF2F2] rounded px-1 py-1">
+              <select
+                name=""
+                id="Export"
+                className="bg-[#EFF2F2] rounded px-1 py-1 border-0 outline-0"
+              >
+                <option value="">Export As</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -375,64 +373,66 @@ const Student = () => {
                   </th>
                 </tr>
               </thead>
-              
-                <tbody>
-                  {studentData.map((item, index) => (
+
+              <tbody>
+                {studentData.map((item, index) => (
                   <tr key={index} className="border-b border-[#e6e6e6]">
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
                       <input type="checkbox" />
-                      <Link to='/StudentDetails'>
-                      <div className="flex gap-4">
-                        <div className="w-10 h-10 rounded-full overflow-hidden">
-                        <img
-                          src={item.img}
-                          alt=""
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                      <Link to="/StudentDetails">
+                        <div className="flex gap-4">
+                          <div className="w-10 h-10 rounded-full overflow-hidden">
+                            <img
+                              src={item.img}
+                              alt=""
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
 
-                      {/* Name + ID */}
-                      <div className="flex flex-col leading-tight">
-                        <span className="text-[#12516E] font-semibold">
-                          {item.student}
-                        </span>
-                        <span className="text-sm text-[#9c9c9c] font-semibold">
-                          {item.studentId}
-                        </span>
-                      </div>
-                      </div>
+                          {/* Name + ID */}
+                          <div className="flex flex-col leading-tight">
+                            <span className="text-[#12516E] font-semibold">
+                              {item.student}
+                            </span>
+                            <span className="text-sm text-[#9c9c9c] font-semibold">
+                              {item.studentId}
+                            </span>
+                          </div>
+                        </div>
                       </Link>
-                      
                     </td>
 
                     <td className="px-4 py-3 text-left text-sm font-semibold">
-                      <Link to='/StudentDetails'>
-                      {item.class}
-                      </Link>
-                      
+                      <Link to="/StudentDetails">{item.class}</Link>
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold">
-                      <Link to='/StudentDetails'>
-                      {item.parent}
-                      </Link>
+                      <Link to="/StudentDetails">{item.parent}</Link>
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold">
-                      <Link to='/StudentDetails'>{item.number}</Link>
+                      <Link to="/StudentDetails">{item.number}</Link>
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold">
-                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${statusStyle[item.status] || "bg-gray-100 text-gray-600"}`}>
-                        <span className="text-sm leading-none"><Link to="/StudentDetails">•{item.status}</Link></span>
-                       </span>
+                      <span
+                        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${statusStyle[item.status] || "bg-gray-100 text-gray-600"}`}
+                      >
+                        <span className="text-sm leading-none">
+                          <Link to="/StudentDetails">•{item.status}</Link>
+                        </span>
+                      </span>
                     </td>
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
-                      <Link to='/StudentDetails'><CgProfile className="w-5 h-5 text-[#9C9C9C]" /></Link>
-                      <Link to='/editStudent'><FiEdit className="w-5 h-5 text-[#9C9C9C]" /></Link>
+                      <Link to="/StudentDetails">
+                        <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
+                      </Link>
+                      <Link to="/editStudent">
+                        <FiEdit className="w-5 h-5 text-[#9C9C9C]" />
+                      </Link>
                       <FaRegFileAlt className="w-5 h-5 text-[#9C9C9C]" />
                       <RiDeleteBin5Line className="w-5 h-5 text-[#FF4B4B]" />
                     </td>
                   </tr>
-                  ))}
-                </tbody>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>

@@ -1373,16 +1373,18 @@ function DetailsContent({ active }) {
               {/* <------------------------------------- Filter -----------------------------------------> */}
               <div className="inline-flex items-center gap-3">
                 <label For="Exam"></label>
-                <select
-                  name=""
-                  id="Exam"
-                  className="bg-[#EFF2F2] rounded-md px-4 py-1 border-0 outline-0 text-[#1c1c1c] font-normal"
-                >
-                  <option value="">UT 1</option>
-                  <option value="">UT 2</option>
-                  <option value="">Mid Term</option>
-                  <option value="">Annual</option>
-                </select>
+                  <div className="bg-[#EFF2F2] rounded-md px-3 py-1 ">
+                  <select
+                    name=""
+                    id="Exam"
+                    className="border-0 outline-0 text-[#1c1c1c] font-normal"
+                  >
+                    <option value="">UT 1</option>
+                    <option value="">UT 2</option>
+                    <option value="">Mid Term</option>
+                    <option value="">Annual</option>
+                  </select>
+                  </div>
               </div>
             </div>
             <div className="mt-6">
@@ -1487,17 +1489,19 @@ function DetailsContent({ active }) {
               </div>
               {/* <------------------------------------- Filter -----------------------------------------> */}
               <div className="inline-flex items-center gap-3">
-                <label For="Exam"></label>
-                <select
-                  name=""
-                  id="Exam"
-                  className="bg-[#EFF2F2] rounded-md px-4 py-1 border-0 outline-0 text-[#1c1c1c] font-normal"
-                >
-                  <option value="">UT 1</option>
-                  <option value="">UT 2</option>
-                  <option value="">Mid Term</option>
-                  <option value="">Annual</option>
-                </select>
+                <label For="Exam"></label>              
+                  <div className="bg-[#EFF2F2] rounded-md px-3 py-1 ">
+                  <select
+                    name=""
+                    id="Exam"
+                    className="border-0 outline-0 text-[#1c1c1c] font-normal"
+                  >
+                    <option value="">UT 1</option>
+                    <option value="">UT 2</option>
+                    <option value="">Mid Term</option>
+                    <option value="">Annual</option>
+                  </select>
+                  </div>
               </div>
             </div>
             <div className="mt-6">
@@ -1580,16 +1584,18 @@ function DetailsContent({ active }) {
                 </div>
                 <div>
                   <label For="Exam"></label>
+                  <div className="bg-[#EFF2F2] rounded-md px-3 py-1 ">
                   <select
                     name=""
                     id="Exam"
-                    className="bg-[#EFF2F2] rounded-md px-4 py-1 border-0 outline-0 text-[#1c1c1c] font-normal"
+                    className="border-0 outline-0 text-[#1c1c1c] font-normal"
                   >
                     <option value="">UT 1</option>
                     <option value="">UT 2</option>
                     <option value="">Mid Term</option>
                     <option value="">Annual</option>
                   </select>
+                  </div>
                 </div>
               </div>
               <SubjectWiseMarksChart />
