@@ -2,7 +2,6 @@ import React from "react";
 
 /* -------------------------------- GIF -------------------------------- */
 import rupee from "../../assets/images/rupee.gif";
-import invoce from "../../assets/images/invoice.gif";
 import hour from "../../assets/images/hoursglass.gif";
 import irate from "../../assets/images/intrestrate.gif";
 
@@ -16,13 +15,6 @@ function FeeManagement() {
       gif: rupee,
     },
     {
-      des: "Total Expenses",
-      number: "41000",
-      left: "+2.1%",
-      text: "from the last month",
-      gif: invoce,
-    },
-    {
       des: "Pending Fees",
       number: "12,500",
       left: "",
@@ -31,7 +23,7 @@ function FeeManagement() {
     },
     {
       des: "Collection Rate",
-      number: 50, // ✅ store as number
+      number: 50, 
       progress: true,
       gif: irate,
     },
@@ -40,7 +32,7 @@ function FeeManagement() {
   return (
     <div>
       {/* -------------------------------- Cards -------------------------------- */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {cardData.map((item, index) => (
           <div
             key={index}
