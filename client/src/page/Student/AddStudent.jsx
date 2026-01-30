@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-{/* <--------------------------------------- icons ------------------------------------> */}
+{
+  /* <--------------------------------------- icons ------------------------------------> */
+}
 import { FiUpload } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
 import { LuUser } from "react-icons/lu";
@@ -11,7 +13,9 @@ import { RiFileList3Fill } from "react-icons/ri";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import { IoAdd } from "react-icons/io5";
 
-{/* <--------------------------------------- imgs ------------------------------------> */}
+{
+  /* <--------------------------------------- imgs ------------------------------------> */
+}
 import baker from "../../assets/images/kathrine.jpg";
 import stephen from "../../assets/images/super.jpg";
 import mother from "../../assets/images/mother.jpg";
@@ -21,6 +25,8 @@ function AddStudent() {
   const pages = ["student", "documents", "academic", "review"];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transportOpted, setTransportOpted] = useState("No");
+  const [showGuardian, setShowGuardian] = useState(false);
+  const [showSibling, setShowSibling] = useState(false);
 
   const steps = [
     { title: "Student and Parents Info", icon: <LuUser size={24} /> },
@@ -82,6 +88,29 @@ function AddStudent() {
       label: "Authorization Letter",
     },
   ];
+
+  const [siblings, setSiblings] = useState([
+    {
+      name: "",
+      admission: "",
+      class: "",
+      gender: "",
+      relation: "",
+    },
+  ]);
+
+  const handleAddSibling = () => {
+    setSiblings([
+      ...siblings,
+      {
+        name: "",
+        admission: "",
+        class: "",
+        gender: "",
+        relation: "",
+      },
+    ]);
+  };
 
   const [rows, setRows] = useState([
     { subject: "", maxMarks: "", obtained: "" },
@@ -224,17 +253,19 @@ function AddStudent() {
                           </label>
                           <span className="text-[#DC2626] text-[14px]">*</span>
                         </div>
-                        <select
-                          name="academicYear"
-                          id="academicYear"
-                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                          defaultValue="Acedemic Year"
-                        >
-                          <option value="">Select Your Academic Year</option>
-                          <option value="">2023-2024</option>
-                          <option value="">2024-2025</option>
-                          <option value="">2025-2026</option>
-                        </select>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="academicYear"
+                            id="academicYear"
+                            className="w-full border-none outline-none focus:ring-[#9C9C9C]"
+                            defaultValue="Acedemic Year"
+                          >
+                            <option value="">Select Your Academic Year</option>
+                            <option value="">2023-2024</option>
+                            <option value="">2024-2025</option>
+                            <option value="">2025-2026</option>
+                          </select>
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1">
@@ -246,17 +277,19 @@ function AddStudent() {
                           </label>
                           <span className="text-[#DC2626] text-[14px]">*</span>
                         </div>
-                        <select
-                          name="appliedClass"
-                          id="appliedClass"
-                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                          defaultValue="Applied Class"
-                        >
-                          <option value="">Select Your Class</option>
-                          <option value="">UKG</option>
-                          <option value="">Class 5</option>
-                          <option value="">Class 6</option>
-                        </select>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="appliedClass"
+                            id="appliedClass"
+                            className="w-full border-none outline-none focus:ring-[#9C9C9C]"
+                            defaultValue="Applied Class"
+                          >
+                            <option value="">Select Your Class</option>
+                            <option value="">UKG</option>
+                            <option value="">Class 5</option>
+                            <option value="">Class 6</option>
+                          </select>
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1">
@@ -307,17 +340,19 @@ function AddStudent() {
                           </label>
                           <span className="text-[#DC2626] text-[14px]">*</span>
                         </div>
-                        <select
-                          name="selecteGender"
-                          id="selecteGender"
-                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                          defaultValue="Applied Class"
-                        >
-                          <option value="">Select Gender</option>
-                          <option value="">Male</option>
-                          <option value="">Female</option>
-                          <option value="">Other</option>
-                        </select>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="selecteGender"
+                            id="selecteGender"
+                            className="w-full border-none outline-none"
+                            defaultValue="Applied Class"
+                          >
+                            <option value="">Select Gender</option>
+                            <option value="">Male</option>
+                            <option value="">Female</option>
+                            <option value="">Other</option>
+                          </select>
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1">
@@ -329,17 +364,19 @@ function AddStudent() {
                           </label>
                           <span className="text-[#DC2626] text-[14px]">*</span>
                         </div>
-                        <select
-                          name="nationality"
-                          id="nationality"
-                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                          defaultValue="Applied Class"
-                        >
-                          <option value="">Nationality</option>
-                          <option value="">India</option>
-                          <option value="">U.S.A</option>
-                          <option value="">U.K</option>
-                        </select>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="nationality"
+                            id="nationality"
+                            className="w-full border-none outline-none"
+                            defaultValue="Applied Class"
+                          >
+                            <option value="">Nationality</option>
+                            <option value="">India</option>
+                            <option value="">U.S.A</option>
+                            <option value="">U.K</option>
+                          </select>
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1">
@@ -351,18 +388,20 @@ function AddStudent() {
                           </label>
                           <span className="text-[#DC2626] text-[14px]">*</span>
                         </div>
-                        <select
-                          name="selecteCategory"
-                          id="selecteCategory"
-                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                          defaultValue="Applied Class"
-                        >
-                          <option value="">Select Category</option>
-                          <option value="">Genral</option>
-                          <option value="">OBC</option>
-                          <option value="">SC</option>
-                          <option value="">ST</option>
-                        </select>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="selecteCategory"
+                            id="selecteCategory"
+                            className="w-full border-none outline-none"
+                            defaultValue="Applied Class"
+                          >
+                            <option value="">Select Category</option>
+                            <option value="">Genral</option>
+                            <option value="">OBC</option>
+                            <option value="">SC</option>
+                            <option value="">ST</option>
+                          </select>
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1">
@@ -374,19 +413,21 @@ function AddStudent() {
                           </label>
                           <span className="text-[#DC2626] text-[14px]">*</span>
                         </div>
-                        <select
-                          name="selecteReligion"
-                          id="selecteReligion"
-                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                          defaultValue="Applied Class"
-                        >
-                          <option value="">Select Religion</option>
-                          <option value="">Hindu</option>
-                          <option value="">Muslims</option>
-                          <option value="">Sikh</option>
-                          <option value="">Christian</option>
-                          <option value="">Other</option>
-                        </select>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="selecteReligion"
+                            id="selecteReligion"
+                            className="w-full border-none outline-none"
+                            defaultValue="Applied Class"
+                          >
+                            <option value="">Select Religion</option>
+                            <option value="">Hindu</option>
+                            <option value="">Muslims</option>
+                            <option value="">Sikh</option>
+                            <option value="">Christian</option>
+                            <option value="">Other</option>
+                          </select>
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1">
@@ -398,22 +439,24 @@ function AddStudent() {
                           </label>
                           <span className="text-[#DC2626] text-[14px]">*</span>
                         </div>
-                        <select
-                          name="selecteBloodGroup"
-                          id="selecteBloodGroup"
-                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                          defaultValue="Applied Class"
-                        >
-                          <option value="">Select Blood Group</option>
-                          <option value="">A+</option>
-                          <option value="">B+</option>
-                          <option value="">A-</option>
-                          <option value="">B-</option>
-                          <option value="">AB-</option>
-                          <option value="">AB+</option>
-                          <option value="">O-</option>
-                          <option value="">+O</option>
-                        </select>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="selecteBloodGroup"
+                            id="selecteBloodGroup"
+                            className="w-full border-none outline-none"
+                            defaultValue="Applied Class"
+                          >
+                            <option value="">Select Blood Group</option>
+                            <option value="">A+</option>
+                            <option value="">B+</option>
+                            <option value="">A-</option>
+                            <option value="">B-</option>
+                            <option value="">AB-</option>
+                            <option value="">AB+</option>
+                            <option value="">O-</option>
+                            <option value="">+O</option>
+                          </select>
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1">
@@ -451,17 +494,19 @@ function AddStudent() {
                           </label>
                           <span className="text-[#DC2626] text-[14px]">*</span>
                         </div>
-                        <select
-                          name="languageKnown"
-                          id="languageKnown"
-                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                          defaultValue="Applied Class"
-                        >
-                          <option value="">Known Language</option>
-                          <option value="">Hindi</option>
-                          <option value="">English</option>
-                          <option value="">Other</option>
-                        </select>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="languageKnown"
+                            id="languageKnown"
+                            className="w-full border-none outline-none"
+                            defaultValue="Applied Class"
+                          >
+                            <option value="">Known Language</option>
+                            <option value="">Hindi</option>
+                            <option value="">English</option>
+                            <option value="">Other</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -533,17 +578,19 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="selecteCountry"
-                        id="selecteCountry"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Select Country</option>
-                        <option value="">India</option>
-                        <option value="">Nepal</option>
-                        <option value="">Other</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="selecteCountry"
+                          id="selecteCountry"
+                          className="w-full border-none outline-none "
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Select Country</option>
+                          <option value="">India</option>
+                          <option value="">Nepal</option>
+                          <option value="">Other</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -555,17 +602,19 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="selecteState"
-                        id="selecteState"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Select State </option>
-                        <option value="">Bihar</option>
-                        <option value="">Uttar Pradesh</option>
-                        <option value="">Other</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="selecteState"
+                          id="selecteState"
+                          className="w-full border-none outline-none"
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Select State </option>
+                          <option value="">Bihar</option>
+                          <option value="">Uttar Pradesh</option>
+                          <option value="">Other</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -630,17 +679,19 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="selecteCountry"
-                        id="selecteCountry"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Select Country</option>
-                        <option value="">India</option>
-                        <option value="">Nepal</option>
-                        <option value="">Other</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="selecteCountry"
+                          id="selecteCountry"
+                          className="w-full border-none outline-none "
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Select Country</option>
+                          <option value="">India</option>
+                          <option value="">Nepal</option>
+                          <option value="">Other</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -652,17 +703,19 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="selecteState"
-                        id="selecteState"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Select State </option>
-                        <option value="">Bihar</option>
-                        <option value="">Uttar Pradesh</option>
-                        <option value="">Other</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="selecteState"
+                          id="selecteState"
+                          className="w-full border-none outline-none"
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Select State </option>
+                          <option value="">Bihar</option>
+                          <option value="">Uttar Pradesh</option>
+                          <option value="">Other</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -754,17 +807,19 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="occupation"
-                        id="occupation"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Occupation</option>
-                        <option value="">Goverment Employee</option>
-                        <option value="">Bussiness</option>
-                        <option value="">Unemployed</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="occupation"
+                          id="occupation"
+                          className="w-full border-none outline-none"
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Occupation</option>
+                          <option value="">Goverment Employee</option>
+                          <option value="">Bussiness</option>
+                          <option value="">Unemployed</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -776,19 +831,21 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="qualification"
-                        id="qualification"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Qualification</option>
-                        <option value="">Matriculation</option>
-                        <option value="">Intermediate</option>
-                        <option value="">Graduaction</option>
-                        <option value="">Masters</option>
-                        <option value="">P.H.D</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="qualification"
+                          id="qualification"
+                          className="w-full border-none outline-none"
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Qualification</option>
+                          <option value="">Matriculation</option>
+                          <option value="">Intermediate</option>
+                          <option value="">Graduaction</option>
+                          <option value="">Masters</option>
+                          <option value="">P.H.D</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -899,17 +956,19 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="occupation"
-                        id="occupation"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Occupation</option>
-                        <option value="">Goverment Employee</option>
-                        <option value="">Bussiness</option>
-                        <option value="">Unemployed</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="occupation"
+                          id="occupation"
+                          className="w-full border-none outline-none "
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Occupation</option>
+                          <option value="">Goverment Employee</option>
+                          <option value="">Bussiness</option>
+                          <option value="">Unemployed</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -921,20 +980,23 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="qualification"
-                        id="qualification"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Qualification</option>
-                        <option value="">Matriculation</option>
-                        <option value="">Intermediate</option>
-                        <option value="">Graduaction</option>
-                        <option value="">Masters</option>
-                        <option value="">P.H.D</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="qualification"
+                          id="qualification"
+                          className="w-full border-none outline-none"
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Qualification</option>
+                          <option value="">Matriculation</option>
+                          <option value="">Intermediate</option>
+                          <option value="">Graduaction</option>
+                          <option value="">Masters</option>
+                          <option value="">P.H.D</option>
+                        </select>
+                      </div>
                     </div>
+
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
                         <label className="text-[#696969] font-medium text-[14px] ">
@@ -995,9 +1057,14 @@ function AddStudent() {
                       <span className=" text-[17px] text-[#1c1c1c] font-semibold">
                         Local Guardian Details if Any
                       </span>
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        checked={showGuardian}
+                        onChange={() => setShowGuardian(!showGuardian)}
+                      />
                     </div>
                   </div>
+                  {showGuardian && (
                   <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-2">
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -1048,131 +1115,159 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="relation"
-                        id="relation"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Relation</option>
-                        <option value="">Friend</option>
-                        <option value="">Relative</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="relation"
+                          id="relation"
+                          className="w-full border-none outline-none "
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Relation</option>
+                          <option value="">Friend</option>
+                          <option value="">Relative</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
+                  )}
                   {/* <============================== Sibling ==================================> */}
                   <div className="grid lg:grid-cols-3">
                     <div className="flex items-center gap-2 mt-4 border-b-2 border-[#12516E] p-2">
                       <span className=" text-[17px] text-[#1c1c1c] font-semibold">
                         Sibling Information
                       </span>
-                      <input type="checkbox" />
+                      <input
+                       type="checkbox"
+                       checked={showSibling}
+                       onChange={() => setShowSibling(!showSibling)}
+                       />
                     </div>
                   </div>
                   <span className="text-[#DC2626] underline text-[14px]">
                     *if Sibling are enrolled in the same school, Please provide
                     details for each student
                   </span>
-                  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-2">
-                    <div className="flex flex-col gap-1">
-                      <div className="flex gap-1">
-                        <label className="text-[#696969] font-medium text-[14px] ">
-                          Sibling Name
-                        </label>
-                        <span className="text-[#DC2626] text-[14px]">*</span>
+                  {showSibling && (
+                    <div>
+                  {siblings.map((sib, index) => (
+                    <div
+                      key={index}
+                      className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-2"
+                    >
+                      <div className="flex flex-col gap-1">
+                        <div className="flex gap-1">
+                          <label className="text-[#696969] font-medium text-[14px] ">
+                            Sibling Name
+                          </label>
+                          <span className="text-[#DC2626] text-[14px]">*</span>
+                        </div>
+                        <input
+                          type="text"
+                          placeholder="Enter Name"
+                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                        />
                       </div>
-                      <input
-                        type="text"
-                        placeholder="Enter Name"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <div className="flex gap-1">
-                        <label className="text-[#696969] font-medium text-[14px] ">
-                          Admission Number
-                        </label>
-                        <span className="text-[#DC2626] text-[14px]">*</span>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex gap-1">
+                          <label className="text-[#696969] font-medium text-[14px] ">
+                            Admission Number
+                          </label>
+                          <span className="text-[#DC2626] text-[14px]">*</span>
+                        </div>
+                        <input
+                          type="text"
+                          placeholder="Enter Admission Number"
+                          className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                        />
                       </div>
-                      <input
-                        type="text"
-                        placeholder="Enter Admission Number"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <div className="flex gap-1">
-                        <label
-                          htmlFor="class"
-                          className="text-[#696969] font-medium text-[14px] "
-                        >
-                          Class
-                        </label>
-                        <span className="text-[#DC2626] text-[14px]">*</span>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex gap-1">
+                          <label
+                            htmlFor="class"
+                            className="text-[#696969] font-medium text-[14px] "
+                          >
+                            Class
+                          </label>
+                          <span className="text-[#DC2626] text-[14px]">*</span>
+                        </div>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="class"
+                            id="class"
+                            className="w-full border-none outline-none"
+                            defaultValue="Applied Class"
+                          >
+                            <option value="">Nurcessary</option>
+                            <option value="">LKG</option>
+                            <option value="">UKG</option>
+                          </select>
+                        </div>
                       </div>
-                      <select
-                        name="class"
-                        id="class"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Nurcessary</option>
-                        <option value="">LKG</option>
-                        <option value="">UKG</option>
-                      </select>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <div className="flex gap-1">
-                        <label
-                          htmlFor="selecteGender"
-                          className="text-[#696969] font-medium text-[14px] "
-                        >
-                          Gender
-                        </label>
-                        <span className="text-[#DC2626] text-[14px]">*</span>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex gap-1">
+                          <label
+                            htmlFor="selecteGender"
+                            className="text-[#696969] font-medium text-[14px] "
+                          >
+                            Gender
+                          </label>
+                          <span className="text-[#DC2626] text-[14px]">*</span>
+                        </div>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="selecteGender"
+                            id="selecteGender"
+                            className="w-full border-none outline-none"
+                            defaultValue="Applied gender"
+                          >
+                            <option value="">Select Gender</option>
+                            <option value="">Male</option>
+                            <option value="">Female</option>
+                            <option value="">Other</option>
+                          </select>
+                        </div>
                       </div>
-                      <select
-                        name="selecteGender"
-                        id="selecteGender"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied gender"
-                      >
-                        <option value="">Select Gender</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
-                        <option value="">Other</option>
-                      </select>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <div className="flex gap-1">
-                        <label
-                          htmlFor="relation"
-                          className="text-[#696969] font-medium text-[14px] "
-                        >
-                          Relation
-                        </label>
-                        <span className="text-[#DC2626] text-[14px]">*</span>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex gap-1">
+                          <label
+                            htmlFor="relation"
+                            className="text-[#696969] font-medium text-[14px] "
+                          >
+                            Relation
+                          </label>
+                          <span className="text-[#DC2626] text-[14px]">*</span>
+                        </div>
+                        <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                          <select
+                            name="relation"
+                            id="relation"
+                            className="w-full border-none outline-none"
+                            defaultValue="Applied Class"
+                          >
+                            <option value="">Relation</option>
+                            <option value="">Friend</option>
+                            <option value="">Relative</option>
+                          </select>
+                        </div>
                       </div>
-                      <select
-                        name="relation"
-                        id="relation"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Relation</option>
-                        <option value="">Friend</option>
-                        <option value="">Relative</option>
-                      </select>
+
+                      {index === siblings.length - 1 && (
+                        <div className="mt-6">
+                          <button
+                            type="button"
+                            onClick={handleAddSibling}
+                            className="flex items-center gap-2 px-4 py-2 bg-[#0B3142] text-white rounded-lg hover:scale-105 transition"
+                          >
+                            <IoAdd />
+                            Add
+                          </button>
+                        </div>
+                      )}
                     </div>
-                    <div className="mt-6">
-                      <button className="flex items-center gap-2 px-4 py-1.5 bg-[#0B3142] text-white border border-[#0B3142] rounded-lg">
-                        <span>
-                          <IoAdd />
-                        </span>
-                        Add
-                      </button>
-                    </div>
+                  ))}
                   </div>
+                  )}
+
                   {/* <-------------------------- Acedemic Information ---------------------------> */}
                   <div className="flex gap-4 items-center mt-4">
                     <div className="p-1 rounded-full h-10 bg-[#00C950]"></div>
@@ -1204,16 +1299,18 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="class"
-                        id="class"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">Nurcessary</option>
-                        <option value="">LKG</option>
-                        <option value="">UKG</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="class"
+                          id="class"
+                          className="w-full border-none outline-none"
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">Nurcessary</option>
+                          <option value="">LKG</option>
+                          <option value="">UKG</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -1225,16 +1322,18 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="class"
-                        id="class"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Applied Class"
-                      >
-                        <option value="">2025</option>
-                        <option value="">2024</option>
-                        <option value="">202</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="class"
+                          id="class"
+                          className="w-full border-none outline-none"
+                          defaultValue="Applied Class"
+                        >
+                          <option value="">2025</option>
+                          <option value="">2024</option>
+                          <option value="">202</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -1460,16 +1559,18 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
-                      <select
-                        name="physicalDisability"
-                        id="physicalDisability"
-                        className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
-                        defaultValue="Physical Disability"
-                      >
-                        <option value="">Physical Disability</option>
-                        <option value="">Yes</option>
-                        <option value="">No</option>
-                      </select>
+                      <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                        <select
+                          name="physicalDisability"
+                          id="physicalDisability"
+                          className="w-full border-none outline-none"
+                          defaultValue="Physical Disability"
+                        >
+                          <option value="">Physical Disability</option>
+                          <option value="">Yes</option>
+                          <option value="">No</option>
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -1721,7 +1822,7 @@ function AddStudent() {
                       <span className="px-2">1. Assign Class</span>
                     </div>
                   </div>
-                  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3">
+                  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3 mt-4">
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
                         <label className="text-[#696969] font-medium text-[14px] ">
@@ -1758,10 +1859,11 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
+                      <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
                       <select
                         name="academicYear"
                         id="academicYear"
-                        className="w-full border border-[#9C9C9C] rounded-md px-4 py-3 outline-none focus:ring-[#9C9C9C]"
+                        className="w-full border-none outline-none"
                         defaultValue="Acedemic Year"
                       >
                         <option value="">Select Your Academic Year</option>
@@ -1769,6 +1871,7 @@ function AddStudent() {
                         <option value="">2024-2025</option>
                         <option value="">2025-2026</option>
                       </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -1780,10 +1883,11 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
+                      <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
                       <select
                         name="academicYear"
                         id="academicYear"
-                        className="w-full border border-[#9C9C9C] rounded-md px-4 py-3 outline-none focus:ring-[#9C9C9C]"
+                        className="w-full border-none outline-none"
                         defaultValue="Acedemic Year"
                       >
                         <option value="">Select Your Academic Year</option>
@@ -1791,6 +1895,7 @@ function AddStudent() {
                         <option value="">2024-2025</option>
                         <option value="">2025-2026</option>
                       </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -1802,10 +1907,11 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
+                      <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
                       <select
                         name="academicYear"
                         id="academicYear"
-                        className="w-full border border-[#9C9C9C] rounded-md px-4 py-3 outline-none focus:ring-[#9C9C9C]"
+                        className="w-full border-none outline-none"
                         defaultValue="Acedemic Year"
                       >
                         <option value="">Select Your Academic Year</option>
@@ -1813,6 +1919,7 @@ function AddStudent() {
                         <option value="">2024-2025</option>
                         <option value="">2025-2026</option>
                       </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-1">
@@ -1824,10 +1931,11 @@ function AddStudent() {
                         </label>
                         <span className="text-[#DC2626] text-[14px]">*</span>
                       </div>
+                      <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
                       <select
                         name="academicYear"
                         id="academicYear"
-                        className="w-full border border-[#9C9C9C] rounded-md px-4 py-3 outline-none focus:ring-[#9C9C9C]"
+                        className="w-full border-none outline-none"
                         defaultValue="Acedemic Year"
                       >
                         <option value="">Select Your Academic Year</option>
@@ -1835,6 +1943,7 @@ function AddStudent() {
                         <option value="">2024-2025</option>
                         <option value="">2025-2026</option>
                       </select>
+                      </div>
                     </div>
                   </div>
                   {/* <---------------------------------- Transport -------------------------------> */}
@@ -1851,14 +1960,16 @@ function AddStudent() {
                         <label className="text-sm text-[#696969]">
                           Transport Opted
                         </label>
+                        <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
                         <select
                           value={transportOpted}
                           onChange={(e) => setTransportOpted(e.target.value)}
-                          className="w-full rounded-sm px-4 py-3 text-sm outline-none border border-[#9C9C9C] focus:ring-2 focus:ring-[#696969] bg-white"
+                          className="w-full border-none outline-none"
                         >
                           <option value="Yes">Yes</option>
                           <option value="No">No</option>
                         </select>
+                        </div>
                       </div>
                     </div>
                     {transportOpted === "Yes" && (
@@ -1867,29 +1978,35 @@ function AddStudent() {
                           <label className="text-sm text-[#696969]">
                             Assign Route
                           </label>
-                          <select className="w-full rounded-sm px-4 py-3 text-sm outline-none border border-[#9C9C9C] focus:ring-2 focus:ring-[#696969] bg-white">
+                          <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
+                          <select className="w-full outline-none border-none">
                             <option value="">Choose Route</option>
                           </select>
+                          </div>
                         </div>
 
                         <div className="flex flex-col gap-1">
                           <label className="text-sm text-[#696969]">
                             Bus Stop
                           </label>
-                          <select className="w-full rounded-sm px-4 py-3 text-sm outline-none border border-[#9C9C9C] focus:ring-2 focus:ring-[#696969] bg-white">
+                          <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
+                          <select className="w-full outline-none border-none">
                             <option value="">Choose Bus Stop</option>
                           </select>
+                          </div>
                         </div>
 
                         <div className="flex flex-col gap-1">
                           <label className="text-sm text-[#696969]">
                             Bus Number / Vehicle No.
                           </label>
-                          <select className="w-full rounded-sm px-4 py-3 text-sm outline-none border border-[#9C9C9C] focus:ring-2 focus:ring-[#696969] bg-white">
+                          <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
+                          <select className="w-full outline-none border-none">
                             <option value="">
                               Choose Bus Number / Vehicle No.
                             </option>
                           </select>
+                          </div>
                         </div>
 
                         <div className="flex flex-col gap-1">
@@ -1922,18 +2039,22 @@ function AddStudent() {
                         <label className="text-sm text-[#696969]">
                           Fee Category
                         </label>
-                        <select className="w-full rounded-sm px-4 py-3 text-sm outline-none border border-[#9C9C9C] focus:ring-2 focus:ring-[#696969] bg-white">
+                        <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
+                        <select className="w-full outline-none border-none">
                           <option value="">Choose Route</option>
                         </select>
+                        </div>
                       </div>
 
                       <div className="flex flex-col gap-1">
                         <label className="text-sm text-[#696969]">
                           Consession Type
                         </label>
-                        <select className="w-full rounded-sm px-4 py-3 text-sm outline-none border border-[#9C9C9C] focus:ring-2 focus:ring-[#696969] bg-white">
+                        <div className="border border-[#9C9C9C] rounded-md px-4 py-3">
+                        <select className="w-full outline-none border-none">
                           <option value="">Select Consession Type</option>
                         </select>
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1">
                         <label className="text-sm text-[#696969]">
@@ -2955,12 +3076,12 @@ function AddStudent() {
             {/* Next OR Submit Button */}
             {currentIndex === pages.length - 1 ? (
               <Link to="/admissionLetter">
-              <button
-                onClick={handleSubmit}
-                className="inline-flex px-6 py-3 bg-[#FF6900] text-white border border-[#FF6900] rounded-lg"
-              >
-                Submit
-              </button>
+                <button
+                  onClick={handleSubmit}
+                  className="inline-flex px-6 py-3 bg-[#FF6900] text-white border border-[#FF6900] rounded-lg"
+                >
+                  Submit
+                </button>
               </Link>
             ) : (
               <button

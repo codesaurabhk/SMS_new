@@ -561,11 +561,11 @@ function LeaveRequest() {
               </div>
             </div>
             <label For="Export"></label>
-            <div className="bg-[#EFF2F2] rounded p-1">
+            <div className="bg-[#EFF2F2] rounded px-2 py-2">
               <select
                 name=""
                 id="Export"
-                className="border-0 outline-0 bg-transparent px-2 py-2"
+                className="border-0 outline-0 bg-transparent p-1"
               >
                 <option value="">All Status</option>
                 <option value=""></option>

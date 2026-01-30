@@ -81,28 +81,37 @@ function Performance() {
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 items-center gap-4">
             <div className="flex flex-col gap-1">
               <label>Class</label>
-              <select className="border rounded-lg px-3 py-3 text-sm outline-none border-[#e6e6e6] focus:ring-1 focus:ring-[#696969]">
-                <option value="" disabled>
-                  Select Class
-                </option>
-                <option value=""></option>
-              </select>
+              <div className="px-3 py-3 border-[#e6e6e6] border rounded-lg ">
+                <select className="w-full text-sm outline-none border-none focus:ring-1 focus:ring-[#696969]">
+                  <option value="" disabled>
+                    Select Class
+                  </option>
+                  <option value=""></option>
+                </select>
+              </div>
             </div>
             <div className="flex flex-col gap-1">
               <label>Student</label>
-              <select className="border rounded-lg px-3 py-3 text-sm outline-none border-[#e6e6e6] focus:ring-1 focus:ring-[#696969]">
-                <option value="Select" disabled>
-                  Select Student
-                </option>
-                <option value=""></option>
-              </select>
+              <div className="px-3 py-3 border-[#e6e6e6] border rounded-lg ">
+                <select className="w-full text-sm outline-none border-none focus:ring-1 focus:ring-[#696969]">
+                  <option value="" disabled>
+                    Select Class
+                  </option>
+                  <option value=""></option>
+                </select>
+              </div>
             </div>
           </div>
         </section>
 
         <div className="mt-6 flex gap-4 items-center">
-          <button className="text-white flex items-center bg-[#0B3142] p-2 rounded-md gap-2 font-semibold text-[16px]"><IoSearchOutline />Search</button>
-          <button className="border border-[#9c9c9c] rounded-md font-semibold py-2 px-4 text-[14px] flex justify-center">Reset</button>
+          <button className="text-white flex items-center bg-[#0B3142] p-2 rounded-md gap-2 font-semibold text-[16px]">
+            <IoSearchOutline />
+            Search
+          </button>
+          <button className="border border-[#9c9c9c] rounded-md font-semibold py-2 px-4 text-[14px] flex justify-center">
+            Reset
+          </button>
         </div>
       </div>
     </div>

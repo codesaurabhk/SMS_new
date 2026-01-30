@@ -90,36 +90,36 @@ const IdCard = () => {
           <div className="inline-flex items-center gap-3">
             <div className="flex justify-between">
               <label For="class" className=""></label>
-              <select
-                name=""
-                id="class"
-                className="bg-[#EFF2F2] rounded px-2 py-2 border-0 outline-0"
-              >
-                <option value="">Class</option>
-                <option value="">Nursery </option>
-                <option value="">UKG</option>
-                <option value="">Class 1</option>
-                <option value="">Class 2</option>
-                <option value="">Class 3</option>
-                <option value="">Class 4</option>
-                <option value="">Class 5</option>
-                <option value="">Class 6</option>
-                <option value="">Class 7</option>
-                <option value="">Class 8</option>
-              </select>
+              <div className="bg-[#EFF2F2] rounded px-2 py-2">
+                <select name="" id="class" className="border-0 outline-0">
+                  <option value="">Class</option>
+                  <option value="">Nursery </option>
+                  <option value="">UKG</option>
+                  <option value="">Class 1</option>
+                  <option value="">Class 2</option>
+                  <option value="">Class 3</option>
+                  <option value="">Class 4</option>
+                  <option value="">Class 5</option>
+                  <option value="">Class 6</option>
+                  <option value="">Class 7</option>
+                  <option value="">Class 8</option>
+                </select>
+              </div>
             </div>
             <label For="Section"></label>
-            <select
-              name=""
-              id="Section"
-              className="bg-[#EFF2F2] rounded px-2 py-2 border-0 outline-0"
-            >
-              <option value="">Section</option>
-              <option value="">A</option>
-              <option value="">B</option>
-              <option value="">C</option>
-              <option value="">D</option>
-            </select>
+            <div className="bg-[#EFF2F2] rounded px-1 py-1">
+              <select
+                name=""
+                id="Section"
+                className="px-1 py-1 border-0 outline-0"
+              >
+                <option value="">Section</option>
+                <option value="">A</option>
+                <option value="">B</option>
+                <option value="">C</option>
+                <option value="">D</option>
+              </select>
+            </div>
           </div>
         </div>
 

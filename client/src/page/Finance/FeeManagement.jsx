@@ -1,9 +1,102 @@
-import React from 'react'
+import React from "react";
 
-const FeeManagement = () => {
+/* -------------------------------- GIF -------------------------------- */
+import rupee from "../../assets/images/rupee.gif";
+import invoce from "../../assets/images/invoice.gif";
+import hour from "../../assets/images/hoursglass.gif";
+import irate from "../../assets/images/intrestrate.gif";
+
+function FeeManagement() {
+  const cardData = [
+    {
+      des: "Fee Collected",
+      number: "3.6 L",
+      left: "",
+      text: "This month",
+      gif: rupee,
+    },
+    {
+      des: "Total Expenses",
+      number: "41000",
+      left: "+2.1%",
+      text: "from the last month",
+      gif: invoce,
+    },
+    {
+      des: "Pending Fees",
+      number: "12,500",
+      left: "",
+      text: "From 45 Students",
+      gif: hour,
+    },
+    {
+      des: "Collection Rate",
+      number: 50, // ✅ store as number
+      progress: true,
+      gif: irate,
+    },
+  ];
+
   return (
-    <div>FeeManagement</div>
-  )
+    <div>
+      {/* -------------------------------- Cards -------------------------------- */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {cardData.map((item, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-lg p-4 shadow-lg hover:shadow-md transition-shadow duration-300"
+          >
+            <div className="flex items-center justify-between">
+              {/* LEFT CONTENT */}
+              <div className="flex flex-col w-full">
+                <p className="font-medium text-[16px] text-[#1C1C1C]">
+                  {item.des}
+                </p>
+
+                {/* NUMBER + GIF */}
+                <div className="flex items-center justify-between mt-1">
+                  <span className="font-bold text-[28px] text-[#1c1c1c] leading-none">
+                    {item.progress
+                      ? `${item.number}%`
+                      : index === 0
+                        ? `₹ ${item.number}`
+                        : item.number}
+                  </span>
+
+                  <div className="flex items-center justify-center w-14 h-14">
+                    <img
+                      src={item.gif}
+                      alt="icon"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+
+                {/* PROGRESS OR TEXT */}
+                {item.progress ? (
+                  <div className="mt-4 w-full">
+                    {/* Progress Track */}
+                    <div className="w-full bg-gray-200 rounded-full h-1 overflow-hidden">
+                      {/* Progress Fill */}
+                      <div
+                        className="h-full rounded-full bg-linear-to-r from-[#0B3142] to-[#1C7DA8] transition-all duration-700 ease-in-out"
+                        style={{ width: `${item.number}%` }}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <p className="mt-1 flex items-center gap-2 text-[14px] font-semibold">
+                    <span className="text-[#009638]">{item.left}</span>
+                    <span className="text-[#696969]">{item.text}</span>
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default FeeManagement
+export default FeeManagement;
