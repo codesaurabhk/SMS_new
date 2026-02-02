@@ -744,7 +744,7 @@ function DetailsContent({ active }) {
       );
 
     case "Attendance Register":
-      return <AttendanceR egister />;
+      return <AttendanceRegister />;
 
     case "Update Attendance":
       return (
