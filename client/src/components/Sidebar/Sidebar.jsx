@@ -16,6 +16,12 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { GrLogout } from "react-icons/gr";
 import { FaRegNewspaper } from "react-icons/fa6";
 import munc_logo from "../../assets/images/munc-logo.png";
+import { GiBookAura } from "react-icons/gi";
+import { LuNotebook } from "react-icons/lu";
+import { HiOutlineDocumentText } from "react-icons/hi2";
+import { RiVideoOnLine } from "react-icons/ri";
+import { HiOutlineDocumentReport } from "react-icons/hi";
+import { PiCertificateLight } from "react-icons/pi";
 
 
 function Sidebar() {
@@ -23,6 +29,9 @@ function Sidebar() {
   const [openStaffs, setOpenStaffs] = useState(false);
   const [openAcademic, setOpenAcademic] = useState(false);
   const [openFinance, setOpenFinance] = useState(false);
+  const [openHomeWork, setOpenHomeWork] = useState(false);
+  const [openOnlinetest, setOpenOnlinetest] = useState(false);
+  const [openOnlineClass, setOpenOnlineClass] = useState(false);
   const [openAdmission, setOpenAdmission] = useState(false);
   const [openResources, setOpenResources] = useState(false);
   const [openEventCalender, setOpenEventCalender] = useState(false);
@@ -34,6 +43,9 @@ function Sidebar() {
   setOpenStaffs(prev => section === "staffs" ? !prev : false);
   setOpenAcademic(prev => section === "academic" ? !prev : false);
   setOpenFinance(prev => section === "finance" ? !prev : false);
+  setOpenHomeWork(prev => section === "homework" ? !prev : false);
+  setOpenOnlinetest(prev => section === "online-test" ? !prev : false);
+  setOpenOnlineClass(prev => section === "online-class" ? !prev : false);
   setOpenAdmission(prev => section === "admission" ? !prev : false);
   setOpenResources(prev => section === "resources" ? !prev : false);
   setOpenEventCalender(prev => section === "calendar" ? !prev : false);
@@ -43,9 +55,9 @@ function Sidebar() {
 
 
   return (
-    <aside className="w-[260px] h-screen text-slate-900 bg-white  flex flex-col">
+    <aside className="w-65 h-screen text-slate-900 bg-white  flex flex-col">
       {/* Logo */}
-      <div className=" w-[200px] h-[40px]  flex  items-center mt-5 ml-4 mb-5">
+      <div className=" w-50 h-10  flex  items-center mt-5 ml-4 mb-5">
         <img src={Logo} alt="Logo" className="" />
       </div>
 
@@ -88,10 +100,10 @@ function Sidebar() {
         {openStudents && (
           <div className="relative ml-7 mt-3 pl-4 text-base">
             {/* Vertical line */}
-            <div className="absolute left-[-2px]   top-0 bottom-0 w-px bg-gray-300" />
+            <div className="absolute -left-0.5  top-0 bottom-0 w-px bg-gray-300" />
 
             <SubMenuItem to="/students" label="All Students" />
-            <SubMenuItem to="/unassign-students" label="Unassign Student" />
+            {/* <SubMenuItem to="/unassign-students" label="Unassign Student" /> */}
             <SubMenuItem to="/attendance" label="Attendance" />
             <SubMenuItem to="/leave-request" label="Leave Request" />
             <SubMenuItem to="/perfromances" label="Performance" />
@@ -120,7 +132,7 @@ function Sidebar() {
         {openStaffs && (
           <div className="relative ml-7 mt-3 pl-4 text-base">
             {/* Vertical line */}
-            <div className="absolute left-[-2px]   top-0 bottom-0 w-px bg-gray-300" />
+            <div className="absolute -left-0.5   top-0 bottom-0 w-px bg-gray-300" />
 
             <SubMenuItem to="/all-staffs" label="All Staff" />
             <SubMenuItem to="/staff-attendance" label="Attendance" />
@@ -129,6 +141,8 @@ function Sidebar() {
             <SubMenuItem to="/staff-manageLogin" label="Manage Login" />
           </div>
         )}
+
+         <p className="text-xs mt-3 mb-3 ml-2">Academic</p>
         
         {/* Academic (Expanded) */}
         <button
@@ -149,7 +163,7 @@ function Sidebar() {
         {openAcademic && (
           <div className="relative ml-7 mt-3 pl-4 text-base">
             {/* Vertical line */}
-            <div className="absolute left-[-2px]   top-0 bottom-0 w-px bg-gray-300" />
+            <div className="absolute -left-0.5    top-0 bottom-0 w-px bg-gray-300" />
 
             <SubMenuItem to="/academic-rooms" label="Rooms" />
             <SubMenuItem to="/class-section" label="Class& Section " />
@@ -161,36 +175,112 @@ function Sidebar() {
           </div>
         )}
 
-        {/* Finance (Expanded) */}
+         <NavLink
+          to="/study-material"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-md text-base
+             ${isActive ? "bg-slate-800 text-white" : "text-gray-600 hover:bg-gray-100"}`
+          }
+        >
+          <GiBookAura />
+          Study Material
+        </NavLink>
+
+        {/* HomeWork (Expanded) */}
         <button
-           onClick={() => openSection("finance")}
+           onClick={() => openSection("homework")}
         className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
-      openFinance
+      openHomeWork
         ? "bg-slate-800 text-white"     // CLICKED (expanded)
         : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
     }`}
         >
           <span className="flex items-center gap-3">
-           <PiMoneyWavyThin />
-            Finance
+           <LuNotebook />
+            HomeWork
           </span>
-          {openFinance ? <LuMinus /> : <LuPlus />}
+          {openHomeWork ? <LuMinus /> : <LuPlus />}
         </button>
 
-        {openFinance && (
+        {openHomeWork && (
           <div className="relative ml-7 mt-3 pl-4 text-base">
             {/* Vertical line */}
-            <div className="absolute left-[-2px]   top-0 bottom-0 w-px bg-gray-300" />
+            <div className="absolute -left-0.5    top-0 bottom-0 w-px bg-gray-300" />
 
-            <SubMenuItem to="/fee-management" label="Fee Management"/>
-            <SubMenuItem to="/payroll" label="Payroll"/>
-            <SubMenuItem to="/account-statement" label="Account Statement"/>
-            <SubMenuItem to="/report" label="Report"/>
+            <SubMenuItem to="/add-homework" label="Add Homework"/>
+            <SubMenuItem to="/homework-list" label="Homework List"/>
+            <SubMenuItem to="/homework-report" label="Homework Report"/>
+            
           </div>
         )}
 
-        {/* Admission (Expanded) */}
+        {/* Online Test (Expanded) */}
         <button
+           onClick={() => openSection("online-test")}
+        className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
+      openOnlinetest
+        ? "bg-slate-800 text-white"     // CLICKED (expanded)
+        : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
+    }`}
+        >
+          <span className="flex items-center gap-3">
+           <HiOutlineDocumentText />
+            Online Test
+          </span>
+          {openOnlinetest ? <LuMinus /> : <LuPlus />}
+        </button>
+
+        {openOnlinetest && (
+          <div className="relative ml-7 mt-3 pl-4 text-base">
+            {/* Vertical line */}
+            <div className="absolute -left-0.5    top-0 bottom-0 w-px bg-gray-300" />
+
+            
+            <SubMenuItem to="/exam-scheduled" label="Exam Scheduled"/>
+            <SubMenuItem to="/exam-paper" label="Exam Paper"/>
+            <SubMenuItem to="/question-bank" label="Question Bank"/>
+            <SubMenuItem to="/result" label="Result"/>
+
+            
+            
+          </div>
+        )}
+        {/* Online Class (Expanded) */}
+        <button
+           onClick={() => openSection("online-class")}
+        className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
+      openOnlineClass
+        ? "bg-slate-800 text-white"     // CLICKED (expanded)
+        : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
+    }`}
+        >
+          <span className="flex items-center gap-3">
+           <RiVideoOnLine />
+            Online Class
+          </span>
+          {openOnlineClass ? <LuMinus /> : <LuPlus />}
+        </button>
+
+        {openOnlineClass && (
+          <div className="relative ml-7 mt-3 pl-4 text-base">
+            {/* Vertical line */}
+            <div className="absolute -left-0.5    top-0 bottom-0 w-px bg-gray-300" />
+
+            
+            <SubMenuItem to="/online-class-dashbord" label="Dashboard"/>
+            <SubMenuItem to="/schedule-class" label="Schedule Class"/>
+            <SubMenuItem to="/past-class" label="Past Class"/>
+          
+
+            
+            
+          </div>
+        )}
+
+
+        
+        {/* Admission (Expanded) */}
+        {/* <button
            onClick={() => openSection("admission")}
           className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
       openAdmission
@@ -207,8 +297,8 @@ function Sidebar() {
 
         {openAdmission && (
           <div className="relative ml-7 mt-3 pl-4 text-base">
-            {/* Vertical line */}
-            <div className="absolute left-[-2px]   top-0 bottom-0 w-px bg-gray-300" />
+            
+            <div className="absolute -left-0.5    top-0 bottom-0 w-px bg-gray-300" />
 
             <SubMenuItem to="/admission-allStudent" label="All Students"/>
             <SubMenuItem to="/admission-attendance" label="Attendance"/>
@@ -218,7 +308,7 @@ function Sidebar() {
             <SubMenuItem to="/admission-manage-login" label="Manage Login"/>
             <SubMenuItem to="/admission-promote" label="Promote"/>
           </div>
-        )}
+        )} */}
         {/* Resources (Expanded) */}
         <button
            onClick={() => openSection("resources")}
@@ -238,10 +328,11 @@ function Sidebar() {
         {openResources && (
           <div className="relative ml-7 mt-3 pl-4 text-base">
             {/* Vertical line */}
-            <div className="absolute left-[-2px]   top-0 bottom-0 w-px bg-gray-300" />
+            <div className="absolute -left-0.5   top-0 bottom-0 w-px bg-gray-300" />
 
             <SubMenuItem to="/library" label="Library"/>
             <SubMenuItem to="/transport" label="Transport"/>
+            <SubMenuItem to="/facility" label="Facility"/>
             
           </div>
         )}
@@ -267,7 +358,7 @@ function Sidebar() {
         {openEventCalender && (
           <div className="relative ml-7 mt-3 pl-4 text-base">
             {/* Vertical line */}
-            <div className="absolute left-[-2px]   top-0 bottom-0 w-px bg-gray-300" />
+            <div className="absolute -left-0.5   top-0 bottom-0 w-px bg-gray-300" />
 
             <SubMenuItem to="/calender" label="Calendar"/>
             <SubMenuItem to="/events" label="Events"/>
@@ -301,7 +392,61 @@ function Sidebar() {
           Messages
         </NavLink>
 
-        <p className="text-xs mt-1 mb-1 ml-2">General</p>
+         <p className="text-xs mt-3 mb-3 ml-2">Finance & Records</p>
+         
+         {/* Finance (Expanded) */}
+        <button
+           onClick={() => openSection("finance")}
+        className={`w-full flex items-center justify-between px-3 py-2 mt-2 rounded-md text-base  transition-colors duration-300 ${
+      openFinance
+        ? "bg-slate-800 text-white"     // CLICKED (expanded)
+        : "bg-white text-gray-600 hover:bg-gray-100" // DEFAULT + HOVER
+    }`}
+        >
+          <span className="flex items-center gap-3">
+           <PiMoneyWavyThin />
+            Finance
+          </span>
+          {openFinance ? <LuMinus /> : <LuPlus />}
+        </button>
+
+        {openFinance && (
+          <div className="relative ml-7 mt-3 pl-4 text-base">
+            {/* Vertical line */}
+            <div className="absolute -left-0.5    top-0 bottom-0 w-px bg-gray-300" />
+
+            <SubMenuItem to="/fee-management" label="Fee"/>
+            <SubMenuItem to="/payroll" label="Payroll"/>
+            <SubMenuItem to="/account-statement" label="Account"/>
+           
+          </div>
+        )}
+
+          <NavLink
+          to="/certificate"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-md text-base
+             ${isActive ? "bg-slate-800 text-white" : "text-gray-600 hover:bg-gray-100"}`
+          }
+        >
+         <PiCertificateLight />
+          Certificates
+        </NavLink>
+
+          <NavLink
+          to="/report"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-md text-base
+             ${isActive ? "bg-slate-800 text-white" : "text-gray-600 hover:bg-gray-100"}`
+          }
+        >
+          <HiOutlineDocumentReport />
+          Reports
+        </NavLink>
+
+
+
+        <p className="text-xs mt-1 mb-1 ml-2">System & Access</p>
 
         {/* Reports & Analytics */}
         <NavLink
@@ -343,7 +488,7 @@ function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="h-[60px] w-auto  "> <img src={munc_logo} alt="logo" /></div>
+      <div className="h-15 w-auto  "> <img src={munc_logo} alt="logo" /></div>
     </aside>
   );
 }
@@ -366,7 +511,7 @@ function SubMenuItem({ label, to }) {
           {/* Dot */}
           <span
             className={`
-              absolute left-[-22px] w-2 h-2 rounded-full bg-slate-700
+              absolute -left-5.5 w-2 h-2 rounded-full bg-slate-700
               transition-transform
               ${isActive ? "scale-100" : "scale-0 group-hover:scale-100"}
             `}

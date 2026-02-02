@@ -2,7 +2,7 @@ import React from 'react'
 
 const Transport = () => {
   return (
-    <div>transport</div>
+    <div>Transport</div>
   )
 }
 

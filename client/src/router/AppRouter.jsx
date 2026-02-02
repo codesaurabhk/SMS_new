@@ -51,6 +51,20 @@ import AddStudent from "../page/Student/AddStudent.jsx";
 import AddmissionLetter from "../page/Student/Admission.jsx"
 import EditStudent from "../page/Student/EditStudent.jsx";
 import JobLetter from "../page/Staffs/JobLetter.jsx";
+import StdudentMaterial from "../page/StudyMaterial/StdudentMaterial.jsx";
+import AddHomeWork from "../page/HomeWork/AddHomeWork.jsx";
+import HomeWorkList from "../page/HomeWork/HomeWorkList.jsx";
+import HomeworkReport from "../page/HomeWork/HomeworkReport.jsx";
+import Transport from "../page/Resources/transport.jsx";
+import Facility from "../page/Resources/Facility.jsx";
+import ExamScheduled from "../page/OnlineTest/ExamScheduled.jsx";
+import ExamPaper from "../page/OnlineTest/ExamPaper.jsx";
+import QuestionBank from "../page/OnlineTest/QuestionBank.jsx";
+import Result from "../page/OnlineTest/Result.jsx";
+import OnlineClassDashboard from "../page/OnlineClass/OnlineClassDashboard.jsx";
+import ScheduleClass from "../page/StudyMaterial/ScheduleClass.jsx";
+import PastClass from "../page/StudyMaterial/PastClass.jsx";
+import Certificate from "../page/Finance/Certificate.jsx";
 
 
 
@@ -67,6 +81,7 @@ function AppRouter() {
         <Route path="/" element={<Menu />}>
 
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="/study-material" element={<StdudentMaterial/>} />
             {/* // student routes */}
           <Route path="students" element={<Student/>}/>
           <Route path="Studentdetails" element={<StudentDetails/>} />
@@ -102,11 +117,28 @@ function AppRouter() {
           <Route path="academic-exam" element={<AcademicExam/>} />
           <Route path="academic-result" element={<AcademicResult/>} />
 
-            {/* // Finance */}
-          <Route path="account-statement" element={<AccountStatement/>} />
-          <Route path="fee-management" element={<FeeManagement/>} />
-          <Route path="payroll" element={<Payroll/>} />
-          <Route path="report" element={<Report/>} />
+
+           {/* // HomeWork */}
+           <Route path="add-homework" element={<AddHomeWork/>} />
+           <Route path="homework-list" element={<HomeWorkList/>} />
+           <Route path="homework-report" element={<HomeworkReport/>} />
+
+            {/* // Online Test */}
+           
+            <Route path="exam-scheduled" element={<ExamScheduled/>} />
+            <Route path="exam-paper" element={<ExamPaper/>} />
+            <Route path="question-bank" element={<QuestionBank/>} />
+            <Route path="result" element={<Result/>} />
+
+
+            {/* // Online Class */}
+           
+            <Route path="online-class-dashbord" element={<OnlineClassDashboard/>} />
+            <Route path="schedule-class" element={<ScheduleClass/>} />
+            <Route path="past-class" element={<PastClass/>} />
+
+
+          
 
             {/* // Admission */}
           <Route path="admission-allStudent" element={<AllStudents/>} />
@@ -119,7 +151,17 @@ function AppRouter() {
 
            {/* // Resources */}
            <Route path="library" element={<Library/>} />
-           {/* <Route path="transport" element={<Transport/>} /> */}
+           <Route path="transport" element={<Transport/>} />
+            <Route path="facility" element={<Facility/>} />
+
+
+              {/* // Finance */}
+          <Route path="account-statement" element={<AccountStatement/>} />
+          <Route path="fee-management" element={<FeeManagement/>} />
+          <Route path="payroll" element={<Payroll/>} />
+          <Route path="report" element={<Report/>} />
+          <Route path="certificate" element={<Certificate/>} />
+
 
            {/* Events & Calendar */}
            <Route path="calender" element={<Calendar/>} />
