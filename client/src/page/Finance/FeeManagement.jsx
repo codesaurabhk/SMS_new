@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 
 /* -------------------------------- GIF -------------------------------- */
 import rupee from "../../assets/images/rupee.gif";
 import hour from "../../assets/images/hoursglass.gif";
 import irate from "../../assets/images/intrestrate.gif";
 
+import FeeDeposite from "./FeeDeposite";
+import FeeReceipt from "./FeeReceipt";
+
+function DetailsContent({ active }) {
+  switch (active) {
+    case "Fee Deposite":
+      return <FeeDeposite />;
+
+    case "Fee Receipt":
+      return <FeeReceipt />;
+
+    case "Pending Fees":
+      return <div>hello</div>;
+
+    case "Fee Particulars":
+      return <div>no</div>;
+
+    case "Fee Structure":
+      return <div>nope</div>;
+
+    case "Concessions":
+      return <div>nahh</div>;
+
+    default:
+      return null;
+  }
+}
+
 function FeeManagement() {
+  const [active, setActive] = useState("Fee Deposite");
+
+  // const baseBtn = "gap-8 flex justify-around w-full items-center";
+
+  // const activeBtn =
+  //   "bg-[#0B3142] text-[#FFFFFF] border rounded-full px-25 py-2 gap-8";
+
+  // const inactiveBtn =
+  //   "text-[#9EA1A1] px-15 py-2 hover:bg-[#e6e6e6] rounded-full px-25 py-2 gap-8";
+
   const cardData = [
     {
       des: "Fee Collected",
@@ -23,7 +61,7 @@ function FeeManagement() {
     },
     {
       des: "Collection Rate",
-      number: 50, 
+      number: 50,
       progress: true,
       gif: irate,
     },
@@ -86,6 +124,38 @@ function FeeManagement() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* <================================ Switch Case ========================================> */}
+      <div className="w-full mt-6 bg-white rounded-full shadow-md">
+        <div className="flex gap-2 px-2 py-1 scrollbar-hide sm:overflow-visible sm:justify-between">
+          {[
+            "Fee Deposite",
+            "Fee Receipt",
+            "Pending Fees",
+            "Fee Particulars",
+            "Fee Structure",
+            "Concessions",
+          ].map((item) => (
+            <button
+              key={item}
+              onClick={() => setActive(item)}
+              className={`flex items-center justify-center w-[20%] py-2 text-sm sm:text-base rounded-full transition-all duration-200
+          ${
+            active === item
+              ? "bg-[#0B3142] text-white"
+              : "text-[#9EA1A1] hover:bg-[#e6e6e6]"
+          }
+        `}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="">
+        <DetailsContent active={active} />
       </div>
     </div>
   );
