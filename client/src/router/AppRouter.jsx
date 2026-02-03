@@ -65,6 +65,7 @@ import OnlineClassDashboard from "../page/OnlineClass/OnlineClassDashboard.jsx";
 import ScheduleClass from "../page/StudyMaterial/ScheduleClass.jsx";
 import PastClass from "../page/StudyMaterial/PastClass.jsx";
 import Certificate from "../page/Finance/Certificate.jsx";
+import Receipt from "../page/Finance/Receipt.jsx";
 
 
 
@@ -161,6 +162,7 @@ function AppRouter() {
           <Route path="payroll" element={<Payroll/>} />
           <Route path="report" element={<Report/>} />
           <Route path="certificate" element={<Certificate/>} />
+          <Route path="receipt" element={<Receipt/>} />
 
 
            {/* Events & Calendar */}
