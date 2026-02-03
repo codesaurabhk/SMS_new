@@ -21,6 +21,8 @@ import { FiEdit, FiSearch } from "react-icons/fi";
 import { FaRegFileAlt } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlinePlus } from "react-icons/ai";
+import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import { FiEye } from "react-icons/fi";
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
 import everdeen from "../../assets/images/katnis.jpg";
@@ -59,112 +61,116 @@ const cardData = [
 
 const staffData = [
   {
-    staff: "Anushka Sharma",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Teacher",
-    department: "Academics",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
-  },
-  {
-    staff: "Ranveer Singh",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Accountant",
-    department: "Finance Department",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "99%",
-  },
-  {
-    staff: "Kareena Kapoor",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Receptionist",
-    department: "Front Office",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "70%",
-  },
-  {
-    staff: "Sharaddha Kapoor",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Teacher",
-    department: "Academics",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "95%",
-  },
-  {
-    staff: "Hrithik Roshan",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Librarian",
-    department: "Library Department",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
-  },
-  {
-    staff: "Virat Kohli",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Super Admin",
-    department: "Administration",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
-  },
-  {
-    staff: "Jhanvi Kapoor",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Teacher",
-    department: "Academics",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
-  },
-  {
-    staff: "Ranbir Kapoor",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Driver",
-    department: "Transport Department",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "80%",
-  },
-  {
-    staff: "Ananya Panday",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Teacher",
-    department: "Academics",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "100%",
-  },
-  {
-    student: "Meave Wiley",
-    img: meave,
-    studentId: "009",
-    class: "12C",
-    parent: "Otis Milburn",
-    number: 620489625,
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
     status: "Active",
-    staff: "Shahid Kapoor",
-    empId: "EMP123456",
-    img: everdeen,
-    role: "Cleaner",
-    department: "Maintenance",
-    mob: "+91 00000 00000",
-    email: "abc@example.com",
-    attendance: "80%",
   },
+  {
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
+    status: "Active",
+  },
+  {
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
+    status: "Active",
+  },
+  {
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
+    status: "Active",
+  },
+  {
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
+    status: "Active",
+  },
+  {
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
+    status: "Active",
+  },
+  {
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
+    status: "Active",
+  },
+  {
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
+    status: "Active",
+  },
+  {
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
+    status: "Active",
+  },
+  {
+    roomdetails: "Room 101",
+    roomsize: "600 sq ft",
+    location: "Main Building",
+    floor: "Ground Floor",
+    Type: "Classroom",
+    Capacity: "30",
+    AssignedToclass: "Class 1 A",
+    AssignedToperson: "Sarah Johnson",
+    status: "Inactive",
+  },
+  
 
 ];
 
@@ -282,19 +288,12 @@ const Rooms = () => {
             <table className="w-full">
               <thead className="bg-[#F5F7F7]">
                 <tr>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">
-                    <div className="flex items-center gap-1">
-                      {/* <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span> */}
-                      <span>Room Details</span>
-
-                    </div>
+                  <th className="px-4 py-3 text-left text-sm font-semibold">           
+                      <span>Room Details</span>                  
                   </th>
 
-                  <th className="px-4 py-3 text-left text-sm font-semibold">
-                    <div className="flex items-center gap-2">
-                      <span>Location</span>
-
-                    </div>
+                  <th className="px-4 py-3 text-left text-sm font-semibold">              
+                      Location
                   </th>
 
                   <th className="px-4 py-3 text-left text-sm font-semibold">
@@ -309,10 +308,7 @@ const Rooms = () => {
                     Assigned To
                   </th>
                   <th className="px-4 py-3 text-center text-sm font-semibold">
-                    <div className="flex items-center gap-1">
-                      {/* <span className="text-[#9C9C9C]"><PiArrowsDownUpThin /></span> */}
-                      <span > Status</span>
-                    </div>
+                      Status
                   </th>
 
                   <th className="px-4 py-3 text-left text-sm font-semibold">
@@ -332,21 +328,18 @@ const Rooms = () => {
 
                       <Link to="/staffDetails">
                         <div className="flex gap-4">
-                          <div className="w-10 h-10 rounded-full overflow-hidden">
-                            <img
-                              src={item.img}
-                              alt=""
-                              className="w-full h-full object-cover"
-                            />
+                          <div className=" rounded-full overflow-hidden">
+                            
+                            <HiOutlineBuildingOffice2 size={30} className="text-[#12516E]" />
                           </div>
 
                           {/* Name + ID */}
                           <div className="flex flex-col leading-tight">
                             <span className="text-[#12516E] font-semibold">
-                              {item.staff}
+                              {item.roomdetails}
                             </span>
-                            <span className="text-sm text-[#9c9c9c] font-semibold">
-                              {item.empId}
+                            <span className="text-sm text-[#9c9c9c] font-normal">
+                              {item.roomsize}
                             </span>
                           </div>
                         </div>
@@ -354,40 +347,72 @@ const Rooms = () => {
                     </td>
 
                     <td className="px-4 py-3 text-left text-sm  font-semibold">
-                      <Link to="/staffDetails">
-                        <span className={`border  px-8  rounded-md ${item.role == "Teacher" ? "border-[#007AFF] text-[#007AFF]" :
-                          item.role == "Accountant" ? "border-[#894B00] text-[#894B00]" :
-                            item.role == "Receptionist" ? "border-[#A8038D] text-[#A8038D]" :
-                              item.role == "Librarian" ? "border-[#4BA803] text-[#4BA803]" :
-                                item.role == "Super Admin" ? "border-[#C1891B] text-[#C1891B]" :
-                                  item.role == "Driver" ? "border-[#00ADAD] text-[#00ADAD]" :
-                                    item.role == "Cleaner" ? "border-[#EF476F] text-[#EF476F]" : ""
+                      
+                       <div className="flex flex-col leading-tight">
+                            <span className=" font-normal">
+                              {item.location}
+                            </span>
+                            <span className="text-sm text-[#9c9c9c] font-normal">
+                              {item.floor}
+                            </span>
+                          </div>
 
-                          } `}>{item.role}</span>
-                      </Link>
+                    </td>
+                    <td className="px-4 py-3 text-left text-sm "> 
+                      <span className="border px-8 rounded-md border-[#696969] text-[#696969]">{item.Type}</span>
                     </td>
                     <td className="px-4 py-3 text-left text-sm ">
-                      <Link to="/staffDetails">{item.department}</Link>
-                    </td>
-                    <td className="px-4 py-3 text-left text-sm ">
-                      <Link to="/staffDetails">{item.mob}</Link>
+                     <span>{item.Capacity}</span>
                     </td>
                     <td className="px-4 py-3 text-left text-sm ">
 
-                      <span>{item.email}</span>
+                        <div className="flex flex-col leading-tight">
+                            <span className=" font-normal">
+                              {item.AssignedToclass}
+                            </span>
+                            <span className="text-sm text-[#9c9c9c] font-normal">
+                              {item.AssignedToperson}
+                            </span>
+                          </div>
                     </td>
-                    <td className={`text-center ${item.attendance >= "90%"
-                      ? "text-[#009638]"
-                      : item.attendance >= "75%"
-                        ? "text-[#FFAA00]"
-                        : "text-[#FF4B4B]"
-                      }`}>{item.attendance}</td>
+                    <td className="text-center ">
+                      {/* {item.status} */}
+                        <div className="relative flex h-8 w-21.75 items-center justify-center">
+                           
+                          
+
+                            {/* Main pill */}
+                            <span
+                              className={`relative inline-flex h-full w-full items-center justify-center gap-2 rounded-sm px-4 text-sm font-medium
+        ${
+          item.status === "Active"
+            ? "bg-[#D4EDDA] text-[#009638]"
+            : item.status === "Inactive"
+              ? "bg-[#DEDEDE] text-[#696969]"
+              : "bg-[#FFEDB4] text-[#A14700]"
+        }`}
+                            >
+                              {/* Dot */}
+                              <span
+                                className={`h-2 w-2 rounded-full
+          ${
+            item.status === "Active"
+              ? "bg-[#009638]"
+              : item.status === "Inactive"
+                ? "bg-[#696969]"
+                : "bg-[#F4A100]"
+          }`}
+                              ></span>
+
+                              {item.status}
+                            </span>
+                          </div>
+                      
+                      </td>
                     <td className="px-4 py-3 text-left text-sm  font-semibold flex gap-3 ">
-                      <Link to="/staffDetails">
-                        <CgProfile className="w-5 h-5 text-[#9C9C9C]" />
-                      </Link>
+                      
+                     <FiEye className="w-5 h-5 text-[#9C9C9C]" />
                       <FiEdit onClick={() => navigate("/edit-staffs")} className="w-5 h-5 text-[#9C9C9C] cursor-pointer" />
-                      <FaRegFileAlt onClick={() => navigate("/job-letter")} className="w-5 h-5 text-[#9C9C9C]" />
                       <RiDeleteBin5Line className="w-5 h-5 text-[#FF4B4B]" />
                     </td>
                   </tr>
