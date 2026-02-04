@@ -7,6 +7,7 @@ import irate from "../../assets/images/intrestrate.gif";
 
 import FeeDeposite from "./FeeDeposite";
 import FeeReceipt from "./FeeReceipt";
+import PendingFees from "./PendingFees";
 
 function DetailsContent({ active }) {
   switch (active) {
@@ -17,7 +18,7 @@ function DetailsContent({ active }) {
       return <FeeReceipt />;
 
     case "Pending Fees":
-      return <div>hello</div>;
+      return <PendingFees />;
 
     case "Fee Particulars":
       return <div>no</div>;
