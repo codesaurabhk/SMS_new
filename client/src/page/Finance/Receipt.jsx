@@ -8,24 +8,64 @@ import logo from "../../assets/images/treelogo.png";
 function Receipt() {
   const feeData = [
     {
-      id: 1,
+      sno: 1,
       particulars: "Tuition Fees",
       amount: "5000",
     },
     {
-      id: 2,
-      particulars: "Tuition Fees",
-      amount: "5000",
+      sno: 2,
+      particulars: "Transport ",
+      amount: "400",
     },
     {
-      id: 3,
-      particulars: "Tuition Fees",
-      amount: "5000",
+      sno: 3,
+      particulars: "Library ",
+      amount: "200",
     },
     {
-      id: 4,
-      particulars: "Tuition Fees",
-      amount: "5000",
+      sno: 4,
+      particulars: "Activity ",
+      amount: "500",
+    },
+  ];
+
+  const oldBalance = 100;
+  const latefine = 50;
+  const concession = 500;
+  const receiveAmount = 5000
+
+  const sumTotal = feeData.reduce((total, item) => {
+  return total + Number(item.amount);
+}, 0);
+
+  const recepitTotal = [
+    {
+      total: "Total",
+      sum: sumTotal + oldBalance,
+    },
+    {
+      total: "(+) Fine(Late Fee)",
+      sum: latefine,
+    },
+    {
+      total: "(-) Concession",
+      sum: concession,
+    },
+  ];
+
+
+  const grandCal = [
+    {
+      total: "Grand Total",
+      sum: sumTotal + latefine - concession,
+    },
+    {
+      total: "Received Amount",
+      sum: receiveAmount,
+    },
+    {  
+      total: "Balance",
+      sum: sumTotal + latefine - concession - receiveAmount,
     },
   ];
 
@@ -173,13 +213,14 @@ function Receipt() {
 
             <div className="flex justify-between px-12 py-4 border-b border-[#E6E6E6] text-[14px] font-semibold text-[#1c1c1c]">
               <span>Old Balance:</span>
-              <span>0.00</span>
+              <span>{oldBalance}</span>
             </div>
+
             <div className="w-full">
               <table className="w-full ">
                 <thead className="border-b border-[#E6E6E6]">
                   <tr className="">
-                    <th className="text-left w-[20%] px-2 py-2">S.No.</th>
+                    <th className="text-left w-[15%] px-2 py-2">S.No.</th>
                     <th className="w-[60%] text-left px-2 py-2">Particulars</th>
                     <th className="text-right px-2 py-2 ">Amount</th>
                   </tr>
@@ -188,31 +229,60 @@ function Receipt() {
                 <tbody className="border-b border-[#E6E6E6]">
                   {feeData.map((item, id) => (
                     <tr key={id} className="">
-                      <td className="text-left px-2 ">{item.id}</td>
-                      <td className="text-left px-2 ">{item.particulars}</td>
-                      <td className="text-right px-2">{item.amount}</td>
+                      <td className="text-left px-2 font-normal text-[14px] text-[#1c1c1c]">{item.sno}</td>
+                      <td className="text-left px-2 font-normal text-[14px] text-[#1c1c1c]">{item.particulars}</td>
+                      <td className="text-right px-2 font-normal text-[14px] text-[#1c1c1c]">{item.amount}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+
             <div className="w-full">
               <table className="w-full ">
                 <thead className="border-b border-[#E6E6E6]">
-                  <tr className="">
-                  </tr>
+                  <tr className=""></tr>
                 </thead>
 
                 <tbody className="border-b border-[#E6E6E6]">
-                  {feeData.map((item, id) => (
+                  {recepitTotal.map((item, id) => (
                     <tr key={id} className="">
-                      <td className="text-left w-[20%] px-2"></td>
-                      <td className="w-[60%] text-left px-2">{item.particulars}</td>
-                      <td className="text-right px-2">{item.amount}</td>
+                      <td className="text-left w-[15%] px-2"></td>
+                      <td className={`w-[60%] text-left px-2 font-normal text-[14px] text-[#1c1c1c] ${id === 0 ? 'font-semibold' : ''}`}>{item.total}</td>
+                      <td className={`text-right px-2 font-normal text-[14px] text-[#1c1c1c] ${id === 0 ? 'font-semibold' : ''}`}>{item.sum}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+            
+            <div className="w-full">
+              <table className="w-full ">
+                <thead className="border-b border-[#E6E6E6]">
+                  <tr className=""></tr>
+                </thead>
+
+                <tbody className="border-b border-[#E6E6E6]">
+                  {grandCal.map((item, id) => (
+                    <tr key={id} className="">
+                      <td className="text-left w-[15%] px-2"></td>
+                      <td className={`w-[60%] text-left px-2 font-normal text-[14px] text-[#1c1c1c] ${id < 2 ? "font-semibold" : ""}`}>{item.total}</td>
+                      <td className={`text-right px-2 font-normal text-[14px] text-[#1c1c1c] ${id < 2 ? "font-semibold" : ""}`}>{item.sum}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="px-6 py-4 border-b border-[#E6E6E6]">
+              <div className="flex gap-6 items-center">
+                <span className="text-[14px] font-normal text-[#1C1C1C]">Details:</span>
+                <span className="text-[14px] font-semibold text-[#1C1C1C]">Online</span>
+              </div>
+            </div>
+
+            <div className="mt-20 p-4">
+              <span className="flex justify-end font-normal text-[14px] text-[#1c1c1c]">Auth Sign.</span>
             </div>
           </div>
         </div>
