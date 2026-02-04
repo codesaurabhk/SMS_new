@@ -874,7 +874,7 @@ const Rooms = () => {
               >
                 Cancel
               </button>
-              <button  onClick={() => setopenEditModel(true)} className="px-4 py-2 bg-[#0B3142] text-white rounded-lg">
+              <button  onClick={() => {setopenEditModel(true); setopenRoomDetails(false);}} className="px-4 py-2 bg-[#0B3142] text-white rounded-lg">
                 Edit Room
               </button>
             </div>
