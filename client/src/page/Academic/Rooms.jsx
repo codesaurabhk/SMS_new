@@ -12,12 +12,7 @@ import TotalCapacity from "../../assets/images/TotalCapacity.gif";
   /* <---------------------------------------------- icon -----------------------------------------------------> */
 }
 import { TbFileImport } from "react-icons/tb";
-import { GrUserAdd } from "react-icons/gr";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
-import { PiArrowsDownUpThin } from "react-icons/pi";
-import { FiEdit, FiSearch } from "react-icons/fi";
-import { FaRegFileAlt } from "react-icons/fa";
+import { FiEdit} from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlinePlus } from "react-icons/ai";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
@@ -25,10 +20,8 @@ import { FiEye } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 
 /* <----------------------------------------------- img -------------------------------------------------------> */
-import everdeen from "../../assets/images/katnis.jpg";
-import meave from "../../assets/images/meave.jpg";
 import Pagination from "../../components/Pagination";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 
 const cardData = [
   {
@@ -59,7 +52,7 @@ const cardData = [
 
 /* <--------------------------------------------------- student Dummy Data --------------------------------------------> */
 
-const staffData = [
+const rommData = [
   {
     roomdetails: "Room 101",
     roomsize: "600 sq ft",
@@ -320,7 +313,7 @@ const Rooms = () => {
               </thead>
 
               <tbody>
-                {staffData.map((item, index) => (
+                {rommData.map((item, index) => (
                   <tr key={index} className="border-b border-[#e6e6e6]">
                     <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
                       <Link to="/staffDetails">

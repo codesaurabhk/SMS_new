@@ -168,7 +168,6 @@ const staffData = [
     status: "Active",
     staff: "Shahid Kapoor",
     empId: "EMP123456",
-    img: everdeen,
     role: "Cleaner",
     department: "Maintenance",
     mob: "+91 00000 00000",
