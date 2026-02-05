@@ -140,7 +140,7 @@ function FeeReceipt() {
   ];
 
   return (
-    <div className="mt-6 bg-white p-4 rounded-lg shadow-lg">
+    <div className="mt-4 bg-white p-4 rounded-lg shadow-lg">
       <div className="flex flex-col">
         <span className="text-[#1c1c1c] text-[18px] font-semibold">
           Fee Receipt
@@ -315,7 +315,9 @@ function FeeReceipt() {
                   {item.amountPaid}
                 </td>
                 <td className="px-4 py-3 text-left text-sm font-semibold ">
-                  {item.paymentMode}
+                  <div className="w-full flex justify-start items-center">
+                  <span className="w-37 px-2 py-1 bg-white shadow-2xl border border-[#0000001A] flex justify-center">{item.paymentMode}</span>
+                  </div>
                 </td>
                 <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 ">
                   <span>

@@ -8,6 +8,7 @@ import irate from "../../assets/images/intrestrate.gif";
 import FeeDeposite from "./FeeDeposite";
 import FeeReceipt from "./FeeReceipt";
 import PendingFees from "./PendingFees";
+import FeeParticular from "./FeeParticular";
 
 function DetailsContent({ active }) {
   switch (active) {
@@ -21,7 +22,7 @@ function DetailsContent({ active }) {
       return <PendingFees />;
 
     case "Fee Particulars":
-      return <div>no</div>;
+      return <FeeParticular />;
 
     case "Fee Structure":
       return <div>nope</div>;
@@ -36,14 +37,6 @@ function DetailsContent({ active }) {
 
 function FeeManagement() {
   const [active, setActive] = useState("Fee Deposite");
-
-  // const baseBtn = "gap-8 flex justify-around w-full items-center";
-
-  // const activeBtn =
-  //   "bg-[#0B3142] text-[#FFFFFF] border rounded-full px-25 py-2 gap-8";
-
-  // const inactiveBtn =
-  //   "text-[#9EA1A1] px-15 py-2 hover:bg-[#e6e6e6] rounded-full px-25 py-2 gap-8";
 
   const cardData = [
     {
@@ -62,7 +55,7 @@ function FeeManagement() {
     },
     {
       des: "Collection Rate",
-      number: 50,
+      number: 10,
       progress: true,
       gif: irate,
     },
