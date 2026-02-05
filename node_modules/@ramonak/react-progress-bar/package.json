@@ -1,0 +1,47 @@
+{
+  "name": "@ramonak/react-progress-bar",
+  "version": "5.4.0",
+  "description": "> Progress Bar React Component",
+  "main": "dist/index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "build": "rm -rf dist && rollup -c",
+    "start": "rollup -c -w",
+    "prepublish:public": "npm run build",
+    "publish:public": "npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KaterinaLupacheva/react-progress-bar.git"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "progress bar",
+    "progress-bar"
+  ],
+  "author": "KaterinaLupacheva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KaterinaLupacheva/react-progress-bar/issues"
+  },
+  "homepage": "https://katerinalupacheva.github.io/react-progress-bar/",
+  "peerDependencies": {
+    "react": "^16.0.0 || ^17 || ^18 || ^19",
+    "react-dom": "^16.0.0 || ^17 || ^18 || ^19"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rollup": "^4.9.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "dist"
+  ]
+}
