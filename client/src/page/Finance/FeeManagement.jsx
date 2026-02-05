@@ -55,7 +55,7 @@ function FeeManagement() {
     },
     {
       des: "Collection Rate",
-      number: 50,
+      number: 10,
       progress: true,
       gif: irate,
     },
