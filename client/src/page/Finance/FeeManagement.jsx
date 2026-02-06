@@ -10,6 +10,7 @@ import FeeReceipt from "./FeeReceipt";
 import PendingFees from "./PendingFees";
 import FeeParticular from "./FeeParticular";
 import FeeStructure from "./FeeStructure";
+import Concession from "./Concession";
 
 function DetailsContent({ active }) {
   switch (active) {
@@ -29,7 +30,7 @@ function DetailsContent({ active }) {
       return <FeeStructure />;
 
     case "Concessions":
-      return <div>nahh</div>;
+      return <Concession />;
 
     default:
       return null;
