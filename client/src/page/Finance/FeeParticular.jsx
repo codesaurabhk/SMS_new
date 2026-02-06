@@ -4,6 +4,8 @@ import React, { useState } from "react";
 }
 import { IoMdAdd } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 function FeeParticular() {
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +16,7 @@ function FeeParticular() {
     feeName: "",
     description: "",
     applicableClass: "",
-     frequency: "",
+    frequency: "",
     status: "",
   });
 
@@ -35,7 +37,7 @@ function FeeParticular() {
       feeName: "",
       description: "",
       applicableClass: "",
-       frequency: "",
+      frequency: "",
       status: "",
     });
     setShowModal(false);
@@ -230,7 +232,7 @@ function FeeParticular() {
                   >
                     <option value="">Select Status</option>
                     <option value="Active">active</option>
-                    <option value="Inactive">Inactive</option>
+                    <option value="Inactive">inactive</option>
                   </select>
                 </div>
               </div>
@@ -256,22 +258,38 @@ function FeeParticular() {
 
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
         {feeList.map((fee, index) => (
-          <div className="p-4 rounded-xl border border-[#E6E6E6]">
+          <div key={index} className="p-4 rounded-xl border border-[#E6E6E6]">
             <div className="flex justify-between">
-              <span>{fee.feeName}</span>
-              <span>{fee.status}</span>
+              <span className="text-[18px] text-[#1C1C1C] font-normal">
+                {fee.feeName}
+              </span>
+              <span
+                className={`${fee.status == "Active" ? "bg-[#D4EDDA] text-[#009638]" : " text-[#DC2626] bg-[#F8D7DA]"}`}
+              >
+                <span className="px-2 py-1 rounded">{fee.status}</span>
+              </span>
             </div>
             <div className="mt-6">
-              <div className="flex flex-col">
-                <span>{fee.description}</span>
-                <span>{fee.frequency}</span>
+              <div className="flex flex-col gap-1">
+                <span className="text-[14px] font-normal text-[#696969]">
+                  {fee.description}
+                </span>
+                <span className="px-2 py-1 border border-[#E6E6E6] w-fit text-[14px] font-normal text-[#1c1c1c] rounded">
+                  {fee.frequency}
+                </span>
               </div>
             </div>
             <div className=" flex justify-between gap-2 mt-6">
-              <button className="w-[75%] text-left px-3 py-2 rounded-lg border border-[#E6E6E6]">
+              <button className="flex gap-2 w-[75%] text-left px-3 py-2 rounded-lg border border-[#E6E6E6] bg-[#0B3142] text-white text-[14px] font-semibold">
+                <span>
+                  <FiEdit size={20} />
+                </span>
                 Edit
               </button>
-              <button className="w-[25%] px-3 py-2 rounded-lg border border-[#E6E6E6] ">
+              <button className="flex gap-2 w-[25%] px-3 py-2 rounded-lg border border-[#E6E6E6] text-[#DC2626] text-[14px] font-semibold">
+                <span>
+                  <RiDeleteBinLine size={20} />
+                </span>
                 Delete
               </button>
             </div>
