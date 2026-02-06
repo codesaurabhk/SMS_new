@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../CSS/Style.css";
 {
   /* <----------------------------------------------- GIF ----------------------------------------------------> */
@@ -12,16 +12,12 @@ import TotalCapacity from "../../assets/images/speedmeter.gif";
   /* <---------------------------------------------- icon -----------------------------------------------------> */
 }
 
-import { FiEdit } from "react-icons/fi";
-
+import { FiEdit, FiPlus, FiUpload } from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlinePlus } from "react-icons/ai";
-
-
 import { IoClose } from "react-icons/io5";
-
-
-
+import { MdVerified } from "react-icons/md";
 
 
 
@@ -223,13 +219,66 @@ const roomData = [
   },
  
 ];
+const teacherData = [
+  {
+    name : "Raju Kumar",
+    role : "Class Teacher",
+    isverified : true,
+    img : meave,
+  },
+  {
+    name : "Priya Kumari",
+    role : "Math Teacher",
+    isverified : false,
+    img : everdeen,
+  },
+  {
+    name : "Amit Patel",
+    role : "English Teacher",
+    isverified : false,
+    img : meave,
+  },
+  {
+    name : "Deepa Sharma",
+    role : "Social Studies Teacher",
+    isverified : false,
+    img : meave,
+  },
+  {
+    name : "Raju Kumar",
+    role : "Class Teacher",
+    isverified : false,
+    img : meave,
+
+  },
+  {
+    name : "Priya Kumari",
+    role : "Math Teacher",
+    isverified : false,
+    img : meave,
+  }
+
+]
 
 const ClassAndSection = () => {
   const [openAddModel, setopenAddModel] = useState(false);
   const [openEditModel, setopenEditModel] = useState(false);
   const [openRoomDetails, setopenRoomDetails] = useState(false);
+  const [openAdd, setopenAdd] = useState(false);
+  
 
   const navigate = useNavigate();
+  const addRef = useRef(null);
+  useEffect(() => {
+  const handleClickOutside = (e) => {
+    if (addRef.current && !addRef.current.contains(e.target)) {
+      setopenAdd(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => document.removeEventListener("mousedown", handleClickOutside);
+}, []);
   return (
     <div>
       {/* <--------------------------------------- Card -----------------------------------> */}
@@ -283,13 +332,38 @@ const ClassAndSection = () => {
           <div className="flex flex-col sm:flex-row gap-3">
           
 
-            <button
-              onClick={() => setopenAddModel(true)}
-              className="inline-flex items-center gap-2 px-9 py-2 cursor-pointer bg-[#0B3142] text-white border border-[#0B3142] rounded-lg"
-            >
-              <AiOutlinePlus className="text-white" />
-              Add 
-            </button>
+            <div ref={addRef} className="relative">
+  <button
+    onClick={() => setopenAdd((prev) => !prev)}
+    className="inline-flex items-center gap-2 px-9 py-2 cursor-pointer
+    bg-[#0B3142] text-white border border-[#0B3142] rounded-lg"
+  >
+    <AiOutlinePlus />
+    Add
+  </button>
+
+  {openAdd && (
+    <div className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-lg border border-[#e6e6e6] z-50">
+      <ul className="py-1 text-sm text-gray-700">
+        <li className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => setopenAddModel(true)}>
+          <FiPlus /> Add Class
+        </li>
+        <li className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => navigate('/create-section')}>
+          <FiPlus /> Add Section
+        </li>
+        <li className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => navigate('/create-stream')}>
+          <FiPlus /> Add Stream
+        </li>
+
+        
+
+        <li className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer">
+          <FiUpload /> Bulk Import
+        </li>
+      </ul>
+    </div>
+  )}
+</div>
           </div>
         </div>
 
@@ -374,7 +448,7 @@ const ClassAndSection = () => {
                 {roomData.map((item, index) => (
                   <tr key={index} className="border-b border-[#e6e6e6]">
 
-                    <td className="px-4 py-3 text-left text-sm ">
+                    <td className="px-4 py-3 text-left text-sm "  onClick={() => setopenRoomDetails(true)}>
                       <div className="flex flex-col leading-tight">
                         <span className=" text-[#12516E] font-semibold">
                           {item.class}
@@ -386,7 +460,7 @@ const ClassAndSection = () => {
                     </td>
                   
 
-                    <td className="px-4 py-3 text-left text-sm  font-semibold">
+                    <td className="px-4 py-3 text-left text-sm  font-semibold"  onClick={() => setopenRoomDetails(true)}>
                       
                         <span className="text-sm  font-normal">
                           {item.room}
@@ -394,7 +468,7 @@ const ClassAndSection = () => {
                      
                     </td>
                    
-                    <td className="p-4 w-65">
+                    <td className="p-4 w-65"  onClick={() => setopenRoomDetails(true)}>
                     <div className="flex justify-between text-xs mb-1">
                       <span>
                          {item.capacityexisting}/{item.capacitytotal}
@@ -412,9 +486,9 @@ const ClassAndSection = () => {
                   </td>
                    
                     
-                        <td className="px-4 py-3 text-left text-sm  flex gap-3 items-center">
+                        <td className="px-4 py-3 text-left text-sm  flex gap-3 items-center"  onClick={() => setopenRoomDetails(true)}>
 
-                      <Link to="/staffDetails">
+                      
                         <div className="flex gap-4">
                           <div className="w-10 h-10 rounded-full overflow-hidden">
                             <img
@@ -434,7 +508,7 @@ const ClassAndSection = () => {
                             </span>
                           </div>
                         </div>
-                      </Link>
+                 
                     </td>
 
                     <td className="align-middle text-center">
@@ -485,164 +559,90 @@ const ClassAndSection = () => {
         <Pagination />
       </div>
       {openAddModel && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <div className="bg-white max-w-3xl w-full rounded-2xl shadow-lg flex flex-col max-h-156">
+       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4" onClick={() => setopenAddModel(false)}>
+          <div className="bg-white max-w-3xl w-full rounded-2xl shadow-lg flex flex-col max-h-156"  onClick={(e) => e.stopPropagation()}>
             {/* Scrollable Content */}
-            <div className="p-6 overflow-y-auto  mt-3 ">
+            <div className="p-4 overflow-y-auto  mt-0 ">
               {/* Header */}
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex justify-between items-start">
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900">
-                    Add New Room
+                    Add New Class
                   </h2>
                   <p className="text-sm text-[#9C9C9C]">
-                    Create a new room with facilities and capacity details
+                    Create a new class section with teacher assignment
                   </p>
                 </div>
 
                 <button
                   onClick={() => setopenAddModel(false)}
-                  className="text-gray-400 hover:text-gray-600 text-lg"
+                  className="text-lg"
                 >
                   ✕
                 </button>
               </div>
 
-              {/* Main Form */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                 <div>
-                  <label className="text-sm font-semibold">Room Name</label>
+                  <label className="text-sm font-semibold">Class Name</label>
                   <input
                     type="text"
-                    placeholder="eg., Room 501"
+                    placeholder="Nursery"
+                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold">Section</label>
+                  <input
+                    type="text"
+                    placeholder="A"
+                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold">Stream</label>
+                   <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] text-[#9C9C9C] outline-none">
+                    <option>General</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label className="text-sm font-semibold">Room</label>
+                  
+                   <select className="w-full mt-1 px-3 py-2 border rounded-lg text-[#9C9C9C] border-[#E6E6E6] outline-none">
+                    <option>Room 101</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold">Capacity(Automatic Fetch from Room selection)</label>
+                 <input
+                    type="text"
+                    placeholder="30"
                     className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none "
                   />
                 </div>
-
+              </div>
+              <div className="grid grid-cols-1 ">
                 <div>
-                  <label className="text-sm font-semibold">Room Type</label>
-                  <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none">
-                    <option>Select type</option>
+                  <label className="text-sm font-semibold">Class Teacher</label>
+                  
+                   <select className="w-full mt-1 px-3 py-2 border text-[#9C9C9C] rounded-lg border-[#E6E6E6] outline-none">
+                    <option>Raju Kumar</option>
                   </select>
                 </div>
 
-                <div>
-                  <label className="text-sm font-semibold">Location</label>
-                  <input
-                    type="text"
-                    placeholder="eg., Building A"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Floor</label>
-                  <input
-                    type="text"
-                    placeholder="Floor"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Capacity</label>
-                  <input
-                    type="number"
-                    placeholder="30"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Area (sq ft)</label>
-                  <input
-                    type="number"
-                    placeholder="600"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Status</label>
-                  <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none">
-                    <option>Select status</option>
-                  </select>
-                </div>
+                
               </div>
 
-              {/* Furniture */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                <div>
-                  <label className="text-sm font-semibold">Desks</label>
-                  <input
-                    type="number"
-                    placeholder="4"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
+             
+             
 
-                <div>
-                  <label className="text-sm font-semibold">Chair</label>
-                  <input
-                    type="number"
-                    placeholder="2"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Teacher Table</label>
-                  <input
-                    type="number"
-                    placeholder="2"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Facilities */}
-              <div className="mt-6">
-                <label className="text-sm font-semibold block mb-3">
-                  Facilities
-                </label>
-
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 border p-4 rounded-lg border-[#E6E6E6]">
-                  {[
-                    "Projector",
-                    "Whiteboard",
-                    "Smart Board",
-                    "WiFi",
-                    "Air Conditioning",
-                    "Computers",
-                    "Lab Equipment",
-                    "Sound System",
-                    "Ventilation",
-                  ].map((item) => (
-                    <label
-                      key={item}
-                      className="flex items-center gap-2 text-sm"
-                    >
-                      <input
-                        type="checkbox"
-                        className="rounded border-gray-300"
-                      />
-                      {item}
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Note */}
-              <div className="mt-6">
-                <label className="text-sm font-semibold block mb-1">
-                  Note (Optional)
-                </label>
-                <textarea
-                  rows={1}
-                  placeholder="Any additional about the room..."
-                  className="w-full px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                />
-              </div>
+            
             </div>
 
             {/* Footer (Fixed) */}
@@ -654,171 +654,97 @@ const ClassAndSection = () => {
                 Cancel
               </button>
               <button className="px-4 py-2 bg-[#0B3142] text-white rounded-lg">
-                Create Room
+                Create Class
               </button>
             </div>
           </div>
         </div>
       )}
       {openEditModel && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <div className="bg-white max-w-3xl w-full rounded-2xl shadow-lg flex flex-col max-h-156">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4" onClick={() => setopenEditModel(false)}>
+          <div className="bg-white max-w-3xl w-full rounded-2xl shadow-lg flex flex-col max-h-156"  onClick={(e) => e.stopPropagation()}>
             {/* Scrollable Content */}
-            <div className="p-6 overflow-y-auto  mt-3 ">
+            <div className="p-4 overflow-y-auto  mt-0 ">
               {/* Header */}
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex justify-between items-start">
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900">
-                    Edit Room
+                    Edit Class
                   </h2>
                   <p className="text-sm text-[#9C9C9C]">
-                    Update the room information
+                    Update the class information
                   </p>
                 </div>
 
                 <button
                   onClick={() => setopenEditModel(false)}
-                  className="text-gray-400 hover:text-gray-600 text-lg"
+                  className="text-lg"
                 >
                   ✕
                 </button>
               </div>
 
-              {/* Main Form */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                 <div>
-                  <label className="text-sm font-semibold">Room Name</label>
+                  <label className="text-sm font-semibold">Class Name</label>
                   <input
                     type="text"
-                    placeholder="eg., Room 501"
+                    placeholder="Nursery"
+                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold">Section</label>
+                  <input
+                    type="text"
+                    placeholder="A"
+                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold">Stream</label>
+                   <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] text-[#9C9C9C] outline-none">
+                    <option>General</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label className="text-sm font-semibold">Room</label>
+                  
+                   <select className="w-full mt-1 px-3 py-2 border rounded-lg text-[#9C9C9C] border-[#E6E6E6] outline-none">
+                    <option>Room 101</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold">Capacity(Automatic Fetch from Room selection)</label>
+                 <input
+                    type="text"
+                    placeholder="30"
                     className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none "
                   />
                 </div>
-
+              </div>
+              <div className="grid grid-cols-1 ">
                 <div>
-                  <label className="text-sm font-semibold">Room Type</label>
-                  <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none">
-                    <option>Select type</option>
+                  <label className="text-sm font-semibold">Class Teacher</label>
+                  
+                   <select className="w-full mt-1 px-3 py-2 border text-[#9C9C9C] rounded-lg border-[#E6E6E6] outline-none">
+                    <option>Raju Kumar</option>
                   </select>
                 </div>
 
-                <div>
-                  <label className="text-sm font-semibold">Location</label>
-                  <input
-                    type="text"
-                    placeholder="eg., Building A"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Ground Floor</label>
-                  <input
-                    type="text"
-                    placeholder="Ground Floor"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Capacity</label>
-                  <input
-                    type="number"
-                    placeholder="30"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Area (sq ft)</label>
-                  <input
-                    type="number"
-                    placeholder="600"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Status</label>
-                  <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none">
-                    <option>Select status</option>
-                  </select>
-                </div>
+                
               </div>
 
-              {/* Furniture */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                <div>
-                  <label className="text-sm font-semibold">Desks</label>
-                  <input
-                    type="number"
-                    placeholder="4"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
+             
+             
 
-                <div>
-                  <label className="text-sm font-semibold">Chair</label>
-                  <input
-                    type="number"
-                    placeholder="2"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Teacher Table</label>
-                  <input
-                    type="number"
-                    placeholder="2"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Facilities */}
-              <div className="mt-6">
-                <label className="text-sm font-semibold block mb-3">
-                  Facilities
-                </label>
-
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 border p-4 rounded-lg border-[#E6E6E6]">
-                  {[
-                    "Projector",
-                    "Whiteboard",
-                    "Smart Board",
-                    "WiFi",
-                    "Air Conditioning",
-                    "Computers",
-                    "Lab Equipment",
-                    "Sound System",
-                    "Ventilation",
-                  ].map((item) => (
-                    <label
-                      key={item}
-                      className="flex items-center gap-2 text-sm"
-                    >
-                      <input
-                        type="checkbox"
-                        className="rounded border-gray-300"
-                      />
-                      {item}
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Note */}
-              <div className="mt-6">
-                <label className="text-sm font-semibold block mb-1">
-                  Note (Optional)
-                </label>
-                <textarea
-                  rows={1}
-                  placeholder="Any additional about the room..."
-                  className="w-full px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                />
-              </div>
+            
             </div>
 
             {/* Footer (Fixed) */}
@@ -837,99 +763,114 @@ const ClassAndSection = () => {
         </div>
       )}
       {openRoomDetails && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <div className="bg-white w-209  rounded-2xl shadow-lg  h-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4" onClick={() => setopenRoomDetails(false)}>
+          <div className="bg-white w-209  rounded-2xl shadow-lg  h-auto" onClick={(e) => e.stopPropagation()}>
             <div className="bg-linear-to-r from-[#B993D6] to-[#8CA6DB] p-6 m-4 text-white flex justify-between items-center rounded-xl w-201 h-18">
-              <div className="flex   gap-5">
-                <span className="font-semibold text-[24px]"> Room 101</span>
+              <div className="flex   gap-3 ">
+                <span className="font-semibold text-[24px]">Nursery-A </span>
 
                 <span
-                  className="inline-flex w-19  h-5 items-center justify-center gap-1.5
+                  className="inline-flex w-22  h-5 items-center justify-center gap-1.5
       rounded-sm px-3 py-1 text-sm font-semibold mt-2
-      bg-[#D4EDDA] text-[#009638]"
+      bg-[#FFFFFF] text-[#9C9C9C]"
                 >
                   <span
                     className="h-1.5 w-1.5 rounded-full
-       bg-[#009638]"
+       bg-[#9C9C9C]"
                   />
-                  Active
+                  General
+                </span>
+                <span
+                  className="inline-flex w-24  h-5 items-center justify-center gap-1.5
+      rounded-sm px-3 py-1 text-sm font-semibold mt-2
+      bg-[#E3F2FD] text-[#1565C0]"
+                >
+                  <span
+                    className="h-1.5 w-1.5 rounded-full
+       bg-[#1565C0]"
+                  />
+                  Available
                 </span>
               </div>
               <div  onClick={() => setopenRoomDetails(false)} className=" bg-[#FFFFFF59] h-6 w-6 flex justify-center items-center rounded-full">
                 <IoClose size={22} className="text-white cursor-pointer" />
               </div>
             </div>
-            <div className=" border border-[#E6E6E6] m-4 p-1 rounded-xl  ">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-2">
-                {/* left content */}
-                <div>
-                  <h3 className="text-sm font-semibold text-black/80 mb-4">
-                    
-                    Room Information
-                  </h3>
-                  <div className="space-y-4 text-sm">
-                    <div>
-                      <p className="text-black/50">Type</p>
-                      <p className="font-medium">Classroom</p>
-                    </div>
+             {/* CLASS INFORMATION */}
+      <div className="border border-[#E6E6E6] m-5 rounded-xl p-4">
+        <h3 className="font-semibold text-sm mb-3">Class Information</h3>
 
-                    <div>
-                      <p className="text-black/50">Location</p>
-                      <p className="font-medium">Main Building, Ground Floor</p>
-                    </div>
+        <div className="grid grid-cols-4 gap-6 text-sm">
+          <div>
+            <p className="text-gray-500">Room</p>
+            <p className="font-semibold">Room 101</p>
+          </div>
+          <div>
+            <p className="text-gray-500">Capacity</p>
+            <p className="font-semibold">31</p>
+          </div>
+          <div>
+            <p className="text-gray-500">Occupied</p>
+            <p className="font-semibold">29</p>
+          </div>
+          <div>
+            <p className="text-gray-500">Available</p>
+            <p className="font-semibold">2</p>
+          </div>
+        </div>
+      </div>
 
-                    <div>
-                      <p className="text-black/50">Area</p>
-                      <p className="font-medium">600 sq ft</p>
-                    </div>
+      {/* TEACHERS */}
+      <div className="border border-[#E6E6E6] mx-5 rounded-xl p-4">
+        <h3 className="font-semibold text-sm mb-1">Teacher</h3>
+        <p className="text-xs text-gray-500 mb-4">
+          Instructors assigned to this subject
+        </p>
 
-                    <div>
-                      <p className="text-black/50">Capacity</p>
-                      <p className="font-medium">30</p>
-                    </div>
-                  </div>
-                </div>
-                {/* right content  */}
-                <div>
-                  <h3 className="text-sm font-semibold text-black/80 mb-4">
-                  
-                    Assign Information</h3>
-                     <div className="space-y-4 text-sm">
-                    <div>
-                      <p className="text-black/50">Assigned To</p>
-                      <p className="font-medium">Class 1-A</p>
-                    </div>
-
-                    <div>
-                      <p className="text-black/50">Class Teacher</p>
-                      <p className="font-medium">Sarah Johnson</p>
-                    </div>
-
-                   
-                  </div>
-                  
-                </div>
+        <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-4">
+          {teacherData.map((item, index) => (
+            <div
+              key={index}
+              className="border border-[#E6E6E6] rounded-lg p-3 flex items-center gap-3"
+            >
+              {/* <div  /> */}
+              <img src={item.img} alt="" className="w-10 h-10 rounded-full " />
+              <div>
+                <span className="flex gap-2"><p className="font-semibold text-sm">{item.name} </p> {item.isverified && <MdVerified className="mt-0.5 text-[#007AFF]" />}</span>
+                <p className="text-xs text-gray-500">{item.role}</p>
               </div>
             </div>
-             <div className=" border border-[#E6E6E6] m-4 p-1 rounded-xl  ">
-               <h3 className="text-sm font-semibold text-black/80 mb-2 m-1 "> Facilities</h3>
-               <div className="p-2 gap-2 flex flex-wrap">
-                <span className="bg-[#007AFF40] text-[#007AFF] font-normal px-3 py-1 rounded-md text"> Projector</span>
-                <span className="bg-[#007AFF40] text-[#007AFF] font-normal px-3 py-1 rounded-md text"> Whiteboard</span>
-                <span className="bg-[#007AFF40] text-[#007AFF] font-normal px-3 py-1 rounded-md text"> Air Conditioning</span>
-                <span className="bg-[#007AFF40] text-[#007AFF] font-normal px-3 py-1 rounded-md text"> Wifi</span>
-               </div>
-             </div>
-               <div className=" border border-[#E6E6E6] m-4 p-1 rounded-xl  ">
-                 <h3 className="text-sm font-semibold text-black/80 mb-4 m-1 "> Furniture</h3>
-                 <div className=" grid grid-cols-3 mb-2">
-                  
-                    <span className="flex flex-col  ml-3 "><span>Desk  </span> <span className="font-medium">4</span></span>
-                   <span className="flex flex-col  ml-3 "> <span>Chair </span> <span className="font-medium">2</span></span>
-                   <span className="flex flex-col  ml-3 "> <span>Teacher Table </span> <span className="font-medium">2</span></span>
-                 
-                 </div>
-               </div>
+          ))}
+        </div>
+      </div>
+
+      {/* SUBJECTS */}
+      <div className="border border-[#E6E6E6] m-5 rounded-xl p-4">
+        <h3 className="font-semibold text-sm ">Subject</h3>
+        <p className="text-xs text-gray-500 mb-3">
+          Assigned subject to class
+        </p>
+
+        <div className="flex flex-wrap gap-3">
+          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#FEE3E3] text-[#F94144] border border-[#F94144]">
+            Physics
+          </span>
+          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#E3F2EE] text-[#43AA8B] border border-[#43AA8B]">
+            Chemistry
+          </span>
+          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#FEEFDD]  text-[#F8961E] border border-[#F8961E]">
+            Math
+          </span>
+          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#E6EAEF] text-[#277DA1] border border-[#277DA1]">
+            English
+          </span>
+          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#EFF5E9] text-[#90BE6D] border border-[#90BE6D]">
+            Social Studies
+          </span>
+        </div>
+      </div>
+             
+               
 
                 {/* Footer (Fixed) */}
             <div className="flex justify-end gap-3 p-6 ">
@@ -946,6 +887,7 @@ const ClassAndSection = () => {
           </div>
         </div>
       )}
+      
     </div>
   );
 };

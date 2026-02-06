@@ -66,6 +66,8 @@ import ScheduleClass from "../page/StudyMaterial/ScheduleClass.jsx";
 import PastClass from "../page/StudyMaterial/PastClass.jsx";
 import Certificate from "../page/Finance/Certificate.jsx";
 import Receipt from "../page/Finance/Receipt.jsx";
+import CreateSection from "../page/Academic/CreateSection.jsx";
+import CreateStream from "../page/Academic/CreateStream.jsx";
 
 
 
@@ -117,6 +119,8 @@ function AppRouter() {
           <Route path="academic-performace" element={<AcademicPerformance/>} />
           <Route path="academic-exam" element={<AcademicExam/>} />
           <Route path="academic-result" element={<AcademicResult/>} />
+          <Route path="create-section" element={<CreateSection/>} />
+          <Route path="create-stream" element={<CreateStream/>} />
 
 
            {/* // HomeWork */}
