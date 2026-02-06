@@ -13,15 +13,10 @@ import TotalCapacity from "../../assets/images/speedmeter.gif";
 }
 
 import { FiEdit } from "react-icons/fi";
-
+import { FiEye } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlinePlus } from "react-icons/ai";
-
-
 import { IoClose } from "react-icons/io5";
-
-
-
 
 
 
@@ -414,7 +409,7 @@ const ClassAndSection = () => {
                     
                         <td className="px-4 py-3 text-left text-sm  flex gap-3 items-center">
 
-                      <Link to="/staffDetails">
+                      
                         <div className="flex gap-4">
                           <div className="w-10 h-10 rounded-full overflow-hidden">
                             <img
@@ -434,7 +429,7 @@ const ClassAndSection = () => {
                             </span>
                           </div>
                         </div>
-                      </Link>
+                 
                     </td>
 
                     <td className="align-middle text-center">
@@ -669,156 +664,82 @@ const ClassAndSection = () => {
               <div className="flex justify-between items-start mb-6">
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900">
-                    Edit Room
+                    Edit Class
                   </h2>
                   <p className="text-sm text-[#9C9C9C]">
-                    Update the room information
+                    Update the class information
                   </p>
                 </div>
 
                 <button
                   onClick={() => setopenEditModel(false)}
-                  className="text-gray-400 hover:text-gray-600 text-lg"
+                  className="text-lg"
                 >
                   ✕
                 </button>
               </div>
 
-              {/* Main Form */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                 <div>
-                  <label className="text-sm font-semibold">Room Name</label>
+                  <label className="text-sm font-semibold">Class Name</label>
                   <input
                     type="text"
-                    placeholder="eg., Room 501"
+                    placeholder="Nursery"
+                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold">Section</label>
+                  <input
+                    type="text"
+                    placeholder="A"
+                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold">Stream</label>
+                   <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none">
+                    <option>General</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-semibold">Room</label>
+                  
+                   <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none">
+                    <option>Room 101</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold">Capacity(Automatic Fetch from Room selection)</label>
+                 <input
+                    type="text"
+                    placeholder="30"
                     className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none "
                   />
                 </div>
-
+              </div>
+              <div className="grid grid-cols-1 ">
                 <div>
-                  <label className="text-sm font-semibold">Room Type</label>
-                  <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none">
-                    <option>Select type</option>
+                  <label className="text-sm font-semibold">Class Teacher</label>
+                  
+                   <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none">
+                    <option>Raju Kumar</option>
                   </select>
                 </div>
 
-                <div>
-                  <label className="text-sm font-semibold">Location</label>
-                  <input
-                    type="text"
-                    placeholder="eg., Building A"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Ground Floor</label>
-                  <input
-                    type="text"
-                    placeholder="Ground Floor"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Capacity</label>
-                  <input
-                    type="number"
-                    placeholder="30"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Area (sq ft)</label>
-                  <input
-                    type="number"
-                    placeholder="600"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Status</label>
-                  <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none">
-                    <option>Select status</option>
-                  </select>
-                </div>
+                
               </div>
 
-              {/* Furniture */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                <div>
-                  <label className="text-sm font-semibold">Desks</label>
-                  <input
-                    type="number"
-                    placeholder="4"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
+             
+             
 
-                <div>
-                  <label className="text-sm font-semibold">Chair</label>
-                  <input
-                    type="number"
-                    placeholder="2"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold">Teacher Table</label>
-                  <input
-                    type="number"
-                    placeholder="2"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Facilities */}
-              <div className="mt-6">
-                <label className="text-sm font-semibold block mb-3">
-                  Facilities
-                </label>
-
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 border p-4 rounded-lg border-[#E6E6E6]">
-                  {[
-                    "Projector",
-                    "Whiteboard",
-                    "Smart Board",
-                    "WiFi",
-                    "Air Conditioning",
-                    "Computers",
-                    "Lab Equipment",
-                    "Sound System",
-                    "Ventilation",
-                  ].map((item) => (
-                    <label
-                      key={item}
-                      className="flex items-center gap-2 text-sm"
-                    >
-                      <input
-                        type="checkbox"
-                        className="rounded border-gray-300"
-                      />
-                      {item}
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Note */}
-              <div className="mt-6">
-                <label className="text-sm font-semibold block mb-1">
-                  Note (Optional)
-                </label>
-                <textarea
-                  rows={1}
-                  placeholder="Any additional about the room..."
-                  className="w-full px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                />
-              </div>
+            
             </div>
 
             {/* Footer (Fixed) */}

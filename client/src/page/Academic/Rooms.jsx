@@ -315,8 +315,8 @@ const Rooms = () => {
               <tbody>
                 {rommData.map((item, index) => (
                   <tr key={index} className="border-b border-[#e6e6e6]">
-                    <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center">
-                      <Link to="/staffDetails">
+                    <td className="px-4 py-3 text-left text-sm font-semibold flex gap-3 items-center" onClick={() => setopenRoomDetails(true)}>
+                      
                         <div className="flex gap-4">
                           <div className=" rounded-full overflow-hidden">
                             <HiOutlineBuildingOffice2
@@ -335,10 +335,10 @@ const Rooms = () => {
                             </span>
                           </div>
                         </div>
-                      </Link>
+                     
                     </td>
 
-                    <td className="px-4 py-3 text-left text-sm  font-semibold">
+                    <td className="px-4 py-3 text-left text-sm  font-semibold" onClick={() => setopenRoomDetails(true)}>
                       <div className="flex flex-col leading-tight">
                         <span className=" font-normal">{item.location}</span>
                         <span className="text-sm text-[#9c9c9c] font-normal">
@@ -346,15 +346,15 @@ const Rooms = () => {
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-left text-sm ">
+                    <td className="px-4 py-3 text-left text-sm " onClick={() => setopenRoomDetails(true)}>
                       <span className="border px-8 rounded-md border-[#696969] text-[#696969]">
                         {item.Type}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-left text-sm ">
+                    <td className="px-4 py-3 text-left text-sm " onClick={() => setopenRoomDetails(true)}>
                       <span>{item.Capacity}</span>
                     </td>
-                    <td className="px-4 py-3 text-left text-sm ">
+                    <td className="px-4 py-3 text-left text-sm  " onClick={() => setopenRoomDetails(true)}>
                       <div className="flex flex-col leading-tight">
                         <span className=" font-normal">
                           {item.AssignedToclass}
