@@ -316,7 +316,7 @@ function Concession() {
               <td className="px-4 py-3 text-left font-normal text-[14px]">{item.discount}</td>
               <td className="px-4 py-3 text-left font-normal text-[14px]">{item.valid}</td>
               <td className="px-4 py-3 text-left font-normal text-[14px]">{item.status}</td>
-              <td className="px-4 py-3 text-left font-normal text-[14px]"></td>
+              <td className="px-4 py-3 text-left font-normal text-[14px] flex gap-2"></td>
             </tr>
             ))}
           </tbody>
