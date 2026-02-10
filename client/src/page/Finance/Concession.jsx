@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 {
   /* <<========================------- icons -------==========================>> */
 }
 import { IoMdAdd } from "react-icons/io";
 import { RxCaretSort } from "react-icons/rx";
+import { IoEyeOutline } from "react-icons/io5";
+import { FiRefreshCcw } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 {
   /* <================================== img ================================> */
@@ -20,13 +25,18 @@ import diana from "../../assets/images/wonder-women.jpg";
 import superman from "../../assets/images/super.jpg";
 
 function Concession() {
+
+  const [showApplyConcessionType, setShowApplyConcessionType] = useState(false);
+
+
+
   const conscessiondata = [
     {
       id: 1,
       studentName: "Iron Man",
       studId: "HERO-001",
       class: "Avenger Squad",
-      type:"merit",
+      type: "merit",
       amountwaived: "500",
       discount: "10%",
       valid: "31 Mar 2026",
@@ -38,7 +48,7 @@ function Concession() {
       studentName: "Spider Man",
       studId: "HERO-002",
       class: "Web Warriors",
-      type:"merit",
+      type: "merit",
       amountwaived: "700",
       discount: "15%",
       valid: "30 Apr 2026",
@@ -50,11 +60,11 @@ function Concession() {
       studentName: "Thor",
       studId: "HERO-003",
       class: "Thunder Titans",
-      type:"merit",
+      type: "merit",
       amountwaived: "900",
       discount: "20%",
       valid: "15 May 2026",
-      status: "Inactive",
+      status: "Expired",
       img: thor,
     },
     {
@@ -62,7 +72,7 @@ function Concession() {
       studentName: "Hulk",
       studId: "HERO-004",
       class: "Gamma Giants",
-      type:"merit",
+      type: "merit",
       amountwaived: "600",
       discount: "12%",
       valid: "01 Jun 2026",
@@ -74,7 +84,7 @@ function Concession() {
       studentName: "Captain America",
       studId: "HERO-005",
       class: "Shield Champs",
-      type:"merit",
+      type: "merit",
       amountwaived: "800",
       discount: "18%",
       valid: "20 Jun 2026",
@@ -86,7 +96,7 @@ function Concession() {
       studentName: "Black Panther",
       studId: "HERO-006",
       class: "Wakanda Force",
-      type:"merit",
+      type: "merit",
       amountwaived: "650",
       discount: "13%",
       valid: "10 Jul 2026",
@@ -98,11 +108,11 @@ function Concession() {
       studentName: "Flash",
       studId: "HERO-007",
       class: "Speed Stars",
-      type:"merit",
+      type: "merit",
       amountwaived: "400",
       discount: "8%",
       valid: "05 Aug 2026",
-      status: "Inactive",
+      status: "Expired",
       img: flash,
     },
     {
@@ -110,7 +120,7 @@ function Concession() {
       studentName: "Batman",
       studId: "HERO-008",
       class: "Dark Knights",
-      type:"merit",
+      type: "merit",
       amountwaived: "750",
       discount: "16%",
       valid: "25 Sep 2026",
@@ -122,7 +132,7 @@ function Concession() {
       studentName: "Superman",
       studId: "HERO-009",
       class: "Sky Legends",
-      type:"merit",
+      type: "merit",
       amountwaived: "950",
       discount: "22%",
       valid: "12 Oct 2026",
@@ -134,7 +144,7 @@ function Concession() {
       studentName: "Wonder Woman",
       studId: "HERO-010",
       class: "Amazon Warriors",
-      type:"merit",
+      type: "merit",
       amountwaived: "700",
       discount: "14%",
       valid: "30 Nov 2026",
@@ -161,12 +171,14 @@ function Concession() {
 
         {/* RIGHT BUTTONS */}
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-6 py-3 text-[#e6e6e6] font-semibold text-[16px] border border-[#9c9c9c] rounded-lg">
-            <IoMdAdd size={20} className="text-[#e6e6e6]" />
+          <Link to="/ConcessionType">
+          <button className="flex items-center gap-2 px-6 py-3 text-[#696969] font-semibold text-[16px] border border-[#9c9c9c] rounded-lg">
+            <IoMdAdd size={20} />
             Consession Type
           </button>
-          <button className="flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white font-semibold text-[16px] border border-[#0B3142] rounded-lg">
-            <IoMdAdd size={20} className="text-white" />
+          </Link>
+          <button className="flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white font-semibold text-[16px] border border-[#0B3142] rounded-lg" onClick={() => setShowApplyConcessionType(true)}>
+            <IoMdAdd size={20} />
             Apply Concession
           </button>
         </div>
@@ -287,41 +299,88 @@ function Concession() {
             </tr>
           </thead>
           <tbody>
-            {conscessiondata.map ((item, index) => (
-            <tr key={index} className="border-b border-[#e6e6e6]">
-              <td className="px-4 py-3 text-left font-normal text-[#12516E] text-[14px]">
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full overflow-hidden">
-                    <img
-                      src={item.img}
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+            {conscessiondata.map((item, index) => (
+              <tr key={index} className="border-b border-[#e6e6e6]">
+                <td className="px-4 py-3 text-left font-normal text-[#12516E] text-[14px]">
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full overflow-hidden">
+                      <img
+                        src={item.img}
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
 
-                  {/* Name + ID */}
-                  <div className="flex flex-col leading-tight">
-                    <span className="text-[#12516E] font-semibold">
-                      {item.studentName}
-                    </span>
-                    <span className="text-sm text-[#9c9c9c] font-semibold">
-                      {item.studId}
-                    </span>
+                    {/* Name + ID */}
+                    <div className="flex flex-col leading-tight">
+                      <span className="text-[#12516E] font-semibold">
+                        {item.studentName}
+                      </span>
+                      <span className="text-sm text-[#9c9c9c] font-semibold">
+                        {item.studId}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td className="px-4 py-3 text-left font-normal text-[14px]">{item.class}</td>
-              <td className="px-4 py-3 text-left font-normal text-[14px]">{item.type}</td>
-              <td className="px-4 py-3 text-left font-normal text-[14px]">{item.amountwaived}</td>
-              <td className="px-4 py-3 text-left font-normal text-[14px]">{item.discount}</td>
-              <td className="px-4 py-3 text-left font-normal text-[14px]">{item.valid}</td>
-              <td className="px-4 py-3 text-left font-normal text-[14px]">{item.status}</td>
-              <td className="px-4 py-3 text-left font-normal text-[14px] flex gap-2"></td>
-            </tr>
+                </td>
+                <td className="px-4 py-3 text-left font-normal text-[14px]">
+                  {item.class}
+                </td>
+                <td className="px-4 py-3 text-left font-normal text-[14px]">
+                  {item.type}
+                </td>
+                <td className="px-4 py-3 text-left font-normal text-[14px]">
+                  {item.amountwaived}
+                </td>
+                <td className="px-4 py-3 text-left font-normal text-[14px]">
+                  {item.discount}
+                </td>
+                <td className="px-4 py-3 text-left font-normal text-[14px]">
+                  {item.valid}
+                </td>
+                <td className="px-4 py-3 text-left font-normal text-[14px]">
+                  <span
+                    className={`px-2 py-1 rounded ${
+                      item.status === "Active"
+                        ? "bg-[#D4EDDA] text-[#009638]"
+                        : "bg-[#F8D7DA] text-[#C92131]"
+                    }`}
+                  >
+                    {item.status}
+                  </span>
+                </td>
+                <td className="px-4 py-3 text-left font-normal text-[14px] flex gap-2 items-center text-[#9C9C9C]">
+                  <span className="">
+                    <IoEyeOutline size={18} />
+                  </span>
+                  <span>
+                    <FiRefreshCcw size={18} />
+                  </span>
+                  <span>
+                    <FiEdit size={18} />
+                  </span>
+                  <span>
+                    <RiDeleteBinLine size={18} />
+                  </span>
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {showApplyConcessionType && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          onClick={() => setShowApplyConcessionType(false)}
+        >
+          <div
+            className="bg-white w-full max-w-4xl rounded-xl shadow-lg p-6 relative"
+            onClick={(e) => e.stopPropagation()}
+            >
+              
+            </div>
+        </div>
+      )}
     </div>
   );
 }
