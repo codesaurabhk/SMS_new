@@ -10,6 +10,7 @@ import { FiRefreshCcw } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoClose } from "react-icons/io5";
+import { FiUpload } from "react-icons/fi";
 
 {
   /* <================================== img ================================> */
@@ -401,7 +402,11 @@ function Concession() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="academicyear">Academic year</label>
                 <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select name="" id="academicyear" className="border-none outline-none w-full">
+                  <select
+                    name=""
+                    id="academicyear"
+                    className="border-none outline-none w-full"
+                  >
                     <option value="">Select Academic Year</option>
                   </select>
                 </div>
@@ -409,7 +414,11 @@ function Concession() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="class">Class</label>
                 <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select name="" id="class" className="border-none outline-none w-full">
+                  <select
+                    name=""
+                    id="class"
+                    className="border-none outline-none w-full"
+                  >
                     <option value="">Select Class</option>
                   </select>
                 </div>
@@ -417,7 +426,11 @@ function Concession() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="section">Section</label>
                 <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select name="" id="section" className="border-none outline-none w-full">
+                  <select
+                    name=""
+                    id="section"
+                    className="border-none outline-none w-full"
+                  >
                     <option value="">Select Section</option>
                   </select>
                 </div>
@@ -428,7 +441,11 @@ function Concession() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="student">Student</label>
                 <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select name="" id="student" className="border-none outline-none w-full">
+                  <select
+                    name=""
+                    id="student"
+                    className="border-none outline-none w-full"
+                  >
                     <option value="">Select Student</option>
                   </select>
                 </div>
@@ -439,7 +456,11 @@ function Concession() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="concessiontype">Concession Type</label>
                 <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select name="" id="concessiontype" className="border-none outline-none w-full">
+                  <select
+                    name=""
+                    id="concessiontype"
+                    className="border-none outline-none w-full"
+                  >
                     <option value="">Select Concession type</option>
                   </select>
                 </div>
@@ -447,15 +468,88 @@ function Concession() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="discount">Discount percentange(%)</label>
                 <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <input type="text" name="" id="discount" placeholder="50%" className="border-none outline-none w-full"/>
+                  <input
+                    type="text"
+                    name=""
+                    id="discount"
+                    placeholder="50%"
+                    className="border-none outline-none w-full"
+                  />
                 </div>
               </div>
-            </div>  
+            </div>
 
-            <div>
-              <label htmlFor="">Reason / Justificatio</label>
-              <textarea name="" id="" className=""></textarea>
-            </div>          
+            <div className="flex flex-col gap-2 mt-4">
+              <label htmlFor="reason">Reason / Justificatio</label>
+              <textarea
+                name=""
+                id="reason"
+                placeholder="provide details reason for granting this concession"
+                className="w-full resize-none px-3 py-4 outline-none border border-[#E6E6E6] rounded-xl"
+              ></textarea>
+            </div>
+
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-4">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="validstartdate">Valid from</label>
+                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
+                  <input
+                    type="date"
+                    name=""
+                    id="validstartdate"
+                    placeholder=""
+                    className="border-none outline-none w-full"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="validuntil">Valid Until</label>
+                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
+                  <input
+                    type="date"
+                    name=""
+                    id="validuntil"
+                    placeholder=""
+                    className="border-none outline-none w-full"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 mt-4">
+              <span>Supporting Document</span>
+              <div className="w-full">
+                <div
+                  className="relative w-full border border-dashed border-[#118AB2] rounded-lg bg-white px-2 py-4 cursor-pointer hover:bg-[#F8FBFF] hover:border-[#0B77FF] transition"
+                  onClick={() => document.getElementById("doc-upload").click()}
+                >
+
+                  <div className="flex flex-col items-center justify-center text-center">
+                    <FiUpload className="text-[#118AB2]" size={28} />
+
+                    <p className="flex flex-wrap justify-center gap-1 mt-2 text-[16px] text-[#1c1c1c] font-medium">
+                      Drag & Drop to upload or
+                      <span className="text-[#0B77FF] font-semibold ml-1">
+                        Browse
+                      </span>
+                    </p>
+
+                    <p className="mt-1 text-[14px] text-[#696969]">
+                      Only PDF files are allowed.
+                    </p>
+
+                    {/* Hidden Input */}
+                    <input
+                      id="doc-upload"
+                      type="file"
+                      accept="application/pdf"
+                      className="hidden"
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
