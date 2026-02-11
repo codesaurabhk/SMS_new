@@ -69,6 +69,7 @@ import Receipt from "../page/Finance/Receipt.jsx";
 import CreateSection from "../page/Academic/CreateSection.jsx";
 import CreateStream from "../page/Academic/CreateStream.jsx";
 import ConcessionType from "../page/Finance/ConcessionType.jsx";
+import Concession from "../page/Finance/Concession.jsx";
 
 
 
@@ -169,6 +170,7 @@ function AppRouter() {
           <Route path="certificate" element={<Certificate/>} />
           <Route path="receipt" element={<Receipt/>} />
           <Route path="concessiontype" element={<ConcessionType/>} />
+          <Route path="concession" element={<Concession/>} />
 
 
            {/* Events & Calendar */}

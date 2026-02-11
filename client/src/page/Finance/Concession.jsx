@@ -9,6 +9,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { FiRefreshCcw } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { IoClose } from "react-icons/io5";
 
 {
   /* <================================== img ================================> */
@@ -25,10 +26,7 @@ import diana from "../../assets/images/wonder-women.jpg";
 import superman from "../../assets/images/super.jpg";
 
 function Concession() {
-
   const [showApplyConcessionType, setShowApplyConcessionType] = useState(false);
-
-
 
   const conscessiondata = [
     {
@@ -172,12 +170,15 @@ function Concession() {
         {/* RIGHT BUTTONS */}
         <div className="flex gap-3">
           <Link to="/ConcessionType">
-          <button className="flex items-center gap-2 px-6 py-3 text-[#696969] font-semibold text-[16px] border border-[#9c9c9c] rounded-lg">
-            <IoMdAdd size={20} />
-            Consession Type
-          </button>
+            <button className="flex items-center gap-2 px-6 py-3 text-[#696969] font-semibold text-[16px] border border-[#9c9c9c] rounded-lg">
+              <IoMdAdd size={20} />
+              Consession Type
+            </button>
           </Link>
-          <button className="flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white font-semibold text-[16px] border border-[#0B3142] rounded-lg" onClick={() => setShowApplyConcessionType(true)}>
+          <button
+            className="flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white font-semibold text-[16px] border border-[#0B3142] rounded-lg"
+            onClick={() => setShowApplyConcessionType(true)}
+          >
             <IoMdAdd size={20} />
             Apply Concession
           </button>
@@ -376,9 +377,86 @@ function Concession() {
           <div
             className="bg-white w-full max-w-4xl rounded-xl shadow-lg p-6 relative"
             onClick={(e) => e.stopPropagation()}
-            >
-              
+          >
+            <div className="flex justify-between items-center">
+              <div className="flex flex-col gap-1">
+                <span className="text-[18px] text-[#1c1c1c] font-semibold">
+                  Add New Concession
+                </span>
+                <span className=" text-[#696969] font-normal text-[18px]">
+                  Grant a fee concession or schloarship to a student
+                </span>
+              </div>
+              <div>
+                <button
+                  onClick={() => setShowApplyConcessionType(false)}
+                  className="text-xl"
+                >
+                  <IoClose size={28} />
+                </button>
+              </div>
             </div>
+
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-6">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="academicyear">Academic year</label>
+                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
+                  <select name="" id="academicyear" className="border-none outline-none w-full">
+                    <option value="">Select Academic Year</option>
+                  </select>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="class">Class</label>
+                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
+                  <select name="" id="class" className="border-none outline-none w-full">
+                    <option value="">Select Class</option>
+                  </select>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="section">Section</label>
+                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
+                  <select name="" id="section" className="border-none outline-none w-full">
+                    <option value="">Select Section</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="student">Student</label>
+                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
+                  <select name="" id="student" className="border-none outline-none w-full">
+                    <option value="">Select Student</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-4">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="concessiontype">Concession Type</label>
+                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
+                  <select name="" id="concessiontype" className="border-none outline-none w-full">
+                    <option value="">Select Concession type</option>
+                  </select>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="discount">Discount percentange(%)</label>
+                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
+                  <input type="text" name="" id="discount" placeholder="50%" className="border-none outline-none w-full"/>
+                </div>
+              </div>
+            </div>  
+
+            <div>
+              <label htmlFor="">Reason / Justificatio</label>
+              <textarea name="" id="" className=""></textarea>
+            </div>          
+          </div>
         </div>
       )}
     </div>

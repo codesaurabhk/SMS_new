@@ -2,15 +2,16 @@ import React from "react";
 import { IoChevronBack } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 function ConcessionType() {
   return (
     <div className="flex flex-col gap-2.5">
       <div className="flex items-center gap-2 text-[24px] text-[#696969] font-semibold">
-        <span>
+        <Link to="/concession" className="flex items-center gap-2">
           <IoChevronBack />
-        </span>
         <span>Back</span>
+        </Link>
       </div>
 
       {/* <======================== create Consession ==========================> */}
@@ -59,7 +60,7 @@ function ConcessionType() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-[#e6e6e6]">
+              <tr className=" hover:bg-[#F9FAFC]">
                 <td className="px-4 py-3 text-left font-normal text-[#1c1c1c] text-[14px]">
                   Financial Head
                 </td>
