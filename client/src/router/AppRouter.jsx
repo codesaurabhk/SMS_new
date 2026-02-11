@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Menu from "../../src/components/Menu";
 import Sidebar from "../../src/components/Sidebar/Sidebar";
 import Student from "../page/Student/Student.jsx";
@@ -84,7 +84,7 @@ function AppRouter() {
     <>
       <Routes>
         <Route path="/" element={<Menu />}>
-
+        <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="/study-material" element={<StdudentMaterial/>} />
             {/* // student routes */}
