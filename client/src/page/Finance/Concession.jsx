@@ -400,7 +400,7 @@ function Concession() {
 
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-6">
               <div className="flex flex-col gap-2">
-                <label htmlFor="academicyear">Academic year</label>
+                <label htmlFor="academicyear">Academic years</label>
                 <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
                   <select
                     name=""
