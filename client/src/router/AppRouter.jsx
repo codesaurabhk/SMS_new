@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Menu from "../../src/components/Menu";
 import Sidebar from "../../src/components/Sidebar/Sidebar";
 import Student from "../page/Student/Student.jsx";
@@ -68,6 +68,8 @@ import Certificate from "../page/Finance/Certificate.jsx";
 import Receipt from "../page/Finance/Receipt.jsx";
 import CreateSection from "../page/Academic/CreateSection.jsx";
 import CreateStream from "../page/Academic/CreateStream.jsx";
+import ConcessionType from "../page/Finance/ConcessionType.jsx";
+import Concession from "../page/Finance/Concession.jsx";
 
 
 
@@ -82,7 +84,7 @@ function AppRouter() {
     <>
       <Routes>
         <Route path="/" element={<Menu />}>
-
+        <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="/study-material" element={<StdudentMaterial/>} />
             {/* // student routes */}
@@ -167,6 +169,8 @@ function AppRouter() {
           <Route path="report" element={<Report/>} />
           <Route path="certificate" element={<Certificate/>} />
           <Route path="receipt" element={<Receipt/>} />
+          <Route path="concessiontype" element={<ConcessionType/>} />
+          <Route path="concession" element={<Concession/>} />
 
 
            {/* Events & Calendar */}

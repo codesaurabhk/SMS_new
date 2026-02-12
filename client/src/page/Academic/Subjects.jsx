@@ -3,7 +3,7 @@ import "../../CSS/Style.css";
 {
   /* <----------------------------------------------- GIF ----------------------------------------------------> */
 }
-import studetgif from "../../assets/images/studentgif.gif";
+import studetgif from "../../assets/images/studentGif.gif";
 import classroomlesson from "../../assets/images/classroom-lesson.gif";
 import books from "../../assets/images/books.gif";
 import calender from "../../assets/images/calender.gif";
@@ -364,6 +364,8 @@ const Subjects = () => {
                 </span>
                 <span className="text-xs text-[#9C9C9C] truncate max-w-45">
                   {item.teachername}
+                <span className="text-xs text-[#9C9C9C] truncate max-w-[45]">
+                 {item.teachername}
                 </span>
               </div>
             </td>

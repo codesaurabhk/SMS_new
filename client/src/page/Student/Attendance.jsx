@@ -656,8 +656,6 @@ function Attendance() {
                         #{item.rollNo}
                       </div>
                     </td>
-
-                    {/* ✅ FIXED TD (removed flex from td) */}
                     <td className="px-4 py-3 text-left text-sm font-semibold">
                       <div className="flex gap-4 items-center">
                         <div className="w-10 h-10 rounded-full overflow-hidden">
