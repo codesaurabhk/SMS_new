@@ -677,10 +677,10 @@ const Subjects = () => {
   >
     <div
       onClick={(e) => e.stopPropagation()}
-      className="w-[836px] h-[764px] bg-white rounded-[16px] shadow-xl flex flex-col"
+      className="w-209 h-191 bg-white rounded-2xl shadow-xl flex flex-col"
     >
       {/* ================= HEADER ================= */}
-      <div className="mx-6 mt-6 p-6 rounded-[12px] bg-gradient-to-r from-[#B993D6] to-[#8CA6DB] flex justify-between items-center">
+      <div className="mx-6 mt-6 p-6 rounded-xl bg-linear-to-r from-[#B993D6] to-[#8CA6DB] flex justify-between items-center">
         <h2 className="text-white text-[20px] font-semibold">
           Physics
         </h2>
@@ -697,7 +697,7 @@ const Subjects = () => {
       <div className="px-6 mt-4 flex flex-col gap-4 flex-1">
 
         {/* SUBJECT INFORMATION */}
-        <div className="border border-[#E6E6E6] rounded-[12px] p-3 flex justify-between items-center">
+        <div className="border border-[#E6E6E6] rounded-xl p-3 flex justify-between items-center">
           <div>
             <p className="text-gray-500 text-sm">Subject Code</p>
             <p className="font-semibold text-sm">PHY001</p>
@@ -718,7 +718,7 @@ const Subjects = () => {
         </div>
 
         {/* ================= TEACHERS ================= */}
-        <div className="border border-[#E6E6E6] rounded-[12px] p-3 flex flex-col gap-4">
+        <div className="border border-[#E6E6E6] rounded-xl p-3 flex flex-col gap-4">
           <div>
             <h3 className="font-semibold text-sm">Teacher</h3>
             <p className="text-xs text-gray-500">
@@ -730,7 +730,7 @@ const Subjects = () => {
             {teacherData.map((item, index) => (
               <div
                 key={index}
-                className="border border-[#E6E6E6] rounded-[12px] p-3 flex items-center gap-3"
+                className="border border-[#E6E6E6] rounded-xl p-3 flex items-center gap-3"
               >
                 <img
                   src={item.img}
@@ -752,7 +752,7 @@ const Subjects = () => {
         </div>
 
         {/* ================= CLASS ================= */}
-        <div className="border border-[#E6E6E6] rounded-[12px] p-3 flex flex-col gap-4">
+        <div className="border border-[#E6E6E6] rounded-xl p-3 flex flex-col gap-4">
           <div>
             <h3 className="font-semibold text-sm">Class</h3>
             <p className="text-xs text-gray-500">
@@ -769,7 +769,7 @@ const Subjects = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="rounded-[12px] p-4 flex flex-col gap-3"
+                className="rounded-xl p-4 flex flex-col gap-3"
                 style={{
                   backgroundColor: item.bg,
                   borderTop: `4px solid ${item.border}`,
@@ -780,7 +780,7 @@ const Subjects = () => {
                 </p>
 
                 <div
-                  className="h-[1px] opacity-40"
+                  className="h-px opacity-40"
                   style={{ backgroundColor: item.border }}
                 />
 
