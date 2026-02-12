@@ -148,6 +148,47 @@ const subjectData = [
  
 ];
 
+const teacherData = [
+  {
+    name : "Raju Kumar",
+    role : "Class Teacher",
+    isverified : true,
+    img : meave,
+  },
+  {
+    name : "Priya Kumari",
+    role : "Math Teacher",
+    isverified : false,
+    img : everdeen,
+  },
+  {
+    name : "Amit Patel",
+    role : "English Teacher",
+    isverified : false,
+    img : meave,
+  },
+  {
+    name : "Deepa Sharma",
+    role : "Social Studies Teacher",
+    isverified : false,
+    img : meave,
+  },
+  {
+    name : "Raju Kumar",
+    role : "Class Teacher",
+    isverified : false,
+    img : meave,
+
+  },
+  {
+    name : "Priya Kumari",
+    role : "Math Teacher",
+    isverified : false,
+    img : meave,
+  }
+
+]
+
 
 const Subjects = () => {
   const [openAddModel, setopenAddModel] = useState(false);
@@ -321,7 +362,7 @@ const Subjects = () => {
                 <span className="font-semibold text-[#12516E]">
                   {item.teacher}
                 </span>
-                <span className="text-xs text-[#9C9C9C] truncate max-w-[180px]">
+                <span className="text-xs text-[#9C9C9C] truncate max-w-45">
                   {item.teachername}
                 </span>
               </div>
@@ -379,334 +420,415 @@ const Subjects = () => {
         <Pagination />
       </div>
       {openAddModel && (
-       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4" onClick={() => setopenAddModel(false)}>
-          <div className="bg-white max-w-3xl w-full rounded-2xl shadow-lg flex flex-col max-h-156"  onClick={(e) => e.stopPropagation()}>
-            {/* Scrollable Content */}
-            <div className="p-4 overflow-y-auto  mt-0 ">
-              {/* Header */}
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-lg font-semibold text-gray-900">
-                    Add New Class
-                  </h2>
-                  <p className="text-sm text-[#9C9C9C]">
-                    Create a new class section with teacher assignment
-                  </p>
-                </div>
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+    onClick={() => setopenAddModel(false)}
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="w-206 max-h-1900 bg-white rounded-2xl shadow-xl flex flex-col"
+    >
+      {/* HEADER */}
+      <div className="flex justify-between items-start p-6">
+        <div>
+          <h2 className="text-[20px] font-semibold text-[#1C1C1C]">
+            Add New Subject
+          </h2>
+          <p className="text-sm text-[#9C9C9C] mt-1">
+            Create a new subject with curriculum details
+          </p>
+        </div>
 
-                <button
-                  onClick={() => setopenAddModel(false)}
-                  className="text-lg"
-                >
-                  ✕
-                </button>
-              </div>
+        <button
+          onClick={() => setopenAddModel(false)}
+          className="text-xl text-gray-500 hover:text-black"
+        >
+          ✕
+        </button>
+      </div>
 
-                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                <div>
-                  <label className="text-sm font-semibold">Class Name</label>
-                  <input
-                    type="text"
-                    placeholder="Nursery"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
+      {/* BODY */}
+      <div className="px-6 pb-6 space-y-2.5 overflow-y-auto">
 
-                <div>
-                  <label className="text-sm font-semibold">Section</label>
-                  <input
-                    type="text"
-                    placeholder="A"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
+        {/* SUBJECT NAME */}
+        <div>
+          <label className="text-sm font-semibold">Subject Name</label>
+          <input
+            type="text"
+            placeholder="eg., Advance math"
+            className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] outline-none focus:ring-2 focus:ring-[#0B3142]"
+          />
+        </div>
 
-                <div>
-                  <label className="text-sm font-semibold">Stream</label>
-                   <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] text-[#9C9C9C] outline-none">
-                    <option>General</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div>
-                  <label className="text-sm font-semibold">Room</label>
-                  
-                   <select className="w-full mt-1 px-3 py-2 border rounded-lg text-[#9C9C9C] border-[#E6E6E6] outline-none">
-                    <option>Room 101</option>
-                  </select>
-                </div>
+        {/* SUBJECT CODE + CATEGORY */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label className="text-sm font-semibold">Subject Code</label>
+            <input
+              type="text"
+              placeholder="eg., MATH501"
+              className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] outline-none focus:ring-2 focus:ring-[#0B3142]"
+            />
+          </div>
 
-                <div>
-                  <label className="text-sm font-semibold">Capacity(Automatic Fetch from Room selection)</label>
-                 <input
-                    type="text"
-                    placeholder="30"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none "
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 ">
-                <div>
-                  <label className="text-sm font-semibold">Class Teacher</label>
-                  
-                   <select className="w-full mt-1 px-3 py-2 border text-[#9C9C9C] rounded-lg border-[#E6E6E6] outline-none">
-                    <option>Raju Kumar</option>
-                  </select>
-                </div>
-
-                
-              </div>
-
-             
-             
-
-            
-            </div>
-
-            {/* Footer (Fixed) */}
-            <div className="flex justify-end gap-3 p-6 ">
-              <button
-                onClick={() => setopenAddModel(false)}
-                className="px-4 py-2 border rounded-lg text-gray-600"
-              >
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-[#0B3142] text-white rounded-lg">
-                Create Class
-              </button>
-            </div>
+          <div>
+            <label className="text-sm font-semibold">Category</label>
+            <select className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] text-[#9C9C9C] outline-none focus:ring-2 focus:ring-[#0B3142]">
+              <option>Select category</option>
+              <option>Core</option>
+              <option>Elective</option>
+              <option>Optional</option>
+            </select>
           </div>
         </div>
+
+        {/* ASSIGN TEACHER */}
+        <div>
+          <label className="text-sm font-semibold">Assign Teacher</label>
+          <select className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] text-[#9C9C9C] outline-none focus:ring-2 focus:ring-[#0B3142]">
+            <option>Select teacher</option>
+            <option>Raju Kumar</option>
+            <option>Priya Kumari</option>
+          </select>
+        </div>
+
+        {/* APPLICABLE CLASS */}
+        <div>
+          <label className="text-sm font-semibold">Applicable class</label>
+          <select className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] text-[#9C9C9C] outline-none focus:ring-2 focus:ring-[#0B3142]">
+            <option>Select class</option>
+            <option>Nursery</option>
+            <option>Class 1</option>
+            <option>Class 2</option>
+          </select>
+        </div>
+
+        {/* COLOR PICKER */}
+        <div>
+          <label className="text-sm font-semibold">Pick Subject Color</label>
+
+          <div className="mt-3 grid grid-cols-4 gap-4 p-4 border border-[#E6E6E6] rounded-2xl bg-[#F9F9F9]">
+            {[
+              "#F94144",
+              "#F3722C",
+              "#F8961E",
+              "#F9C74F",
+              "#90BE6D",
+              "#43AA8B",
+              "#577590",
+              "#277DA1",
+            ].map((color, index) => (
+              <div
+                key={index}
+                className="h-14 rounded-xl cursor-pointer transition hover:scale-105"
+                style={{ backgroundColor: color }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <div className="flex justify-end gap-4 px-6 py-6 border-t border-[#E6E6E6]">
+        <button
+          onClick={() => setopenAddModel(false)}
+          className="px-6 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100"
+        >
+          Cancel
+        </button>
+
+        <button className="px-6 py-2 bg-[#0B3142] text-white rounded-lg hover:opacity-90">
+          Create Class
+        </button>
+      </div>
+    </div>
+  </div>
       )}
+
       {openEditModel && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4" onClick={() => setopenEditModel(false)}>
-          <div className="bg-white max-w-3xl w-full rounded-2xl shadow-lg flex flex-col max-h-156"  onClick={(e) => e.stopPropagation()}>
-            {/* Scrollable Content */}
-            <div className="p-4 overflow-y-auto  mt-0 ">
-              {/* Header */}
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-lg font-semibold text-gray-900">
-                    Edit Class
-                  </h2>
-                  <p className="text-sm text-[#9C9C9C]">
-                    Update the class information
-                  </p>
-                </div>
+         <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+    onClick={() => setopenEditModel(false)}
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="w-206 max-h-1900 bg-white rounded-2xl shadow-xl flex flex-col"
+    >
+      {/* HEADER */}
+      <div className="flex justify-between items-start p-6">
+        <div>
+          <h2 className="text-[20px] font-semibold text-[#1C1C1C]">
+            Edit Subject
+          </h2>
+          <p className="text-sm text-[#9C9C9C] mt-1">
+            Create a new subject with curriculum details
+          </p>
+        </div>
 
-                <button
-                  onClick={() => setopenEditModel(false)}
-                  className="text-lg"
-                >
-                  ✕
-                </button>
-              </div>
+        <button
+          onClick={() => setopenEditModel(false)}
+          className="text-xl text-gray-500 hover:text-black"
+        >
+          ✕
+        </button>
+      </div>
 
-                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                <div>
-                  <label className="text-sm font-semibold">Class Name</label>
-                  <input
-                    type="text"
-                    placeholder="Nursery"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
+      {/* BODY */}
+      <div className="px-6 pb-6 space-y-2.5 overflow-y-auto">
 
-                <div>
-                  <label className="text-sm font-semibold">Section</label>
-                  <input
-                    type="text"
-                    placeholder="A"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none"
-                  />
-                </div>
+        {/* SUBJECT NAME */}
+        <div>
+          <label className="text-sm font-semibold">Subject Name</label>
+          <input
+            type="text"
+            placeholder="eg., Advance math"
+            className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] outline-none focus:ring-2 focus:ring-[#0B3142]"
+          />
+        </div>
 
-                <div>
-                  <label className="text-sm font-semibold">Stream</label>
-                   <select className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] text-[#9C9C9C] outline-none">
-                    <option>General</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div>
-                  <label className="text-sm font-semibold">Room</label>
-                  
-                   <select className="w-full mt-1 px-3 py-2 border rounded-lg text-[#9C9C9C] border-[#E6E6E6] outline-none">
-                    <option>Room 101</option>
-                  </select>
-                </div>
+        {/* SUBJECT CODE + CATEGORY */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label className="text-sm font-semibold">Subject Code</label>
+            <input
+              type="text"
+              placeholder="eg., MATH501"
+              className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] outline-none focus:ring-2 focus:ring-[#0B3142]"
+            />
+          </div>
 
-                <div>
-                  <label className="text-sm font-semibold">Capacity(Automatic Fetch from Room selection)</label>
-                 <input
-                    type="text"
-                    placeholder="30"
-                    className="w-full mt-1 px-3 py-2 border rounded-lg border-[#E6E6E6] outline-none "
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 ">
-                <div>
-                  <label className="text-sm font-semibold">Class Teacher</label>
-                  
-                   <select className="w-full mt-1 px-3 py-2 border text-[#9C9C9C] rounded-lg border-[#E6E6E6] outline-none">
-                    <option>Raju Kumar</option>
-                  </select>
-                </div>
-
-                
-              </div>
-
-             
-             
-
-            
-            </div>
-
-            {/* Footer (Fixed) */}
-            <div className="flex justify-end gap-3 p-6 ">
-              <button
-                onClick={() => setopenEditModel(false)}
-                className="px-4 py-2 border rounded-lg text-gray-600"
-              >
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-[#0B3142] text-white rounded-lg">
-                Update
-              </button>
-            </div>
+          <div>
+            <label className="text-sm font-semibold">Category</label>
+            <select className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] text-[#9C9C9C] outline-none focus:ring-2 focus:ring-[#0B3142]">
+              <option>Select category</option>
+              <option>Core</option>
+              <option>Elective</option>
+              <option>Optional</option>
+            </select>
           </div>
         </div>
+
+        {/* ASSIGN TEACHER */}
+        <div>
+          <label className="text-sm font-semibold">Assign Teacher</label>
+          <select className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] text-[#9C9C9C] outline-none focus:ring-2 focus:ring-[#0B3142]">
+            <option>Select teacher</option>
+            <option>Raju Kumar</option>
+            <option>Priya Kumari</option>
+          </select>
+        </div>
+
+        {/* APPLICABLE CLASS */}
+        <div>
+          <label className="text-sm font-semibold">Applicable class</label>
+          <select className="w-full mt-2 px-4 py-3 rounded-xl border border-[#E6E6E6] text-[#9C9C9C] outline-none focus:ring-2 focus:ring-[#0B3142]">
+            <option>Select class</option>
+            <option>Nursery</option>
+            <option>Class 1</option>
+            <option>Class 2</option>
+          </select>
+        </div>
+
+        {/* COLOR PICKER */}
+        <div>
+          <label className="text-sm font-semibold">Pick Subject Color</label>
+
+          <div className="mt-3 grid grid-cols-4 gap-4 p-4 border border-[#E6E6E6] rounded-2xl bg-[#F9F9F9]">
+            {[
+              "#F94144",
+              "#F3722C",
+              "#F8961E",
+              "#F9C74F",
+              "#90BE6D",
+              "#43AA8B",
+              "#577590",
+              "#277DA1",
+            ].map((color, index) => (
+              <div
+                key={index}
+                className="h-14 rounded-xl cursor-pointer transition hover:scale-105"
+                style={{ backgroundColor: color }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <div className="flex justify-end gap-4 px-6 py-6 border-t border-[#E6E6E6]">
+        <button
+          onClick={() => setopenEditModel(false)}
+          className="px-6 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100"
+        >
+          Cancel
+        </button>
+
+        <button className="px-6 py-2 bg-[#0B3142] text-white rounded-lg hover:opacity-90">
+          Update Class
+        </button>
+      </div>
+    </div>
+  </div>
       )}
-      {openRoomDetails && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4" onClick={() => setopenRoomDetails(false)}>
-          <div className="bg-white w-209  rounded-2xl shadow-lg  h-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="bg-linear-to-r from-[#B993D6] to-[#8CA6DB] p-6 m-4 text-white flex justify-between items-center rounded-xl w-201 h-18">
-              <div className="flex   gap-3 ">
-                <span className="font-semibold text-[24px]">Nursery-A </span>
+    {openRoomDetails && (
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+    onClick={() => setopenRoomDetails(false)}
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="w-[836px] h-[764px] bg-white rounded-[16px] shadow-xl flex flex-col"
+    >
+      {/* ================= HEADER ================= */}
+      <div className="mx-6 mt-6 p-6 rounded-[12px] bg-gradient-to-r from-[#B993D6] to-[#8CA6DB] flex justify-between items-center">
+        <h2 className="text-white text-[20px] font-semibold">
+          Physics
+        </h2>
 
-                <span
-                  className="inline-flex w-22  h-5 items-center justify-center gap-1.5
-      rounded-sm px-3 py-1 text-sm font-semibold mt-2
-      bg-[#FFFFFF] text-[#9C9C9C]"
-                >
-                  <span
-                    className="h-1.5 w-1.5 rounded-full
-       bg-[#9C9C9C]"
-                  />
-                  General
-                </span>
-                <span
-                  className="inline-flex w-24  h-5 items-center justify-center gap-1.5
-      rounded-sm px-3 py-1 text-sm font-semibold mt-2
-      bg-[#E3F2FD] text-[#1565C0]"
-                >
-                  <span
-                    className="h-1.5 w-1.5 rounded-full
-       bg-[#1565C0]"
-                  />
-                  Available
-                </span>
-              </div>
-              <div  onClick={() => setopenRoomDetails(false)} className=" bg-[#FFFFFF59] h-6 w-6 flex justify-center items-center rounded-full">
-                <IoClose size={22} className="text-white cursor-pointer" />
-              </div>
-            </div>
-             {/* CLASS INFORMATION */}
-      <div className="border border-[#E6E6E6] m-5 rounded-xl p-4">
-        <h3 className="font-semibold text-sm mb-3">Class Information</h3>
-
-        <div className="grid grid-cols-4 gap-6 text-sm">
-          <div>
-            <p className="text-gray-500">Room</p>
-            <p className="font-semibold">Room 101</p>
-          </div>
-          <div>
-            <p className="text-gray-500">Capacity</p>
-            <p className="font-semibold">31</p>
-          </div>
-          <div>
-            <p className="text-gray-500">Occupied</p>
-            <p className="font-semibold">29</p>
-          </div>
-          <div>
-            <p className="text-gray-500">Available</p>
-            <p className="font-semibold">2</p>
-          </div>
-        </div>
+        <button
+          onClick={() => setopenRoomDetails(false)}
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-white/30"
+        >
+          <IoClose className="text-white" size={18} />
+        </button>
       </div>
 
-      {/* TEACHERS */}
-      <div className="border border-[#E6E6E6] mx-5 rounded-xl p-4">
-        <h3 className="font-semibold text-sm mb-1">Teacher</h3>
-        <p className="text-xs text-gray-500 mb-4">
-          Instructors assigned to this subject
-        </p>
+      {/* ================= BODY ================= */}
+      <div className="px-6 mt-4 flex flex-col gap-4 flex-1">
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-4">
-          {teacherData.map((item, index) => (
-            <div
-              key={index}
-              className="border border-[#E6E6E6] rounded-lg p-3 flex items-center gap-3"
-            >
-              {/* <div  /> */}
-              <img src={item.img} alt="" className="w-10 h-10 rounded-full " />
-              <div>
-                <span className="flex gap-2"><p className="font-semibold text-sm">{item.name} </p> {item.isverified && <MdVerified className="mt-0.5 text-[#007AFF]" />}</span>
-                <p className="text-xs text-gray-500">{item.role}</p>
-              </div>
-            </div>
-          ))}
+        {/* SUBJECT INFORMATION */}
+        <div className="border border-[#E6E6E6] rounded-[12px] p-3 flex justify-between items-center">
+          <div>
+            <p className="text-gray-500 text-sm">Subject Code</p>
+            <p className="font-semibold text-sm">PHY001</p>
+          </div>
+
+          <div>
+            <p className="text-gray-500 text-sm">Student Enroll</p>
+            <p className="font-semibold text-sm">100</p>
+          </div>
+
+          <div>
+            <p className="text-gray-500 text-sm">Category</p>
+            <span className="inline-flex items-center gap-2 mt-1 px-3 py-1 rounded-md text-xs font-semibold bg-[#E3F2FD] text-[#1565C0]">
+              <span className="w-2 h-2 rounded-full bg-[#1565C0]" />
+              Elective
+            </span>
+          </div>
         </div>
-      </div>
 
-      {/* SUBJECTS */}
-      <div className="border border-[#E6E6E6] m-5 rounded-xl p-4">
-        <h3 className="font-semibold text-sm ">Subject</h3>
-        <p className="text-xs text-gray-500 mb-3">
-          Assigned subject to class
-        </p>
+        {/* ================= TEACHERS ================= */}
+        <div className="border border-[#E6E6E6] rounded-[12px] p-3 flex flex-col gap-4">
+          <div>
+            <h3 className="font-semibold text-sm">Teacher</h3>
+            <p className="text-xs text-gray-500">
+              Instructors assigned to this subject
+            </p>
+          </div>
 
-        <div className="flex flex-wrap gap-3">
-          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#FEE3E3] text-[#F94144] border border-[#F94144]">
-            Physics
-          </span>
-          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#E3F2EE] text-[#43AA8B] border border-[#43AA8B]">
-            Chemistry
-          </span>
-          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#FEEFDD]  text-[#F8961E] border border-[#F8961E]">
-            Math
-          </span>
-          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#E6EAEF] text-[#277DA1] border border-[#277DA1]">
-            English
-          </span>
-          <span className="px-4 w-45 py-3 h-12.5 font-semibold rounded-lg border-l-4 bg-[#EFF5E9] text-[#90BE6D] border border-[#90BE6D]">
-            Social Studies
-          </span>
-        </div>
-      </div>
-             
-               
-
-                {/* Footer (Fixed) */}
-            <div className="flex justify-end gap-3 p-6 ">
-              <button
-                onClick={() => setopenRoomDetails(false)}
-                className="px-4 py-2 border rounded-lg text-gray-600"
+          <div className="grid grid-cols-3 gap-4">
+            {teacherData.map((item, index) => (
+              <div
+                key={index}
+                className="border border-[#E6E6E6] rounded-[12px] p-3 flex items-center gap-3"
               >
-                Cancel
-              </button>
-              <button  onClick={() => {setopenEditModel(true); setopenRoomDetails(false);}} className="px-4 py-2 bg-[#0B3142] text-white rounded-lg">
-                Edit Room
-              </button>
-            </div>
+                <img
+                  src={item.img}
+                  alt=""
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+                <div>
+                  <div className="flex items-center gap-1">
+                    <p className="font-semibold text-sm">{item.name}</p>
+                    {item.isverified && (
+                      <MdVerified className="text-[#007AFF]" size={16} />
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-500">{item.role}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      )}
+
+        {/* ================= CLASS ================= */}
+        <div className="border border-[#E6E6E6] rounded-[12px] p-3 flex flex-col gap-4">
+          <div>
+            <h3 className="font-semibold text-sm">Class</h3>
+            <p className="text-xs text-gray-500">
+              Subject assigned to this classes
+            </p>
+          </div>
+
+          <div className="grid grid-cols-4 gap-4">
+            {[
+              { name: "Class 1-A", border: "#F94144", bg: "#FCE8EC" },
+              { name: "Class 1-B", border: "#277DA1", bg: "#E6F0F7" },
+              { name: "Class 11-A", border: "#43AA8B", bg: "#E6F4EF" },
+              { name: "Class 12-A", border: "#F8961E", bg: "#FFF1E6" },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="rounded-[12px] p-4 flex flex-col gap-3"
+                style={{
+                  backgroundColor: item.bg,
+                  borderTop: `4px solid ${item.border}`,
+                }}
+              >
+                <p className="font-semibold text-sm">
+                  {item.name}
+                </p>
+
+                <div
+                  className="h-[1px] opacity-40"
+                  style={{ backgroundColor: item.border }}
+                />
+
+                <div className="flex items-center justify-between">
+                  <div className="flex -space-x-2">
+                    <img src="https://i.pravatar.cc/40?img=1" className="w-8 h-8 rounded-full border-2 border-white" />
+                    <img src="https://i.pravatar.cc/40?img=2" className="w-8 h-8 rounded-full border-2 border-white" />
+                    <img src="https://i.pravatar.cc/40?img=3" className="w-8 h-8 rounded-full border-2 border-white" />
+                    <div className="w-8 h-8 rounded-full bg-[#577590] text-white text-xs font-semibold flex items-center justify-center border-2 border-white">
+                      +22
+                    </div>
+                  </div>
+
+                  <span className="text-sm text-gray-600">
+                    25 students
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ================= FOOTER ================= */}
+      <div className="flex justify-end gap-4 px-6 py-6 border-t border-[#E6E6E6]">
+        <button
+          onClick={() => setopenRoomDetails(false)}
+          className="px-6 py-2 rounded-lg border border-gray-300 text-gray-600"
+        >
+          Cancel
+        </button>
+
+        <button
+          onClick={() => {
+            setopenEditModel(true);
+            setopenRoomDetails(false);
+          }}
+          className="px-6 py-2 bg-[#0B3142] text-white rounded-lg"
+        >
+          Edit Room
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
       
     </div>
   );
