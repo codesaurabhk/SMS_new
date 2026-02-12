@@ -322,7 +322,7 @@ const Subjects = () => {
                   {item.teacher}
                 </span>
                 <span className="text-xs text-[#9C9C9C] truncate max-w-[45]">
-                  {item.teachername}
+                 {item.teachername}
                 </span>
               </div>
             </td>
