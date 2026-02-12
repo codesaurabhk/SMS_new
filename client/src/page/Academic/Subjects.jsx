@@ -321,7 +321,7 @@ const Subjects = () => {
                 <span className="font-semibold text-[#12516E]">
                   {item.teacher}
                 </span>
-                <span className="text-xs text-[#9C9C9C] truncate max-w-[180px]">
+                <span className="text-xs text-[#9C9C9C] truncate max-w-[45]">
                   {item.teachername}
                 </span>
               </div>
