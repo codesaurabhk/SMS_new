@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Certificate = () => {
+function Certificate() {
   return (
-    <div>Certificate</div>
+    <div>
+      
+    </div>
   )
 }
 

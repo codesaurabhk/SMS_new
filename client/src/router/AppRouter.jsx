@@ -25,7 +25,7 @@ import AcademicExam from "../page/Academic/AcademicExam.jsx";
 import AcademicResult from "../page/Academic/AcademicResult.jsx";
 import AccountStatement from "../page/Finance/AccountStatement.jsx";
 import FeeManagement from "../page/Finance/FeeManagement.jsx";
-import Payroll from "../page/Finance/Payroll.jsx";
+import Payroll from "../page/Finance/Payroll/Payroll.jsx";
 import Report from "../page/Finance/Report.jsx";
 import AllStudents from "../page/Admission/AllStudents.jsx";
 import AdmissionAttendance from "../page/Admission/AdmissionAttendance.jsx";
