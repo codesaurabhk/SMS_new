@@ -1,8 +1,10 @@
 import React from 'react'
 
-const AccountStatement = () => {
+function AccountStatement() {
   return (
-    <div>AccountStatement</div>
+    <div>
+      
+    </div>
   )
 }
 
