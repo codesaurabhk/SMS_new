@@ -3,117 +3,123 @@ import { IoSearchOutline } from "react-icons/io5";
 import king from "../../../assets/images/king.jpg";
 import lantern from "../../../assets/images/lantern.png";
 
-
 function GeneratePayroll() {
   const [showPayroll, setShowPayroll] = useState(false);
   const [active, setActive] = useState("All");
 
   const baseBtn = "gap-8 ";
-  const activeBtn ="bg-[#F5F7F7] text-[#0B3142] text-[16px] font-semibold border border-[#ffffff] rounded-full px-4 py-2 ";
+  const activeBtn =
+    "bg-[#F5F7F7] text-[#0B3142] text-[16px] font-semibold border border-[#ffffff] rounded-full px-4 py-2 ";
   const inactiveBtn = "text-[#9EA1A1] text-[16px] font-semibold px-4 py-2";
 
   const staffData = [
-  {
-    id: 1,
-    name: "Aarav Sharma",
-    image: king,
-    empId: "EMP001",
-    role: "Mathematics Teacher",
-    department: "Academics",
-    paid: "₹45,000",
-    status: "Paid",
-  },
-  {
-    id: 2,
-    name: "Priya Verma",
-    image: lantern,
-    empId: "EMP001",
-    role: "Science Teacher",
-    department: "Academics",
-    paid: "₹42,000",
-    status: "Unpaid",
-  },
-  {
-    id: 3,
-    name: "Rohan Mehta",
-    image: king,
-    empId: "EMP001",
-    role: "Accountant",
-    department: "Finance",
-    paid: "₹38,000",
-    status: "Paid",
-  },
-  {
-    id: 4,
-    name: "Sneha Kapoor",
-    image: lantern,
-    empId: "EMP001",
-    role: "HR Manager",
-    department: "Human Resources",
-    paid: "₹50,000",
-    status: "Paid",
-  },
-  {
-    id: 5,
-    name: "Vikram Singh",
-    image: king,
-    empId: "EMP001",
-    role: "Librarian",
-    department: "Library",
-    paid: "₹28,000",
-    status: "Unpaid",
-  },
-  {
-    id: 6,
-    name: "Ananya Das",
-    image: king,
-    empId: "EMP001",
-    role: "Computer Instructor",
-    department: "IT",
-    paid: "₹47,000",
-    status: "Paid",
-  },
-  {
-    id: 7,
-    name: "Kunal Patel",
-    image: lantern,
-    empId: "EMP001",
-    role: "Sports Coach",
-    department: "Sports",
-    paid: "₹30,000",
-    status: "Pending",
-  },
-  {
-    id: 8,
-    name: "Meera Nair",
-    image: king,
-    empId: "EMP001",
-    role: "Receptionist",
-    department: "Administration",
-    paid: "₹25,000",
-    status: "Paid",
-  },
-  {
-    id: 9,
-    name: "Rahul Yadav",
-    image: king,
-    empId: "EMP001",
-    role: "Transport Manager",
-    department: "Transport",
-    paid: "₹35,000",
-    status: "Pending",
-  },
-  {
-    id: 10,
-    name: "Pooja Iyer",
-    image: lantern,
-    empId: "EMP001",
-    role: "Counselor",
-    department: "Student Welfare",
-    paid: "₹40,000",
-    status: "Unpaid",
-  },
-];
+    {
+      id: 1,
+      name: "Aarav Sharma",
+      image: king,
+      empId: "EMP001",
+      role: "Mathematics Teacher",
+      department: "Academics",
+      paid: "₹45,000",
+      status: "Processed",
+    },
+    {
+      id: 2,
+      name: "Priya Verma",
+      image: lantern,
+      empId: "EMP001",
+      role: "Science Teacher",
+      department: "Academics",
+      paid: "₹42,000",
+      status: "Unpaid",
+    },
+    {
+      id: 3,
+      name: "Rohan Mehta",
+      image: king,
+      empId: "EMP001",
+      role: "Accountant",
+      department: "Finance",
+      paid: "₹38,000",
+      status: "Paid",
+    },
+    {
+      id: 4,
+      name: "Sneha Kapoor",
+      image: lantern,
+      empId: "EMP001",
+      role: "HR Manager",
+      department: "Human Resources",
+      paid: "₹50,000",
+      status: "Paid",
+    },
+    {
+      id: 5,
+      name: "Vikram Singh",
+      image: king,
+      empId: "EMP001",
+      role: "Librarian",
+      department: "Library",
+      paid: "₹28,000",
+      status: "Unpaid",
+    },
+    {
+      id: 6,
+      name: "Ananya Das",
+      image: king,
+      empId: "EMP001",
+      role: "Computer Instructor",
+      department: "IT",
+      paid: "₹47,000",
+      status: "Processed",
+    },
+    {
+      id: 7,
+      name: "Kunal Patel",
+      image: lantern,
+      empId: "EMP001",
+      role: "Sports Coach",
+      department: "Sports",
+      paid: "₹30,000",
+      status: "Pending",
+    },
+    {
+      id: 8,
+      name: "Meera Nair",
+      image: king,
+      empId: "EMP001",
+      role: "Receptionist",
+      department: "Administration",
+      paid: "₹25,000",
+      status: "Paid",
+    },
+    {
+      id: 9,
+      name: "Rahul Yadav",
+      image: king,
+      empId: "EMP001",
+      role: "Transport Manager",
+      department: "Transport",
+      paid: "₹35,000",
+      status: "Pending",
+    },
+    {
+      id: 10,
+      name: "Pooja Iyer",
+      image: lantern,
+      empId: "EMP001",
+      role: "Counselor",
+      department: "Student Welfare",
+      paid: "₹40,000",
+      status: "Unpaid",
+    },
+  ];
+
+  const statusStyle = {
+    Processed: "bg-[#F8D7DA] text-[#C92131]",
+    Pending: "bg-[#E3F2FD] text-[#1565C0]",
+    Paid: "bg-[#D4EDDA] text-[#009638]",
+  };
 
   return (
     <div>
@@ -302,9 +308,9 @@ function GeneratePayroll() {
                 </tr>
               </thead>
               <tbody>
-                {staffData.map((item, index) => ( 
-                  <tr  className="border-b border-[#e6e6e6]">
-                    <td className="px-4 py-3 text-left font-normal text-[#12516E] text-[14px] w-[40%]">
+                {staffData.map((item, index) => (
+                  <tr className="border-b border-[#e6e6e6]">
+                    <td className="px-4 py-3 text-left font-normal text-[#12516E] text-[14px] w-[30%]">
                       <div className="flex gap-4">
                         <div className="w-10 h-10 rounded-full overflow-hidden">
                           <img
@@ -325,42 +331,38 @@ function GeneratePayroll() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-left font-normal text-[14px]">
-                      {item.role}
+                    <td className="px-4 py-3 flex font-normal text-[14px] gap-2.5">
+                      <span className="px-1 py-2 border border-[#007AFF] rounded w-full flex items-center justify-center text-[#007AFF] font-normal">
+                        {item.role}
+                      </span>
                     </td>
                     <td className="px-4 py-3 text-left font-normal text-[14px]">
                       {item.department}
                     </td>
                     <td className="px-4 py-3 text-left font-normal text-[14px]">
-                      {item.amountwaived}
+                      {item.paid}
                     </td>
                     <td className="px-4 py-3 text-left font-normal text-[14px]">
-                      {/* <span
-                        className={`px-2 py-1 rounded ${
-                          item.status === "Active"
-                            ? "bg-[#D4EDDA] text-[#009638]"
-                            : "bg-[#F8D7DA] text-[#C92131]"
-                        }`}
+                      <span
+                        className={`flex justify-center items-center gap-1 px-3 py-1 rounded text-xs font-semibold
+                          ${item.status === "Processed" ? "bg-green-100 text-green-700" : ""}
+                          ${item.status === "Paid" ? "bg-red-100 text-red-700" : ""}
+                          ${item.status === "Pending" ? "bg-yellow-100 text-yellow-700" : ""}
+                        `}
                       >
                         {item.status}
-                      </span> */}
+                      </span>
                     </td>
                     <td className="px-4 py-3 text-left font-normal text-[14px] flex gap-2 items-center text-[#9C9C9C]">
                       <span className="">
                         {/* <IoEyeOutline size={18} /> */}
                       </span>
-                      <span>
-                        {/* <FiRefreshCcw size={18} /> */}
-                      </span>
-                      <span>
-                        {/* <FiEdit size={18} /> */}
-                      </span>
-                      <span>
-                        {/* <RiDeleteBinLine size={18} /> */}
-                      </span>
+                      <span>{/* <FiRefreshCcw size={18} /> */}</span>
+                      <span>{/* <FiEdit size={18} /> */}</span>
+                      <span>{/* <RiDeleteBinLine size={18} /> */}</span>
                     </td>
                   </tr>
-                 ))}
+                ))}
               </tbody>
             </table>
           </div>
