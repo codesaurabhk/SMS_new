@@ -295,20 +295,20 @@ function SalaryStructure() {
                     {item.department}
                   </td>
                   <td className="px-4 py-3 text-left font-normal text-[14px]">
-                    {item.basic}
+                    ₹ {item.basic}
                   </td>
                   <td className="px-4 py-3 text-left font-normal text-[14px]">
-                    {item.hra}
+                     ₹ {item.hra}
+                  </td>
+                  <td className="px-4 py-3 text-left font-normal text-[14px] text-[#DC2626]">
+                     ₹ {item.deduction}
                   </td>
                   <td className="px-4 py-3 text-left font-normal text-[14px]">
-                    {item.deduction}
-                  </td>
-                  <td className="px-4 py-3 text-left font-normal text-[14px]">
-                    {item.allowances}
+                     ₹ {item.allowances}
                   </td>
 
                   <td className="px-4 py-3 text-left font-normal text-[14px]">
-                    {item.netSalary}
+                     ₹ {item.netSalary}
                   </td>
                   <td className="px-4 py-3 text-left font-normal text-[14px] flex gap-2 items-center text-[#9C9C9C]">
                     <span className="">
