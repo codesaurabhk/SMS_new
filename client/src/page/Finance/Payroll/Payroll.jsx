@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import GeneratePayroll from "./GeneratePayroll";
 import SalaryStructure from "./SalaryStructure";
+import PaySlip from "./PaySlip";
+import Deduction from "./Deduction";
 
 function DetailsContent({ active }) {
   switch (active) {
@@ -10,11 +12,11 @@ function DetailsContent({ active }) {
     case "Salary Structure":
       return <SalaryStructure />;
 
-    case "Pending Fees":
-      return <div></div>;
+    case "Pay Slips":
+      return <PaySlip />;
 
-    case "Fee Particulars":
-      return <div></div>;
+    case "Deduction & Advanced":
+      return <Deduction />;
 
     default:
       return null;

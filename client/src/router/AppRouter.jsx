@@ -70,6 +70,8 @@ import CreateSection from "../page/Academic/CreateSection.jsx";
 import CreateStream from "../page/Academic/CreateStream.jsx";
 import ConcessionType from "../page/Finance/ConcessionType.jsx";
 import Concession from "../page/Finance/Concession.jsx";
+import SalaryStructure from "../page/Finance/Payroll/SalaryStructure.jsx";
+import Allowance from "../page/Finance/Payroll/Allowance.jsx";
 
 
 
@@ -171,6 +173,10 @@ function AppRouter() {
           <Route path="receipt" element={<Receipt/>} />
           <Route path="concessiontype" element={<ConcessionType/>} />
           <Route path="concession" element={<Concession/>} />
+
+          {/*salary structure */}
+          <Route path="salary-structure" element={<SalaryStructure/>} />
+          <Route path="allowance" element={<Allowance/>} />
 
 
            {/* Events & Calendar */}
