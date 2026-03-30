@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import Pagination from "../../../components/Pagination";
 {
   /* <<========================------- icons -------==========================>> */
@@ -26,9 +25,10 @@ import batman from "../../../assets/images/batman.jpg";
 import flash from "../../../assets/images/flash.jpg";
 import diana from "../../../assets/images/wonder-women.jpg";
 import superman from "../../../assets/images/super.jpg";
+import { Link } from "react-router-dom";
 
 function SalaryStructure() {
-  const [showApplyConcessionType, setShowApplyConcessionType] = useState(false);
+  const [showAddSalarySturctureType, setShowAddSalarySturctureType] = useState(false);
 
   const conscessiondata = [
     {
@@ -180,15 +180,15 @@ function SalaryStructure() {
 
           {/* RIGHT BUTTONS */}
           <div className="flex gap-3">
-            <Link to="/ConcessionType">
-              <button className="flex items-center gap-2 px-6 py-3 text-[#696969] font-semibold text-[16px] border border-[#9c9c9c] rounded-lg">
-                <IoMdAdd size={20} />
-                Add allowance head
-              </button>
+            <Link to="/allowance">
+            <button className="flex items-center gap-2 px-6 py-3 text-[#696969] font-semibold text-[16px] border border-[#9c9c9c] rounded-lg">
+              <IoMdAdd size={20} />
+              Add allowance head
+            </button>
             </Link>
             <button
               className="flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white font-semibold text-[16px] border border-[#0B3142] rounded-lg"
-              onClick={() => setShowApplyConcessionType(true)}
+              onClick={() => setShowAddSalarySturctureType(true)}
             >
               <IoMdAdd size={20} />
               Add Salary Structure
@@ -226,38 +226,50 @@ function SalaryStructure() {
         </div>
 
         {/* <============================ Table ============================> */}
-        <div className="mt-8 border border-[#e6e6e6] rounded-lg">
-          <table className="w-full">
+        <div className="mt-8 border border-[#e6e6e6] rounded-lg overflow-x-auto">
+          <table className="min-w-[1000px] w-full">
+            {/* ================= HEADER ================= */}
             <thead>
               <tr className="border-b border-[#e6e6e6]">
-                <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold flex justify-between items-center">
-                  <span>Student</span>
-                  <span>
+                <th className="px-3 py-2 sm:px-5 sm:py-4 text-left text-[12px] sm:text-[14px] font-semibold text-[#1c1c1c]">
+                  <div className="flex justify-between items-center">
+                    <span>Student</span>
                     <RxCaretSort />
-                  </span>
+                  </div>
                 </th>
-                <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
+
+                <th className="px-3 py-2 sm:px-5 sm:py-4 text-left text-[12px] sm:text-[14px] font-semibold text-[#1c1c1c]">
                   Role
                 </th>
-                <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
+
+                {/* Hide on small screens */}
+                <th className="hidden sm:table-cell px-3 py-2 sm:px-5 sm:py-4 text-left text-[14px] font-semibold text-[#1c1c1c]">
                   Department
                 </th>
-                <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
+
+                <th className="px-3 py-2 sm:px-5 sm:py-4 text-left text-[12px] sm:text-[14px] font-semibold text-[#1c1c1c]">
                   Basic
                 </th>
-                <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
+
+                {/* Hide on small screens */}
+                <th className="hidden sm:table-cell px-3 py-2 sm:px-5 sm:py-4 text-left text-[14px] font-semibold text-[#1c1c1c]">
                   HRA
                 </th>
-                <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold flex justify-between items-center">
+
+                <th className="px-3 py-2 sm:px-5 sm:py-4 text-left text-[12px] sm:text-[14px] font-semibold text-[#1c1c1c]">
                   Deduction
                 </th>
-                <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
+
+                {/* Hide on small screens */}
+                <th className="hidden sm:table-cell px-3 py-2 sm:px-5 sm:py-4 text-left text-[14px] font-semibold text-[#1c1c1c]">
                   Allowances
                 </th>
-                <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
+
+                <th className="px-3 py-2 sm:px-5 sm:py-4 text-left text-[12px] sm:text-[14px] font-semibold text-[#1c1c1c]">
                   Net Salary
                 </th>
-                <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
+
+                <th className="px-3 py-2 sm:px-5 sm:py-4 text-center text-[12px] sm:text-[14px] font-semibold text-[#1c1c1c]">
                   Action
                 </th>
               </tr>
@@ -265,9 +277,11 @@ function SalaryStructure() {
             <tbody>
               {conscessiondata.map((item, index) => (
                 <tr key={index} className="border-b border-[#e6e6e6]">
-                  <td className="px-4 py-3 text-left font-normal text-[#12516E] text-[14px]">
-                    <div className="flex gap-4">
-                      <div className="w-10 h-10 rounded-full overflow-hidden">
+
+                  {/* STUDENT */}
+                  <td className="px-3 py-2 sm:px-4 sm:py-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden">
                         <img
                           src={item.img}
                           alt=""
@@ -275,52 +289,63 @@ function SalaryStructure() {
                         />
                       </div>
 
-                      {/* Name + ID */}
                       <div className="flex flex-col leading-tight">
-                        <span className="text-[#12516E] font-semibold">
+                        <span className="text-[#12516E] font-semibold text-[12px] sm:text-[14px]">
                           {item.studentName}
                         </span>
-                        <span className="text-sm text-[#9c9c9c] font-semibold">
+                        <span className="text-[10px] sm:text-sm text-[#9c9c9c] font-semibold">
                           {item.studId}
                         </span>
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3">
-                    <span className="inline-flex w-full items-center justify-center px-3 py-1 text-sm font-medium border border-[#007AFF] text-[#007AFF] rounded-md">
+
+                  {/* ROLE */}
+                  <td className="px-3 py-2 sm:px-4 sm:py-3">
+                    <span className="inline-flex w-full items-center justify-center px-2 py-1 text-[10px] sm:text-sm font-medium border border-[#007AFF] text-[#007AFF] rounded-md">
                       {item.role}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-left font-normal text-[14px]">
+
+                  {/* DEPARTMENT */}
+                  <td className="hidden sm:table-cell px-4 py-3 text-[14px]">
                     {item.department}
                   </td>
-                  <td className="px-4 py-3 text-left font-normal text-[14px]">
+
+                  {/* BASIC */}
+                  <td className="px-3 py-2 sm:px-4 sm:py-3 text-[12px] sm:text-[14px]">
                     ₹ {item.basic}
                   </td>
-                  <td className="px-4 py-3 text-left font-normal text-[14px]">
-                     ₹ {item.hra}
-                  </td>
-                  <td className="px-4 py-3 text-left font-normal text-[14px] text-[#DC2626]">
-                     ₹ {item.deduction}
-                  </td>
-                  <td className="px-4 py-3 text-left font-normal text-[14px]">
-                     ₹ {item.allowances}
+
+                  {/* HRA */}
+                  <td className="hidden sm:table-cell px-4 py-3 text-[14px]">
+                    ₹ {item.hra}
                   </td>
 
-                  <td className="px-4 py-3 text-left font-normal text-[14px]">
-                     ₹ {item.netSalary}
+                  {/* DEDUCTION */}
+                  <td className="px-3 py-2 sm:px-4 sm:py-3 text-[12px] sm:text-[14px] text-[#DC2626]">
+                    ₹ {item.deduction}
                   </td>
-                  <td className="px-4 py-3 text-left font-normal text-[14px] flex gap-2 items-center text-[#9C9C9C]">
-                    <span className="">
-                      <IoEyeOutline size={18} />
-                    </span>
-                    <span>
-                      <FiEdit size={18} />
-                    </span>
-                    <span>
-                      <RiDeleteBinLine size={18} />
-                    </span>
+
+                  {/* ALLOWANCES */}
+                  <td className="hidden sm:table-cell px-4 py-3 text-[14px]">
+                    ₹ {item.allowances}
                   </td>
+
+                  {/* NET SALARY */}
+                  <td className="px-3 py-2 sm:px-4 sm:py-3 text-[12px] sm:text-[14px] font-semibold">
+                    ₹ {item.netSalary}
+                  </td>
+
+                  {/* ACTION */}
+                  <td className="px-3 py-2 sm:px-4 sm:py-3">
+                    <div className="flex items-center justify-center gap-3 text-[#9C9C9C]">
+                      <IoEyeOutline className="text-[16px] sm:text-[18px] cursor-pointer hover:text-[#007AFF]" />
+                      <FiEdit className="text-[16px] sm:text-[18px] cursor-pointer hover:text-green-600" />
+                      <RiDeleteBinLine className="text-[16px] sm:text-[18px] cursor-pointer hover:text-red-500 text-[#DC2626]" />
+                    </div>
+                  </td>
+
                 </tr>
               ))}
             </tbody>
@@ -329,27 +354,23 @@ function SalaryStructure() {
         <Pagination />
       </div>
 
-      {showApplyConcessionType && (
+      {showAddSalarySturctureType && (
         <div
-          className="fixed inset-0 bg-black/50 flex justify-center z-50 p-3 sm:p-6"
-          onClick={() => setShowApplyConcessionType(false)}
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 sm:p-6"
+          onClick={() => setShowAddSalarySturctureType(false)}
         >
           <div
             className="bg-white w-full max-w-lg sm:max-w-2xl lg:max-w-4xl rounded-xl shadow-lg relative p-4 sm:p-6 max-h-[95vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center">
-              <div className="flex flex-col gap-1">
-                <span className="text-[18px] text-[#1c1c1c] font-semibold">
-                  Add New Concession
-                </span>
-                <span className=" text-[#696969] font-normal text-[18px]">
-                  Grant a fee concession or schloarship to a student
-                </span>
+              <div className="flex flex-col gap-2 sm:gap-1">
+                <span className="text-[#1C1C1C] sm:text-[14px] text-18px font-semibold">Create Salary</span>
+                <span className="text-[#9C9C9C] sm:text-[14px] text-16px font-semibold">Define Comprehensive fee structure for a class/grade</span>
               </div>
               <div>
                 <button
-                  onClick={() => setShowApplyConcessionType(false)}
+                  onClick={() => setShowAddSalarySturctureType(false)}
                   className="text-xl"
                 >
                   <IoClose size={28} />
@@ -357,171 +378,137 @@ function SalaryStructure() {
               </div>
             </div>
 
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-4">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-3 mt-6">
               <div className="flex flex-col gap-1">
-                <label htmlFor="academicyear">Academic years</label>
-                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select
-                    name=""
-                    id="academicyear"
-                    className="border-none outline-none w-full"
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="selecteBloodGroup"
+                    className="text-[#696969] font-medium text-[14px] "
                   >
-                    <option value="">Select Academic Year</option>
+                    Role
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                  <select
+                    name="selecteBloodGroup"
+                    id="selecteBloodGroup"
+                    className="w-full border-none outline-none"
+                    defaultValue="Applied Class"
+                  >
+                    <option value="">Select Frequence</option>
+                    <option value="">Admin</option>
+                    <option value="">Staff</option>
+                    <option value="">Teacher</option>
                   </select>
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="class">Class</label>
-                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select
-                    name=""
-                    id="class"
-                    className="border-none outline-none w-full"
+                <div className="flex gap-1">
+                  <label
+                    htmlFor="selecteBloodGroup"
+                    className="text-[#696969] font-medium text-[14px] "
                   >
-                    <option value="">Select Class</option>
+                    Staff
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <div className="border border-[#9C9C9C] rounded-md px-3 py-2">
+                  <select
+                    name="selecteBloodGroup"
+                    id="selecteBloodGroup"
+                    className="w-full border-none outline-none"
+                    defaultValue="Applied Class"
+                  >
+                    <option value="">Select Staff</option>
+                    <option value="">A+</option>
+                    <option value="">B+</option>
                   </select>
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="section">Section</label>
-                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select
-                    name=""
-                    id="section"
-                    className="border-none outline-none w-full"
-                  >
-                    <option value="">Select Section</option>
-                  </select>
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Basic Salary
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
                 </div>
-              </div>
-            </div>
-
-            <div className="mt-2">
-              <div className="flex flex-col gap-1">
-                <label htmlFor="student">Student</label>
-                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select
-                    name=""
-                    id="student"
-                    className="border-none outline-none w-full"
-                  >
-                    <option value="">Select Student</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-2">
-              <div className="flex flex-col gap-1">
-                <label htmlFor="concessiontype">Concession Type</label>
-                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <select
-                    name=""
-                    id="concessiontype"
-                    className="border-none outline-none w-full"
-                  >
-                    <option value="">Select Concession type</option>
-                  </select>
-                </div>
+                <input
+                  type="text"
+                  placeholder="e.g ₹ 1000"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="discount">Discount percentange(%)</label>
-                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <input
-                    type="text"
-                    name=""
-                    id="discount"
-                    placeholder="50%"
-                    className="border-none outline-none w-full"
-                  />
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    HRA(%)
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
                 </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-1 mt-2">
-              <label htmlFor="reason">Reason / Justification</label>
-              <textarea
-                name=""
-                id="reason"
-                placeholder="provide details reason for granting this concession"
-                className="w-full resize-none px-3 py-4 outline-none border border-[#E6E6E6] rounded-xl"
-              ></textarea>
-            </div>
-
-            <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-2">
-              <div className="flex flex-col gap-1">
-                <label htmlFor="validstartdate">Valid from</label>
-                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <input
-                    type="date"
-                    name=""
-                    id="validstartdate"
-                    placeholder=""
-                    className="border-none outline-none w-full"
-                  />
-                </div>
+                <input
+                  type="text"
+                  placeholder="e.g ₹ 500"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="validuntil">Valid Until</label>
-                <div className="border border-[#E6E6E6] px-4 py-3 rounded-xl">
-                  <input
-                    type="date"
-                    name=""
-                    id="validuntil"
-                    placeholder=""
-                    className="border-none outline-none w-full"
-                  />
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Transport Allowance
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
                 </div>
+                <input
+                  type="text"
+                  placeholder="e.g ₹ 500"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Medical Allowance
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="e.g ₹ 500"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-1">
+                  <label className="text-[#696969] font-medium text-[14px] ">
+                    Special Allowance
+                  </label>
+                  <span className="text-[#DC2626] text-[14px]">*</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="e.g ₹ 500"
+                  className="w-full border border-[#9C9C9C] rounded-md px-3 py-2 outline-none focus:ring-[#9C9C9C]"
+                />
               </div>
             </div>
 
-            <div className="flex flex-col gap-1 mt-2">
-              <span>Supporting Document</span>
-              <div className="w-full">
-                <div
-                  className="relative w-full border border-dashed border-[#118AB2] rounded-lg bg-white px-2 py-4 cursor-pointer hover:bg-[#F8FBFF] hover:border-[#0B77FF] transition"
-                  onClick={() => document.getElementById("doc-upload").click()}
-                >
-                  <div className="flex flex-col items-center justify-center text-center">
-                    <FiUpload className="text-[#118AB2]" size={28} />
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-2 justify-end">
 
-                    <p className="flex flex-wrap justify-center gap-1 mt-2 text-[16px] text-[#1c1c1c] font-medium">
-                      Drag & Drop to upload or
-                      <span className="text-[#0B77FF] font-semibold ml-1">
-                        Browse
-                      </span>
-                    </p>
-
-                    <p className="mt-1 text-[14px] text-[#696969]">
-                      Only PDF files are allowed.
-                    </p>
-
-                    {/* Hidden Input */}
-                    <input
-                      id="doc-upload"
-                      type="file"
-                      accept="application/pdf"
-                      className="hidden"
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  </div>
-                </div>
-                <span className="text-[12px] text-[#6A7282] font-normal">
-                  upload certificates, income proof, or the other supporting
-                  document
-                </span>
-              </div>
-            </div>
-
-            <div className="flex gap-3 mt-2 justify-end">
+              {/* Cancel Button */}
               <button
-                className="flex items-center gap-2 px-6 py-3 text-[#696969] font-semibold text-[16px] border border-[#9C9C9C] rounded-lg"
-                onClick={() => setShowApplyConcessionType(false)}
+                onClick={() => setShowAddSalarySturctureType(false)}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-3 sm:px-4 lg:px-5 py-2 sm:py-2.5 text-[12px] sm:text-[14px] lg:text-[16px] text-[#696969] font-semibold border border-[#9C9C9C] rounded-lg"
               >
                 Cancel
               </button>
-              <button className="flex items-center gap-2 px-6 py-3 bg-[#0B3142] text-white font-semibold text-[16px] border border-[#0B3142] rounded-lg">
-                Create Fee Head
+
+              {/* Create Button */}
+              <button
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-3 sm:px-5 lg:px-6 py-2 sm:py-2.5 text-[12px] sm:text-[14px] lg:text-[16px] 
+                bg-[#0B3142] text-white font-semibold border border-[#0B3142] rounded-lg"
+              >
+                Create Structure
               </button>
             </div>
           </div>

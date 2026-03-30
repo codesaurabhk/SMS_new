@@ -328,20 +328,9 @@ function GeneratePayroll() {
 
           {/* BULK ACTION */}
           {active === "Bulk Action" && (
-            <div className="mt-6 p-6 border border-[#E6E6E6] rounded-xl">
-              <span className="text-[18px] font-semibold">
-                Bulk Payroll Action
-              </span>
-
-              <div className="mt-4 flex gap-4">
-                <button className="px-6 py-3 bg-[#0B3142] text-white rounded-lg">
-                  Upload Excel
-                </button>
-
-                <button className="px-6 py-3 bg-[#009638] text-white rounded-lg">
-                  Process Payroll
-                </button>
-              </div>
+            <div className="flex gap-">
+              <div></div>
+              <div></div>
             </div>
           )}
         </div>
