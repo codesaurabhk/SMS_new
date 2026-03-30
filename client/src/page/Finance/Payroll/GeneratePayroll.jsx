@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import king from "../../../assets/images/king.jpg";
 import lantern from "../../../assets/images/lantern.png";
+import Pagination from "../../../components/Pagination";
 
 function GeneratePayroll() {
   const [showPayroll, setShowPayroll] = useState(false);
-  const [active, setActive] = useState("All");
+  const [active, setActive] = useState("Manually");
 
   const baseBtn = "gap-8 ";
   const activeBtn =
@@ -132,82 +133,61 @@ function GeneratePayroll() {
             Record Payments and genrates receipts
           </span>
         </div>
+
         <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-9">
           <div>
             <section className="flex flex-col gap-2">
-              <label
-                htmlFor="class"
-                className="text-[#1C1C1C] text-[14px] font-semibold"
-              >
+              <label className="text-[#1C1C1C] text-[14px] font-semibold">
                 Role
               </label>
               <div className="rounded-2xl px-3 py-4 border border-[#E6E6E6]">
-                <select
-                  name=""
-                  id="class"
-                  className="w-full border-none outline-none"
-                >
-                  <option value=""></option>
-                  <option value="">Teacher</option>
-                  <option value="">Staff</option>
-                  <option value="">Others</option>
+                <select className="w-full border-none outline-none">
+                  <option></option>
+                  <option>Teacher</option>
+                  <option>Staff</option>
+                  <option>Others</option>
                 </select>
               </div>
             </section>
           </div>
+
           <div>
             <section className="flex flex-col gap-2">
-              <label
-                htmlFor="section"
-                className="text-[#1C1C1C] text-[14px] font-semibold"
-              >
+              <label className="text-[#1C1C1C] text-[14px] font-semibold">
                 Payroll Month
               </label>
               <div className="rounded-2xl px-3 py-4 border border-[#E6E6E6]">
-                <select
-                  name=""
-                  id="section"
-                  className="w-full border-none outline-none"
-                >
-                  <option value="">Select Month</option>
-                  <option value="">January</option>
-                  <option value="">Feburary</option>
-                  <option value="">March</option>
-                  <option value="">April</option>
-                  <option value="">May</option>
-                  <option value="">june</option>
-                  <option value="">July</option>
-                  <option value="">August</option>
-                  <option value="">September</option>
-                  <option value="">October</option>
-                  <option value="">November</option>
-                  <option value="">December</option>
+                <select className="w-full border-none outline-none">
+                  <option>Select Month</option>
+                  <option>January</option>
+                  <option>February</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                  <option>June</option>
+                  <option>July</option>
+                  <option>August</option>
+                  <option>September</option>
+                  <option>October</option>
+                  <option>November</option>
+                  <option>December</option>
                 </select>
               </div>
             </section>
           </div>
+
           <div>
             <section className="flex flex-col gap-2">
-              <label
-                htmlFor="student"
-                className="text-[#1C1C1C] text-[14px] font-semibold"
-              >
-                yaer
+              <label className="text-[#1C1C1C] text-[14px] font-semibold">
+                Year
               </label>
               <div className="rounded-2xl px-3 py-4 border border-[#E6E6E6]">
-                <select
-                  name=""
-                  id="student"
-                  className="w-full border-none outline-none"
-                >
-                  <option value="">Select Year</option>
-                  <option value="">2020</option>
-                  <option value="">2021</option>
-                  <option value="">2022</option>
-                  <option value="">2023</option>
-                  <option value="">2024</option>
-                  <option value="">2025</option>
-                  <option value="">2026</option>
+                <select className="w-full border-none outline-none">
+                  <option>Select Year</option>
+                  <option>2023</option>
+                  <option>2024</option>
+                  <option>2025</option>
+                  <option>2026</option>
                 </select>
               </div>
             </section>
@@ -216,13 +196,10 @@ function GeneratePayroll() {
 
         <div className="mt-6">
           <button
-            type="button"
             onClick={() => setShowPayroll(true)}
-            className="flex gap-2 border items-center px-6 py-3 rounded-lg border-none bg-[#0B3142] text-white"
+            className="flex gap-2 items-center px-6 py-3 rounded-lg bg-[#0B3142] text-white"
           >
-            <span>
-              <IoSearchOutline size={16} />
-            </span>
+            <IoSearchOutline size={16} />
             <span className="text-[16px] font-semibold">Search</span>
           </button>
         </div>
@@ -240,132 +217,133 @@ function GeneratePayroll() {
               </span>
             </div>
 
-            {/* <------------------------------------- filter -------------------------------> */}
-            <div className="">
-              <div className="inline-flex items-center gap-1 bg-[linear-gradient(to_right,#F5F2ED,#F4F5F0,#EDF5F3)] rounded-2xl p-1">
-                {["Manually", "Bulk Action"].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => setActive(item)}
-                    className={`${baseBtn} ${
-                      active === item ? activeBtn : inactiveBtn
-                    }`}
-                  >
-                    {item}
-                  </button>
-                ))}
+            <div className="inline-flex items-center gap-1 bg-[linear-gradient(to_right,#F5F2ED,#F4F5F0,#EDF5F3)] rounded-2xl p-1">
+              {["Manually", "Bulk Action"].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => setActive(item)}
+                  className={`${baseBtn} ${
+                    active === item ? activeBtn : inactiveBtn
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* MANUAL SECTION */}
+          {active === "Manually" && (
+            <>
+              <div className="mt-3 flex items-center gap-36">
+                <div className="flex-1">
+                  <input
+                    type="search"
+                    placeholder="🔎︎ Search Student by name or admission Number..."
+                    className="w-full bg-[#EEEEEE] rounded-lg px-4 py-2"
+                  />
+                </div>
+
+                <div className="bg-[#EFF2F2] rounded px-1 py-1">
+                  <select className="bg-[#EFF2F2] rounded px-1 py-1 border-0 outline-0">
+                    <option>Status</option>
+                    <option>Expire</option>
+                    <option>Active</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="mt-8 border border-[#e6e6e6] rounded-lg">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-[#e6e6e6]">
+                      <th className="px-5 py-4 text-left text-[14px] font-semibold">
+                        Staff
+                      </th>
+                      <th className="px-5 py-4 text-left text-[14px] font-semibold">
+                        Role
+                      </th>
+                      <th className="px-5 py-4 text-left text-[14px] font-semibold">
+                        Department
+                      </th>
+                      <th className="px-5 py-4 text-left text-[14px] font-semibold">
+                        Paid
+                      </th>
+                      <th className="px-5 py-4 text-left text-[14px] font-semibold">
+                        Status
+                      </th>
+                      <th className="px-5 py-4 text-left text-[14px] font-semibold">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {staffData.map((item) => (
+                      <tr key={item.id} className="border-b border-[#e6e6e6]">
+                        <td className="px-4 py-3 text-[#12516E] text-[14px]">
+                          <div className="flex gap-4">
+                            <img
+                              src={item.image}
+                              className="w-10 h-10 rounded-full object-cover"
+                            />
+
+                            <div className="flex flex-col">
+                              <span className="font-semibold">{item.name}</span>
+                              <span className="text-sm text-[#9c9c9c]">
+                                {item.empId}
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td className="px-4 py-3">
+                          <span className="inline-flex w-full items-center justify-center px-3 py-1 text-sm font-medium border border-[#007AFF] text-[#007AFF] rounded-md">
+                            {item.role}
+                          </span>
+                        </td>
+
+                        <td className="px-4 py-3">{item.department}</td>
+                        <td className="px-4 py-3">{item.paid}</td>
+
+                        <td className="px-4 py-3">
+                          <span
+                            className={`px-3 py-1 rounded text-xs font-semibold ${
+                              statusStyle[item.status] || ""
+                            }`}
+                          >
+                            {item.status}
+                          </span>
+                        </td>
+
+                        <td className="px-4 py-3 text-[#9C9C9C]">Actions</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <Pagination />
+              </div>
+            </>
+          )}
+
+          {/* BULK ACTION */}
+          {active === "Bulk Action" && (
+            <div className="mt-6 p-6 border border-[#E6E6E6] rounded-xl">
+              <span className="text-[18px] font-semibold">
+                Bulk Payroll Action
+              </span>
+
+              <div className="mt-4 flex gap-4">
+                <button className="px-6 py-3 bg-[#0B3142] text-white rounded-lg">
+                  Upload Excel
+                </button>
+
+                <button className="px-6 py-3 bg-[#009638] text-white rounded-lg">
+                  Process Payroll
+                </button>
               </div>
             </div>
-          </div>
-          {/* <-------------------------------------- search & filter ------------------------------> */}
-          <div className="mt-3 flex items-center gap-36">
-            {/* SEARCH */}
-            <div className="flex-1">
-              <span></span>
-              <input
-                type="search"
-                placeholder="🔎︎ Search Student by name or admission Number..."
-                className="w-full bg-[#EEEEEE] rounded-lg px-4 py-2"
-              />
-            </div>
-
-            <label htmlFor="status"></label>
-            <div className="bg-[#EFF2F2] rounded px-1 py-1">
-              <select
-                name=""
-                id="status"
-                className="bg-[#EFF2F2] rounded px-1 py-1 border-0 outline-0"
-              >
-                <option value="">Status</option>
-                <option value="">Expire</option>
-                <option value="">Active</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="mt-8 border border-[#e6e6e6] rounded-lg">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-[#e6e6e6]">
-                  <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold flex justify-between items-center">
-                    <span>Staff</span>
-                  </th>
-                  <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
-                    Role
-                  </th>
-                  <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
-                    Department
-                  </th>
-                  <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
-                    Paid
-                  </th>
-                  <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
-                    Status
-                  </th>
-                  <th className="px-5 py-4 text-left text-[14px] text-[#1c1c1c] font-semibold">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {staffData.map((item, index) => (
-                  <tr className="border-b border-[#e6e6e6]">
-                    <td className="px-4 py-3 text-left font-normal text-[#12516E] text-[14px] w-[30%]">
-                      <div className="flex gap-4">
-                        <div className="w-10 h-10 rounded-full overflow-hidden">
-                          <img
-                            src={item.image}
-                            alt=""
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-
-                        {/* Name + ID */}
-                        <div className="flex flex-col leading-tight">
-                          <span className="text-[#12516E] font-semibold">
-                            {item.name}
-                          </span>
-                          <span className="text-sm text-[#9c9c9c] font-semibold">
-                            {item.empId}
-                          </span>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 flex font-normal text-[14px] gap-2.5">
-                      <span className="px-1 py-2 border border-[#007AFF] rounded w-full flex items-center justify-center text-[#007AFF] font-normal">
-                        {item.role}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-left font-normal text-[14px]">
-                      {item.department}
-                    </td>
-                    <td className="px-4 py-3 text-left font-normal text-[14px]">
-                      {item.paid}
-                    </td>
-                    <td className="px-4 py-3 text-left font-normal text-[14px]">
-                      <span
-                        className={`flex justify-center items-center gap-1 px-3 py-1 rounded text-xs font-semibold
-                          ${item.status === "Processed" ? "bg-green-100 text-green-700" : ""}
-                          ${item.status === "Paid" ? "bg-red-100 text-red-700" : ""}
-                          ${item.status === "Pending" ? "bg-yellow-100 text-yellow-700" : ""}
-                        `}
-                      >
-                        {item.status}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-left font-normal text-[14px] flex gap-2 items-center text-[#9C9C9C]">
-                      <span className="">
-                        {/* <IoEyeOutline size={18} /> */}
-                      </span>
-                      <span>{/* <FiRefreshCcw size={18} /> */}</span>
-                      <span>{/* <FiEdit size={18} /> */}</span>
-                      <span>{/* <RiDeleteBinLine size={18} /> */}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          )}
         </div>
       )}
     </div>

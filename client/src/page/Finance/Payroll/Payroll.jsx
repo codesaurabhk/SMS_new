@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import GeneratePayroll from "./GeneratePayroll";
+import SalaryStructure from "./SalaryStructure";
 
 function DetailsContent({ active }) {
   switch (active) {
     case "Generate Payroll":
       return <GeneratePayroll />;
 
-    case "Fee Receipt":
-      return <div></div>;
+    case "Salary Structure":
+      return <SalaryStructure />;
 
     case "Pending Fees":
       return <div></div>;
